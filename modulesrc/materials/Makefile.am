@@ -28,6 +28,7 @@ swig_sources = \
 	materials.i \
 	Material.i \
 	IsotropicLinearElasticityPlaneStrain.i \
+	IsotropicLinearPoroelasticityPlaneStrain.i \
 	IsotropicLinearGenMaxwellPlaneStrain.i \
 	IsotropicLinearMaxwellPlaneStrain.i \
 	IsotropicLinearIncompElasticityPlaneStrain.i \
