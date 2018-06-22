@@ -127,6 +127,8 @@ private:
     bool _useInertia;   ///< Flag to include inertial term.
     bool _useBodyForce;   ///< Flag to include body force term.
     bool _useReferenceState;   ///< Flag to use reference stress and strain.
+    bool _useSourceDensity;   ///< Flag to use source density.
+
 
     static const char* _pyreComponent; ///< Name of Pyre component.
 

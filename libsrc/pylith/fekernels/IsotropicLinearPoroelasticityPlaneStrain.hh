@@ -84,7 +84,7 @@ public:
      * Solution fields: [...]
      * Auxiliary fields: [density(1), shear_modulus(1), bulk_modulus(1), gravity_field(dim), body_force(dim), ...]
      */
-    
+
     static
     void g0v_gravbodyforce(const PylithInt dim,
                            const PylithInt numS,
@@ -289,7 +289,7 @@ public:
                 const PylithScalar constants[],
                 PylithScalar f0p[]);
 
-    /** ---------------------------------------------------------------------- 
+    /** ----------------------------------------------------------------------
     * g0p function for isotropic linear poroelasticity plane strain with gravity
     * and body force.
     */
@@ -314,7 +314,7 @@ public:
                 PylithScalar g0p[]);
 
 
-    /** ---------------------------------------------------------------------- 
+    /** ----------------------------------------------------------------------
     * g0p function for isotropic linear poroelasticity plane strain with gravity
     * or body force.
     */
@@ -338,7 +338,7 @@ public:
                 const PylithScalar constants[],
                 PylithScalar g0p[]);
 
-    /** ---------------------------------------------------------------------- 
+    /** ----------------------------------------------------------------------
     * g0p function for isotropic linear poroelasticity plane strain without gravity
     * or body force.
     */
@@ -362,7 +362,7 @@ public:
                 const PylithScalar constants[],
                 PylithScalar g0p[]);
 
-    /** ---------------------------------------------------------------------- 
+    /** ----------------------------------------------------------------------
     * g1p function for isotropic linear poroelasticity plane strain with gravity
     */
     static
@@ -385,7 +385,7 @@ public:
                 const PylithScalar constants[],
                 PylithScalar g1p[]);
 
-    /** ---------------------------------------------------------------------- 
+    /** ----------------------------------------------------------------------
     * g0p function for isotropic linear poroelasticity plane strain without gravity
     */
     static
@@ -408,8 +408,8 @@ public:
                 const PylithScalar constants[],
                 PylithScalar g1p[]);
 
-    /** ---------------------------------------------------------------------- 
-    * g0E function for isotropic linear poroelasticity plane strain 
+    /** ----------------------------------------------------------------------
+    * g0E function for isotropic linear poroelasticity plane strain
     */
     static
     void g0e_trace_strain(const PylithInt dim,
@@ -591,6 +591,8 @@ public:
                const PylithInt numConstants,
                const PylithScalar constants[],
                PylithScalar Jg3[]);
+}; // IsotropicLinearPoroelasticityPlaneStrain
 
+#endif // pylith_fekernels_isotropiclinearporoelasticityplanestrain_hh
 
 // End of file

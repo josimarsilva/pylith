@@ -59,6 +59,7 @@ namespace pylith {
         class AuxiliaryFactory;
 
         class IsotropicLinearElasticityPlaneStrain;
+        class IsotropicLinearPoroelasticityPlaneStrain;
         class IsotropicLinearMaxwellPlaneStrain;
         class IsotropicLinearGenMaxwellPlaneStrain;
         class IsotropicLinearIncompElasticityPlaneStrain;

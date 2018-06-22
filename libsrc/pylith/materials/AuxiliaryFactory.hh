@@ -68,6 +68,27 @@ public:
     /// Add reference strain subfield to auxiliary fields.
     void referenceStrain(void);
 
+    /// Add reference isotropicPermeability subfield to auxiliary fields.
+    void isotropicPermeability(void);
+
+    /// Add reference porosity subfield to auxiliary fields.
+    void porosity(void);
+
+    /// Add reference fluidDensity subfield to auxiliary fields.
+    void fluidDensity(void);
+
+    /// Add reference fluidViscosity subfield to auxiliary fields.
+    void fluidViscosity(void);
+
+    /// Add reference fluidBulkModulus subfield to auxiliary fields.
+    void fluidBulkModulus(void);
+
+    /// Add reference biotCoefficient subfield to auxiliary fields.
+    void biotCoefficient(void);
+
+    /// Add reference sourceDensity subfield to auxiliary fields.
+    void sourceDensity(void);
+
     /// Add Maxwell time subfield to auxiliary fields.
     void maxwellTime(void);
 

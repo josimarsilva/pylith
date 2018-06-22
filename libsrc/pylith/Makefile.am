@@ -72,6 +72,7 @@ libpylith_la_SOURCES = \
 	materials/Material.cc \
 	materials/AuxiliaryFactory.cc \
 	materials/IsotropicLinearElasticityPlaneStrain.cc \
+	materials/IsotropicLinearPoroelasticityPlaneStrain.cc \
 	materials/IsotropicLinearMaxwellPlaneStrain.cc \
 	materials/IsotropicLinearGenMaxwellPlaneStrain.cc \
 	materials/IsotropicLinearIncompElasticityPlaneStrain.cc \
