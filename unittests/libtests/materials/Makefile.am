@@ -30,6 +30,7 @@ check_PROGRAMS = testmaterials
 testmaterials_SOURCES = \
 	TestMaterial.cc \
 	TestIsotropicLinearElasticityPlaneStrain.cc \
+	TestIsotropicLinearPoroelasticityPlaneStrain.cc \
 	TestIsotropicLinearElasticityPlaneStrain_UniformStrain.cc \
 	TestIsotropicLinearElasticityPlaneStrain_GravityRefState.cc \
 	TestIsotropicLinearMaxwellPlaneStrain.cc \
@@ -48,6 +49,7 @@ testmaterials_SOURCES = \
 noinst_HEADERS = \
 	TestMaterial.hh \
 	TestIsotropicLinearElasticityPlaneStrain.hh \
+	TestIsotropicLinearPoroelasticityPlaneStrain.hh \
 	TestIsotropicLinearElasticity3D.hh \
 	TestIsotropicLinearMaxwellPlaneStrain.hh \
 	TestIsotropicLinearGenMaxwellPlaneStrain.hh \

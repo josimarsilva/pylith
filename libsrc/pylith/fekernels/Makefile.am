@@ -24,6 +24,9 @@ subpkginclude_HEADERS = \
 	Elasticity.hh \
 	ElasticityPlaneStrain.hh \
 	IsotropicLinearElasticityPlaneStrain.hh \
+	Poroelasticity.hh \
+	PoroelasticityPlaneStrain.hh \
+	IsotropicLinearPoroelasticityPlaneStrain.hh \
 	Viscoelastic.hh \
 	IsotropicLinearMaxwellPlaneStrain.hh \
 	IncompressibleElasticity.hh \

@@ -55,6 +55,10 @@ namespace pylith {
 
         class FaultCohesiveKin;
 
+        class Poroelasticity;
+        // class PoroelasticityPlaneStrain;
+        class IsotropicLinearPoroelasticityPlaneStrain;
+
     } // fekernels
 } // pylith
 
