@@ -55,6 +55,9 @@ libpylith_la_SOURCES = \
 	fekernels/Elasticity.cc \
 	fekernels/ElasticityPlaneStrain.cc \
 	fekernels/IsotropicLinearElasticityPlaneStrain.cc \
+	fekernels/IsotropicLinearPoroelasticityPlaneStrain.cc \
+	fekernels/Poroelasticity.cc \
+	fekernels/PoroelasticityPlaneStrain.cc \
 	fekernels/Viscoelastic.cc \
 	fekernels/IsotropicLinearMaxwellPlaneStrain.cc \
 	fekernels/IsotropicLinearGenMaxwellPlaneStrain.cc \

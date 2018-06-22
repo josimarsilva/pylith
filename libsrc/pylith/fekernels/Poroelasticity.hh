@@ -18,7 +18,7 @@
 
 /** @file libsrc/fekernels/Poroelasticity.hh
  *
- * Generic elasticity pointwise functions 
+ * Generic elasticity pointwise functions
  *
  */
 
@@ -157,10 +157,11 @@ public:
 
     /** M function for storage at constant strain. Fluid volume released per unit drop in pressure
      *
-     * \vec{f0} = \frac{(\alpha-\phi}{K} + \frac{\phi}{K_f} 
+     * \vec{f0} = \frac{(\alpha-\phi}{K} + \frac{\phi}{K_f}
      *
      * Auxiliary fields: [bulkModulus(2), porosity(4), fluidBulkModulus(7), biotCoefficient(8)]
      */
+    /*
     static
     void mstorage(const PylithInt dim,
                      const PylithInt numS,
@@ -180,7 +181,7 @@ public:
                      const PylithInt numConstants,
                      const PylithScalar constants[],
                      PylithReal storageCoefficientStrain);
-
+     */
 
 }; // Elasticity
 
