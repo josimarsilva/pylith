@@ -48,6 +48,7 @@ __all__ = ['EqDeformation',
            'SolnDispPresLagrange',
            'SolnDispVel',
            'SolnDispVelLagrange',
+           'SolnDispPorPresTracStrain',
            ]
 
 

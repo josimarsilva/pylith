@@ -31,6 +31,7 @@ testmaterials_SOURCES = \
 	TestMaterial.cc \
 	TestIsotropicLinearElasticityPlaneStrain.cc \
 	TestIsotropicLinearPoroelasticityPlaneStrain.cc \
+	TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic.cc \
 	TestIsotropicLinearElasticityPlaneStrain_UniformStrain.cc \
 	TestIsotropicLinearElasticityPlaneStrain_GravityRefState.cc \
 	TestIsotropicLinearMaxwellPlaneStrain.cc \

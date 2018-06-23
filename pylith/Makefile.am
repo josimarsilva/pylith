@@ -51,6 +51,7 @@ nobase_pkgpyexec_PYTHON = \
 	materials/AuxFieldsIsotropicLinearElasticity.py \
 	materials/AuxFieldsIsotropicLinearMaxwell.py \
 	materials/IsotropicLinearElasticity3D.py \
+        materials/IsotropicLinearPoroelasticityPlaneStrain.py \
 	meshio/__init__.py \
 	meshio/CellFilter.py \
 	meshio/DataWriter.py \
@@ -78,6 +79,7 @@ nobase_pkgpyexec_PYTHON = \
 	problems/SolnDispVelLagrange.py \
 	problems/SolnDispPres.py \
 	problems/SolnDispPresLagrange.py \
+        problems/SolnDispPorPresTracStrain.py \ 
 	problems/SubfieldDisplacement.py \
 	problems/SubfieldVelocity.py \
 	problems/SubfieldPressure.py \
