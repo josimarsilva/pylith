@@ -47,6 +47,7 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::IsotropicLinearPoro
     pylith::materials::Material(2),
     _useInertia(false),
     _useBodyForce(false),
+    _useSourceDensity(false),
     _useReferenceState(false)
 { // constructor
     pylith::utils::PyreComponent::name(_pyreComponent);
@@ -93,6 +94,22 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useBodyForce(void) 
     return _useBodyForce;
 } // useBodyForce
 
+// ----------------------------------------------------------------------
+// Include source density?
+void
+pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useSourceDensity(const bool value) {
+    PYLITH_COMPONENT_DEBUG("useSourceDensity(value="<<value<<")");
+
+    _useSourceDensity = value;
+} // useSourceDensity
+
+
+// ----------------------------------------------------------------------
+// Include source density?
+bool
+pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useSourceDensity(void) const {
+    return _useSourceDensity;
+} // useSourceDensity
 
 // ----------------------------------------------------------------------
 // Use reference stress and strain in computation of stress and

@@ -68,6 +68,18 @@ public:
      * @returns True if including body force term, false otherwise.
      */
     bool useBodyForce(void) const;
+    
+    /** Include source density?
+     *
+     * @param[in] value Flag indicating to include source density term.
+     */
+    void useSourceDensity(const bool value);
+
+    /** Include source density?
+     *
+     * @returns True if including source density term, false otherwise.
+     */
+    bool useSourceDensity(void) const;
 
     /** Use reference stress and strain in computation of stress and
      * strain?
