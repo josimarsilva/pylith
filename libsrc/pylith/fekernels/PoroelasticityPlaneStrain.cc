@@ -27,7 +27,7 @@
  * Kernels for elatsicity plane strain.
  * ======================================================================
  */
- 
+
 // ----------------------------------------------------------------------
 /* Calculate mean stress for 2-D plane strain isotropic linear
  * poroelasticity WITHOUT reference stress and strain.
@@ -78,10 +78,10 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress(const PylithInt dim,
 
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar poro_pres = s[sOff[i_poro_pres]];
-    
+
     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
-    const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];    
-    
+    const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
+
     const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
     const PylithReal meanStress = bulkModulus * strainTrace;
     const PylithReal alphaPres = biotCoefficient * poro_pres;
@@ -133,7 +133,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress_refstate(const PylithIn
     const PylithInt i_rstress = 2;
     const PylithInt i_rstrain = 3;
 
-	
+
     PylithInt i;
 
     assert(_dim == dim);
@@ -144,14 +144,14 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress_refstate(const PylithIn
     assert(s_x);
     assert(a);
     assert(stress);
-    
+
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar poro_pres = s[sOff[i_poro_pres]];
-    
+
     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, streass_zz, stress_xy
-    const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy        
+    const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
 
     const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
     const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
@@ -206,17 +206,17 @@ pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress(const PylithInt d
     const PylithInt i_shearModulus = 0;
 
     assert(_dim == dim);
-    assert(1 == numS);
+    assert(2 == numS);
     assert(1 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
     assert(a);
     assert(stress);
-    
+
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar shearModulus = a[aOff[i_shearModulus]];
-    
+
     const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
     const PylithReal traceTerm = -2.0/3.0*shearModulus * strainTrace;
     const PylithReal twomu = 2.0*shearModulus;
@@ -280,7 +280,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress_refstate(const Py
     assert(s_x);
     assert(a);
     assert(stress);
-    
+
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar shearModulus = a[aOff[i_shearModulus]];
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
@@ -381,7 +381,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
                                                      const PylithScalar constants[],
                                                      PylithScalar g1p[]) {
     const PylithInt _dim = 2;
-    
+
     PylithInt i;
 
     assert(_dim == dim);
@@ -401,7 +401,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
     const PylithInt i_isotropicPerm = 1;
     const PylithInt i_viscosity = 2;
     const PylithInt i_gravityField = 3;
-    
+
     const PylithScalar poro_pres = s[sOff[i_poro_pres]];
     const PylithScalar* poro_pres_x = &s_x[sOff_x[i_poro_pres_x]];
 
@@ -409,8 +409,8 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
     const PylithScalar isotropicPerm = a[aOff[i_isotropicPerm]];
     const PylithScalar viscosity = a[aOff[i_viscosity]];
     const PylithScalar* gravityField = &a[aOff[i_gravityField]];
-     
-    
+
+
     const PylithScalar darcyConductivity = isotropicPerm / viscosity;
 
     for (PylithInt i = 0; i < dim; ++i) {
@@ -446,7 +446,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowNoGrav(const PylithInt di
                                                      const PylithScalar constants[],
                                                      PylithScalar g1p[]) {
     const PylithInt _dim = 2;
-    
+
     PylithInt i;
 
     assert(_dim == dim);
@@ -466,15 +466,15 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowNoGrav(const PylithInt di
     const PylithInt i_density = 0;
     const PylithInt i_isotropicPerm = 1;
     const PylithInt i_viscosity = 2;
-    
+
     const PylithScalar poro_pres = s[sOff[i_poro_pres]];
     const PylithScalar* poro_pres_x = &s_x[sOff_x[i_poro_pres_x]];
 
-    const PylithScalar density = a[aOff[i_density]];    
+    const PylithScalar density = a[aOff[i_density]];
     const PylithScalar isotropicPerm = a[aOff[i_isotropicPerm]];
-    const PylithScalar viscosity = a[aOff[i_viscosity]];    
-    
-        
+    const PylithScalar viscosity = a[aOff[i_viscosity]];
+
+
     const PylithScalar darcyConductivity = isotropicPerm / viscosity;
 
     for (PylithInt i = 0; i < dim; ++i) {
@@ -509,7 +509,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
                                                      const PylithScalar constants[],
                                                      PylithScalar g1E[]) {
     const PylithInt _dim = 2;
-    
+
     PylithInt i;
 
     // Incoming solution field.
@@ -519,10 +519,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
     assert(_dim == dim);
     assert(2 == numS);
     assert(sOff_x);
-    assert(aOff);
     assert(s_x);
-    assert(a);
-
 
     const PylithScalar* disp = &s[sOff[i_disp]];
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];

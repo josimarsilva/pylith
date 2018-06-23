@@ -23,53 +23,14 @@ include $(top_srcdir)/check.am
 SUBDIRS = data
 
 TESTS = \
-	test_isotropiclinearelasticityplanestrain \
-	test_isotropiclinearmaxwellplanestrain \
-	test_isotropiclineargenmaxwellplanestrain \
-	test_isotropiclinearelasticity3d \
-	test_isotropiclinearmaxwell3d \
-	test_isotropiclineargenmaxwell3d
+  test_isotropiclinearporoelasticityplanestrain
 
 check_PROGRAMS = $(TESTS)
 
-
-test_isotropiclinearelasticityplanestrain_SOURCES = \
+test_isotropiclinearporoelasticityplanestrain_SOURCES = \
 	TestMaterial.cc \
-	TestIsotropicLinearElasticityPlaneStrain.cc \
 	TestIsotropicLinearPoroelasticityPlaneStrain.cc \
 	TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic.cc \
-	TestIsotropicLinearElasticityPlaneStrain_UniformStrain.cc \
-	TestIsotropicLinearElasticityPlaneStrain_GravityRefState.cc \
-	test_materials.cc
-
-test_isotropiclinearmaxwellplanestrain_SOURCES = \
-	TestMaterial.cc \
-	TestIsotropicLinearMaxwellPlaneStrain.cc \
-	TestIsotropicLinearMaxwellPlaneStrain_LinearStrain.cc \
-	test_materials.cc
-
-test_isotropiclineargenmaxwellplanestrain_SOURCES = \
-	TestMaterial.cc \
-	TestIsotropicLinearGenMaxwellPlaneStrain.cc \
-	TestIsotropicLinearGenMaxwellPlaneStrain_LinearStrain.cc \
-	test_materials.cc
-
-test_isotropiclinearelasticity3d_SOURCES = \
-	TestMaterial.cc \
-	TestIsotropicLinearElasticity3D.cc \
-	TestIsotropicLinearElasticity3D_UniformStrain.cc \
-	test_materials.cc
-
-test_isotropiclinearmaxwell3d_SOURCES = \
-	TestMaterial.cc \
-	TestIsotropicLinearMaxwell3D.cc \
-	TestIsotropicLinearMaxwell3D_LinearStrain.cc \
-	test_materials.cc
-
-test_isotropiclineargenmaxwell3d_SOURCES = \
-	TestMaterial.cc \
-	TestIsotropicLinearGenMaxwell3D.cc \
-	TestIsotropicLinearGenMaxwell3D_LinearStrain.cc \
 	test_materials.cc
 
 noinst_HEADERS = \

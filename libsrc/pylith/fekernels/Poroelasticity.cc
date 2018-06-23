@@ -49,7 +49,7 @@ pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
                                         const PylithScalar constants[],
                                         PylithScalar g0[]) {
     const PylithInt _numS = 0;
-    const PylithInt _numA = 2;
+    const PylithInt _numA = 4;
 
     // Incoming solution fields.
     const PylithInt i_density = 0;

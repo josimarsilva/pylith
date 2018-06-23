@@ -97,7 +97,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     static const char* bulkModulus_units(void) {
         return "Pa";
     } // bulkModulus_units
-    
+
     // isotropic permeability
     static double isotropicPermeability(const double x,
                               const double y) {
@@ -106,7 +106,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     static const char* isotropicPermeability_units(void) {
         return "m**2";
     } // isotropicPermeability_units
-    
+
     // porosity
     static double porosity(const double x,
                               const double y) {
@@ -123,8 +123,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     } // fluidDensity
     static const char* fluidDensity_units(void) {
         return "kg/m**3";
-    } // fluidDensity_units    
-    
+    } // fluidDensity_units
+
     // fluid viscosity
     static double fluidViscosity(const double x,
                               const double y) {
@@ -132,8 +132,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     } // fluidViscosity
     static const char* fluidViscosity_units(void) {
         return "Pa*s";
-    } // fluidViscosity_units  
-    
+    } // fluidViscosity_units
+
     // fluid bulk modulus
     static double fluidBulkModulus(const double x,
                               const double y) {
@@ -142,7 +142,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     static const char* fluidBulkModulus_units(void) {
         return "Pa";
     } // fluidBulkModulus_units
-    
+
     // biot coefficient
     static double biotCoefficient(const double x,
                               const double y) {
@@ -150,10 +150,10 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     } // biotCoefficient
     static const char* biotCoefficient_units(void) {
         return "none";
-    } // biotCoefficient_units        
+    } // biotCoefficient_units
 
     // Spatial database user functions for solution subfields.
-    
+
     // source density
     static double sourceDensity(const double x,
                                       const double y) {
@@ -162,7 +162,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     static const char* sourceDensity_units(void) {
         return "m**3/s";
     } // sourceDensity_units
-    
+
     // body force
     static double bodyForce(const double x,
                                       const double y) {
@@ -171,7 +171,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     static const char* bodyForce_units(void) {
         return "Pa*m*m";
     } // bodyForce_units
-    
+
 
     static double referenceMeanStress(const double x,
                                       const double y) {
@@ -205,14 +205,28 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     } // acc_units
 
 
+    // set up coefficients for reference solutions
+    static double poissons_ratio(const double x,
+                               const double y) {
+        return (3.0 * bulkModulus(x,y) - 2.0 * shearModulus(x,y)) / (2.0 * (2.0 * bulkModulus(x,y) + shearModulus(x,y)) );
+    } // poissons_ratio
+
+    static double material_constant_modulus(const double x,
+                                 const double y) {
+        double tmp1 = ( ( GACC * density(x,y)/( 2.0 * shearModulus(x,y) ) )*( ( poissons_ratio(x,y) - 1.0 )/( 1.0 + poissons_ratio(x,y) ) ) );
+        double tmp2 = biotCoefficient(x,y) * GACC*fluidDensity(x,y) / 3.0 * bulkModulus(x,y);
+        double tmp3=tmp1 - tmp2;
+        return tmp3;
+    } // material_constant_modulus
+
     // Displacement
     static double disp_x(const double x,
                          const double y) {
-        return 0.0;
+        return material_constant_modulus(x,y) * y * x;
     } // disp_x
     static double disp_y(const double x,
                          const double y) {
-        return 0.0;
+        return 0.5*material_constant_modulus(x,y) * y * y;
     } // disp_y
     static const char* disp_units(void) {
         return "m";
@@ -240,34 +254,34 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
                                  const double y) {
         return disp_y(x, y) + SMALL;
     } // disp_perturb_y
-    
-    // Pressure
-    static double poro_pres(const double x,
-                         const double y) {
-        return 0.0;
-    } // poro_pres
-    static const char* poro_pres_units(void) {
-        return "Pa";
-    } // poro_pres
 
-    static double poro_pres_dot(const double x,
+    // Pressure
+    static double pore_pressure(const double x,
+                         const double y) {
+        return -GACC * density(x,y) * y;
+    } // pore_pressure
+    static const char* pore_pressure_units(void) {
+        return "Pa";
+    } // pore_pressure
+
+    static double pore_pressure_dot(const double x,
                              const double y) {
         return 0.0;
-    } // poro_pres_dot
-    static const char* poro_pres_dot_units(void) {
+    } // pore_pressure_dot
+    static const char* pore_pressure_dot_units(void) {
         return "Pa/s";
-    } // poro_pres_dot_units
-    
-    // poro_pres + perturbation
-    static double poro_pres_perturb(const double x,
+    } // pore_pressure_dot_units
+
+    // pore_pressure + perturbation
+    static double pore_pressure_perturb(const double x,
                                  const double y) {
-        return poro_pres(x, y) + SMALL;
-    } // poro_pres_perturb
- 
+        return pore_pressure(x, y) + SMALL;
+    } // pore_pressure_perturb
+
     // trace strain
     static double trace_strain(const double x,
                          const double y) {
-        return 0.0;
+        return 2.0 * material_constant_modulus(x,y) * y;
     } // trace_strain
     static const char* trace_strain_units(void) {
         return "none";
@@ -314,12 +328,10 @@ protected:
 
         // solnDiscretizations set in derived class.
 
-        _mydata->numAuxSubfields = 14;
-        static const char* _auxSubfields[14] = {"density", "shear_modulus", "bulk_modulus", "isotropicPermeability", 
-        "porosity", "fluidDensity", "fluidViscosity", "fluidBulkModulus", "biotCoefficient", "gravitational_acceleration", 
-         "body_force","source_density", "reference_stress", "reference_strain" };
+        _mydata->numAuxSubfields = 10;
+        static const char* _auxSubfields[10] = {"density", "shear_modulus", "bulk_modulus", "isotropic_permeability", "porosity", "fluid_density", "fluid_viscosity", "fluid_bulk_modulus", "biot_coefficient", "gravitational_acceleration" };
         _mydata->auxSubfields = _auxSubfields;
-        static const pylith::topology::Field::Discretization _auxDiscretizations[14] = {
+        static const pylith::topology::Field::Discretization _auxDiscretizations[10] = {
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // density
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // shear_modulus
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // bulk_modulus
@@ -330,10 +342,6 @@ protected:
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidBulkModulus
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // biotCoefficient
             {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // gravitational_acceleration
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // body_force
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // source_density
-            {1, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // reference_stress
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // reference_strain
         };
         _mydata->auxDiscretizations = const_cast<pylith::topology::Field::Discretization*>(_auxDiscretizations);
 
@@ -343,32 +351,22 @@ protected:
         _mydata->auxDB->addValue("vs", vs, vs_units());
         _mydata->auxDB->addValue("shear_modulus", shearModulus, shearModulus_units());
         _mydata->auxDB->addValue("bulk_modulus", bulkModulus, bulkModulus_units());
-        _mydata->auxDB->addValue("isotropicPermeability", isotropicPermeability, isotropicPermeability_units());
+        _mydata->auxDB->addValue("isotropic_permeability", isotropicPermeability, isotropicPermeability_units());
         _mydata->auxDB->addValue("porosity", porosity, porosity_units());
-        _mydata->auxDB->addValue("fluidDensity", fluidDensity, fluidDensity_units());
-        _mydata->auxDB->addValue("fluidViscosity", fluidViscosity, fluidViscosity_units());
-        _mydata->auxDB->addValue("fluidBulkModulus", fluidBulkModulus, fluidBulkModulus_units());
-        _mydata->auxDB->addValue("biotCoefficient", biotCoefficient, biotCoefficient_units());        
-        _mydata->auxDB->addValue("reference_stress_xx", referenceMeanStress, stress_units());
-        _mydata->auxDB->addValue("reference_stress_yy", referenceMeanStress, stress_units());
-        _mydata->auxDB->addValue("reference_stress_zz", referenceMeanStress, stress_units());
-        _mydata->auxDB->addValue("reference_stress_xy", referenceShearStress, stress_units());
-        _mydata->auxDB->addValue("reference_strain_xx", referenceStrain, strain_units());
-        _mydata->auxDB->addValue("reference_strain_yy", referenceStrain, strain_units());
-        _mydata->auxDB->addValue("reference_strain_zz", referenceStrain, strain_units());
-        _mydata->auxDB->addValue("reference_strain_xy", referenceStrain, strain_units());
+        _mydata->auxDB->addValue("fluid_density", fluidDensity, fluidDensity_units());
+        _mydata->auxDB->addValue("fluid_viscosity", fluidViscosity, fluidViscosity_units());
+        _mydata->auxDB->addValue("fluid_bulk_modulus", fluidBulkModulus, fluidBulkModulus_units());
+        _mydata->auxDB->addValue("biot_coefficient", biotCoefficient, biotCoefficient_units());
         _mydata->auxDB->addValue("gravitational_acceleration_x", gravityAcc_x, acc_units()); // test of subfield.
         _mydata->auxDB->addValue("gravitational_acceleration_y", gravityAcc_y, acc_units());
-        _mydata->auxDB->addValue("source_density", sourceDensity, sourceDensity_units()); // test of subfield.
-        _mydata->auxDB->addValue("body_force", bodyForce, bodyForce_units());
 
         CPPUNIT_ASSERT(_mydata->solnDB);
         _mydata->solnDB->addValue("displacement_x", disp_x, disp_units());
         _mydata->solnDB->addValue("displacement_y", disp_y, disp_units());
         _mydata->solnDB->addValue("displacement_dot_x", disp_dot_x, disp_dot_units());
-        _mydata->solnDB->addValue("displacement_dot_y", disp_dot_y, disp_dot_units());        
-        _mydata->solnDB->addValue("poro_pres", poro_pres, poro_pres_units());
-        _mydata->solnDB->addValue("poro_pres_dot", poro_pres_dot, poro_pres_dot_units());
+        _mydata->solnDB->addValue("displacement_dot_y", disp_dot_y, disp_dot_units());
+        _mydata->solnDB->addValue("pore_pressure", pore_pressure, pore_pressure_units());
+        _mydata->solnDB->addValue("pore_pressure_dot", pore_pressure_dot, pore_pressure_dot_units());
         _mydata->solnDB->addValue("trace_strain", trace_strain, trace_strain_units());
         _mydata->solnDB->addValue("trace_strain_dot", trace_strain_dot, trace_strain_dot_units());
 
@@ -377,15 +375,16 @@ protected:
         _mydata->perturbDB->addValue("displacement_y", disp_perturb_y, disp_units());
         _mydata->perturbDB->addValue("displacement_dot_x", disp_dot_x, disp_dot_units());
         _mydata->perturbDB->addValue("displacement_dot_y", disp_dot_y, disp_dot_units());
-        _mydata->perturbDB->addValue("poro_pres", poro_pres_perturb, poro_pres_units());
-        _mydata->perturbDB->addValue("poro_pres_dot", poro_pres_dot, poro_pres_dot_units());
+        _mydata->perturbDB->addValue("pore_pressure", pore_pressure_perturb, pore_pressure_units());
+        _mydata->perturbDB->addValue("pore_pressure_dot", pore_pressure_dot, pore_pressure_dot_units());
         _mydata->perturbDB->addValue("trace_strain", trace_strain_perturb, trace_strain_units());
         _mydata->perturbDB->addValue("trace_strain_dot", trace_strain_dot, trace_strain_dot_units());
 
         CPPUNIT_ASSERT(_mymaterial);
         _mymaterial->useInertia(false);
         _mymaterial->useBodyForce(false);
-        _mymaterial->useReferenceState(true);
+        _mymaterial->useSourceDensity(false);
+        _mymaterial->useReferenceState(false);
 
         _mymaterial->label("Isotropic Linear Poroelasticity Plane Strain");
         _mymaterial->id(24);

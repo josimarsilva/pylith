@@ -77,11 +77,23 @@ public:
      */
     void fluidPressure(const pylith::topology::FieldBase::Discretization& discretization);
 
+    /** Add pore pressure field to solution field, used in IsotrLinPoroelastPlaneStrain.
+     *
+     * @param[in] discretization Discretization for fluid pressure field.
+     */
+    void pore_pressure(const pylith::topology::FieldBase::Discretization& discretization);
+
     /** Add temperature field to solution field.
      *
      * @param[in] discretization Discretization for temperature field.
      */
     void temperature(const pylith::topology::FieldBase::Discretization& discretization);
+
+    /** Add trace strain to solution field.
+     *
+     * @param[in] discretization Discretization for trace strain E field.
+     */
+    void trace_strain(const pylith::topology::FieldBase::Discretization& discretization);
 
     /** Add time derivative of displacement field to solution field.
      *
@@ -101,6 +113,12 @@ public:
      */
     void pressureDot(const pylith::topology::FieldBase::Discretization& discretization);
 
+    /** Add time derivative of pore pressure field to solution field, used in IsotrLinPoroelastPlaneStrain.
+     *
+     * @param[in] discretization Discretization for pore pressure field.
+     */
+    void pore_pressureDot(const pylith::topology::FieldBase::Discretization& discretization);
+
     /** Add time derivative of fluid pressure field to solution field.
      *
      * @param[in] discretization Discretization for time derivative of fluid pressure field.
@@ -112,6 +130,12 @@ public:
      * @param[in] discretization Discretization for time derivative of temperature field.
      */
     void temperatureDot(const pylith::topology::FieldBase::Discretization& discretization);
+
+    /** Add time derivative of trace strain to solution field.
+     *
+     * @param[in] discretization Discretization for time derivative of trace strain E field.
+     */
+    void trace_strainDot(const pylith::topology::FieldBase::Discretization& discretization);
 
     /** Allocate and populate field with values using spatial database.
      *

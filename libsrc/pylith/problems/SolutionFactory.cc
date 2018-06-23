@@ -192,6 +192,57 @@ pylith::problems::SolutionFactory::temperature(const pylith::topology::Field::Di
     PYLITH_METHOD_END;
 } // temperature
 
+// ----------------------------------------------------------------------
+// Add pore pressure field to solution field.
+void
+pylith::problems::SolutionFactory::pore_pressure(const pylith::topology::Field::Discretization& discretization)
+{ // pore_pressure
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("pore_pressure(discretization=typeid(discretization).name())");
+
+    const char* fieldName = "pore_pressure";
+    const char* componentNames[1] = { "pore_pressure" };
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = componentNames[0];
+    description.scale = _normalizer.pressureScale();
+    description.validator = NULL;
+
+    _solution.subfieldAdd(description, discretization);
+
+    PYLITH_METHOD_END;
+} // pore_pressure
+
+// ----------------------------------------------------------------------
+// Add trace strain field to solution field.
+void
+pylith::problems::SolutionFactory::trace_strain(const pylith::topology::Field::Discretization& discretization)
+{ // trace_strain
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("trace_strain(discretization=typeid(discretization).name())");
+
+    const char* fieldName = "trace_strain";
+    const char* componentNames[1] = { "trace_strain" };
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = componentNames[0];
+    description.scale = 1.0;
+    description.validator = NULL;
+
+    _solution.subfieldAdd(description, discretization);
+
+    PYLITH_METHOD_END;
+} // trace_strain
 
 // ----------------------------------------------------------------------
 // Add time derivative of displacement field to solution field.
@@ -330,6 +381,58 @@ pylith::problems::SolutionFactory::temperatureDot(const pylith::topology::Field:
 
     PYLITH_METHOD_END;
 } // temperatureDot
+
+// ----------------------------------------------------------------------
+// Add time derivative of pressure field to solution field.
+void
+pylith::problems::SolutionFactory::pore_pressureDot(const pylith::topology::Field::Discretization& discretization)
+{ // pore_pressureDot
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("pore_pressureDot(discretization=typeid(discretization).name())");
+
+    const char* fieldName = "pore_pressure_dot";
+    const char* componentNames[1] = { "pore_pressure_dot" };
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = componentNames[0];
+    description.scale = _normalizer.pressureScale() / _normalizer.timeScale();
+    description.validator = NULL;
+
+    _solution.subfieldAdd(description, discretization);
+
+    PYLITH_METHOD_END;
+} // pore_pressureDot
+
+// ----------------------------------------------------------------------
+// Add time derivative of trace_strain field to solution field.
+void
+pylith::problems::SolutionFactory::trace_strainDot(const pylith::topology::Field::Discretization& discretization)
+{ // trace_strainDot
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("trace_strainDot(discretization=typeid(discretization).name())");
+
+    const char* fieldName = "trace_strain_dot";
+    const char* componentNames[1] = { "trace_strain_dot" };
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = componentNames[0];
+    description.scale = 1.0 / _normalizer.timeScale();
+    description.validator = NULL;
+
+    _solution.subfieldAdd(description, discretization);
+
+    PYLITH_METHOD_END;
+} // trace_strainDot
 
 
 // ----------------------------------------------------------------------
