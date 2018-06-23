@@ -40,7 +40,7 @@ class pylith::materials::IsotropicLinearPoroelasticityPlaneStrain : public pylit
 public:
 
     /// Default constructor.
-    IsotropicLinearPoroelasticityPlaneStrain(void);
+    IsotropicLinearPoroelasticityPlaneStrain(void);  
 
     /// Destructor.
     ~IsotropicLinearPoroelasticityPlaneStrain(void);

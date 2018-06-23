@@ -50,7 +50,7 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::IsotropicLinearPoro
     _useSourceDensity(false),
     _useReferenceState(false)
 { // constructor
-    pylith::utils::PyreComponent::name(_pyreComponent);
+    pylith::utils::PyreComponent::name(_pyreComponent);  
 } // constructor
 
 
