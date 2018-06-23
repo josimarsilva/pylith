@@ -397,7 +397,7 @@ pylith::materials::AuxiliaryFactory::fluidBulkModulus(void)
     description.validator = NULL;
 
     _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::materials::Query::dbQueryBulkModulus);
+    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // fluidBulkModulus

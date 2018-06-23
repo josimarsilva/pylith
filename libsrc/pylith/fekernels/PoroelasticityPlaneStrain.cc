@@ -87,7 +87,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress(const PylithInt dim,
     const PylithReal alphaPres = biotCoefficient * poro_pres;
 
     for (i = 0; i < _dim; ++i) {
-        stress[i*_dim+i] += (meanStress - alphaPres);
+        stress[i*_dim+i] += (meanStress + alphaPres);
     } // for
 } // meanStress
 

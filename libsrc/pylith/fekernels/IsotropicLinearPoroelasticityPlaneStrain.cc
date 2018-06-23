@@ -1026,7 +1026,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg2up(const PylithI
     assert(a);
 
     for (i = 0; i < _dim; ++i) {
-        Jg2[i*_dim+i] += biotCoefficient ;
+        Jg2[i*_dim+i] -= biotCoefficient ;
     } // for
 } // Jg2up
 
@@ -1073,12 +1073,17 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithI
     PylithInt j_dim;
     PylithInt k_dim;
 
+
     //Accessing index of a 4-D array: offset = n_4 + N_4*n_3 + N_4*N_3*n_2 + N_4*N_3*n_2*n_1
     for (j_dim =0; j_dim < _dim; ++j_dim ){
       for (k_dim =0; k_dim < _dim; ++k_dim ){
-          if (j_dim == k_dim){
-              Jg3[ j_dim + k_dim*_dim + _dim*_dim*1 + _dim*_dim*1*1 ] = -isotropicPermeablity;
+        for (PylithInt n1 = 0; n1 < 1; ++n1 ){
+          for (PylithInt n2 = 0; n2 < 1; ++n2  ){
+            if (j_dim == k_dim){
+                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity;
+            }
           }
+        }
       }
     }
 
