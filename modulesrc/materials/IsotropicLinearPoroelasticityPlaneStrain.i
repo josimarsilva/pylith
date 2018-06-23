@@ -36,6 +36,25 @@ namespace pylith {
       /// Destructor.
       ~IsotropicLinearPoroelasticityPlaneStrain(void);
 
+      /** Include inertia?
+       *
+       * @param[in] value Flag indicating to include inertial term.
+       */
+      void useInertia(const bool value);
+
+      /** Include body force?
+       *
+       * @param[in] value Flag indicating to include body force term.
+       */
+      void useBodyForce(const bool value);
+
+      /** Use reference stress and strain in computation of stress and
+       * strain?
+       *
+       * @param[in] value Flag indicating to include reference stress and strain.
+       */
+      void useReferenceState(const bool value);
+
       /** Include Source Density (injection/production somewhere in the volume)?
        *
        * @param[in] value Flag indicating to include source density term.
