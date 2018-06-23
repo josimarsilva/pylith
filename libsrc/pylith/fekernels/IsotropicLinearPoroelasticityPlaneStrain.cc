@@ -529,7 +529,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::f0p(const PylithInt
 
     assert(_dim == dim);
     assert(3 == numS || 4 == numS);
-    assert(9 >= numA && 11 <= numA);
+    assert( numA >= 9 && numA <= 11);
     assert(aOff);
     assert(aOff_x);
 
@@ -1083,4 +1083,99 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithI
     }
 
 } // Jg3pp
+
+
+// ----------------------------------------------------------------------
+/* Jg3_vu entry function for 2-D plane strain isotropic linear elasticity.
+ *
+ * stress_ij = C_ijkl strain_kl
+ *
+ * stress_11 = C1111 strain_11 + C1122 strain_22, C1111=lambda+2mu, C1122=lambda.
+ *
+ * stress_12 = C1212 strain_12 + C1221 strain_21. C1212 = C1221 from symmetry, so C1212 = C1221 = shearModulus.
+ *
+ * For reference:
+ *
+ * Isotropic:
+ *  C_ijkl = bulkModulus * delta_ij * delta_kl + shearModulus * (delta_ik*delta_jl + delta_il*delta*jk - 2/3*delta_ij*delta_kl)
+ */
+void
+pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu(const PylithInt dim,
+                                                               const PylithInt numS,
+                                                               const PylithInt numA,
+                                                               const PylithInt sOff[],
+                                                               const PylithInt sOff_x[],
+                                                               const PylithScalar s[],
+                                                               const PylithScalar s_t[],
+                                                               const PylithScalar s_x[],
+                                                               const PylithInt aOff[],
+                                                               const PylithInt aOff_x[],
+                                                               const PylithScalar a[],
+                                                               const PylithScalar a_t[],
+                                                               const PylithScalar a_x[],
+                                                               const PylithReal t,
+                                                               const PylithReal utshift,
+                                                               const PylithScalar x[],
+                                                               const PylithInt numConstants,
+                                                               const PylithScalar constants[],
+                                                               PylithScalar Jg3[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming auxiliary fields.
+    const PylithInt i_shearModulus = 1;
+    const PylithInt i_bulkModulus = 2;
+
+    assert(_dim == dim);
+    assert(3 == numS || 4 == numS);
+    assert(3 <= numA);
+    assert(aOff);
+    assert(a);
+    assert(Jg3);
+
+    const PylithScalar shearModulus = a[aOff[i_shearModulus]];
+    const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
+
+    const PylithScalar lambda = bulkModulus - 2.0/3.0*shearModulus;
+    const PylithScalar lambda2mu = lambda + 2.0*shearModulus;
+
+    const PylithReal C1111 = lambda2mu;
+    const PylithReal C2222 = lambda2mu;
+    const PylithReal C1122 = lambda;
+    const PylithReal C1212 = shearModulus;
+
+    /* j(f,g,df,dg) = C(f,df,g,dg)
+
+       0: j0000 = C1111
+       1: j0001 = C1112 = 0
+       4: j0100 = C1121, symmetry C1112 = 0
+       5: j0101 = C1122
+
+       2: j0010 = C1211 = 0
+       3: j0011 = C1212
+       6: j0110 = C1221, symmetry C1212
+       7: j0111 = C1222 = 0
+
+       8: j1000 = C2111 = 0
+       9: j1001 = C2112, symmetry C1212
+       12: j1100 = C2121, symmetry C1212
+       13: j1101 = C2122, symmetry C1222 = 0
+
+       10: j1010 = C2211, symmetry C1122
+       11: j1011 = C2212, symmetry C1222 = 0
+       14: j1110 = C2221, symmetry C1222 = 0
+       15: j1111 = C2222
+     */
+
+    Jg3[ 0] -= C1111; // j0000
+    Jg3[ 3] -= C1212; // j0011
+    Jg3[ 5] -= C1122; // j0101
+    Jg3[ 6] -= C1212; // j0110, C1221
+    Jg3[ 9] -= C1212; // j1001, C2112
+    Jg3[10] -= C1122; // j1010, C2211
+    Jg3[12] -= C1212; // j1100, C2121
+    Jg3[15] -= C2222; // j1111
+} // Jg3vu
+
+
+
 // End of file

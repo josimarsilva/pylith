@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------
 //
 
-#include <portinfo>  
+#include <portinfo>
 
 
 #include "pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.hh" // implementation of object methods
@@ -50,7 +50,7 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::IsotropicLinearPoro
     _useSourceDensity(false),
     _useReferenceState(false)
 { // constructor
-    pylith::utils::PyreComponent::name(_pyreComponent);  
+    pylith::utils::PyreComponent::name(_pyreComponent);
 } // constructor
 
 
@@ -315,7 +315,7 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSJac
         const PetscPointJac Jg0uu = NULL;
         const PetscPointJac Jg1uu = NULL;
         const PetscPointJac Jg2uu = NULL;
-        const PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearElasticityPlaneStrain::Jg3vu;
+        const PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu;
 
         const PetscPointJac Jg0up = NULL;
         const PetscPointJac Jg1up = NULL;
@@ -387,7 +387,7 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSJac
         const PetscPointJac Jg0vu = NULL;
         const PetscPointJac Jg1vu = NULL;
         const PetscPointJac Jg2vu = NULL;
-        const PetscPointJac Jg3vu = pylith::fekernels::IsotropicLinearElasticityPlaneStrain::Jg3vu;
+        const PetscPointJac Jg3vu = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu;
 
         const PetscPointJac Jg0vv = NULL;
         const PetscPointJac Jg1vv = NULL;

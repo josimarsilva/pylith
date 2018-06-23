@@ -510,11 +510,11 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
                                                      PylithScalar g1E[]) {
     const PylithInt _dim = 2;
 
-    PylithInt i;
+    //PylithInt i;
 
     // Incoming solution field.
     const PylithInt i_disp = 0;
-    const PylithInt i_trace = 2;
+    const PylithInt i_trace = 1;
 
     assert(_dim == dim);
     assert(2 == numS);
@@ -527,7 +527,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
 
     // Incoming auxiliary field.
 
-    for (PylithInt i = 0; i < dim; ++i) {
+    for (PylithInt i = 0; i < _dim; ++i) {
         g1E[i] += disp_x[i] - trace[i];
     } // for
 
