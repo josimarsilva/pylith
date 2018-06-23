@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------
 //
 
-#include <portinfo>
+#include <portinfo>  
 
 
 #include "pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.hh" // implementation of object methods
