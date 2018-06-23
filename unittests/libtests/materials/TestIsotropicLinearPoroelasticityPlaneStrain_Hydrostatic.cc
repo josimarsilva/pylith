@@ -31,7 +31,7 @@ namespace pylith {
     namespace materials {
         class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic;
 
-        class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP1;
+        class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2P1;
         class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2;
         class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP3;
         class TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP4;
@@ -101,7 +101,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // isotropic permeability
     static double isotropicPermeability(const double x,
                               const double y) {
-        return 10.0*pow(10,-13); // 1 Darcy
+        return 10.0e-13; // 1 Darcy
     } // isotropicPermeability
     static const char* isotropicPermeability_units(void) {
         return "m**2";
@@ -128,7 +128,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // fluid viscosity
     static double fluidViscosity(const double x,
                               const double y) {
-        return 10.0*pow(10,-4);
+        return 10.0e-4;
     } // fluidViscosity
     static const char* fluidViscosity_units(void) {
         return "Pa*s";
@@ -137,7 +137,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // fluid bulk modulus
     static double fluidBulkModulus(const double x,
                               const double y) {
-        return 2.0*pow(10,9);
+        return 2.0e+9;
     } // fluidBulkModulus
     static const char* fluidBulkModulus_units(void) {
         return "Pa";
@@ -208,14 +208,15 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // set up coefficients for reference solutions
     static double poissons_ratio(const double x,
                                const double y) {
-        return (3.0 * bulkModulus(x,y) - 2.0 * shearModulus(x,y)) / (2.0 * (2.0 * bulkModulus(x,y) + shearModulus(x,y)) );
+        return (3.0 * bulkModulus(x,y) - 2.0 * shearModulus(x,y)) / (2.0 * (3.0 * bulkModulus(x,y) + shearModulus(x,y)) );
     } // poissons_ratio
 
     static double material_constant_modulus(const double x,
                                  const double y) {
-        double tmp1 = ( ( GACC * density(x,y)/( 2.0 * shearModulus(x,y) ) )*( ( poissons_ratio(x,y) - 1.0 )/( 1.0 + poissons_ratio(x,y) ) ) );
-        double tmp2 = biotCoefficient(x,y) * GACC*fluidDensity(x,y) / 3.0 * bulkModulus(x,y);
-        double tmp3=tmp1 - tmp2;
+        double tmp0 = GACC * density(x,y)/( 2.0 * shearModulus(x,y) );
+        double tmp1 = (poissons_ratio(x,y) - 1.0 )/( 1.0 + poissons_ratio(x,y) );
+        double tmp2 = biotCoefficient(x,y) * GACC*fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
+        double tmp3= tmp0*tmp1 - tmp2;
         return tmp3;
     } // material_constant_modulus
 
@@ -258,7 +259,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // Pressure
     static double pore_pressure(const double x,
                          const double y) {
-        return -GACC * density(x,y) * y;
+        //return -GACC * fluidDensity(x,y) * (YMAX-y);
+        return GACC * fluidDensity(x,y) * (YMAX-y);
     } // pore_pressure
     static const char* pore_pressure_units(void) {
         return "Pa";
@@ -332,16 +334,16 @@ protected:
         static const char* _auxSubfields[10] = {"density", "shear_modulus", "bulk_modulus", "isotropic_permeability", "porosity", "fluid_density", "fluid_viscosity", "fluid_bulk_modulus", "biot_coefficient", "gravitational_acceleration" };
         _mydata->auxSubfields = _auxSubfields;
         static const pylith::topology::Field::Discretization _auxDiscretizations[10] = {
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // density
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // shear_modulus
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // bulk_modulus
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // isotropicPermeability
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // porosity
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidDensity
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidViscosity
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidBulkModulus
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // biotCoefficient
-            {0, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // gravitational_acceleration
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // density
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // shear_modulus
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // bulk_modulus
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // isotropicPermeability
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // porosity
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidDensity
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidViscosity
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidBulkModulus
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // biotCoefficient
+            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // gravitational_acceleration
         };
         _mydata->auxDiscretizations = const_cast<pylith::topology::Field::Discretization*>(_auxDiscretizations);
 
@@ -393,14 +395,14 @@ protected:
 }; // TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic
 const double pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic::SMALL = 0.1;
 const double pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic::GACC = 9.80665;
-const double pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic::YMAX = +4.0e+3;
+const double pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic::YMAX = +1.0e+3;
 
 // ----------------------------------------------------------------------
 
-class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP1 :
+class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2P1 :
     public pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic {
 
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP1,
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2P1,
                            TestIsotropicLinearPoroelasticityPlaneStrain);
     CPPUNIT_TEST_SUITE_END();
 
@@ -412,17 +414,17 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
 
         _mydata->numSolnSubfields = 3;
         static const pylith::topology::Field::Discretization _solnDiscretizations[3] = {
-            {1, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // disp
-            {1, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // pore_pressure
-            {1, 1, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // trace_strain
+            {2, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // disp
+            {1, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // pore_pressure
+            {1, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // trace_strain
         };  // {basisOrder, quadOrder, isBasisContinuous?, feSpace}
         _mydata->solnDiscretizations = const_cast<pylith::topology::Field::Discretization*>(_solnDiscretizations);
 
         _initializeMin();
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP1
-CPPUNIT_TEST_SUITE_REGISTRATION(pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP1);
+}; // TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2P1
+CPPUNIT_TEST_SUITE_REGISTRATION(pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostatic_TriP2P1);
 
 
 /*

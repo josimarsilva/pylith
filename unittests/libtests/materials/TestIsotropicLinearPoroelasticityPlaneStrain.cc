@@ -316,6 +316,8 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
         density.copySubfield(auxField, "density");
 
         //density.view("DENSITY"); // DEBUGGING
+        //PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
+        //DMSetFromOptions(density.dmMesh());
 
         // Check result
         CPPUNIT_ASSERT_EQUAL(std::string("density"), std::string(density.label()));
@@ -460,6 +462,8 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
         fluidBulkModulus.copySubfield(auxField, "fluid_bulk_modulus");
 
         //fluidBulkModulus.view("FLUID BULK MODULUS"); // DEBUGGING
+        //PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
+        //DMSetFromOptions(fluidBulkModulus.dmMesh());
 
         // Check result
         CPPUNIT_ASSERT_EQUAL(std::string("fluid_bulk_modulus"), std::string(fluidBulkModulus.label()));
@@ -484,7 +488,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
         biotCoefficient.copySubfield(auxField, "biot_coefficient");
 
         //biotCoefficient.view("BIOT COEFFICIENT"); // DEBUGGING
-
+        
         // Check result
         CPPUNIT_ASSERT_EQUAL(std::string("biot_coefficient"), std::string(biotCoefficient.label()));
         CPPUNIT_ASSERT_EQUAL(_mydata->dimension, biotCoefficient.spaceDim());

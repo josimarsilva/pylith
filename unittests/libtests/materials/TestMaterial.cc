@@ -256,7 +256,11 @@ pylith::materials::TestMaterial::testInitialize(void)
     t = 0.0;
 
     pylith::topology::Field& solution = _solutionFields->get("solution");
+
     //solution.view("SOLUTION"); // :DEBUG:
+    PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
+    DMSetFromOptions(solution.dmMesh());
+
     const PetscDM dmSoln = solution.dmMesh(); CPPUNIT_ASSERT(dmSoln);
     pylith::topology::FieldQuery solnQuery(solution);
     solnQuery.initializeWithDefaultQueryFns();
@@ -324,7 +328,7 @@ pylith::materials::TestMaterial::testComputeResidual(void)
     _zeroBoundary(&residualRHS);
     _zeroBoundary(&residualLHS);
 
-#if 0 // :DEBUG:
+#if 1 // :DEBUG:
     solution.view("SOLUTION"); // :DEBUG:
     solutionDot.view("SOLUTION_DOT"); // :DEBUG:
     residualRHS.view("RESIDUAL RHS"); // :DEBUG:
