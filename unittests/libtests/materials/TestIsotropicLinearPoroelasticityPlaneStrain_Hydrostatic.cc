@@ -175,7 +175,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
 
     static double referenceMeanStress(const double x,
                                       const double y) {
-        return -density(x,y) * GACC * (YMAX-y);
+       return -density(x,y) * GACC * (YMAX-y);
     } // referenceMeanStress
     static double referenceShearStress(const double x,
                                        const double y) {
@@ -213,21 +213,21 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
 
     static double material_constant_modulus(const double x,
                                  const double y) {
-        double tmp0 = GACC * density(x,y)/( 2.0 * shearModulus(x,y) );
-        double tmp1 = (poissons_ratio(x,y) - 1.0 )/( 1.0 + poissons_ratio(x,y) );
-        double tmp2 = biotCoefficient(x,y) * GACC*fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
-        double tmp3= tmp0*tmp1 - tmp2;
+        double tmp0 = GACC * density(x,y) / ( 2.0 * shearModulus(x,y) );
+        double tmp1 = (poissons_ratio(x,y) - 1.0 ) / ( 1.0 + poissons_ratio(x,y) );
+        double tmp2 = biotCoefficient(x,y) * GACC * fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
+        double tmp3= -tmp0 * tmp1 + tmp2;
         return tmp3;
     } // material_constant_modulus
 
     // Displacement
     static double disp_x(const double x,
                          const double y) {
-        return material_constant_modulus(x,y) * y * x;
+        return material_constant_modulus(x,y) * (YMAX-y) * x;
     } // disp_x
     static double disp_y(const double x,
                          const double y) {
-        return 0.5*material_constant_modulus(x,y) * y * y;
+        return material_constant_modulus(x,y) * (YMAX * y - 0.5 * y * y);
     } // disp_y
     static const char* disp_units(void) {
         return "m";
@@ -283,7 +283,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // trace strain
     static double trace_strain(const double x,
                          const double y) {
-        return 2.0 * material_constant_modulus(x,y) * y;
+        return material_constant_modulus(x,y) * (YMAX-y);
     } // trace_strain
     static const char* trace_strain_units(void) {
         return "none";
