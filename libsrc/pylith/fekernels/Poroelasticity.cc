@@ -205,8 +205,8 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
     assert(a);
 
 
-    const PylithScalar* poro_pres_t = &s_t[sOff_x[i_poro_pres]];
-    const PylithScalar* trace_strain_t = &s_t[sOff_x[i_trace_strain]];
+    const PylithScalar* poro_pres_t = &s_t[sOff[i_poro_pres]];
+    const PylithScalar trace_strain_t = s_t[sOff[i_trace_strain]];
 
 
     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
@@ -217,7 +217,7 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
     const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M
 
     for (PylithInt i = 0; i < dim; ++i) {
-        f0p[i] += biotCoefficient * trace_strain_t[i] + storageCoefficientStrain * poro_pres_t[i];
+        f0p[i] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t[i];
     } // for
 } // f0p
 
