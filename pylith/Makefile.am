@@ -47,12 +47,14 @@ nobase_pkgpyexec_PYTHON = \
 	materials/Material.py \
 	materials/IsotropicLinearElasticityPlaneStrain.py \
 	materials/IsotropicLinearMaxwellPlaneStrain.py \
-	materials/IsotropicLinearIncompElasticityPlaneStrain.py \
-	materials/AuxFieldsIsotropicLinearPoroelasticity.py \
+	materials/IsotropicLinearGenMaxwellPlaneStrain.py \
+        materials/IsotropicLinearPoroelasticityPlaneStrain.py \
 	materials/AuxFieldsIsotropicLinearElasticity.py \
 	materials/AuxFieldsIsotropicLinearMaxwell.py \
+	materials/AuxFieldsIsotropicLinearGenMaxwell.py \
 	materials/IsotropicLinearElasticity3D.py \
-  materials/IsotropicLinearPoroelasticityPlaneStrain.py \
+	materials/IsotropicLinearMaxwell3D.py \
+	materials/IsotropicLinearGenMaxwell3D.py \
 	meshio/__init__.py \
 	meshio/CellFilter.py \
 	meshio/DataWriter.py \
