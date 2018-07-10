@@ -210,16 +210,23 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
                                const double y) {
         return (3.0 * bulkModulus(x,y) - 2.0 * shearModulus(x,y)) / (2.0 * (3.0 * bulkModulus(x,y) + shearModulus(x,y)) );
     } // poissons_ratio
-
+    
+    static double bulkDensity(const double x,
+                               const double y) {
+        return density(x,y)*(1-porosity(x,y)) + fluidDensity(x,y)*porosity(x,y);
+    } // bulkDensity
+    
     static double material_constant_modulus(const double x,
                                  const double y) {
         double tmp0 = GACC * density(x,y) / ( 2.0 * shearModulus(x,y) );
         double tmp1 = (poissons_ratio(x,y) - 1.0 ) / ( 1.0 + poissons_ratio(x,y) );
         double tmp2 = biotCoefficient(x,y) * GACC * fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
+        //double tmp3= -tmp0 * tmp1 + tmp2;
         double tmp3= -tmp0 * tmp1 + tmp2;
         return tmp3;
     } // material_constant_modulus
-
+    
+    
     // Displacement
     static double disp_x(const double x,
                          const double y) {
@@ -283,7 +290,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // trace strain
     static double trace_strain(const double x,
                          const double y) {
-        return material_constant_modulus(x,y) * (YMAX-y);
+        return -2*material_constant_modulus(x,y) * (YMAX-y);
     } // trace_strain
     static const char* trace_strain_units(void) {
         return "none";
@@ -334,16 +341,16 @@ protected:
         static const char* _auxSubfields[10] = {"density", "shear_modulus", "bulk_modulus", "isotropic_permeability", "porosity", "fluid_density", "fluid_viscosity", "fluid_bulk_modulus", "biot_coefficient", "gravitational_acceleration" };
         _mydata->auxSubfields = _auxSubfields;
         static const pylith::topology::Field::Discretization _auxDiscretizations[10] = {
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // density
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // shear_modulus
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // bulk_modulus
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // isotropicPermeability
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // porosity
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidDensity
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidViscosity
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // fluidBulkModulus
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // biotCoefficient
-            {0, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // gravitational_acceleration
+            pylith::topology::Field::Discretization(0, 2), // density
+            pylith::topology::Field::Discretization(0, 2), // shear_modulus
+            pylith::topology::Field::Discretization(0, 2), // bulk_modulus
+            pylith::topology::Field::Discretization(0, 2), // isotropicPermeability
+            pylith::topology::Field::Discretization(0, 2), // porosity
+            pylith::topology::Field::Discretization(0, 2), // fluidDensity
+            pylith::topology::Field::Discretization(0, 2), // fluidViscosity
+            pylith::topology::Field::Discretization(0, 2), // fluidBulkModulus
+            pylith::topology::Field::Discretization(0, 2), // biotCoefficient
+            pylith::topology::Field::Discretization(0, 2) // gravitational_acceleration
         };
         _mydata->auxDiscretizations = const_cast<pylith::topology::Field::Discretization*>(_auxDiscretizations);
 
@@ -414,9 +421,9 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
 
         _mydata->numSolnSubfields = 3;
         static const pylith::topology::Field::Discretization _solnDiscretizations[3] = {
-            {2, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // disp
-            {1, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // pore_pressure
-            {1, 2, true, pylith::topology::Field::POLYNOMIAL_SPACE}, // trace_strain
+            pylith::topology::Field::Discretization(2, 2),  // disp
+            pylith::topology::Field::Discretization(1, 2),  // pore_pressure
+            pylith::topology::Field::Discretization(1, 2)  // trace_strain
         };  // {basisOrder, quadOrder, isBasisContinuous?, feSpace}
         _mydata->solnDiscretizations = const_cast<pylith::topology::Field::Discretization*>(_solnDiscretizations);
 
