@@ -22,6 +22,7 @@
 #include "pylith/fekernels/Poroelasticity.hh" // USES Poroelasticity kernels
 
 #include <cassert> // USES assert()
+#include <iostream> // use to print out data on screen
 
 /* ======================================================================
  * Kernels for elatsicity plane strain.
@@ -85,7 +86,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress(const PylithInt dim,
     const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
     const PylithReal meanStress = bulkModulus * strainTrace;
     const PylithReal alphaPres = biotCoefficient * poro_pres;
-
+    
     for (i = 0; i < _dim; ++i) {
         stress[i*_dim+i] += (meanStress + alphaPres);
     } // for
@@ -159,10 +160,10 @@ pylith::fekernels::PoroelasticityPlaneStrain::meanStress_refstate(const PylithIn
     const PylithReal meanrstress = (refstress[0] + refstress[1] + refstress[2]) / 3.0;
     const PylithReal meanStress = meanrstress + bulkModulus * (strainTrace - refstrainTrace);
 
-    const PylithReal alphaPres = biotCoefficient * poro_pres;
+    const PylithReal alphaPres = biotCoefficient * poro_pres;           
 
     for (i = 0; i < _dim; ++i) {
-        stress[i*_dim+i] += (meanStress - alphaPres);
+        stress[i*_dim+i] += (meanStress + alphaPres);
     } // for
 } // meanStress_refstate
 
@@ -507,7 +508,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
                                                      const PylithScalar x[],
                                                      const PylithInt numConstants,
                                                      const PylithScalar constants[],
-                                                     PylithScalar g1E[]) {
+                                                     PylithScalar g0E[]) {
     const PylithInt _dim = 2;
 
     //PylithInt i;
@@ -525,12 +526,14 @@ pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(const PylithInt di
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar trace = s[sOff[i_trace]];
 
-    // Incoming auxiliary field.
+    // g0E = uxx + uyy - trace
 
     for (PylithInt i = 0; i < _dim; ++i) {
-        g1E[i] += disp_x[i] - trace;
+        g0E[0] += disp_x[i*_dim+i];
     } // for
-
+    
+    g0E[0] += -trace;
+    
 } // trace_strainCal
 
 // End of file

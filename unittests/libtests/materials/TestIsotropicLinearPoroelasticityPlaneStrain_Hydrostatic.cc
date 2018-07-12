@@ -218,11 +218,16 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     
     static double material_constant_modulus(const double x,
                                  const double y) {
-        double tmp0 = GACC * density(x,y) / ( 2.0 * shearModulus(x,y) );
-        double tmp1 = (poissons_ratio(x,y) - 1.0 ) / ( 1.0 + poissons_ratio(x,y) );
-        double tmp2 = biotCoefficient(x,y) * GACC * fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
+
+        double tmp0 = (GACC * bulkDensity(x,y) + biotCoefficient(x,y) * GACC * fluidDensity(x,y))/ ( 2.0 * shearModulus(x,y) );
+        double tmp1 = ( 2 * poissons_ratio(x,y) - 1.0) / ( 3*poissons_ratio(x,y) - 2.0 );
+        double tmp3= -tmp0 * tmp1;
+        
+        //double tmp0 = GACC * density(x,y) / ( 2.0 * shearModulus(x,y) );
+        //double tmp1 = (poissons_ratio(x,y) - 1.0 ) / ( 1.0 + poissons_ratio(x,y) );
+        //double tmp2 = biotCoefficient(x,y) * GACC * fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
         //double tmp3= -tmp0 * tmp1 + tmp2;
-        double tmp3= -tmp0 * tmp1 + tmp2;
+        //double tmp3= -tmp0 * tmp1 + tmp2;
         return tmp3;
     } // material_constant_modulus
     
@@ -290,7 +295,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // trace strain
     static double trace_strain(const double x,
                          const double y) {
-        return -2*material_constant_modulus(x,y) * (YMAX-y);
+        return 2*material_constant_modulus(x,y) * (YMAX-y);
     } // trace_strain
     static const char* trace_strain_units(void) {
         return "none";

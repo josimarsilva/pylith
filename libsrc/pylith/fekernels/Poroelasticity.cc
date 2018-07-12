@@ -21,6 +21,7 @@
 #include "pylith/fekernels/Poroelasticity.hh"
 
 #include <cassert> // USES assert()
+#include <iostream> // use to print out data on screen
 
 /* ======================================================================
  * Generic poroelasticity kernels for inertia and source density.
@@ -57,7 +58,7 @@ pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
     const PylithInt i_fluidDensity = 2;
 
     // Incoming auxiliary fields.
-    const PylithInt i_gravityField = 1;
+    const PylithInt i_gravityField = 3;
 
     assert(_numS == numS);
     assert(_numA == numA);
@@ -68,11 +69,12 @@ pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
     assert(a);
 
     const PylithScalar density = (1 - a[aOff[i_porosity]]) * a[aOff[i_density]] + a[aOff[i_porosity]] * a[aOff[i_fluidDensity]];
-    const PylithScalar* gravityField = &a[aOff[i_gravityField]];
+    const PylithScalar* gravityField = &a[aOff[i_gravityField]]; 
 
     for (PylithInt i = 0; i < dim; ++i) {
         g0[i] += density*gravityField[i];
     } // for
+    
 } // g0v_grav
 
 

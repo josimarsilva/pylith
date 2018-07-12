@@ -24,6 +24,7 @@
 #include "pylith/fekernels/Elasticity.hh" // USES Elasticity kernels
 
 #include <cassert> // USES assert()
+#include <iostream> // use to print out data on screen
 
 /* ======================================================================
  * Kernels for poroelasticity plane strain.
@@ -74,7 +75,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0v_gravbodyforce(c
     const PylithInt numABody = 1; // Number passed on to g0_bodyforce.
     const PylithInt aOffBody[1] = { aOff[i_bodyForce] };
     const PylithInt aOffBody_x[1] = { aOff_x[i_bodyForce] };
-
+    
     pylith::fekernels::Poroelasticity::g0v_grav(_dim, _numS, numAGrav,
                                             NULL, NULL, NULL, NULL, NULL,
                                             aOffGrav, aOffGrav_x, a, a_t, a_x,
@@ -135,7 +136,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0v_grav(const Pyli
 
 
 // ----------------------------------------------------------------------
-// g0 function for isotropic linear Poroelasticity plane strain with both gravity and body forces.
+// g0 function for isotropic linear Poroelasticity plane strain with no gravity but body forces.
 void
 pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0v_bodyforce(const PylithInt dim,
                                                                        const PylithInt numS,
@@ -539,8 +540,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::f0p(const PylithInt
     const PylithInt _numA = 4; // Number passed on to f0p.
     const PylithInt aOffCouple[4] = { aOff[i_bulkModulus], aOff[i_porosity], aOff[i_fluidBulkModulus], aOff[i_biotCoefficient] };
     const PylithInt aOffCouple_x[4] = { aOff_x[i_bulkModulus], aOff_x[i_porosity], aOff_x[i_fluidBulkModulus], aOff_x[i_biotCoefficient] };
-
-
+    
     pylith::fekernels::Poroelasticity::f0p_couple(_dim, _numS, _numA,
                                                  sOffCouple, sOffCouple_x, s, s_t, s_x,
                                                  aOffCouple, aOffCouple_x, a, a_t, a_x,
@@ -673,7 +673,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0p_sourceDensity(c
     const PylithInt numASource = 1; // Number passed on to g0p_source.
     const PylithInt aOffSource[1] = { aOff[i_sourceDensity] };
     const PylithInt aOffSource_x[1] = { aOff_x[i_sourceDensity] };
-
+    
     pylith::fekernels::Poroelasticity::g0p_source(_dim, _numS, numASource,
                                                  NULL, NULL, NULL, NULL, NULL,
                                                  aOffSource, aOffSource_x, a, a_t, a_x,
@@ -730,7 +730,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav(const Pyli
     const PylithInt numAPres = 4; // Number passed on to g1p_grav.
     const PylithInt aOffPres[numAPres] = { aOff[i_fluidDensity], aOff[i_isotropicPermeability], aOff[i_fluidViscosity], aOff[i_gravityField] };
     const PylithInt aOffPres_x[numAPres] = { aOff_x[i_fluidDensity], aOff_x[i_isotropicPermeability], aOff_x[i_fluidViscosity], aOff_x[i_gravityField] };
-
+	
     pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(_dim, _numS, numAPres,
                                                          sOffPres, sOffPres_x, s, s_t, s_x,
                                                          aOffPres, aOffPres_x, a, a_t, a_x,
