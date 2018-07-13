@@ -42,11 +42,23 @@ namespace pylith {
        */
       void useInertia(const bool value);
 
+      /** Include inertia?
+       *
+       * @param[in] value Flag indicating to include inertial term.
+       */
+      bool useInertia(void);
+
       /** Include body force?
        *
        * @param[in] value Flag indicating to include body force term.
        */
       void useBodyForce(const bool value);
+
+      /** Include body force?
+       *
+       * @param[in] value Flag indicating to include body force term.
+       */
+      bool useBodyForce(void);
 
       /** Use reference stress and strain in computation of stress and
        * strain?
@@ -55,11 +67,24 @@ namespace pylith {
        */
       void useReferenceState(const bool value);
 
+      /** Use reference stress and strain in computation of stress and
+       * strain?
+       *
+       * @param[in] value Flag indicating to include reference stress and strain.
+       */
+      bool useReferenceState(void);
+
       /** Include Source Density (injection/production somewhere in the volume)?
        *
        * @param[in] value Flag indicating to include source density term.
        */
       void useSourceDensity(const bool value);
+
+      /** Include Source Density (injection/production somewhere in the volume)?
+       *
+       * @param[in] value Flag indicating to include source density term.
+       */
+      bool useSourceDensity(void);
 
       /** Verify configuration is acceptable.
        *

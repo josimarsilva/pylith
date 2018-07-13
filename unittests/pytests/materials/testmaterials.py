@@ -48,6 +48,9 @@ class TestApp(UnitTestApp):
         from TestIsotropicLinearElasticityPlaneStrain import TestIsotropicLinearElasticityPlaneStrain
         suite.addTest(unittest.makeSuite(TestIsotropicLinearElasticityPlaneStrain))
 
+        from TestIsotropicLinearPoroelasticityPlaneStrain import TestIsotropicLinearPoroelasticityPlaneStrain
+        suite.addTest(unittest.makeSuite(TestIsotropicLinearPoroelasticityPlaneStrain))
+
         from TestIsotropicLinearMaxwellPlaneStrain import TestIsotropicLinearMaxwellPlaneStrain
         suite.addTest(unittest.makeSuite(TestIsotropicLinearMaxwellPlaneStrain))
 

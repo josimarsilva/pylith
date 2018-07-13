@@ -26,6 +26,7 @@ dist_check_SCRIPTS = testmaterials.py
 noinst_PYTHON = \
 	TestHomogeneous.py \
 	TestIsotropicLinearElasticityPlaneStrain.py \
+	TestIsotropicLinearPoroelasticityPlaneStrain.py \
 	TestIsotropicLinearMaxwellPlaneStrain.py \
 	TestIsotropicLinearGenMaxwellPlaneStrain.py \
 	TestIsotropicLinearElasticity3D.py \
