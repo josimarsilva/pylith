@@ -398,7 +398,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
     const PylithInt i_poro_pres_x = 0;
 
     // Incoming auxiliary field.
-    const PylithInt i_density = 0;
+    const PylithInt i_fluidDensity = 0;
     const PylithInt i_isotropicPerm = 1;
     const PylithInt i_viscosity = 2;
     const PylithInt i_gravityField = 3;
@@ -406,7 +406,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
     const PylithScalar poro_pres = s[sOff[i_poro_pres]];
     const PylithScalar* poro_pres_x = &s_x[sOff_x[i_poro_pres_x]];
 
-    const PylithScalar density = a[aOff[i_density]];
+    const PylithScalar fluidDensity = a[aOff[i_fluidDensity]];
     const PylithScalar isotropicPerm = a[aOff[i_isotropicPerm]];
     const PylithScalar viscosity = a[aOff[i_viscosity]];
     const PylithScalar* gravityField = &a[aOff[i_gravityField]];
@@ -415,7 +415,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
     const PylithScalar darcyConductivity = isotropicPerm / viscosity;
 
     for (PylithInt i = 0; i < dim; ++i) {
-        g1p[i] += -darcyConductivity * (poro_pres_x[i] - density*gravityField[i]);
+        g1p[i] += -darcyConductivity * (poro_pres_x[i] - fluidDensity*gravityField[i]);
     } // for
 
 } // darcyFlowGrav

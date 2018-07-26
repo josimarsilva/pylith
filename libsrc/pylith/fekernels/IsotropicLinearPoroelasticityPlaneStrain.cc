@@ -873,7 +873,6 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pe(const PylithI
     assert(aOff);
     assert(a);
     Jf0[0] += utshift * biotCoefficient;
-
 } // Jf0pe
 
 void
@@ -918,8 +917,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithI
     assert(aOff);
     assert(a);
 
-    Jf0[0] += utshift / storageCoefficientStrain;
-
+    Jf0[0] += utshift * storageCoefficientStrain;
 } // Jf0pp
 
 // Jg0 function for isotropic linear poroelasticity plane strain.
@@ -1026,7 +1024,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg2up(const PylithI
     assert(a);
 
     for (i = 0; i < _dim; ++i) {
-        Jg2[i*_dim+i] -= biotCoefficient ;
+        Jg2[i*_dim+i] += biotCoefficient ;
     } // for
 } // Jg2up
 
@@ -1060,6 +1058,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithI
 
     // index of Incoming auxiliary fields.
     const PylithInt i_isotropicPermeability = 3;
+    const PylithInt i_fluidViscousity = 6;
 
     assert(_dim == dim);
     assert(3 == numS);
@@ -1069,6 +1068,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithI
     assert(Jg3);
 
     const PylithScalar isotropicPermeablity = a[aOff[i_isotropicPermeability]];
+    const PylithScalar fluidViscousity = a[aOff[i_fluidViscousity]];
 
     PylithInt j_dim;
     PylithInt k_dim;
@@ -1080,7 +1080,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithI
         for (PylithInt n1 = 0; n1 < 1; ++n1 ){
           for (PylithInt n2 = 0; n2 < 1; ++n2  ){
             if (j_dim == k_dim){
-                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity;
+                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity/fluidViscousity;
             }
           }
         }

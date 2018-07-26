@@ -328,9 +328,9 @@ pylith::materials::TestMaterial::testComputeResidual(void)
     _zeroBoundary(&residualRHS);
     _zeroBoundary(&residualLHS);
 
-#if 1 // :DEBUG:
-    //solution.view("SOLUTION"); // :DEBUG:
-    //solutionDot.view("SOLUTION_DOT"); // :DEBUG:
+#if 0 // :DEBUG:
+    solution.view("SOLUTION"); // :DEBUG:
+    solutionDot.view("SOLUTION_DOT"); // :DEBUG:
     residualRHS.view("RESIDUAL RHS"); // :DEBUG:
     residualLHS.view("RESIDUAL LHS"); // :DEBUG:
 #endif // :DEBUG:
@@ -535,7 +535,7 @@ pylith::materials::TestMaterial::testComputeLHSJacobianImplicit(void)
     err = VecScale(solnIncrVec, -1.0); CPPUNIT_ASSERT(!err);
     err = MatMultAdd(jacobianMat, solnIncrVec, residualVec, resultVec); CPPUNIT_ASSERT(!err);
 
-#if 0 // :DEBUG:
+#if 1 // :DEBUG:
     std::cout << "SOLN INCR" << std::endl;
     VecView(solnIncrVec, PETSC_VIEWER_STDOUT_SELF);
     std::cout << "F2-F1" << std::endl;
