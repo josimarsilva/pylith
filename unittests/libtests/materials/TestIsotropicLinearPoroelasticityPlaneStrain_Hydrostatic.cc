@@ -210,19 +210,19 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
                                const double y) {
         return (3.0 * bulkModulus(x,y) - 2.0 * shearModulus(x,y)) / (2.0 * (3.0 * bulkModulus(x,y) + shearModulus(x,y)) );
     } // poissons_ratio
-    
+
     static double bulkDensity(const double x,
                                const double y) {
         return density(x,y)*(1-porosity(x,y)) + fluidDensity(x,y)*porosity(x,y);
     } // bulkDensity
-    
+
     static double material_constant_modulus(const double x,
                                  const double y) {
 
         double tmp0 = (GACC * bulkDensity(x,y) + biotCoefficient(x,y) * GACC * fluidDensity(x,y))/ ( 2.0 * shearModulus(x,y) );
         double tmp1 = ( 2 * poissons_ratio(x,y) - 1.0) / ( 3*poissons_ratio(x,y) - 2.0 );
         double tmp3= -tmp0 * tmp1;
-        
+
         //double tmp0 = GACC * density(x,y) / ( 2.0 * shearModulus(x,y) );
         //double tmp1 = (poissons_ratio(x,y) - 1.0 ) / ( 1.0 + poissons_ratio(x,y) );
         //double tmp2 = biotCoefficient(x,y) * GACC * fluidDensity(x,y) / (3.0 * bulkModulus(x,y));
@@ -230,8 +230,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
         //double tmp3= -tmp0 * tmp1 + tmp2;
         return tmp3;
     } // material_constant_modulus
-    
-    
+
+
     // Displacement
     static double disp_x(const double x,
                          const double y) {
@@ -265,6 +265,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     } // disp_perturb_x
     static double disp_perturb_y(const double x,
                                  const double y) {
+    //std::cout<<"\n \t disp_y  = "<<disp_y(x,y)<<"; SMALL = "<<SMALL << std::endl;
         return disp_y(x, y) + SMALL;
     } // disp_perturb_y
 
@@ -289,7 +290,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // pore_pressure + perturbation
     static double pore_pressure_perturb(const double x,
                                  const double y) {
-        return pore_pressure(x, y) + SMALL;
+    //std::cout<<"\n \t pore_pressure  = "<<pore_pressure(x,y)<<"; SMALL = "<<SMALL << std::endl;
+        return pore_pressure(x, y) + SMALL*1e8;
     } // pore_pressure_perturb
 
     // trace strain
@@ -312,7 +314,9 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_Hydrostati
     // trace_strain + perturbation
     static double trace_strain_perturb(const double x,
                                  const double y) {
+        //std::cout<<"\n \t trace strain = "<<trace_strain(x,y)<<"; SMALL = "<<SMALL << std::endl;
         return trace_strain(x, y) + SMALL;
+        //return trace_strain(x, y) + 1e-3;
     } // trace_strain_perturb
 
 
@@ -338,7 +342,7 @@ protected:
 
         _mydata->t = 1.0;
         _mydata->dt = 0.05;
-        _mydata->tshift = 1.0 / _mydata->dt;
+        _mydata->tshift = 0;    //_mydata->tshift = 1.0 / _mydata->dt;
 
         // solnDiscretizations set in derived class.
 

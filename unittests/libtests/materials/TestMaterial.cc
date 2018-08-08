@@ -432,7 +432,7 @@ pylith::materials::TestMaterial::testComputeRHSJacobian(void)
     err = VecScale(solnIncrVec, -1.0); CPPUNIT_ASSERT(!err);
     err = MatMultAdd(jacobianMat, solnIncrVec, residualVec, resultVec); CPPUNIT_ASSERT(!err);
 
-#if 0 // :DEBUG:
+#if 1 // :DEBUG:
     std::cout << "SOLN INCR" << std::endl;
     VecView(solnIncrVec, PETSC_VIEWER_STDOUT_SELF);
     std::cout << "G2-G1" << std::endl;
@@ -535,7 +535,7 @@ pylith::materials::TestMaterial::testComputeLHSJacobianImplicit(void)
     err = VecScale(solnIncrVec, -1.0); CPPUNIT_ASSERT(!err);
     err = MatMultAdd(jacobianMat, solnIncrVec, residualVec, resultVec); CPPUNIT_ASSERT(!err);
 
-#if 1 // :DEBUG:
+#if 0 // :DEBUG:
     std::cout << "SOLN INCR" << std::endl;
     VecView(solnIncrVec, PETSC_VIEWER_STDOUT_SELF);
     std::cout << "F2-F1" << std::endl;
