@@ -205,7 +205,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = 1;
@@ -274,7 +274,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = 1;
@@ -354,7 +354,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::stress(const Pylith
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = 1;
@@ -437,7 +437,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::stress_refstate(con
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = 1;
@@ -519,8 +519,8 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::f0p(const PylithInt
 
     // Incoming solution fields.
     const PylithInt _numS = 2; // Number passed on to f0p.
-    const PylithInt i_poro_pres = 1;
-    const PylithInt i_E = 2;
+    const PylithInt i_poro_pres = 2;
+    const PylithInt i_E = 1;
 
     // Incoming auxiliary fields.
     const PylithInt i_bulkModulus = 2;
@@ -711,7 +711,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav(const Pyli
     const PylithInt i_gravityField = 9;
 
     // Incoming solution fields.
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     assert(aOff);
     assert(aOff_x);
@@ -767,7 +767,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv(const Py
     const PylithInt i_fluidViscosity = 6;
 
     // Incoming solution fields.
-    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres = 2;
 
     assert(aOff);
     assert(aOff_x);
@@ -819,7 +819,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0e_trace_strain(co
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_trace = 2;
+    const PylithInt i_trace = 1;
 
     // Incoming auxiliary fields.
 

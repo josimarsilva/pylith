@@ -573,8 +573,8 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::_setupSolutionF
         pylith::topology::Field& solution = _solutionFields->get("solution");
         pylith::problems::SolutionFactory factory(solution, *_mydata->normalizer);
         factory.displacement(_mydata->solnDiscretizations[0]);
-        factory.pore_pressure(_mydata->solnDiscretizations[1]);
-        factory.trace_strain(_mydata->solnDiscretizations[2]);
+        factory.trace_strain(_mydata->solnDiscretizations[1]);
+        factory.pore_pressure(_mydata->solnDiscretizations[2]);
         if (_mydata->isExplicit) {
             factory.velocity(_mydata->solnDiscretizations[1]);
         } // if
@@ -587,8 +587,8 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::_setupSolutionF
         pylith::topology::Field& solutionDot = _solutionFields->get("solution_dot");
         pylith::problems::SolutionFactory factory(solutionDot, *_mydata->normalizer);
         factory.displacementDot(_mydata->solnDiscretizations[0]);
-        factory.pore_pressureDot(_mydata->solnDiscretizations[1]);
-        factory.trace_strainDot(_mydata->solnDiscretizations[2]);
+        factory.trace_strainDot(_mydata->solnDiscretizations[1]);
+        factory.pore_pressureDot(_mydata->solnDiscretizations[2]);
         if (_mydata->isExplicit) {
             factory.velocityDot(_mydata->solnDiscretizations[3]);
         } // if
