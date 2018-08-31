@@ -250,14 +250,15 @@ pylith::materials::TestMaterial::testInitialize(void)
     const PylithReal tolerance = 1.0e-6;
     CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE("Test of auxiliary field values failed.", 0.0, norm, tolerance);
 
-#if 1
+#if 0
     // Verify solution and perturbation fields can be exactly represented by discretization.
     norm = 0.0;
     t = 0.0;
 
     pylith::topology::Field& solution = _solutionFields->get("solution");
 
-    //solution.view("SOLUTION"); // :DEBUG:
+    //std::cout<<"debug solution fields";
+    solution.view("SOLUTION"); // :DEBUG:
     PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
     DMSetFromOptions(solution.dmMesh());
 
@@ -329,8 +330,8 @@ pylith::materials::TestMaterial::testComputeResidual(void)
     _zeroBoundary(&residualLHS);
 
 #if 0 // :DEBUG:
-    solution.view("SOLUTION"); // :DEBUG:
-    solutionDot.view("SOLUTION_DOT"); // :DEBUG:
+    //solution.view("SOLUTION"); // :DEBUG:
+    //solutionDot.view("SOLUTION_DOT"); // :DEBUG:
     residualRHS.view("RESIDUAL RHS"); // :DEBUG:
     residualLHS.view("RESIDUAL LHS"); // :DEBUG:
 #endif // :DEBUG:
@@ -432,7 +433,7 @@ pylith::materials::TestMaterial::testComputeRHSJacobian(void)
     err = VecScale(solnIncrVec, -1.0); CPPUNIT_ASSERT(!err);
     err = MatMultAdd(jacobianMat, solnIncrVec, residualVec, resultVec); CPPUNIT_ASSERT(!err);
 
-#if 1 // :DEBUG:
+#if 0 // :DEBUG:
     std::cout << "SOLN INCR" << std::endl;
     VecView(solnIncrVec, PETSC_VIEWER_STDOUT_SELF);
     std::cout << "G2-G1" << std::endl;
@@ -535,7 +536,7 @@ pylith::materials::TestMaterial::testComputeLHSJacobianImplicit(void)
     err = VecScale(solnIncrVec, -1.0); CPPUNIT_ASSERT(!err);
     err = MatMultAdd(jacobianMat, solnIncrVec, residualVec, resultVec); CPPUNIT_ASSERT(!err);
 
-#if 0 // :DEBUG:
+#if 1 // :DEBUG:
     std::cout << "SOLN INCR" << std::endl;
     VecView(solnIncrVec, PETSC_VIEWER_STDOUT_SELF);
     std::cout << "F2-F1" << std::endl;
