@@ -25,7 +25,7 @@
 from .SolutionSubfield import SolutionSubfield
 
 
-class SubfieldPressure(SolutionSubfield):
+class SubfieldPorePressure(SolutionSubfield):
     """
     Python object for pore pressure subfield.
 

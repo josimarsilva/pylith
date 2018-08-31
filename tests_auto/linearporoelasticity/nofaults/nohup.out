@@ -1,0 +1,1066 @@
+
+ 	 JosimarTST 
+ 	
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/utils/PetscManager.py:64:initialize
+ -- petsc(info)
+ -- Initialized PETSc.
+/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/h5py-2.7.1-py2.7-macosx-10.6-x86_64.egg/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/TimeDependent.py:90:preinitialize
+ -- timedependent(info)
+ -- Performing minimal initialization before verifying configuration.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Problem.py:144:preinitialize
+ -- timedependent(info)
+ -- Performing minimal initialization before verifying configuration.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Solution.py:67:preinitialize
+ -- solution(info)
+ -- Performing minimal initialization of solution.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Solution.py:77:preinitialize
+ -- solution(debug)
+ -- Adding subfield 'displacement' as 'displacement' with components ['displacement_x', 'displacement_y'] to solution.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Solution.py:77:preinitialize
+ -- solution(debug)
+ -- Adding subfield 'pore_pressure' as 'pore_pressure' with components ['pore_pressure'] to solution.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Solution.py:77:preinitialize
+ -- solution(debug)
+ -- Adding subfield 'trace_strain' as 'trace_strain' with components ['trace_strain'] to solution.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.py:81:preinitialize
+ -- isotropiclinearporoelasticityplanestrain(info)
+ -- Performing minimal initialization of material 'elastic_xneg'
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:89:void pylith::feassemble::IntegratorPointwise::auxFieldDB(spatialdata::spatialdb::SpatialDB *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxFieldDB(value=0x7fbaa005bd60)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:157:void pylith::feassemble::IntegratorPointwise::output(pylith::meshio::OutputManager *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': output(manager=0x7fbaa00632f0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=body_force, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=fluid_density, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=reference_stress, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=density, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=shear_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=isotropic_permeability, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=fluid_viscosity, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=reference_strain, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=bulk_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=gravitational_acceleration, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=porosity, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=fluid_bulk_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': auxSubfieldDiscretization(name=biot_coefficient, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:100:void pylith::materials::Material::id(const int)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': id(value=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:116:void pylith::materials::Material::label(const char *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': label(value=Elastic material on -x side of main fault)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:66:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useInertia(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': useInertia(value=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:84:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useBodyForce(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': useBodyForce(value=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:119:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useReferenceState(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': useReferenceState=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:101:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useSourceDensity(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': useSourceDensity(value=0)
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.py:81:preinitialize
+ -- isotropiclinearporoelasticityplanestrain(info)
+ -- Performing minimal initialization of material 'elastic_xpos'
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:89:void pylith::feassemble::IntegratorPointwise::auxFieldDB(spatialdata::spatialdb::SpatialDB *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxFieldDB(value=0x7fba9dcbff50)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:157:void pylith::feassemble::IntegratorPointwise::output(pylith::meshio::OutputManager *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': output(manager=0x7fba9dcbfb90)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=body_force, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=fluid_density, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=reference_stress, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=density, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=shear_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=isotropic_permeability, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=fluid_viscosity, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=reference_strain, basisOrder=1, quadOrder=1, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=bulk_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=gravitational_acceleration, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=porosity, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=fluid_bulk_modulus, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:107:void pylith::feassemble::IntegratorPointwise::auxSubfieldDiscretization(const char *, const int, const int, const bool, const pylith::topology::FieldBase::SpaceEnum)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': auxSubfieldDiscretization(name=biot_coefficient, basisOrder=0, quadOrder=2, isBasisContinuous=1)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:100:void pylith::materials::Material::id(const int)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': id(value=2)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:116:void pylith::materials::Material::label(const char *)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': label(value=Elastic material on +x side of main fault)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:66:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useInertia(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': useInertia(value=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:84:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useBodyForce(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': useBodyForce(value=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:119:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useReferenceState(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': useReferenceState=0)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:101:void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::useSourceDensity(const bool)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': useSourceDensity(value=0)
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/bc/DirichletTimeDependent.py:87:preinitialize
+ -- dirichlettimedependent(info)
+ -- Performing minimal initialization of time-dependent Dirichlet boundary condition 'x_neg'.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/bc/DirichletTimeDependent.py:87:preinitialize
+ -- dirichlettimedependent(info)
+ -- Performing minimal initialization of time-dependent Dirichlet boundary condition 'x_pos'.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/bc/DirichletTimeDependent.py:87:preinitialize
+ -- dirichlettimedependent(info)
+ -- Performing minimal initialization of time-dependent Dirichlet boundary condition 'y_neg'.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:134:void pylith::feassemble::IntegratorPointwise::normalizer(const spatialdata::units::Nondimensional &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': normalizer(dim=N11spatialdata5units14NondimensionalE)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:134:void pylith::feassemble::IntegratorPointwise::normalizer(const spatialdata::units::Nondimensional &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': normalizer(dim=N11spatialdata5units14NondimensionalE)
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Problem.py:188:verifyConfiguration
+ -- timedependent(info)
+ -- Verifying compatibility of problem configuration.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:139:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::verifyConfiguration(const pylith::topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': verifyConfiguration(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:139:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::verifyConfiguration(const pylith::topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': verifyConfiguration(solution=solution)
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Problem.py:310:_printInfo
+ -- timedependent(info)
+ -- Scales for nondimensionalization:
+    Length scale: 1000*m
+    Time scale: 3.15576e+09*s
+    Pressure scale: 3e+10*m**-1*kg*s**-2
+    Density scale: 2.98765e+23*m**-3*kg
+    Temperature scale: 1*K
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/Problem.py:219:initialize
+ -- timedependent(info)
+ -- Initializing problem.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:133:virtual void pylith::materials::Material::initialize(const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': intialize(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:164:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_auxFieldSetup()
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _auxFieldSetup()
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:312:virtual void pylith::materials::Material::writeInfo()
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': writeInfo(void)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:133:virtual void pylith::materials::Material::initialize(const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': intialize(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:164:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_auxFieldSetup()
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _auxFieldSetup()
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:312:virtual void pylith::materials::Material::writeInfo()
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': writeInfo(void)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/problems/TimeDependent.cc:274:virtual void pylith::problems::TimeDependent::initialize()
+ -- timedependent(error)
+ -- Component 'problem': :TODO: @brad Implement setting initial solution.
+ >> /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/TimeDependent.py:112:run
+ -- timedependent(info)
+ -- Solving problem.
+0 TS dt 3.15576e+07 time 0.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:171:virtual void pylith::feassemble::IntegratorPointwise::prestep(const double, const double)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': prestep(t=0, dt=3.15576e+07) empty method
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:171:virtual void pylith::feassemble::IntegratorPointwise::prestep(const double, const double)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': prestep(t=0, dt=3.15576e+07) empty method
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+    0 SNES Function norm 1.198588957779e+02 
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:241:virtual void pylith::materials::Material::computeLHSJacobianImplicit(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSJacobianImplicit(jacobianMat=0x7fba9faf1a20, precondMat=0x7fba9faf1a20, t=3.15576e+07, dt=3.15576e+07, tshift=3.16881e-08, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:463:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSJacobian(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSJacobian(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:402:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeJacobian(jacobianMat=0x7fba9faf1a20, precondMat=0x7fba9faf1a20, t=3.15576e+07, dt=3.15576e+07, tshift=3.16881e-08, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:428:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeJacobian_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:241:virtual void pylith::materials::Material::computeLHSJacobianImplicit(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSJacobianImplicit(jacobianMat=0x7fba9faf1a20, precondMat=0x7fba9faf1a20, t=3.15576e+07, dt=3.15576e+07, tshift=3.16881e-08, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:463:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSJacobian(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSJacobian(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:402:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeJacobian(jacobianMat=0x7fba9faf1a20, precondMat=0x7fba9faf1a20, t=3.15576e+07, dt=3.15576e+07, tshift=3.16881e-08, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:428:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeJacobian_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:194:virtual void pylith::materials::Material::computeRHSJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSJacobian(jacobianMat=0x7fba9fb70620, precondMat=0x7fba9fb70620, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:304:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSJacobian(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSJacobian(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:402:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeJacobian(jacobianMat=0x7fba9fb70620, precondMat=0x7fba9fb70620, t=3.15576e+07, dt=3.15576e+07, tshift=0, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:428:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeJacobian_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:194:virtual void pylith::materials::Material::computeRHSJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSJacobian(jacobianMat=0x7fba9fb70620, precondMat=0x7fba9fb70620, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:304:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSJacobian(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSJacobian(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:402:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeJacobian(jacobianMat=0x7fba9fb70620, precondMat=0x7fba9fb70620, t=3.15576e+07, dt=3.15576e+07, tshift=0, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:428:void pylith::materials::Material::_computeJacobian(PetscMat, PetscMat, const PylithReal, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeJacobian_Internal() with material-id '2' and cells [32,64.
+      0 KSP Residual norm 8.369680181110e-03 
+      1 KSP Residual norm 6.322685211146e-03 
+      2 KSP Residual norm 5.519385316619e-03 
+      3 KSP Residual norm 5.072512548737e-03 
+      4 KSP Residual norm 4.032371594043e-03 
+      5 KSP Residual norm 2.740059001468e-03 
+      6 KSP Residual norm 1.367546644374e-03 
+      7 KSP Residual norm 5.405207062368e-04 
+      8 KSP Residual norm 2.944538400240e-04 
+      9 KSP Residual norm 2.134805593027e-04 
+     10 KSP Residual norm 1.417753893486e-04 
+     11 KSP Residual norm 1.046896586355e-04 
+     12 KSP Residual norm 8.529358643882e-05 
+     13 KSP Residual norm 6.587290261063e-05 
+     14 KSP Residual norm 4.686663457082e-05 
+     15 KSP Residual norm 2.898859530751e-05 
+     16 KSP Residual norm 1.571204669035e-05 
+     17 KSP Residual norm 7.745835947286e-06 
+     18 KSP Residual norm 3.926397259685e-06 
+     19 KSP Residual norm 2.291559544511e-06 
+     20 KSP Residual norm 1.395213943964e-06 
+     21 KSP Residual norm 7.063034074001e-07 
+     22 KSP Residual norm 3.507200586231e-07 
+     23 KSP Residual norm 1.593962947897e-07 
+     24 KSP Residual norm 7.629948201864e-08 
+     25 KSP Residual norm 3.888493357660e-08 
+     26 KSP Residual norm 2.066404793211e-08 
+     27 KSP Residual norm 9.923729554481e-09 
+     28 KSP Residual norm 4.642248665352e-09 
+     29 KSP Residual norm 2.490265515617e-09 
+     30 KSP Residual norm 1.161571784391e-09 
+     31 KSP Residual norm 4.970845484338e-10 
+     32 KSP Residual norm 2.058771015337e-10 
+     33 KSP Residual norm 6.134792502132e-11 
+    Linear solve converged due to CONVERGED_RTOL iterations 33
+    KSP Object: 1 MPI processes
+      type: gmres
+        restart=50, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+        happy breakdown tolerance 1e-30
+      maximum iterations=1000, initial guess is zero
+      tolerances:  relative=1e-08, absolute=1e-12, divergence=10000.
+      left preconditioning
+      using PRECONDITIONED norm type for convergence test
+    PC Object: 1 MPI processes
+      type: ilu
+        out-of-place factorization
+        0 levels of fill
+        tolerance for zero pivot 2.22045e-14
+        matrix ordering: natural
+        factor fill ratio given 1., needed 1.
+          Factored matrix follows:
+            Mat Object: 1 MPI processes
+              type: seqaij
+              rows=689, cols=689
+              package used to perform factorization: petsc
+              total: nonzeros=29755, allocated nonzeros=29755
+              total number of mallocs used during MatSetValues calls =0
+                using I-node routines: found 286 nodes, limit used is 5
+      linear system matrix = precond matrix:
+      Mat Object: 1 MPI processes
+        type: seqaij
+        rows=689, cols=689
+        total: nonzeros=29755, allocated nonzeros=29755
+        total number of mallocs used during MatSetValues calls =0
+          using I-node routines: found 286 nodes, limit used is 5
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: gnorm after quadratic fit 1.446808305285e+02
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.242242963655e+02 lambda=2.5367975367222025e-02
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.206456169333e+02 lambda=4.5717506319351486e-03
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.200014122151e+02 lambda=8.2818366773765111e-04
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.198847345029e+02 lambda=1.5015257516373106e-04
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.198635811939e+02 lambda=2.7227631649977720e-05
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.198597454228e+02 lambda=4.9374096442982354e-06
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.198590498518e+02 lambda=8.9534569480612272e-07
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:211:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsRHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsRHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solution_dot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+        Line search: Cubic step no good, shrinking lambda, current gnorm 1.198589237175e+02 lambda=1.6236138400574166e-07
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': DMPlexComputeResidual_Internal() with material-id '1' and cells [0,32.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:219:virtual void pylith::materials::Material::computeLHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': computeLHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelasticityPlaneStrain.cc:413:virtual void pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSResidual(const topology::Field &) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEKernelsLHSResidual(solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/feassemble/IntegratorPointwise.cc:301:virtual void pylith::feassemble::IntegratorPointwise::_setFEConstants(const pylith::topology::Field &, const PylithReal) const
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _setFEConstants(solution=solution, dt=3.15576e+07)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:353:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': _computeResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution, solutionDot=solutionDot)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:381:void pylith::materials::Material::_computeResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xpos': DMPlexComputeResidual_Internal() with material-id '2' and cells [32,64.
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/Material.cc:171:virtual void pylith::materials::Material::computeRHSResidual(pylith::topology::Field *, const PylithReal, const PylithReal, const pylith::topology::Field &)
+ -- isotropiclinearporoelasticityplanestrain(debug)
+ -- Component 'elastic_xneg': computeRHSResidual(residual=0x7fbaa03acc10, t=3.15576e+07, dt=3.15576e+07, solution=solution)
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/materials/IsotropicLinearPoroelastic[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[0]PETSC ERROR:   
+[0]PETSC ERROR: TSStep has failed due to DIVERGED_NONLINEAR_SOLVE, increase -ts_max_snes_failures or make negative to attempt recovery
+[0]PETSC ERROR: See http://www.mcs.anl.gov/petsc/documentation/faq.html for trouble shooting.
+[0]PETSC ERROR: Petsc Development GIT revision: v3.9.2-739-gb8298c7  GIT Date: 2018-06-18 17:07:05 -0700
+[0]PETSC ERROR: /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/mpinemesis on a  named dhcp-18-40-37-104.dyn.mit.edu by Josimar Fri Aug 31 16:27:12 2018
+[0]PETSC ERROR: Configure options --prefix=/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith --with-c2html=0 --with-x=0 --with-clanguage=C --with-mpicompilers=1 --with-debugging=0 --with-shared-libraries=1 --with-64-bit-points=1 --with-large-file-io=1 --download-metis=1 --download-ml=1 --with-hdf5=1 --with-hdf5-dir=/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith --with-zl
+ 	 JosimarTST 
+ 	
+/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/nemesis: mpirun: exit 255
+
+ 	 JosimarTST 
+ 	
+/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/pylith: /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/nemesis: exit 1

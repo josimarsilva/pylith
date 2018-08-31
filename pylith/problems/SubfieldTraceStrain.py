@@ -25,7 +25,7 @@
 from .SolutionSubfield import SolutionSubfield
 
 
-class SubfieldPressure(SolutionSubfield):
+class SubfieldTraceStrain(SolutionSubfield):
     """
     Python object for trace_strain subfield.
 
@@ -62,8 +62,9 @@ class SubfieldPressure(SolutionSubfield):
         Initialize subfield metadata.
         """
         from pylith.topology.Field import Field
+        from pyre.units.unit import one
         self.vectorFieldType = Field.SCALAR
-        self.scale = 1
+        self.scale = one
         self._setComponents(spaceDim)
         return
 

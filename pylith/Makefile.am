@@ -82,7 +82,7 @@ nobase_pkgpyexec_PYTHON = \
 	problems/SolnDispVelLagrange.py \
 	problems/SolnDispPres.py \
 	problems/SolnDispPresLagrange.py \
-  problems/SolnDispPorPresTracStrain.py \
+        problems/SolnDispPorPresTracStrain.py \
 	problems/SubfieldDisplacement.py \
 	problems/SubfieldVelocity.py \
 	problems/SubfieldTraceStrain.py \

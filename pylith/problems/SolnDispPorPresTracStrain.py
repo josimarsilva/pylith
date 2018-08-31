@@ -24,7 +24,7 @@ from pylith.utils.PetscComponent import PetscComponent
 from .Solution import Solution as SolutionBase
 
 
-class SolnDispPres(PetscComponent):
+class SolnDispPorPresTracStrain(PetscComponent):
     """
     Python subfields container with displacement, pore pressure, and trace strain subfields.
 
@@ -39,7 +39,7 @@ class SolnDispPres(PetscComponent):
     Facilities
       - *displacement* Displacement subfield.
       - *pore_pressure* PorePressure subfield.
-      - *trace_strain* TraceStrain subfield. 
+      - *trace_strain* TraceStrain subfield.
     """
 
     import pyre.inventory
@@ -53,12 +53,12 @@ class SolnDispPres(PetscComponent):
     pressure.meta['tip'] = "Pore pressure subfield."
 
     from .SubfieldTraceStrain import SubfieldTraceStrain
-    pressure = pyre.inventory.facility("trace_strain", family="soln_subfield", factory=SubfieldTraceStrain)
-    pressure.meta['tip'] = "Trace strain subfield."
+    traceStrain = pyre.inventory.facility("trace_strain", family="soln_subfield", factory=SubfieldTraceStrain)
+    traceStrain.meta['tip'] = "Trace strain subfield."
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
 
-    def __init__(self, name="solndisppres"):
+    def __init__(self, name="solndispporprestracstrain"):
         """
         Constructor.
         """
@@ -75,7 +75,7 @@ class SolnDispPres(PetscComponent):
         components() to insure order is [displacement, pore_pressure, trace_strain].
 
         """
-        return [self.displacement, self.pore_pressure, self.trace_strain]
+        return [self.displacement, self.pressure, self.traceStrain]
 
 
 class Solution(SolutionBase):
@@ -94,6 +94,7 @@ def solution():
     """
     Factory associated with Solution.
     """
+    print('\n \t JosimarTST \n \t')
     return Solution()
 
 
