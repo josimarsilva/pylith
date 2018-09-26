@@ -43,10 +43,10 @@ class TestIsotropicLinearElasticity3D(unittest.TestCase):
         """
         Test constructor.
         """
-        self.assertEqual(3, self.material.dimension())
+        self.assertEqual(0, self.material.materialId)
         return
 
-    def testPreinitialize(self):
+    def tes_preinitialize(self):
         """
         Test preinitialize(). Set inventory and verify values from C++ object.
         """

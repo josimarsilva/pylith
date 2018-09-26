@@ -55,6 +55,7 @@ import_array();
 
 // Interfaces
 %include "../utils/PyreComponent.i"
+%include "../feassemble/ObservedComponent.i"
 %include "../feassemble/IntegratorPointwise.i"
 
 %include "Material.i"
