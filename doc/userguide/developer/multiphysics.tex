@@ -39,7 +39,7 @@ possible. This results in miminal changes to the formulation in order
 to accommodate both implicit and explicit time stepping algorithms.
 
 Using a finite-element discretization we break up the domain and
-boundary integrals into sums over the cells and boundary faces/edges,
+boundary integrals into sums over the cells and boundary faces,
 respectively. Using numerical quadrature those sums in turn involve
 sums over the values at the quadrature points with appropriate
 weights. Thus, computation of the RHS function boils down to
@@ -50,9 +50,9 @@ $\vec{f}_0(t,s,\dot{s})$ and $\tensor{f}_1(t,s,\dot{s})$.
 \subsection{Jacobian}
 
 The LHS Jacobian $J_F$ is $\frac{\partial F}{\partial s} +
-s_\mathit{tshift} \frac{\partial F}{\partial \dot{s}}$ and the RHS
+t_\mathit{shift} \frac{\partial F}{\partial \dot{s}}$ and the RHS
 Jacobian $J_G$ is $\frac{\partial G}{\partial s}$, where
-$s_\mathit{tshift}$ arises from the temporal discretization . We put
+$t_\mathit{shift}$ arises from the temporal discretization . We put
 the Jacobians for each equation in the form:
 \begin{align}
   \label{eqn:jacobian:form}
@@ -90,17 +90,14 @@ solution fields $s_i$ and $s_j$ is
 where $B$ is a matrix of the derivatives of the basis functions and $B^T$
 is a matrix of the derivatives of the trial functions. 
 
-\important{See
-  \url{http://www.mcs.anl.gov/petsc/petsc-master/docs/manualpages/DT/PetscFEIntegrateJacobian.html}
-  for the ordering of indicies in the Jacobian pointwise functions.}
-
-\brad{I think it is very important that we have a way to control
-  allocation of the sparse matrix. We do not want to allocate portions
-  that are not coupled, because it is way too much memory. A simple
-  way to do this would be to create an array that is \#fields x
-  \#fields and have the materials populate it with values to indicate
-  whether they couple those fields or not. We could use a value to
-  indicate if the Jacobian was diagonal or not as well.}
+\matt{(Comment from Brad) Additionally, I think it is very important
+  that we have a way to control allocation of the sparse matrix. We do
+  not want to allocate portions that are not coupled, because it is
+  way too much memory. A simple way to do this would be to create an
+  array that is \#fields x \#fields and have the materials populate it
+  with values to indicate whether they couple those fields or not. We
+  could use a value to indicate if the Jacobian was diagonal or not as
+  well.}
 
 \subsection{PETSc TS Notes}
 
@@ -190,7 +187,7 @@ any location cannot be associated with both prescribed displacements
 
 \subsection{Neglecting Inertia}
 
-If we neglect the inertial term, then time dependence only arises
+If we neglect the intertial term, then time dependence only arises
 from history-dependent constitutive equations and boundary
 conditions. Considering the displacement $\vec{u}$ as the unknown, we
 have
@@ -293,10 +290,7 @@ d\Omega =
 
 % ----------------------------------------------------------------------
 \subsubsection{Implicit Time Stepping}
-In practice we do not use implicit time stepping when we include
-inertia. We provide this section to illustrate the derivation of the
-point-wise functions for the residual and Jacobian. The resulting
-system of equations to solve is
+The resulting system of equations to solve  is
 \begin{align}
   \label{eqn:elasticity:velocity:implicit}
   \int_\Omega \trialvec[u] \cdot \left( \frac{\partial \vec{u}}{\partial t} \right) \, d\Omega 
@@ -336,20 +330,20 @@ With two fields we have four Jacobians for each side of the equation associated 
 coupling of the two 
 fields,
 \begin{align}
-  J_F^{uu} &= \frac{\partial F^u}{\partial u} + s_\mathit{tshift} \frac{\partial F^u}{\partial 
+  J_F^{uu} &= \frac{\partial F^u}{\partial u} + t_{shift} \frac{\partial F^u}{\partial 
 \dot{u}} = \int_\Omega 
-\trialvec[u] \cdot s_\mathit{tshift}\,\basisvec[u] \, d\Omega = \int_\Omega \trialscalar[u]_i 
+\trialvec[u] \cdot t_\mathit{shift}\,\basisvec[u] \, d\Omega = \int_\Omega \trialscalar[u]_i 
 \, 
-\eqnannotate{s_\mathit{tshift} \delta_{ij}}{J_{f0}^{uu}} \, \basisscalar[u]_j \, d\Omega \\
-  J_F^{uv} &= \frac{\partial F^u}{\partial v} + s_\mathit{tshift} \frac{\partial F^u}{\partial 
+\eqnannotate{t_\mathit{shift} \delta_{ij}}{J_{f0}^{uu}} \, \basisscalar[u]_j \, d\Omega \\
+  J_F^{uv} &= \frac{\partial F^u}{\partial v} + t_{shift} \frac{\partial F^u}{\partial 
 \dot{v}} = \tensor{0} \\
-  J_F^{vu} &= \frac{\partial F^v}{\partial u} + s_\mathit{tshift} \frac{\partial F^v}{\partial 
+  J_F^{vu} &= \frac{\partial F^v}{\partial u} + t_{shift} \frac{\partial F^v}{\partial 
 \dot{u}} = \tensor{0} \\
-  J_F^{vv} &= \frac{\partial F^v}{\partial v} + s_\mathit{tshift} \frac{\partial F^v}{\partial 
+  J_F^{vv} &= \frac{\partial F^v}{\partial v} + t_{shift} \frac{\partial F^v}{\partial 
 \dot{v}} = \int_\Omega 
-\trialvec[v] \cdot s_\mathit{tshift}\,\rho\,\basisvec[v] \, d\Omega = \int_\Omega 
+\trialvec[v] \cdot t_\mathit{shift}\,\rho\,\basisvec[v] \, d\Omega = \int_\Omega 
 \trialscalar[v]_i \, 
-\eqnannotate{s_\mathit{tshift} \, \rho \, \delta_{ij}}{J_{f0}^{vv}} \, \basisscalar[v]_j \, 
+\eqnannotate{t_\mathit{shift} \, \rho \, \delta_{ij}}{J_{f0}^{vv}} \, \basisscalar[v]_j \, 
 d\Omega \\
   J_G^{uu} &= \frac{\partial G^u}{\partial u} = \tensor{0} \\
   J_G^{uv} &= \frac{\partial G^u}{\partial v} = \int_\Omega \trialvec[u] \cdot \basisvec[v] \, 
@@ -458,7 +452,7 @@ The Jacobian with respect to the deviatoric stress is
 \frac{1}{3} C_{mmjl} 
 \delta_{ik} \basisscalar[u]_{j,l}.
 \end{align}
-We call these modified elastic constants $C^\mathit{dev}_{ikjl}$, so that we have
+We call these modified elastic constantas $C^\mathit{dev}_{ikjl}$, so that we have
 \begin{equation}
 \boxed{
   C^\mathit{dev}_{ikjl} = C_{ikjl} - \frac{1}{3} C_{mmjl} \delta_{ik}.
@@ -634,7 +628,7 @@ fault,
   \vec{0} = \vec{d}(\vec{x},t) - \vec{u}^+(\vec{x},t) + \vec{u}^-(\vec{x},t) \text{ on }\Gamma_f,
 \end{gather}
 where $\vec{u}^+$ is the displacement vector on the ``positive'' side
-of the fault, $\vec{u}^-$ is the displacement vector on the ``negative''
+of the fault, $\vec{u}^-$ is the displacement vector on the ``negative
 side of the fault, $\vec{d}$ is the slip vector on the fault, and
 $\vec{n}$ is the fault normal which points from the negative side of
 the fault to the positive side of the fault. Using a domain
@@ -677,7 +671,7 @@ generate the prescribed slip.
 
 \subsection{Neglecting Inertia}
 
-If we neglect the inertial term, then time dependence only arises
+If we neglect the intertial term, then time dependence only arises
 from history-dependent constitutive equations and boundary conditions. Considering the
 displacement $\vec{u}$ and Lagrange multiplier $\vec{\lambda}$ fields as the unknowns, we have
 \begin{align}
@@ -888,13 +882,13 @@ $\Gamma_{f^-}$ are implemented by the fault (cohesive cells).
 With a differential algebraic equation, we only need to specify the Jacobians for the LHS.
 \begin{align}
 % J_F
-  J_F^{uu} &= \frac{\partial F^u}{\partial u} + s_\mathit{tshift} \frac{\partial F^u}{\partial \dot{u}}
-  = \int_\Omega \trialscalar[u]_i \eqnannotate{s_\mathit{tshift}}{J_{f0}^{uu}} \basisscalar[u]_j \, d\Omega, \\
+  J_F^{uu} &= \frac{\partial F^u}{\partial u} + t_\mathit{shift} \frac{\partial F^u}{\partial \dot{u}}
+  = \int_\Omega \trialscalar[u]_i \eqnannotate{t_\mathit{shift}}{J_{f0}^{uu}} \basisscalar[u]_j \, d\Omega, \\
 %
-  J_F^{vv} &= \frac{\partial F^v}{\partial v}  + s_\mathit{tshift} \frac{\partial F^v}{\partial \dot{v}}
-  = \int_\Omega \trialscalar[v]_i \eqnannotate{s_\mathit{tshift}}{J_{f0}^{vv}} \basisscalar[v]_j \, d\Omega, \\
+  J_F^{vv} &= \frac{\partial F^v}{\partial v}  + t_\mathit{shift} \frac{\partial F^v}{\partial \dot{v}}
+  = \int_\Omega \trialscalar[v]_i \eqnannotate{t_\mathit{shift}}{J_{f0}^{vv}} \basisscalar[v]_j \, d\Omega, \\
 %
-  J_F^{\lambda \lambda} &= \frac{\partial F^\lambda}{\partial \lambda} + s_\mathit{tshift} \frac{\partial F^\lambda}{\partial \dot{\lambda}}
+  J_F^{\lambda \lambda} &= \frac{\partial F^\lambda}{\partial \lambda} + t_\mathit{shift} \frac{\partial F^\lambda}{\partial \dot{\lambda}}
   = \eqnannotate{\tensor{0}}{J_{f0}^{\lambda \lambda}}
 \end{align}
 
@@ -981,32 +975,32 @@ With three fields we have nine Jacobians for the LHS and RHS associated with the
 the three fields.
 \begin{align}
 % J_F  
-  J_F^{uu} &= \frac{\partial F^u}{\partial u} + s_\mathit{tshift} \frac{\partial F^u}{\partial 
+  J_F^{uu} &= \frac{\partial F^u}{\partial u} + t_{shift} \frac{\partial F^u}{\partial 
 \dot{u}} = \int_\Omega 
-\trialvec[u] \cdot s_\mathit{tshift}\,\basisvec[u] \, d\Omega = \int_\Omega \trialscalar[u]_i 
+\trialvec[u] \cdot t_\mathit{shift}\,\basisvec[u] \, d\Omega = \int_\Omega \trialscalar[u]_i 
 \, 
-\eqnannotate{s_\mathit{tshift} \delta_{ij}}{J_{f0}^{uu}} \, \basisscalar[u]_j \, d\Omega \\
-  J_F^{uv} &= \frac{\partial F^u}{\partial v} + s_\mathit{tshift} \frac{\partial F^u}{\partial 
+\eqnannotate{t_\mathit{shift} \delta_{ij}}{J_{f0}^{uu}} \, \basisscalar[u]_j \, d\Omega \\
+  J_F^{uv} &= \frac{\partial F^u}{\partial v} + t_{shift} \frac{\partial F^u}{\partial 
 \dot{v}} = \tensor{0} \\
-  J_F^{up} &= \frac{\partial F^u}{\partial p} + s_\mathit{tshift} \frac{\partial F^u}{\partial 
+  J_F^{up} &= \frac{\partial F^u}{\partial p} + t_{shift} \frac{\partial F^u}{\partial 
 \dot{p}} = \tensor{0} \\
 %
-  J_F^{vu} &= \frac{\partial F^v}{\partial u} + s_\mathit{tshift} \frac{\partial F^v}{\partial 
+  J_F^{vu} &= \frac{\partial F^v}{\partial u} + t_{shift} \frac{\partial F^v}{\partial 
 \dot{u}} = \tensor{0} \\
-  J_F^{vv} &= \frac{\partial F^v}{\partial v} + s_\mathit{tshift} \frac{\partial F^v}{\partial 
+  J_F^{vv} &= \frac{\partial F^v}{\partial v} + t_{shift} \frac{\partial F^v}{\partial 
 \dot{v}} = \int_\Omega 
-\trialvec[v] \cdot s_\mathit{tshift}\,\rho\,\basisvec[v] \, d\Omega = \int_\Omega 
+\trialvec[v] \cdot t_\mathit{shift}\,\rho\,\basisvec[v] \, d\Omega = \int_\Omega 
 \trialscalar[v]_i \, 
-\eqnannotate{s_\mathit{tshift} \, \rho \, \delta_{ij}}{J_{f0}^{vv}} \, \basisscalar[v]_j \, 
+\eqnannotate{t_\mathit{shift} \, \rho \, \delta_{ij}}{J_{f0}^{vv}} \, \basisscalar[v]_j \, 
 d\Omega \\
-  J_F^{vp} &= \frac{\partial F^v}{\partial p} + s_\mathit{tshift} \frac{\partial F^v}{\partial 
+  J_F^{vp} &= \frac{\partial F^v}{\partial p} + t_{shift} \frac{\partial F^v}{\partial 
 \dot{p}} = \tensor{0} \\
 %
-  J_F^{pu} &= \frac{\partial F^p}{\partial u} + s_\mathit{tshift} \frac{\partial F^p}{\partial 
+  J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial F^p}{\partial 
 \dot{u}} = \tensor{0} \\
-  J_F^{pv} &= \frac{\partial F^p}{\partial v} + s_\mathit{tshift} \frac{\partial F^p}{\partial 
+  J_F^{pv} &= \frac{\partial F^p}{\partial v} + t_{shift} \frac{\partial F^p}{\partial 
 \dot{v}} = \tensor{0} \\
-  J_F^{pp} &= \frac{\partial F^p}{\partial p} + s_\mathit{tshift} \frac{\partial F^p}{\partial 
+  J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial F^p}{\partial 
 \dot{p}} = \tensor{0} \\
 %
 % J_G
@@ -1086,8 +1080,12 @@ and we refer to $M$ as the LHS (or I) Jacobian for explicit time stepping.
 % ----------------------------------------------------------------------
 \section{Poroelasticity with Infinitesimal Strain and No Faults or Inertia}
 
-\todo{poroelasticity group}{Update this with revised formulation from
-  the poroelasticity group.}
+\todo{Hackathon}{Before the hackathon, please finish filling in the
+  details of this formulation. Write out the point-wise functions for
+  the residual. Derive the point-wise functions for the Jacobian. If
+  you want to use different equations and/or assumptions, please
+  complete this formulation first, and then derive the other
+  formulation with alternative assumptions and/or different physics.}
 
 Formulation based on Zheng et al. and Detournay and Cheng (1993).
 
@@ -1146,7 +1144,7 @@ fluid and $\vec{g}$ is the gravitational acceleration vector.
 We assume linear elasticity for the solid phase, so the constitutive behavior can be expressed 
 as
 \begin{gather}
-  \tensor{\sigma}(\vec{u},p_f) = \tensor{C} : \tensor{\epsilon} - \alpha p_f \tensor{I},
+  \tensor{\sigma}(\vec{u},p_f) = \tensor{C} : \tensor{\epsilon} + \alpha p_f \tensor{I},
 \end{gather}
 where $\tensor{\sigma}$ is the stress tensor, $\tensor{C}$ is the
 tensor of elasticity constants, $\alpha$ is the Biot coefficient
@@ -1208,25 +1206,29 @@ porous material
   \end{description}
 \end{itemize}
 
-We consider the displacement $\vec{u}$ and fluid pressure $p_f$ as unknowns,
+\subsection{Neglecting Inertia}
+
+We consider the displacement $\vec{u}$, volumetric strain $e$, and fluid pressure $p_f$ as unknowns,
 \begin{align}
-  \vec{s}^T &= (\vec{u} \quad p_f)^T, \\
+  \vec{s}^T &= (\vec{u} e \quad p_f)^T, \\
 %
 % elasticity equilibrium equation
   \vec{0} &= \vec{f}(\vec{x},t) + \tensor{\nabla} \cdot \tensor{\sigma}(\vec{u},p_f) 
 \text{ in }\Omega, \\
 %
 % fluid mass balance
-  \frac{\partial \zeta(\vec{u},p_f)}{\partial t} &= \gamma(\vec{x},t) - \nabla \cdot \vec{q}
+  \frac{\partial \zeta(e,p_f)}{\partial t} &= \gamma(\vec{x},t) - \nabla \cdot \vec{q}
 (p_f) \text{ in }
 \Omega, \\
+%
+\bigtriangledown . \vec{u} &= e \text{ in } \Omega, \\
 %
 % Darcy's law
   \vec{q}(p_f) &= -\kappa (\nabla p_f - \vec{f}_f), \\
 %
   \tensor{\sigma} \cdot \vec{n} &= \vec{\tau}(\vec{x},t) \text{ on }\Gamma_\tau, \\
 %
-  \zeta(\vec{u},p_f) &= \alpha (\nabla \cdot \vec{u}) + \frac{p_f}{M}, \\
+  \zeta(e,p_f) &= \alpha e + \frac{p_f}{M}, \\
 %
   \vec{u} &= \vec{u}_0(\vec{x},t) \text{ on }\Gamma_u, \\
 %
@@ -1234,45 +1236,75 @@ We consider the displacement $\vec{u}$ and fluid pressure $p_f$ as unknowns,
 %
   p_f &= p_0(\vec{x},t) \text{ on }\Gamma_p.
 \end{align}
-For trial functions $\trialvec[u]$ and $\trialscalar[p]$ we write the weak form
-using the elasticity equilibrium and the fluid mass balance equations,
+
+Using trial functions $\vec{\psi^u}_{trial}$, $\vec{\psi^e}_{trial}$, and $\vec{\psi^p}_{trial}$ and incorporating the Neumann boundary conditions, we write the weak form as \\
+\begin{equation}
+\vec{0} = \int_{\Omega} \vec{\psi}_{trial}^u . \vec{f}(\vec{x},t) + \bigtriangledown \vec{\psi}_{trial}^u : -\sigma(\vec{u},p_f) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . \vec{\tau}(\vec{x},t) \ d\Gamma,
+\end{equation}
+\begin{equation}
+\int_{\Omega} \psi_{trial}^p \frac{\partial \zeta (\vec{u},p_f)}{\partial t} \ d\Omega = \int_{\Omega} \psi_{trial}^p \gamma(\vec{x},t) + \bigtriangledown \psi_{trial}^p . \vec{q}(p_f) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma.
+\end{equation}
+\begin{equation}
+\vec{0} = \int_{\Omega} \psi_{trial}^e .(\bigtriangledown . \vec{u} - e) \ d\Omega
+\end{equation} \\
+
+Identifying $F(t,s,\dot{s})$ and $G(t,s)$ we have 
 \begin{align}
-  0 &= \int_\Omega \trialvec[u] \cdot \left( \vec{f}(\vec{x},t) + \tensor{\nabla} \cdot 
-\tensor{\sigma}
-(\vec{u},p_f) \right) \, d\Omega, \\
-%
- \int_\Omega  \trialscalar[p] \frac{\partial \zeta(\vec{u},p_f)}{\partial t} \, d\Omega &= 
-\int_\Omega 
-\trialscalar[p] \left(\gamma(\vec{x},t) - \nabla \cdot \vec{q}(p_f)\right) \, d\Omega.
-\end{align}
-Applying the divergence theorem to each of these two equations and incorporating the Neumann 
-boundary conditions 
-yields
+F^u(t,s,\dot{s}) &= \vec{0} \\
+F^e(t,s,\dot{s}) &= \vec{0} \\
+F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta (\vec{u},p_f)}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p (\frac{\partial}{\partial t}(\alpha e + \frac{p_f}{M})) \ d\Omega \\
+&= \int_{\Omega} \psi_{trial}^p (\alpha \frac{\partial e}{\partial t} + \frac{1}{M} \frac{\partial p_f}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p (f_0^p) \ d\Omega \\
+G^u(t,s) &= \int_{\Omega} \vec{\psi}_{trial}^u . (\vec{f}(\vec{x},t)) + \bigtriangledown \vec{\psi}_{trial}^u : (-\sigma(\vec{u},p_f)) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (\vec{\tau}(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \vec{\psi}_{trial}^u . (\vec{f}(\vec{x},t)) + \bigtriangledown \vec{\psi}_{trial}^u : (-(C:\varepsilon+\alpha p_f I)) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (\vec{\tau}(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \vec{\psi}_{trial}^u . (g_0^u) + \bigtriangledown \vec{\psi}_{trial}^u : (g_1^u) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (g_0^u) \ d\Gamma \\
+G^e(t,s) &= \int_{\Omega} \psi_{trial}^e .(\bigtriangledown . \vec{u} - e) \ d\Omega = \int_{\Omega} \psi_{trial}^e . (g_0^e) \ d\Omega \\
+G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \bigtriangledown \psi_{trial}^p . (\vec{q}(p_f)) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \bigtriangledown \psi_{trial}^p . (-\kappa (\bigtriangledown p_f - \vec{f_f})) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \psi_{trial}^p (g_0^p) + \bigtriangledown \psi_{trial}^p . (g_1^p) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (g_0^p) \ d\Gamma &&
+\end{align} \\ 
+
+\subsubsection{Jacobians}
+
+With three fields we have nine Jacobians for each side of the equation associated with the coupling of the three fields, 
 \begin{align}
-  0 &= \int_\Omega \trialvec[u] \cdot \vec{f}(\vec{x},t) + \nabla \trialvec[u] : -
-\tensor{\sigma}(\vec{u},p_f) \, 
-d\Omega + \int_{\Gamma_\tau} \trialvec[u] \cdot \vec{\tau}(\vec{x},t) \, d\Gamma, \\
+J_F^{uu} &= \frac{\partial F^u}{\partial u} + t_{shift} \frac{\partial F^u}{\partial \dot{u}} = 0 \\
 %
- \int_\Omega  \trialscalar[p] \frac{\partial \zeta(\vec{u},p_f)}{\partial t} \, d\Omega &= 
- \int_\Omega \trialscalar[p] \gamma(\vec{x},t) + \nabla \trialscalar[p] \cdot \vec{q}(p_f) \, 
-d\Omega
- + \int_{\Gamma_q} \trialscalar[p] (-q_0(\vec{x},t)) \, d\Gamma.
+J_F^{ue} &= \frac{\partial F^u}{\partial e} + t_{shift} \frac{\partial F^u}{\partial \dot{e}} = 0 \\
+%
+J_F^{up} &= \frac{\partial F^u}{\partial p} + t_{shift} \frac{\partial F^u}{\partial \dot{p}} = 0 \\
+%
+J_F^{eu} &= \frac{\partial F^e}{\partial u} + t_{shift} \frac{\partial F^e}{\partial \dot{u}} = 0 \\
+%
+J_F^{ee} &= \frac{\partial F^e}{\partial e} + t_{shift} \frac{\partial F^e}{\partial \dot{e}} = 0 \\
+%
+J_F^{ep} &= \frac{\partial F^e}{\partial p} + t_{shift} \frac{\partial F^e}{\partial \dot{p}} = 0 \\
+%
+J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial F^p}{\partial \dot{u}} = 0 \\
+%
+J_F^{pe} &= \frac{\partial F^p}{\partial e} + t_{shift} \frac{\partial F^p}{\partial \dot{e}} = \int_{\Omega} \psi_{trial}^p t_{shift} \alpha \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p (t_{shift} \alpha ) \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p (J_{f0}^{pe}) \psi_{basis}^e \ d\Omega \\
+%
+J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p (t_{shift} \frac{1}{M}) \psi_{basis}^p \ d\Omega = \int_{\Omega} \psi_{trial}^p (J_{f0}^{pp}) \psi_{basis}^p \ d\Omega 
 \end{align}
-Identifying $F(t,s,\dot{s})$ and $G(t,s)$ we have
-\begin{alignat}{2}
-  F^u(t,s,\dot{s}) &= \vec{0},
-  & \quad
-  G^u(t,s) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\vec{f}(\vec{x},t)}{g^u_0} + \nabla 
-\trialvec[u] : 
-\eqnannotate{-\tensor{\sigma}(\vec{u},p_f)}{g^u_1} \, d\Omega + \int_{\Gamma_\tau} 
-\trialvec[u] \cdot 
-\eqnannotate{\vec{\tau}(\vec{x},t)}{g^u_0} \, d\Gamma, \\
-  F^p(t,s,\dot{s}) &= \int_\Omega  \trialscalar[p] \eqnannotate{\frac{\partial 
-\zeta(\vec{u},p_f)}{\partial t}}
-{f^p_0} \, d\Omega
-  & \quad
-  G^p(t,s) &= \int_\Omega \trialscalar[p] \eqnannotate{\gamma(\vec{x},t)}{g^p_0} + \nabla 
-\trialscalar[p] \cdot 
-\eqnannotate{\vec{q}(p_f)}{g^p_1} \, d\Omega
- + \int_{\Gamma_q} \trialscalar[p] (\eqnannotate{-q_0(\vec{x},t)}{g^p_0}) \, d\Gamma
-\end{alignat}
+
+\begin{align}
+J_G^{uu} &= \frac{\partial G^u}{\partial u} = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial u} (- \sigma(\vec{u},p)) \ d\Omega = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial u} (-(C:\varepsilon +\alpha p I)) \ d\Omega \\
+&= \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : -C: \frac{1}{2} (\bigtriangledown + \bigtriangledown^T) \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial i,k}^u (-C_{ikjl}) \psi_{basis j,l}^u \ d\Omega = \int_{\Omega} \psi_{trial i,k}^u (J_{g3}^{uu}) \psi_{basis j,l}^u \ d\Omega \\
+%
+J_G^{ue} &= \frac{\partial G^u}{\partial e} = 0 \\
+%
+J_G^{up} &= \frac{\partial G^u}{\partial p} = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = \int_{\Omega} \psi_{trial i,j}^u (-\alpha \delta_{ij}) \psi_{basis}^p \ d\Omega = \int_{\Omega} \psi_{trial i,j}^u (J_{g2}^{up}) \psi_{basis}^p \ d\Omega \\
+%
+J_G^{eu} &= \frac{\partial G^e}{\partial u} = \int_{\Omega} \psi_{trial}^e  \bigtriangledown . \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e (\delta_{ij}) \psi_{basis i,j}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e (J_{g1}^{eu}) \psi_{basis i,j}^u \ d\Omega \\
+%
+J_G^{ee} &= \frac{\partial G^e}{\partial e} = \int_{\Omega} \psi_{trial}^e (-1) \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^e (J_{g0}^{ee}) \psi_{basis}^e \ d\Omega \\
+%
+J_G^{ep} &= \frac{\partial G^e}{\partial p} = 0 \\
+%
+J_G^{pu} &= \frac{\partial G^p}{\partial u} = 0 \\
+%
+J_G^{pe} &= \frac{\partial G^p}{\partial e} = 0 \\
+%
+J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown \psi_{trial}^p. \frac{\partial}{\partial p} (-\kappa (\bigtriangledown p_f - \vec{f}) \ d\Omega = \int_{\Omega} \bigtriangledown \psi_{trial}^ p (- \kappa \bigtriangledown . \psi_{basis}^p) \ d\Omega = \int_{\Omega} \psi_{trial,k}^p (- \kappa \delta_{kl}) \psi_{basis,l}^p \ d\Omega \\
+&= \int_{\Omega} \psi_{trial,k}^p (J_{g3}^{pp}) \psi_{basis,l}^p \ d\Omega 
+\end{align} \\
+
