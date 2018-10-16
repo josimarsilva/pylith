@@ -274,11 +274,13 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_TimeDepend
     // Displacement + perturbation
     static double disp_perturb_x(const double x,
                                  const double y) {
-        return disp_x(x, y) + SMALL;
+        //return disp_x(x, y) + SMALL;
+        return disp_x(x, y) + SMALL*dis_time_constant(x,y) * x;
     } // disp_perturb_x
     static double disp_perturb_y(const double x,
                                  const double y) {
-        return disp_y(x, y) + SMALL;
+        //return disp_y(x, y) + SMALL;
+        return disp_y(x, y) + SMALL*dis_time_constant(x,y) * y;
     } // disp_perturb_y
 
     // Pressure
@@ -302,7 +304,7 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_TimeDepend
     static double pore_pressure_perturb(const double x,
                                  const double y) {
     //std::cout<<"\n \t pore_pressure  = "<<pore_pressure(x,y)<<"; SMALL = "<<SMALL << std::endl;
-        return pore_pressure(x, y) + SMALL*1e8;
+        return pore_pressure(x, y) + SMALL*pres_time_constant(x,y);
     } // pore_pressure_perturb
 
     // trace strain
@@ -326,8 +328,8 @@ class pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain_TimeDepend
     static double trace_strain_perturb(const double x,
                                  const double y) {
         //std::cout<<"\n \t trace strain = "<<trace_strain(x,y)<<"; SMALL = "<<SMALL << std::endl;
-        return trace_strain(x, y) + SMALL;
-        //return trace_strain(x, y) + 1e-3;
+        //return trace_strain(x, y) + SMALL;
+        return trace_strain(x, y) + SMALL*2*dis_time_constant(x,y);
     } // trace_strain_perturb
 
 protected:
@@ -342,7 +344,7 @@ protected:
 
         CPPUNIT_ASSERT(_mydata->normalizer);
         _mydata->normalizer->lengthScale(1.0e+03);
-        _mydata->normalizer->timeScale(10.0);
+        _mydata->normalizer->timeScale(1.0);
         _mydata->normalizer->pressureScale(2.25e+10);
         _mydata->normalizer->computeDensityScale();
 

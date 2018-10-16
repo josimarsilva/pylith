@@ -310,10 +310,10 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
     CPPUNIT_ASSERT(_mydata->normalizer);
     const PylithReal lengthScale = _mydata->normalizer->lengthScale();
 
-    const pylith::topology::Field& auxField = _mymaterial->auxField();
+    const pylith::topology::Field* auxField = _mymaterial->auxField();
     { // Test getting density field.
         pylith::topology::Field density(*_mesh);
-        density.copySubfield(auxField, "density");
+        density.copySubfield(*auxField, "density");
 
         //density.view("DENSITY"); // DEBUGGING
         //PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
@@ -339,7 +339,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting bulk_modulus field.
         pylith::topology::Field bulkModulus(*_mesh);
-        bulkModulus.copySubfield(auxField, "bulk_modulus");
+        bulkModulus.copySubfield(*auxField, "bulk_modulus");
 
         //bulkModulus.view("BULK MODULUS"); // DEBUGGING
 
@@ -363,7 +363,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting isotropic permeability field.
         pylith::topology::Field isotropicPermeability(*_mesh);
-        isotropicPermeability.copySubfield(auxField, "isotropic_permeability");
+        isotropicPermeability.copySubfield(*auxField, "isotropic_permeability");
 
         //isotropicPermeability.view("ISOTROPIC PERMEABILITY"); // DEBUGGING
 
@@ -387,7 +387,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting porosity field.
         pylith::topology::Field porosity(*_mesh);
-        porosity.copySubfield(auxField, "porosity");
+        porosity.copySubfield(*auxField, "porosity");
 
         //porosity.view("POROSITY"); // DEBUGGING
 
@@ -411,7 +411,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting fluid density field.
         pylith::topology::Field fluidDensity(*_mesh);
-        fluidDensity.copySubfield(auxField, "fluid_density");
+        fluidDensity.copySubfield(*auxField, "fluid_density");
 
         //fluidDensity.view("FLUID DENSITY"); // DEBUGGING
 
@@ -435,7 +435,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting fluid viscosity field.
         pylith::topology::Field fluidViscosity(*_mesh);
-        fluidViscosity.copySubfield(auxField, "fluid_viscosity");
+        fluidViscosity.copySubfield(*auxField, "fluid_viscosity");
 
         //fluidViscosity.view("FLUID VISCOSITY"); // DEBUGGING
 
@@ -459,7 +459,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting fluid bulk modulus field.
         pylith::topology::Field fluidBulkModulus(*_mesh);
-        fluidBulkModulus.copySubfield(auxField, "fluid_bulk_modulus");
+        fluidBulkModulus.copySubfield(*auxField, "fluid_bulk_modulus");
 
         //fluidBulkModulus.view("FLUID BULK MODULUS"); // DEBUGGING
         //PetscOptionsSetValue(NULL, "-dm_plex_print_l2", "1");
@@ -485,10 +485,10 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     { // Test getting biot coeff field.
         pylith::topology::Field biotCoefficient(*_mesh);
-        biotCoefficient.copySubfield(auxField, "biot_coefficient");
+        biotCoefficient.copySubfield(*auxField, "biot_coefficient");
 
         //biotCoefficient.view("BIOT COEFFICIENT"); // DEBUGGING
-        
+
         // Check result
         CPPUNIT_ASSERT_EQUAL(std::string("biot_coefficient"), std::string(biotCoefficient.label()));
         CPPUNIT_ASSERT_EQUAL(_mydata->dimension, biotCoefficient.spaceDim());
@@ -513,7 +513,7 @@ pylith::materials::TestIsotropicLinearPoroelasticityPlaneStrain::testGetAuxField
 
     if (_mymaterial->_useReferenceState) { // Test getting reference_stress field.
         pylith::topology::Field referenceStress(*_mesh);
-        referenceStress.copySubfield(auxField, "reference_stress");
+        referenceStress.copySubfield(*auxField, "reference_stress");
 
         //referenceStress.view("REFERENCE STRESS"); // DEBUGGING
 
