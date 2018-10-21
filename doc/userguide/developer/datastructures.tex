@@ -39,7 +39,7 @@ called points. The points are numbered sequentially, beginning with
 cells, followed by vertices, edges, and then faces. Treating all
 topological pieces of the mesh the same way, as points in an abstract
 graph, allows us to write algorithms which apply to very different
-meshes without change. For example, we can write a fintie element
+meshes without change. For example, we can write a finite element
 assembly loop that applies to meshes of any dimension, with any cell
 shape, with (almost) any finite element.
 
@@ -98,7 +98,7 @@ degrees of freedom and offset for each individual subfield within the
 section for each point in the chart.
 
 Because the \object{PetscSection} knows only about points, and not
-about topolgoy or geometry, it allows us to express the mathematical
+about topology or geometry, it allows us to express the mathematical
 concepts without getting lost in the details. For example, a $P_1$ 3D
 vector field assigns 3 dofs to each vertex. This same section could be
 used to layout a field over a circle, surface of a cylinder, M\"obius

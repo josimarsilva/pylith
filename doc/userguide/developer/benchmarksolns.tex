@@ -1,0 +1,44 @@
+
+\chapter{\label{cha:Analytical-Solns}Analytical Benchmark Solutions}
+
+
+\section{\label{sec:PoroelasticProblems}Poroelastic Problems}
+
+\subsection{\label{sub:Terzaghi-Consolidation}Terzaghi's Consolidation Problem}
+
+A one dimensional poroelastic analytical problem may be arrived at
+by reviewing the consolidation problem of Terzaghi\cite{Terzaghi:1923} in light
+of Biot theory. An initially undisturbed soil layer of thickness L, resting upon
+a rigid, impermeable base is considered, and a constant load is applied to the top
+layer. All sides are held to be no flux boundaries, with the exception of the top,
+which is taken to represent drained conditions. At $t = 0^{+}$, the sample compacts,
+and the sudden applied load causes the pore pressure to spike to the undrained 
+value, also known as the Skempton effect. The physical conditions may be expressed 
+mathematically as 
+\begin{align}
+ \sigma_{zz} = -P_{0}H(t), \quad p = 0; \qquad \text{at} \quad z &=0; \qquad t \geq 0
+ u_{z} = 0, \quad \frac{\partial p}{\partial z} = 0; \qquad \text{at} \quad z &= L; \quad t \geq 0
+\end{align}
+
+The pressure distribution over time for drained conditions may be represented with a closed form, analytical
+solution:
+
+\begin{equation}
+ p(z,t) = P_{0} \sum_{n = 1,3,\ldots}^{\infty}
+\end{equation}
+
+
+
+\subsection{Mandel's Problem}
+
+
+
+The analytical solution for pore pressure, generalized for the case of compressible
+constituents may be expressed as\cite{Cheng:Detourany:1988}:
+
+\begin{equation}
+ p = \frac{1}{A_{2} - A_{1}}   \sum_{i=1}^{\infty} D_{i} \left[ \cos \left( \frac{\alpha_{i}x}{a} \right) - \cos \alpha_{i} \right] e^{\frac{-\alpha_{i}^{2} c_{x} t}{a^{2}}} 
+\end{equation}
+
+
+
