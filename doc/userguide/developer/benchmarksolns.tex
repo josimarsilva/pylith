@@ -13,18 +13,28 @@ a rigid, impermeable base is considered, and a constant load is applied to the t
 layer. All sides are held to be no flux boundaries, with the exception of the top,
 which is taken to represent drained conditions. At $t = 0^{+}$, the sample compacts,
 and the sudden applied load causes the pore pressure to spike to the undrained 
-value, also known as the Skempton effect. The physical conditions may be expressed 
-mathematically as 
+value, also known as the Skempton effect.\par
+
+\smallskip
+
+For an homogeneous, porous medium, one dimensional deformation may be expressed
+using the storage equation\cite{Verruijt:2013}:
+\begin{equation}
+ \alpha \frac{\partial \epsilon}{\partial t} + S \frac{\partial p}{\partial t} = \frac{\kappa}{\gamma_{f}} \frac{\partial^{2} p}{\partial z^{2}}
+\end{equation}
+
+
 \begin{align}
- \sigma_{zz} = -P_{0}H(t), \quad p = 0; \qquad \text{at} \quad z &=0; \qquad t \geq 0
- u_{z} = 0, \quad \frac{\partial p}{\partial z} = 0; \qquad \text{at} \quad z &= L; \quad t \geq 0
+ \sigma_{zz} = -P_{0}H(t), \quad p = 0; \qquad \text{at} \quad z &=0; \quad t \geq 0 \\
+ u_{z} = 0, \quad \frac{\partial p}{\partial z} = 0; \qquad \text{at} \quad z &= L; \quad t \geq 0 \\
+ p=0; \qquad \text{at} \quad t &= 0^{-}; \quad 0 \leq z \leq L
 \end{align}
 
-The pressure distribution over time for drained conditions may be represented with a closed form, analytical
+The pressure distribution over time may be represented with a closed form, analytical
 solution:
 
 \begin{equation}
- p(z,t) = P_{0} \sum_{n = 1,3,\ldots}^{\infty}
+ p(z,t) = \frac{4 p_{0}} {\pi} \sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{2n-1} \cos \left[ \left(2 n -1 \right) \frac{\pi z}{2 h} \right] e^{-\left(2 n - 1 \right)^{2} \frac{ \pi^{2} c_{v} t}{4 h^{2}}}
 \end{equation}
 
 
