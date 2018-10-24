@@ -1,0 +1,35 @@
+[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[0]PETSC ERROR: Object is in wrong state
+[0]PETSC ERROR: Decomposition defined only after DMSetUp
+[0]PETSC ERROR: See http://www.mcs.anl.gov/petsc/documentation/faq.html for trouble shooting.
+[0]PETSC ERROR: Petsc Development GIT revision: v3.10-88-g06a7608  GIT Date: 2018-09-24 12:49:55 -0400
+[0]PETSC ERROR: /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/mpinemesis on a  named dhcp-18-40-61-58.dyn.mit.edu by Josimar Wed Oct 17 16:27:28 2018
+[0]PETSC ERROR: Configure options --LIBS=-lz --download-metis=1 --download-ml=1 --prefix=/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith --with-64-bit-points=1 --with-c2html=0 --with-clanguage=C --with-debugging=0 --with-fc=0 --with-hdf5-dir=/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith --with-hdf5=1 --with-large-file-io=1 --with-mpicompilers=1 --with-shared-libraries=1 --with-x=0 --with-zlib=1 CFLAGS="-g -O2" CPPFLAGS="-I/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/include " CXXFLAGS="-g -O2 -DMPICH_IGNORE_CXX_SEEK" FCFLAGS= LDFLAGS="-L/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib -L/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib64 " PETSC_ARCH=arch-pylith PETSC_DIR=/Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith
+[0]PETSC ERROR: #1 DMCreateFieldDecomposition() line 1576 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/dm/interface/dm.c
+[0]PETSC ERROR: #2 PCFieldSplitSetDefaults() line 339 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ksp/pc/impls/fieldsplit/fieldsplit.c
+[0]PETSC ERROR: #3 PCSetUp_FieldSplit() line 470 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ksp/pc/impls/fieldsplit/fieldsplit.c
+[0]PETSC ERROR: #4 PCSetUp() line 932 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ksp/pc/interface/precon.c
+[0]PETSC ERROR: #5 KSPSetUp() line 391 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ksp/ksp/interface/itfunc.c
+[0]PETSC ERROR: #6 KSPSolve() line 723 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ksp/ksp/interface/itfunc.c
+[0]PETSC ERROR: #7 SNESSolve_NEWTONLS() line 224 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/snes/impls/ls/ls.c
+[0]PETSC ERROR: #8 SNESSolve() line 4396 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/snes/interface/snes.c
+[0]PETSC ERROR: #9 TSTheta_SNESSolve() line 176 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ts/impls/implicit/theta/theta.c
+[0]PETSC ERROR: #10 TSStep_Theta() line 216 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ts/impls/implicit/theta/theta.c
+[0]PETSC ERROR: #11 TSStep() line 3592 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ts/interface/ts.c
+[0]PETSC ERROR: #12 TSSolve() line 3775 in /Users/josimar/Documents/Work/Projects/PyLith_Dev/build/pylith_poroelasticity/petsc-pylith/src/ts/interface/ts.c
+[0]PETSC ERROR: #13 void pylith::problems::TimeDependent::solve()() line 318 in ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/problems/TimeDependent.cc
+Fatal error. Calling MPI_Abort() to abort PyLith application.
+Traceback (most recent call last):
+  File "/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/apps/PetscApplication.py", line 74, in onComputeNodes
+    self.main(*args, **kwds)
+  File "/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/apps/PyLithApp.py", line 129, in main
+    self.problem.run(self)
+  File "/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/TimeDependent.py", line 103, in run
+    ModuleTimeDependent.solve(self)
+  File "/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/lib/python2.7/site-packages/pylith/problems/problems.py", line 168, in solve
+    def solve(self): return _problems.TimeDependent_solve(self)
+RuntimeError: Error detected while in PETSc function.
+application called MPI_Abort(MPI_COMM_WORLD, -1) - process 0
+/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/nemesis: mpirun: exit 255
+/Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/pylith: /Users/josimar/Documents/Work/Projects/PyLith_Dev/pylith/bin/nemesis: exit 1
+josimar:Simple Josimar$ 

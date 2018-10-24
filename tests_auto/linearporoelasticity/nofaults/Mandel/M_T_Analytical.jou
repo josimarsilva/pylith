@@ -1,0 +1,56 @@
+### Here I have 2 intersecting fractures
+reset
+
+create vertex 0 0 0
+create vertex 50 0 0 
+create vertex 50 10 0 
+create vertex 0 10 0 
+
+create surface vertex 1 to 4
+compress
+
+
+###################
+
+surface 1 scheme TriDelaunay
+
+surface 1 size 1
+mesh surface 1
+
+block 1 surface 1
+block 1 name "Layer_1"
+
+group "Left_BC" add node in curve 4
+nodeset 100 group Left_BC
+nodeset 100 name  "Left_BC"
+
+
+group "Right_BC" add node in curve 2
+nodeset 101 group Right_BC
+nodeset 101 name  "Right_BC"
+
+
+group "Bottom_BC" add node in curve 1
+nodeset 102 group Bottom_BC
+nodeset 102 name  "Bottom_BC"
+
+
+group "Top_BC" add node in curve 3
+nodeset 103 group Top_BC
+nodeset 103 name  "Top_BC"
+
+
+export mesh "Mandel_Mesh_v01.exo" dimension 2 overwrite
+#export mesh "mesh_Karim_3D_Faults.exo" dimension 2 overwrite
+
+
+
+
+
+
+
+
+
+
+
+
