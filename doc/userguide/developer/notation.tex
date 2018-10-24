@@ -1,0 +1,56 @@
+% ==============================================================================
+\section{Notation}
+% ------------------------------------------------------------------------------
+\begin{table}[ht]
+ \caption{Scalar Parameters}
+ \centering
+ \begin{tabular}{c | c | c | c}
+  \hline\hline
+  \textit{Parameter} & \textit{Variable}    & \textit{Derivation} & \textit{Units} \\ [0.75ex]\hline
+Fluid Density                       & $\rho_{f}$        & -                                   & $\frac{kg}{m^{3}}$ \\ [0.5ex]\hline 
+Solid Density                       & $\rho_{s}$        & -                                   & $\frac{kg}{m^{3}}$ \\ [0.5ex]\hline
+Bulk Density                        & $\rho_{s}$        & $\phi\rho_{f} + (1-\phi)\rho_{s}$   & $\frac{kg}{m^{3}}$ \\ [0.5ex]\hline
+Biot Coefficient                    & $\alpha$          & $1 - \frac{K_{dr}}{K_{s}}$          & $ - $ \\ [0.5ex]\hline
+Biot Modulus                        & $M$               & $\left[\frac{\alpha - \phi}{K_{s}} + \frac{\phi}{K_{f}} \right]^{-1}$           & $Pa$ \\ [0.5ex]\hline
+Bulk Modulus, Fluid                 & $K_{f}$           & -                                   & $ Pa $ \\ [0.5ex]\hline
+Bulk Modulus, Solid Grain           & $K_{s}$           & -                                   & $ Pa $ \\ [0.5ex]\hline
+Bulk Modulus, Drained               & $K_{dr}$          & -                                   & $ Pa $ \\ [0.5ex]\hline
+Fluid Viscosity                     & $\mu_{f}$         & -                                   & $ Pa * s $ \\ [0.5ex]\hline  
+Porosity                            & $\phi$            & $-$                                 & $\%$ \\ [0.5ex]\hline
+Effective Stress Invariant, First   & $J_{1}$           & $tr(\bm{\sigma}^{'})$               & $ - $ \\ [0.5ex]\hline
+Effective Stress Invariant, Second  & $J_{1}$           & $\frac{1}{2}\left[tr(\bm{\sigma}^{'})^{2} - tr(\bm{\sigma}^{'})^{2} \right]  $  & $ - $ \\ [0.5ex]\hline
+Mohr-Coulomb Friction Angle         & $\varphi$         & $-$                                 & Degrees \\ [0.5ex]\hline
+Young's Modulus                     & $E$               & -                                   & $ Pa $ \\ [0.5ex]\hline
+Volumetric Strain                   & $\epsilon_{v}$    & $ \nabla \cdot \vec{u}$             & $ - $ \\ [0.5ex]\hline    
+Poisson's Ratio                     & $\nu$             & -                                   & $ - $ \\ [0.5ex]\hline   
+
+ \end{tabular}
+\end{table}
+
+\begin{table}[ht]
+ \caption{Vector Parameters}
+ \centering
+ \begin{tabular}{c | c | c | c}
+  \hline\hline
+  \textit{Parameter} & \textit{Variable}   & \textit{Derivation} & \textit{Units} \\ [0.75ex]\hline
+Darcy Velocity (Quasi-Static) & $\vec{q}$  & $ -\frac{\bm{k}}{\mu_{f}} \left(\nabla p - \rho_{f} \vec{g} \right) $   & $\frac{m}{s}$ \\ [0.5ex]\hline 
+%Darcy Velocity (Dynamic) & $\vec{q}$  & $ -\frac{\bm{k}}{\mu_{f}} \left(\nabla p - \rho_{f} \vec{g} \right) $   & $\frac{m}{s}$ \\ [0.5ex]\hline 
+\end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+ \caption{Tensor Parameters}
+ \centering
+ \begin{tabular}{c | c | c | c}
+  \hline\hline
+  \textit{Parameter} & \textit{Variable}   & \textit{Derivation} & \textit{Units} \\ [0.75ex]\hline
+Permeability         & $\bm{k}$            & $-$                 & $m^{2}$ \\ [0.5ex]\hline
+Identity Tensor      & $\bm{I}$            & $-$                 & $-$ \\ [0.5ex]\hline 
+Stress               & $\bm{\sigma}$       & $-$                 & $Pa$ \\ [0.5ex]\hline 
+ \end{tabular}
+\end{table}
+
+
+
+% End of file

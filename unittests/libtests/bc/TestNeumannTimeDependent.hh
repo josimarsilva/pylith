@@ -43,12 +43,11 @@
 namespace pylith {
     namespace bc {
         class TestNeumannTimeDependent;
-
         class TestNeumannTimeDependent_Data;
     } // bc
 } // pylith
 
-/// C++ unit testing for DirichletBC.
+/// C++ unit testing for NeumannBC.
 class pylith::bc::TestNeumannTimeDependent : public CppUnit::TestFixture {
 
     // CPPUNIT TEST SUITE /////////////////////////////////////////////////

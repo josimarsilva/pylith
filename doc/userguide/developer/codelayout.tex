@@ -131,19 +131,19 @@ The Python code is limited to collecting user input. Everything else
 is done in C++. This facilitates debugging (it is easier to track
 symbols in the C/C++ debugger) and unit testing, and reduces the
 amount of information that needs to be passed from Python to C++. The
-source code that follows shows the essential ingradients for Python
+source code that follows shows the essential ingredients for Python
 and C++ objects, using the concrete example of the \object{Material}
 objects.
 
 \warning{The examples below show skeleton Python and C++ objects to illustrate the essential ingredients. We have
-ommitted documentation and comments that we would normally include and simplified the object hierarchy. See
+omitted documentation and comments that we would normally include and simplified the object hierarchy. See
 Section~\vref{cha:code:style} for  details about the coding style we use in PyLith.}
 
 \important{Consistent inheritance between C++ and Python is important in order for SWIG to generate a Python interface
 that is consistent with the C++ interface.}
 
 \begin{python}[Skeleton Python object in PyLith]
-rom pylith.utils.PetscComponent import PetscComponent
+from pylith.utils.PetscComponent import PetscComponent
 from .materials import Material as ModuleMaterial
 
 # Python objects should inherit the corresponding SWIG interface object (ModuleMaterial).
