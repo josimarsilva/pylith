@@ -331,7 +331,7 @@ pylith::bc::TestNeumannTimeDependent::testPrestep(void)
 } // testPrestep
 
 // ----------------------------------------------------------------------
-// Test setSolution().
+// Test computeRHSResidual().
 void
 pylith::bc::TestNeumannTimeDependent::testComputeRHSResidual(void)
 { // testComputeRHSResidual

@@ -3,8 +3,9 @@
 
 
 \section{\label{sec:PoroelasticProblems}Poroelastic Problems}
-
 \subsection{\label{sub:Terzaghi-Consolidation}Terzaghi's Consolidation Problem}
+
+\subsubsection{Description}
 
 A one dimensional poroelastic analytical problem may be arrived at
 by reviewing the consolidation problem of Terzaghi\cite{Terzaghi:1923} in light
@@ -12,10 +13,11 @@ of Biot theory. An initially undisturbed soil layer of thickness L, resting upon
 a rigid, impermeable base is considered, and a constant load is applied to the top
 layer. All sides are held to be no flux boundaries, with the exception of the top,
 which is taken to represent drained conditions. At $t = 0^{+}$, the sample compacts,
-and the sudden applied load causes the pore pressure to spike to the undrained 
+and\ the sudden applied load causes the pore pressure to spike to the undrained 
 value, also known as the Skempton effect.\par
 
 \smallskip
+
 
 For an homogeneous, porous medium, one dimensional deformation may be expressed
 using the storage equation\cite{Verruijt:2013}:
@@ -25,10 +27,37 @@ using the storage equation\cite{Verruijt:2013}:
 
 
 \begin{align}
- \sigma_{zz} = -P_{0}H(t), \quad p = 0; \qquad \text{at} \quad z &=0; \quad t \geq 0 \\
+ \sigma_{zz} = q H(t), \quad p = 0; \qquad \text{at} \quad z &=0; \quad t \geq 0 \\
  u_{z} = 0, \quad \frac{\partial p}{\partial z} = 0; \qquad \text{at} \quad z &= L; \quad t \geq 0 \\
  p=0; \qquad \text{at} \quad t &= 0^{-}; \quad 0 \leq z \leq L
 \end{align}
+
+For one dimensional deformation, volume change is equivalent to vertical strain, and with the assumption of linear elastic behavior, the volumetric strain rate may be expressed as:
+\begin{equation}
+ \frac{\partial \epsilon}{\partial t} = -m_{v} \frac{\partial \sigma^{'}_{zz}}{\partial t} = -m_{v} \left[ \frac{\partial \sigma_{zz}}{\partial t} - \alpha \frac{\partial p}{\partial t} \right]
+\end{equation}
+
+Combining the prior expression for volumetric strain rate and the storage equation, and after some algebra, the general differential equation for one dimensional consolidation may be written:
+\begin{equation}
+ \frac{\partial p}{\partial t} = \frac{\alpha m_{v}}{S + \alpha^{2} m_{v}} \frac{\partial \sigma_{zz}}{\partial t} + \frac{\kappa}{\gamma_{f}\left(S + \alpha^{2} m_{v} \right)} \frac{\partial^{2} p}{\partial z^{2}}
+\end{equation}
+
+The problem dictates that at a time $t = 0$ a vertical loading of magnitude $q$ is to be applied, and to continue for $t > 0$. Thus, for $t > 0$, the above reduces to:
+
+\begin{equation}
+\frac{\partial p}{\partial t} = \cancelto{\frac{\partial \sigma_{zz}}{\partial t} = 0}{\frac{\alpha m_{v}}{S + \alpha^{2} m_{v}} \frac{\partial \sigma_{zz}}{\partial t} +} \underbrace{\frac{\kappa}{\gamma_{f}\left(S + \alpha^{2} m_{v} \right)}}_{c_{v}} \frac{\partial^{2} p}{\partial z^{2}}
+\end{equation}
+
+where $c_{v}$ may be defined as the consolidation coefficient.\par
+
+The initial condition, as defined at the initial moment of loading, $t = 0^{+}$, is determined under the consideration that insufficient time has elapsed to allow for any fluid outflow, and thus is defined as:
+
+\begin{equation}
+ p_{0} = \frac{\alpha m_{v}}{S + \alpha^{2} m_{v}} q
+\end{equation}
+
+
+\subsubsection{Solution}
 
 The pressure distribution over time may be represented with a closed form, analytical
 solution:
@@ -37,11 +66,11 @@ solution:
  p(z,t) = \frac{4 p_{0}} {\pi} \sum_{n = 1}^{\infty} \frac{(-1)^{n-1}}{2n-1} \cos \left[ \left(2 n -1 \right) \frac{\pi z}{2 h} \right] e^{-\left(2 n - 1 \right)^{2} \frac{ \pi^{2} c_{v} t}{4 h^{2}}}
 \end{equation}
 
-
-
+% ==============================================================================
 \subsection{Mandel's Problem}
 
-
+\subsubsection{Description}
+The problem describes an isotropic, poroelastic sample subject to a constant vertical stress at the top, transmitted through a rigid and frictionless plate, and permitting drainage on both the left and right sides of the domain. 
 
 The analytical solution for pore pressure, generalized for the case of compressible
 constituents may be expressed as\cite{Cheng:Detourany:1988}:
@@ -51,4 +80,7 @@ constituents may be expressed as\cite{Cheng:Detourany:1988}:
 \end{equation}
 
 
+\subsection{Cryer's Problem}
+
+\subsection{Flow to Wells}
 
