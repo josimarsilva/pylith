@@ -33,7 +33,7 @@
 ##          U(0)=0
 ## 
 
-import numpy
+import numpy as np
 
 # Physical properties
 h  = 10  # Soil height
@@ -88,7 +88,7 @@ class AnalyticalSoln(object):
     Compute displacement field at locations.
     """
     (npts, dim) = locs.shape
-    disp = numpy.zeros( (1, npts, 2), dtype=numpy.float64)
+    disp = np.zeros( (1, npts, 2), dtype=np.float64)
     disp[0,:,0] = exx*locs[:,0] + exy*locs[:,1]
     disp[0,:,1] = eyy*locs[:,1] + exy*locs[:,0]
     return disp
@@ -98,7 +98,7 @@ class AnalyticalSoln(object):
     Compute pressure field at locations
     """
     (npts, dim) = locs.shape
-    pressure = numpy.zeros( (1, npts, 2), dtype=numpy.float64)
+    pressure = np.zeros( (1, npts, 2), dtype=np.float64)
     pressure[0,:,0] = exx*locs[:,0] + exy*locs[:,1]
     pressure[0,:,1] = eyy*locs[:,1] + exy*locs[:,0]       
     return pressure
@@ -108,7 +108,7 @@ class AnalyticalSoln(object):
     Compute strain field at locations.
     """
     (npts, dim) = locs.shape
-    strain = numpy.zeros( (1, npts, 3), dtype=numpy.float64)
+    strain = np.zeros( (1, npts, 3), dtype=np.float64)
     strain[0,:,0] = exx
     strain[0,:,1] = eyy
     strain[0,:,2] = exy
@@ -120,7 +120,7 @@ class AnalyticalSoln(object):
     Compute stress field at locations.
     """
     (npts, dim) = locs.shape
-    stress = numpy.zeros( (1, npts, 3), dtype=numpy.float64)
+    stress = np.zeros( (1, npts, 3), dtype=np.float64)
     stress[0,:,0] = sxx
     stress[0,:,1] = syy
     stress[0,:,2] = sxy

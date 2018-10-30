@@ -133,7 +133,7 @@ exy = 1.0/(2*p_mu) * (sxy)
 # ----------------------------------------------------------------------
 class AnalyticalSoln(object):
   """
-  Analytical solution to Terzaghi problem of consolodation of a drained medium.
+  Analytical solution to Mandel's problem of consolidation of a drained medium.
   """
 
   def __init__(self):
