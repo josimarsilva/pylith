@@ -16,10 +16,10 @@
 # ----------------------------------------------------------------------
 #
 
-# @file tests/2d/quad4/axialdisp_gendb.py
+# @file tests_auto/linearporoelasticity/nofaults/Terzaghi/terzaghi_gendb.py
 ##
 # @brief Python script to generate spatial database with displacement
-# boundary conditions for the axial displacement test.
+# boundary conditions for Terzaghi's problem of consolodation of a drained medium
 
 import numpy
 
@@ -51,7 +51,7 @@ class GenerateDB(object):
         xy[:, 0] = numpy.ravel(xx)
         xy[:, 1] = numpy.ravel(numpy.transpose(yy))
 
-        from axialdisp_soln import AnalyticalSoln
+        from terzaghi_soln import AnalyticalSoln
         soln = AnalyticalSoln()
         disp = soln.displacement(xy)
 
@@ -61,7 +61,7 @@ class GenerateDB(object):
         cs._configure()
         data = {'points': xy,
                 'coordsys': cs,
-                'data_dim': 2,
+                'data_dim': 1,
                 'values': [{'name': "initial_amplitude_x",
                             'units': "m",
                             'data': numpy.ravel(disp[0, :, 0])},
