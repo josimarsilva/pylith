@@ -35,43 +35,68 @@
 
 import numpy as np
 
+# Inputs
+# ------------------------------------------------------------------------------
 # Physical properties
-h  = 10  # Soil height
-la = 2  # Soil Lame lambda
-mu = 3  # Soil shear modulus
-K  = la + 2*mu/3 # Soil bulk modulus
-K_f = 8 # Fluid bulk modulus
-m  = 1 / (K + 4*mu/3) # Soil confined compressibility
-k  = 1.5 # Fluid mobility (soil permeability / fluid viscosity)
-phi = 0.1 # Soil porosity
-alpha = 0.6 # Biot Coefficient
-S = phi/K_f + (alpha - phi)*(1 - alpha) / K # Soil storativity
-c = k / (S + alpha**2 * m) # Consolidation coefficient
-q = 1 # Normal stress at top
+h       = 10  # Soil height
+la      = 2  # Soil Lame lambda
+mu      = 3  # Soil shear modulus
+gamma_f = 1  # Unit weight of pore fluid
+K_b     = la + 2*mu/3 # Soil bulk modulus
+K_f     = 8 # Fluid bulk modulus
+m_v     = 1 / (K_b + 4*mu/3) # Soil confined compressibility
+kappa   = 1.5 # Fluid mobility (soil permeability / fluid viscosity)
+phi     = 0.1 # Soil porosity
+alpha   = 0.6 # Biot Coefficient
+S       = phi/K_f + (alpha - phi)*(1 - alpha) / K_b # Soil storativity
+c_v     = kappa / (gamma_f * (S + alpha**2 * m_v) ) # Consolidation coefficient
+q       = 1 # Normal stress at top
+p_0     = (alpha * m_v) / (S + alpha**2 * m_v) * q # Initial Pore Pressure (t = 0)
+K_u     = K_b + alpha**2 / S
+nu      = (3*K_b - 2*mu) / (2*(3*K_b + mu))
+nu_u    = (3*K_u - 2*mu) / (2*(3*K_u + mu))
+t       = 0.0
+maxj    = 5000
+# ------------------------------------------------------------------------------
+# Analytical Solutions
+def tvterm(c_v,t,h):
+    return (c_v * t) / h**2
+    
+def p_expterm(Tv, j):
+    """Computing the exponential factor of the series."""
+    return np.exp(-(2*j-1)**2*np.pi**2/4*Tv)
 
+def p_costerm(znorm, j):
+    """Computing the cosine factor of the series."""
+    return np.cos((2*j-1)*np.pi/2*znorm)
 
-p_density = 2500.0
-p_vs = 3000.0
-p_vp = 5291.502622129181
+def p_seriesterm(Tv, znorm, j):
+    """One term of the series expansion for a given j."""
+    return 4/np.pi*(-1)**(j-1)/(2*j-1)*p_costerm(znorm,j)*p_expterm(Tv, j)
 
-p_mu = p_density*p_vs**2
-p_lambda = p_density*p_vp**2 - 2*p_mu
+def p_terzaghi(Tv, znorm, maxj):
+    """Complete pressure solution for a given time factor at a given depth."""
+    return p_0 * sum(p_seriesterm(Tv, znorm, j) for j in range(1, maxj+1))    
 
-# Uniform stress field (plane strain)
-sxx = 1.0e+7
-sxy = 0.0
-syy = 0.0
-szz = p_lambda/(2*p_lambda+2*p_mu)*(sxx+syy)
+def u_costerm(znorm,j):
+    """Computing the cosine factor of the series."""
+    return np.cos((j*np.pi*znorm)/2)
+    
+def u_expterm(Tv, j):
+    """Computing the exponential factor of the series."""
+    return 1 - np.exp(-1*j**2*np.pi*Tv)
 
-# Uniform strain field
-exx = 1.0/(2*p_mu) * (sxx - p_lambda/(3*p_lambda+2*p_mu) * (sxx+syy+szz))
-eyy = 1.0/(2*p_mu) * (syy - p_lambda/(3*p_lambda+2*p_mu) * (sxx+syy+szz))
-ezz = 1.0/(2*p_mu) * (szz - p_lambda/(3*p_lambda+2*p_mu) * (sxx+syy+szz))
+def u_seriesterm(Tv, znorm, j):
+    """One term of the series expansion for a given j."""
+    return 8/(j**2 * np.pi**2) * u_costerm(znorm,j) * u_expterm(Tv,j)
 
-exy = 1.0/(2*p_mu) * (sxy)
+def u_terzaghi(Tv, znorm, maxj):
+    """Complete displacement solution for a given time factor at a given depth."""
+    uzt =  (p_0*h*(1-2*nu_u) )/(2*mu*(1-nu_u)) * (1 - znorm) + \
+           (p_0*h*(nu_u-nu))/(2*mu*(1-nu_u)*(1-nu)) *          \
+           sum(u_seriesterm(Tv, znorm, j) for j in np.arange(1, maxj*2+1,1))
+    return uzt
 
-#print exx,eyy,exy,ezz
-#print -exx*p_lambda/(p_lambda+2*p_mu)
 
 # ----------------------------------------------------------------------
 class AnalyticalSoln(object):
@@ -80,7 +105,7 @@ class AnalyticalSoln(object):
   """
 
   def __init__(self):
-    return
+    return 
 
 
   def displacement(self, locs):
@@ -88,9 +113,14 @@ class AnalyticalSoln(object):
     Compute displacement field at locations.
     """
     (npts, dim) = locs.shape
-    disp = np.zeros( (1, npts, 2), dtype=np.float64)
-    disp[0,:,0] = exx*locs[:,0] + exy*locs[:,1]
-    disp[0,:,1] = eyy*locs[:,1] + exy*locs[:,0]
+    # Normalized 1D input
+    znorm_list = locs[:,1] / (locs.max() - locs.min())
+    Tv = tvterm(c_v,t,h)
+    print(znorm_list)
+    print(locs)
+    disp = np.zeros( (1, npts, 1), dtype=np.float64)
+    disp[0,:,0] = u_terzaghi( Tv, znorm_list, maxj )
+    print(u_terzaghi( Tv, znorm_list, maxj ))
     return disp
 
   def pressure(self, locs):
@@ -98,33 +128,10 @@ class AnalyticalSoln(object):
     Compute pressure field at locations
     """
     (npts, dim) = locs.shape
-    pressure = np.zeros( (1, npts, 2), dtype=np.float64)
-    pressure[0,:,0] = exx*locs[:,0] + exy*locs[:,1]
-    pressure[0,:,1] = eyy*locs[:,1] + exy*locs[:,0]       
+    # Normalized 1D input
+    znorm_list = locs[:,1] / (locs.max() - locs.min())
+    pressure = np.zeros( (1, npts, 1), dtype=np.float64)
+    pressure[0,:,0] = p_terzaghi( tvterm(c_v,t,h),znorm_list,maxj )
     return pressure
-
-  def strain(self, locs):
-    """
-    Compute strain field at locations.
-    """
-    (npts, dim) = locs.shape
-    strain = np.zeros( (1, npts, 3), dtype=np.float64)
-    strain[0,:,0] = exx
-    strain[0,:,1] = eyy
-    strain[0,:,2] = exy
-    return strain
-  
-
-  def stress(self, locs):
-    """
-    Compute stress field at locations.
-    """
-    (npts, dim) = locs.shape
-    stress = np.zeros( (1, npts, 3), dtype=np.float64)
-    stress[0,:,0] = sxx
-    stress[0,:,1] = syy
-    stress[0,:,2] = sxy
-    return stress
-
 
 # End of file 

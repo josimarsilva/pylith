@@ -21,7 +21,7 @@
 # @brief Python script to generate spatial database with displacement
 # boundary conditions for Terzaghi's problem of consolodation of a drained medium
 
-import numpy
+import numpy as np
 
 
 class GenerateDB(object):
@@ -41,19 +41,15 @@ class GenerateDB(object):
         Generate the database.
         """
         # Domain
-        x = numpy.arange(-4000.0, 4000.1, 1000.0)
-        y = numpy.arange(-4000.0, 4000.1, 1000.0)
-        npts = x.shape[0]
-
-        xx = x * numpy.ones((npts, 1), dtype=numpy.float64)
-        yy = y * numpy.ones((npts, 1), dtype=numpy.float64)
-        xy = numpy.zeros((npts**2, 2), dtype=numpy.float64)
-        xy[:, 0] = numpy.ravel(xx)
-        xy[:, 1] = numpy.ravel(numpy.transpose(yy))
-
+        y = np.arange(0.0, 10.1, 1.0)
+        x = np.zeros(y.shape)
+        
+        xy = np.vstack((x,y)).transpose()
+        
         from terzaghi_soln import AnalyticalSoln
         soln = AnalyticalSoln()
         disp = soln.displacement(xy)
+        pres = soln.pressure(xy)
 
         from spatialdata.geocoords.CSCart import CSCart
         cs = CSCart()
@@ -62,16 +58,22 @@ class GenerateDB(object):
         data = {'points': xy,
                 'coordsys': cs,
                 'data_dim': 1,
-                'values': [{'name': "initial_amplitude_x",
-                            'units': "m",
-                            'data': numpy.ravel(disp[0, :, 0])},
-                           {'name': "initial_amplitude_y",
-                            'units': "m",
-                            'data': numpy.ravel(disp[0, :, 1])}]}
+                'values': [
+                    {
+                        'name': "displacement_y",
+                        'units': "m",
+                        'data': np.ravel(disp[0, :, 0])
+                    },{
+                        'name': "pore_pressure",
+                        'units': 'Pa',
+                        'data': np.ravel(pres[0, :, 0])
+                    }
+                  ]
+                }
 
         from spatialdata.spatialdb.SimpleIOAscii import SimpleIOAscii
         io = SimpleIOAscii()
-        io.inventory.filename = "axialdisp.spatialdb"
+        io.inventory.filename = "terzaghi.spatialdb"
         io._configure()
         io.write(data)
         return
