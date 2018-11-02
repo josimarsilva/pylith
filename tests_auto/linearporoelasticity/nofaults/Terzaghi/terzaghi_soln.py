@@ -38,19 +38,19 @@ import numpy as np
 # Inputs
 # ------------------------------------------------------------------------------
 # Physical properties
-h       = 10  # Soil height
-la      = 2  # Soil Lame lambda
-mu      = 3  # Soil shear modulus
-gamma_f = 1  # Unit weight of pore fluid
+h       = 10.  # Soil height
+la      = 2.  # Soil Lame lambda
+mu      = 3.  # Soil shear modulus
+gamma_f = 1.  # Unit weight of pore fluid
 K_b     = la + 2*mu/3 # Soil bulk modulus
-K_f     = 8 # Fluid bulk modulus
-m_v     = 1 / (K_b + 4*mu/3) # Soil confined compressibility
+K_f     = 8. # Fluid bulk modulus
+m_v     = 1. / (K_b + 4*mu/3) # Soil confined compressibility
 kappa   = 1.5 # Fluid mobility (soil permeability / fluid viscosity)
 phi     = 0.1 # Soil porosity
 alpha   = 0.6 # Biot Coefficient
 S       = phi/K_f + (alpha - phi)*(1 - alpha) / K_b # Soil storativity
 c_v     = kappa / (gamma_f * (S + alpha**2 * m_v) ) # Consolidation coefficient
-q       = 1 # Normal stress at top
+q       = 1.0 # Normal stress at top
 p_0     = (alpha * m_v) / (S + alpha**2 * m_v) * q # Initial Pore Pressure (t = 0)
 K_u     = K_b + alpha**2 / S
 nu      = (3*K_b - 2*mu) / (2*(3*K_b + mu))
@@ -92,9 +92,9 @@ def u_seriesterm(Tv, znorm, j):
 
 def u_terzaghi(Tv, znorm, maxj):
     """Complete displacement solution for a given time factor at a given depth."""
-    uzt =  (p_0*h*(1-2*nu_u) )/(2*mu*(1-nu_u)) * (1 - znorm) + \
-           (p_0*h*(nu_u-nu))/(2*mu*(1-nu_u)*(1-nu)) *          \
-           sum(u_seriesterm(Tv, znorm, j) for j in np.arange(1, maxj*2+1,1))
+    uzt =  (p_0*h*(1.0-2.0*nu_u) )/(2.0*mu*(1.0-nu_u)) * (1.0 - znorm) + \
+           (p_0*h*(nu_u-nu))/(2.0*mu*(1.0-nu_u)*(1.0-nu)) *          \
+           sum(u_seriesterm(Tv, znorm, j) for j in np.arange(1.0, maxj*2+1,1.0))
     return uzt
 
 
@@ -116,11 +116,8 @@ class AnalyticalSoln(object):
     # Normalized 1D input
     znorm_list = locs[:,1] / (locs.max() - locs.min())
     Tv = tvterm(c_v,t,h)
-    print(znorm_list)
-    print(locs)
     disp = np.zeros( (1, npts, 1), dtype=np.float64)
     disp[0,:,0] = u_terzaghi( Tv, znorm_list, maxj )
-    print(u_terzaghi( Tv, znorm_list, maxj ))
     return disp
 
   def pressure(self, locs):
