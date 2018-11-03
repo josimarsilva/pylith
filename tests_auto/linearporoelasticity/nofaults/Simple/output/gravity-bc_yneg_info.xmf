@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "gravity-yneg_info.h5">
+<!ENTITY HeavyData "gravity-bc_yneg_info.h5">
 ]>
 
 <Xdmf>

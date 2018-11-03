@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "gravity-xneg_info.h5">
+<!ENTITY HeavyData "gravity-bc_xpos.h5">
 ]>
 
 <Xdmf>
@@ -34,7 +34,7 @@
     <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
       <Time TimeType="List">
         <DataItem Format="XML" NumberType="Float" Dimensions="1">
-            0.00000000e+00
+            3.15576000e+07
         </DataItem>
       </Time>
       <Grid Name="domain" GridType="Uniform">
@@ -48,14 +48,14 @@
             /Xdmf/Domain/DataItem[@Name="vertices"]
           </DataItem>
         </Geometry>
-        <Attribute Name="initial_amplitude" Type="Vector" Center="Node">
+        <Attribute Name="displacement" Type="Vector" Center="Node">
           <DataItem ItemType="Function" Dimensions="9 3" Function="JOIN($0, $1, $2)">
             <DataItem ItemType="HyperSlab" Dimensions="9 1" Type="HyperSlab">
               <DataItem Dimensions="3 3" Format="XML">
                 0 0 0    1 1 1    1 9 1
               </DataItem>
               <DataItem DataType="Float" Precision="8" Dimensions="1 9 2" Format="HDF">
-                &HeavyData;:/vertex_fields/initial_amplitude
+                &HeavyData;:/vertex_fields/displacement
               </DataItem>
             </DataItem>
             <DataItem ItemType="HyperSlab" Dimensions="9 1" Type="HyperSlab">
@@ -63,13 +63,33 @@
                 0 0 1    1 1 1    1 9 1
               </DataItem>
               <DataItem DataType="Float" Precision="8" Dimensions="1 9 2" Format="HDF">
-                &HeavyData;:/vertex_fields/initial_amplitude
+                &HeavyData;:/vertex_fields/displacement
               </DataItem>
             </DataItem>
             <DataItem ItemType="Function" Dimensions="9 1" Function="0*$0">
               <DataItem Reference="XML">
-                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="initial_amplitude"]/DataItem[1]/DataItem[1]
+                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="displacement"]/DataItem[1]/DataItem[1]
               </DataItem>
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="pore_pressure" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 9 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 9 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 9 1" Format="HDF">
+              &HeavyData;:/vertex_fields/pore_pressure
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="trace_strain" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 9 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 9 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 9 1" Format="HDF">
+              &HeavyData;:/vertex_fields/trace_strain
             </DataItem>
           </DataItem>
         </Attribute>

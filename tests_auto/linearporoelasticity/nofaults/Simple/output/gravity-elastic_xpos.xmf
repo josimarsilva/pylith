@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "gravity-elastic-xneg_info.h5">
+<!ENTITY HeavyData "gravity-elastic_xpos.h5">
 ]>
 
 <Xdmf>
@@ -34,7 +34,7 @@
     <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
       <Time TimeType="List">
         <DataItem Format="XML" NumberType="Float" Dimensions="1">
-            0.00000000e+00
+            3.15576000e+07
         </DataItem>
       </Time>
       <Grid Name="domain" GridType="Uniform">
@@ -48,58 +48,48 @@
             /Xdmf/Domain/DataItem[@Name="vertices"]
           </DataItem>
         </Geometry>
-        <Attribute Name="bulk_modulus" Type="Scalar" Center="Node">
-          <DataItem ItemType="HyperSlab" Dimensions="1 64 1" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              0 0 0    1 1 1    1 64 1
-            </DataItem>
-            <DataItem DataType="Float" Precision="8" Dimensions="1 64 1" Format="HDF">
-              &HeavyData;:/vertex_fields/bulk_modulus
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Name="density" Type="Scalar" Center="Node">
-          <DataItem ItemType="HyperSlab" Dimensions="1 64 1" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              0 0 0    1 1 1    1 64 1
-            </DataItem>
-            <DataItem DataType="Float" Precision="8" Dimensions="1 64 1" Format="HDF">
-              &HeavyData;:/vertex_fields/density
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Name="gravitational_acceleration" Type="Vector" Center="Node">
-          <DataItem ItemType="Function" Dimensions="64 3" Function="JOIN($0, $1, $2)">
-            <DataItem ItemType="HyperSlab" Dimensions="64 1" Type="HyperSlab">
+        <Attribute Name="displacement" Type="Vector" Center="Node">
+          <DataItem ItemType="Function" Dimensions="81 3" Function="JOIN($0, $1, $2)">
+            <DataItem ItemType="HyperSlab" Dimensions="81 1" Type="HyperSlab">
               <DataItem Dimensions="3 3" Format="XML">
-                0 0 0    1 1 1    1 64 1
+                0 0 0    1 1 1    1 81 1
               </DataItem>
-              <DataItem DataType="Float" Precision="8" Dimensions="1 64 2" Format="HDF">
-                &HeavyData;:/vertex_fields/gravitational_acceleration
+              <DataItem DataType="Float" Precision="8" Dimensions="1 81 2" Format="HDF">
+                &HeavyData;:/vertex_fields/displacement
               </DataItem>
             </DataItem>
-            <DataItem ItemType="HyperSlab" Dimensions="64 1" Type="HyperSlab">
+            <DataItem ItemType="HyperSlab" Dimensions="81 1" Type="HyperSlab">
               <DataItem Dimensions="3 3" Format="XML">
-                0 0 1    1 1 1    1 64 1
+                0 0 1    1 1 1    1 81 1
               </DataItem>
-              <DataItem DataType="Float" Precision="8" Dimensions="1 64 2" Format="HDF">
-                &HeavyData;:/vertex_fields/gravitational_acceleration
+              <DataItem DataType="Float" Precision="8" Dimensions="1 81 2" Format="HDF">
+                &HeavyData;:/vertex_fields/displacement
               </DataItem>
             </DataItem>
-            <DataItem ItemType="Function" Dimensions="64 1" Function="0*$0">
+            <DataItem ItemType="Function" Dimensions="81 1" Function="0*$0">
               <DataItem Reference="XML">
-                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="gravitational_acceleration"]/DataItem[1]/DataItem[1]
+                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="displacement"]/DataItem[1]/DataItem[1]
               </DataItem>
             </DataItem>
           </DataItem>
         </Attribute>
-        <Attribute Name="shear_modulus" Type="Scalar" Center="Node">
-          <DataItem ItemType="HyperSlab" Dimensions="1 64 1" Type="HyperSlab">
+        <Attribute Name="pore_pressure" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 81 1" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              0 0 0    1 1 1    1 64 1
+              0 0 0    1 1 1    1 81 1
             </DataItem>
-            <DataItem DataType="Float" Precision="8" Dimensions="1 64 1" Format="HDF">
-              &HeavyData;:/vertex_fields/shear_modulus
+            <DataItem DataType="Float" Precision="8" Dimensions="1 81 1" Format="HDF">
+              &HeavyData;:/vertex_fields/pore_pressure
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="trace_strain" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 81 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 81 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 81 1" Format="HDF">
+              &HeavyData;:/vertex_fields/trace_strain
             </DataItem>
           </DataItem>
         </Attribute>

@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
+<!ENTITY HeavyData "gravity-elastic_xpos_info.h5">
+]>
+
+<Xdmf>
+  <Domain Name="domain">
+    <DataItem Name="cells" ItemType="Uniform" Format="HDF" NumberType="Float" Precision="8" Dimensions="32 4">
+      &HeavyData;:/topology/cells
+    </DataItem>
+    <DataItem Name="vertices" ItemType="Function" Dimensions="81 3" Function="JOIN($0, $1, $2)">
+      <DataItem Name="verticesX" ItemType="Hyperslab" Type="HyperSlab" Dimensions="81 1">
+        <DataItem Dimensions="3 2" Format="XML">
+          0 0   1 1   81 1
+        </DataItem>
+        <DataItem Dimensions="81 1" Format="HDF">
+          &HeavyData;:/geometry/vertices
+        </DataItem>
+      </DataItem>
+      <DataItem Name="verticesY" ItemType="Hyperslab" Type="HyperSlab" Dimensions="81 1">
+        <DataItem Dimensions="3 2" Format="XML">
+          0 1   1 1   81 1
+        </DataItem>
+        <DataItem Dimensions="81 1" Format="HDF">
+          &HeavyData;:/geometry/vertices
+        </DataItem>
+      </DataItem>
+      <DataItem Name="verticesZ" ItemType="Function" Dimensions="81 1" Function="0*$0">
+        <DataItem Reference="XML">
+          /Xdmf/Domain/DataItem[@Name="vertices"]/DataItem[@Name="verticesX"]
+        </DataItem>
+      </DataItem>
+    </DataItem>
+    <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
+      <Time TimeType="List">
+        <DataItem Format="XML" NumberType="Float" Dimensions="1">
+            0.00000000e+00
+        </DataItem>
+      </Time>
+      <Grid Name="domain" GridType="Uniform">
+        <Topology TopologyType="Quadrilateral" NumberOfElements="32">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Name="biot_coefficient" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/biot_coefficient
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="bulk_modulus" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/bulk_modulus
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="density" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/density
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="fluid_bulk_modulus" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/fluid_bulk_modulus
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="fluid_density" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/fluid_density
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="fluid_viscosity" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/fluid_viscosity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="gravitational_acceleration" Type="Vector" Center="Cell">
+          <DataItem ItemType="Function" Dimensions="32 3" Function="JOIN($0, $1, $2)">
+            <DataItem ItemType="HyperSlab" Dimensions="32 1" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0    1 1 1    1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Precision="8" Dimensions="1 32 2" Format="HDF">
+                &HeavyData;:/cell_fields/gravitational_acceleration
+              </DataItem>
+            </DataItem>
+            <DataItem ItemType="HyperSlab" Dimensions="32 1" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 1    1 1 1    1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Precision="8" Dimensions="1 32 2" Format="HDF">
+                &HeavyData;:/cell_fields/gravitational_acceleration
+              </DataItem>
+            </DataItem>
+            <DataItem ItemType="Function" Dimensions="32 1" Function="0*$0">
+              <DataItem Reference="XML">
+                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="gravitational_acceleration"]/DataItem[1]/DataItem[1]
+              </DataItem>
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="isotropic_permeability" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/isotropic_permeability
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="porosity" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/porosity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="shear_modulus" Type="Scalar" Center="Cell">
+          <DataItem ItemType="HyperSlab" Dimensions="1 32 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 32 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 32 1" Format="HDF">
+              &HeavyData;:/cell_fields/shear_modulus
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

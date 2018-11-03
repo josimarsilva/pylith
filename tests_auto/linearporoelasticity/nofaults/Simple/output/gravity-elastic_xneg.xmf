@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "gravity-domain.h5">
+<!ENTITY HeavyData "gravity-elastic_xneg.h5">
 ]>
 
 <Xdmf>
   <Domain Name="domain">
-    <DataItem Name="cells" ItemType="Uniform" Format="HDF" NumberType="Float" Precision="8" Dimensions="64 4">
+    <DataItem Name="cells" ItemType="Uniform" Format="HDF" NumberType="Float" Precision="8" Dimensions="32 4">
       &HeavyData;:/topology/cells
     </DataItem>
     <DataItem Name="vertices" ItemType="Function" Dimensions="81 3" Function="JOIN($0, $1, $2)">
@@ -38,7 +38,7 @@
         </DataItem>
       </Time>
       <Grid Name="domain" GridType="Uniform">
-        <Topology TopologyType="Quadrilateral" NumberOfElements="64">
+        <Topology TopologyType="Quadrilateral" NumberOfElements="32">
           <DataItem Reference="XML">
             /Xdmf/Domain/DataItem[@Name="cells"]
           </DataItem>
