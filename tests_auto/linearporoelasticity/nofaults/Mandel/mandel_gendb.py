@@ -51,9 +51,9 @@ class GenerateDB(object):
         xy[:, 0] = numpy.ravel(xx)
         xy[:, 1] = numpy.ravel(numpy.transpose(yy))
 
-        from axialdisp_soln import AnalyticalSoln
+        from mandel_soln import AnalyticalSoln
         soln = AnalyticalSoln()
-        disp = soln.displacement(xy)
+        disp_pp = soln.generate_data(xy)
 
         from spatialdata.geocoords.CSCart import CSCart
         cs = CSCart()
@@ -62,16 +62,26 @@ class GenerateDB(object):
         data = {'points': xy,
                 'coordsys': cs,
                 'data_dim': 2,
-                'values': [{'name': "initial_amplitude_x",
-                            'units': "m",
-                            'data': numpy.ravel(disp[0, :, 0])},
-                           {'name': "initial_amplitude_y",
-                            'units': "m",
-                            'data': numpy.ravel(disp[0, :, 1])}]}
+                'values': [
+                  {
+                        'name': "initial_amplitude_x",
+                        'units': "m",
+                        'data': numpy.ravel(disp_pp[0, :, 0])
+                  },{
+                        'name': "initial_amplitude_y",
+                        'units': "m",
+                        'data': numpy.ravel(disp_pp[0, :, 1])
+                  },{
+                        'name': "pore_pressure",
+                        'units': "Pa",
+                        'data': numpy.ravel(disp_pp[0, :, 2])
+                  }
+                ]
+              }
 
         from spatialdata.spatialdb.SimpleIOAscii import SimpleIOAscii
         io = SimpleIOAscii()
-        io.inventory.filename = "axialdisp.spatialdb"
+        io.inventory.filename = "mandel.spatialdb"
         io._configure()
         io.write(data)
         return

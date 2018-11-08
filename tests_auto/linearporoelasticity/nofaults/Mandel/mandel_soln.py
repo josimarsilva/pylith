@@ -132,26 +132,17 @@ class AnalyticalSoln(object):
     return
 
 
-  def displacement(self, locs):
+  def generate_data(self, locs):
     """
     Compute displacement field at locations.
     """
     (npts, dim) = locs.shape
     u_x, u_z, p = expected(locs[:,0],locs[:,1],t)
-    disp = np.zeros( (1, npts, 2), dtype=np.float64)
-    disp[0,:,0] = u_x[:]
-    disp[0,:,1] = u_z[:]
-    return disp
-
-  def pressure(self, locs):
-    """
-    Compute pressure field at locations
-    """
-    (npts, dim) = locs.shape
-    u_x, u_z, p = expected(locs[:,0],locs[:,1],t)
-    pressure = np.zeros( (1, npts, 1), dtype=np.float64)
-    pressure[0,:,0] = p[:]
-    return pressure
+    data = np.zeros( (1, npts, 3), dtype=np.float64)
+    data[0,:,0] = u_x[:]
+    data[0,:,1] = u_z[:]
+    data[0,:,2] = p[:]
+    return data
 
 
 
