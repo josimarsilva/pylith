@@ -31,7 +31,7 @@
 
 // DirichletTimeDependent ----------------------------------------------------
 /** @brief Dirichlet (prescribed values at degrees of freedom) boundary
- * condition with a time-depdnent expression.
+ * condition with a time-dependent expression.
  *
  * f(x,t) = f_0(x) + \dot{f}_1(x)*(t-t_1(x)) + f_2(x)*a(t-t_2(x)).
  *

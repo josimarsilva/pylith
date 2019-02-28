@@ -1,0 +1,17 @@
+
+ 	 JosimarTST 
+ 	
+ >> ../../../pylith-josimar/features-poroelasticity/libsrc/pylith/problems/TimeDependent.cc:273:virtual void pylith::problems::TimeDependent::initialize()
+ -- timedependent(error)
+ -- Component 'problem': :TODO: @brad Implement setting initial solution.
+0 TS dt 3.15576e+07 time 0.
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+
+ 	 JosimarTST 
+ 	
+
+ 	 JosimarTST 
+ 	

@@ -31,7 +31,7 @@
             "launcher": {
                 "description": "No description available.",
                 "setFrom": "{file='/home/raptor/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/launchers/mpich.odb'} via {default}",
-                "class": "<mpi.LauncherMPICH.LauncherMPICH object at 0x7ff595ed7dd0>",
+                "class": "<mpi.LauncherMPICH.LauncherMPICH object at 0x7f7452d90fd0>",
                 "name": "mpich",
                 "components": {},
                 "properties": {
@@ -69,7 +69,7 @@
                         "type": "str",
                         "description": "No description available.",
                         "value": "mpirun -np 1",
-                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=8, column=-1}"
+                        "setFrom": "{file='terzaghi_oneblock.cfg', line=8, column=-1}"
                     },
                     "arguments": {
                         "type": "list",
@@ -92,7 +92,7 @@
             "dump_parameters": {
                 "description": "Dump parameters used and version information to file.",
                 "setFrom": "{default}",
-                "class": "<pylith.utils.DumpParametersJson.DumpParametersJson object at 0x7ff595eb2510>",
+                "class": "<pylith.utils.DumpParametersJson.DumpParametersJson object at 0x7f7452d6c810>",
                 "name": "dumpparamters",
                 "components": {},
                 "properties": {
@@ -112,7 +112,7 @@
                         "type": "str",
                         "description": "Name of file written with parameters.",
                         "value": "output/terzaghi-parameters.json",
-                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=4, column=-1}"
+                        "setFrom": "{file='terzaghi_oneblock.cfg', line=4, column=-1}"
                     }
                 },
                 "aliases": [
@@ -123,7 +123,7 @@
             "mesh_generator": {
                 "description": "Generates or imports the computational mesh.",
                 "setFrom": "{default}",
-                "class": "<pylith.topology.MeshImporter.MeshImporter object at 0x7ff595ebced0>",
+                "class": "<pylith.topology.MeshImporter.MeshImporter object at 0x7f7452d7ecd0>",
                 "name": "meshimporter",
                 "components": {
                     "distributor": {
@@ -135,7 +135,7 @@
                             "data_writer": {
                                 "description": "Data writer for partition information.",
                                 "setFrom": "{default}",
-                                "class": "<pylith.meshio.DataWriterVTK.DataWriterVTK; proxy of <Swig Object of type 'pylith::meshio::DataWriterVTK *' at 0x7ff595e8e690> >",
+                                "class": "<pylith.meshio.DataWriterVTK.DataWriterVTK; proxy of <Swig Object of type 'pylith::meshio::DataWriterVTK *' at 0x7f7452d55300> >",
                                 "name": "datawritervtk",
                                 "components": {},
                                 "properties": {
@@ -192,7 +192,7 @@
                     "refiner": {
                         "description": "Mesh refiner.",
                         "setFrom": "{default}",
-                        "class": "<pylith.topology.MeshRefiner.MeshRefiner object at 0x7ff595e98290>",
+                        "class": "<pylith.topology.MeshRefiner.MeshRefiner object at 0x7f7452d58490>",
                         "name": "refiner",
                         "components": {},
                         "properties": {},
@@ -202,14 +202,14 @@
                     },
                     "reader": {
                         "description": "Mesh reader.",
-                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=32, column=-1}",
+                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=32, column=-1}",
                         "class": "<pylith.meshio.MeshIOCubit.MeshIOCubit;  >",
                         "name": "meshiocubit",
                         "components": {
                             "coordsys": {
                                 "description": "Coordinate system associated with mesh.",
                                 "setFrom": "{default}",
-                                "class": "<spatialdata.geocoords.CSCart.CSCart; proxy of <Swig Object of type 'spatialdata::geocoords::CSCart *' at 0x7ff595e8e6c0> >",
+                                "class": "<spatialdata.geocoords.CSCart.CSCart; proxy of <Swig Object of type 'spatialdata::geocoords::CSCart *' at 0x7f7452d55330> >",
                                 "name": "cscart",
                                 "components": {},
                                 "properties": {
@@ -217,7 +217,7 @@
                                         "type": "int",
                                         "description": "Number of dimensions for coordinate system.",
                                         "value": "2",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=36, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=36, column=-1}"
                                     },
                                     "units": {
                                         "type": "str",
@@ -242,8 +242,8 @@
                             "filename": {
                                 "type": "str",
                                 "description": "Name of Cubit Exodus file.",
-                                "value": "mesh_quad.exo",
-                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=35, column=-1}"
+                                "value": "terzaghi_mesh.exo",
+                                "setFrom": "{file='terzaghi_oneblock.cfg', line=35, column=-1}"
                             }
                         },
                         "aliases": [
@@ -280,7 +280,7 @@
             "petsc": {
                 "description": "Manager for PETSc options.",
                 "setFrom": "{default}",
-                "class": "<pylith.utils.PetscManager.PetscManager object at 0x7ff595e72150>",
+                "class": "<pylith.utils.PetscManager.PetscManager object at 0x7f7452d33210>",
                 "name": "petsc",
                 "components": {},
                 "properties": {},
@@ -291,7 +291,7 @@
             "job": {
                 "description": "No description available.",
                 "setFrom": "{default}",
-                "class": "<pyre.schedulers.Job.Job object at 0x7ff595e72d90>",
+                "class": "<pyre.schedulers.Job.Job object at 0x7f7452d33e10>",
                 "name": "job",
                 "components": {},
                 "properties": {
@@ -369,7 +369,7 @@
             "scheduler": {
                 "description": "No description available.",
                 "setFrom": "{file='/home/raptor/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/schedulers/none.odb'} via {default}",
-                "class": "<pyre.schedulers.SchedulerNone.SchedulerNone object at 0x7ff595e60450>",
+                "class": "<pyre.schedulers.SchedulerNone.SchedulerNone object at 0x7f7452d99650>",
                 "name": "scheduler-none",
                 "components": {},
                 "properties": {
@@ -406,7 +406,7 @@
                     "normalizer": {
                         "description": "Nondimensionalizer for problem.",
                         "setFrom": "{default}",
-                        "class": "<spatialdata.units.NondimElasticQuasistatic.NondimElasticQuasistatic; proxy of <Swig Object of type 'spatialdata::units::Nondimensional *' at 0x7ff595e40f00> >",
+                        "class": "<spatialdata.units.NondimElasticQuasistatic.NondimElasticQuasistatic; proxy of <Swig Object of type 'spatialdata::units::Nondimensional *' at 0x7f7452cbe270> >",
                         "name": "nondimelasticquasistatic",
                         "components": {},
                         "properties": {
@@ -436,20 +436,20 @@
                     },
                     "bc": {
                         "description": "Boundary conditions.",
-                        "setFrom": "{built-in} via {file='terzaghi_fieldsplit.cfg', line=169, column=-1}",
-                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7ff595dfef90>",
+                        "setFrom": "{built-in} via {file='terzaghi_oneblock.cfg', line=125, column=-1}",
+                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7f7452cc60d0>",
                         "name": "bc",
                         "components": {
-                            "y_neg": {
+                            "Bottom_BC": {
                                 "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=172, column=-1}",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=129, column=-1}",
                                 "class": "<pylith.bc.DirichletTimeDependent.DirichletTimeDependent;  >",
                                 "name": "dirichlettimedependent",
                                 "components": {
                                     "observers": {
                                         "description": "Observers (e.g., output) for constraint.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7ff595ab7450>",
+                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7f74529e7750>",
                                         "name": "singleintegratorobserver",
                                         "components": {
                                             "observer": {
@@ -461,15 +461,15 @@
                                                     "writer": {
                                                         "description": "Writer for data.",
                                                         "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e034b0> >",
+                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a76270> >",
                                                         "name": "datawriterhdf5",
                                                         "components": {},
                                                         "properties": {
                                                             "filename": {
                                                                 "type": "str",
                                                                 "description": "Name of HDF5 file.",
-                                                                "value": "output/terzaghi-bc_yneg.h5",
-                                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=207, column=-1}"
+                                                                "value": "output.h5",
+                                                                "setFrom": "{default}"
                                                             }
                                                         },
                                                         "aliases": [
@@ -498,7 +498,7 @@
                                                     },
                                                     "field_filter": {
                                                         "description": "Filter for output fields.",
-                                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=208, column=-1}",
+                                                        "setFrom": "{default}",
                                                         "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
                                                         "name": "fieldfilternone",
                                                         "components": {},
@@ -538,7 +538,7 @@
                                     "time_history": {
                                         "description": "Time history with normalized amplitude as a function of time.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7ff595ab7590>",
+                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7f74529e7d90>",
                                         "name": "nullcomponent",
                                         "components": {},
                                         "properties": {},
@@ -550,13 +550,13 @@
                                     "auxiliary_subfields": {
                                         "description": "Discretization of constraint parameters.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7ff595ab7490>",
+                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7f74529f0450>",
                                         "name": "auxfieldstimedependent",
                                         "components": {
                                             "time_history_amplitude": {
                                                 "description": "Time history amplitude, f_2(x). subfield",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595ad7690>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452988cd0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -593,7 +593,7 @@
                                             "initial_amplitude": {
                                                 "description": "Initial amplitude, f_0(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595aced90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452988410>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -630,7 +630,7 @@
                                             "rate_start": {
                                                 "description": "Rate starting time, t_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595ad7790>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452988dd0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -667,7 +667,7 @@
                                             "rate_amplitude": {
                                                 "description": "Rate amplitude, \\dot{f}_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595ad7490>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452988ad0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -704,7 +704,7 @@
                                             "time_history_start": {
                                                 "description": "Time history starting time, t_2(s), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595ad7590>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452988bd0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -747,8 +747,8 @@
                                     },
                                     "db_auxiliary_field": {
                                         "description": "Database for constraint parameters.",
-                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=202, column=-1}",
-                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7ff595e03480> >",
+                                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=154, column=-1}",
+                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7f7452a76240> >",
                                         "name": "uniformdb",
                                         "components": {},
                                         "properties": {
@@ -756,19 +756,19 @@
                                                 "type": "list",
                                                 "description": "Names of values in spatial database.",
                                                 "value": "['initial_amplitude_x', 'initial_amplitude_y']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=204, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=156, column=-1}"
                                             },
                                             "data": {
                                                 "type": "list",
                                                 "description": "Values in spatial database.",
                                                 "value": "['0.0*m', '0.0*m']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=205, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=157, column=-1}"
                                             },
                                             "label": {
                                                 "type": "str",
                                                 "description": "Descriptive label for database.",
-                                                "value": "Dirichlet BC +x edge",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=203, column=-1}"
+                                                "value": "Bottom_BC",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=155, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -787,8 +787,8 @@
                                     "label": {
                                         "type": "str",
                                         "description": "Label identifier for boundary.",
-                                        "value": "edge_yneg",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=201, column=-1}"
+                                        "value": "Bottom_BC",
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=153, column=-1}"
                                     },
                                     "field": {
                                         "type": "str",
@@ -812,24 +812,24 @@
                                         "type": "list",
                                         "description": "Constrained degrees of freedom (0=1st DOF, 1=2nd DOF, etc).",
                                         "value": "[1]",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=200, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=152, column=-1}"
                                     }
                                 },
                                 "aliases": [
                                     "dirichlettimedependent",
-                                    "y_neg"
+                                    "Bottom_BC"
                                 ]
                             },
-                            "x_pos": {
+                            "Right_BC": {
                                 "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=171, column=-1}",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=128, column=-1}",
                                 "class": "<pylith.bc.DirichletTimeDependent.DirichletTimeDependent;  >",
                                 "name": "dirichlettimedependent",
                                 "components": {
                                     "observers": {
                                         "description": "Observers (e.g., output) for constraint.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7ff595af51d0>",
+                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7f7452a2c2d0>",
                                         "name": "singleintegratorobserver",
                                         "components": {
                                             "observer": {
@@ -841,15 +841,15 @@
                                                     "writer": {
                                                         "description": "Writer for data.",
                                                         "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e033f0> >",
+                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a761b0> >",
                                                         "name": "datawriterhdf5",
                                                         "components": {},
                                                         "properties": {
                                                             "filename": {
                                                                 "type": "str",
                                                                 "description": "Name of HDF5 file.",
-                                                                "value": "output/terzaghi-bc_xpos.h5",
-                                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=183, column=-1}"
+                                                                "value": "output.h5",
+                                                                "setFrom": "{default}"
                                                             }
                                                         },
                                                         "aliases": [
@@ -878,7 +878,7 @@
                                                     },
                                                     "field_filter": {
                                                         "description": "Filter for output fields.",
-                                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=184, column=-1}",
+                                                        "setFrom": "{default}",
                                                         "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
                                                         "name": "fieldfilternone",
                                                         "components": {},
@@ -918,7 +918,7 @@
                                     "time_history": {
                                         "description": "Time history with normalized amplitude as a function of time.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7ff595af5b90>",
+                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7f7452a2c910>",
                                         "name": "nullcomponent",
                                         "components": {},
                                         "properties": {},
@@ -930,13 +930,13 @@
                                     "auxiliary_subfields": {
                                         "description": "Discretization of constraint parameters.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7ff595af5a90>",
+                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7f7452a2cf90>",
                                         "name": "auxfieldstimedependent",
                                         "components": {
                                             "time_history_amplitude": {
                                                 "description": "Time history amplitude, f_2(x). subfield",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b15c90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f74529ce850>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -973,7 +973,7 @@
                                             "initial_amplitude": {
                                                 "description": "Initial amplitude, f_0(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b153d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f74529c4f50>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1010,7 +1010,7 @@
                                             "rate_start": {
                                                 "description": "Rate starting time, t_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b15d90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f74529ce950>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1047,7 +1047,7 @@
                                             "rate_amplitude": {
                                                 "description": "Rate amplitude, \\dot{f}_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b15a90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f74529ce650>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1084,7 +1084,7 @@
                                             "time_history_start": {
                                                 "description": "Time history starting time, t_2(s), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b15b90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f74529ce750>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1127,8 +1127,8 @@
                                     },
                                     "db_auxiliary_field": {
                                         "description": "Database for constraint parameters.",
-                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=178, column=-1}",
-                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7ff595e033c0> >",
+                                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=137, column=-1}",
+                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7f7452a76180> >",
                                         "name": "uniformdb",
                                         "components": {},
                                         "properties": {
@@ -1136,19 +1136,19 @@
                                                 "type": "list",
                                                 "description": "Names of values in spatial database.",
                                                 "value": "['initial_amplitude_x', 'initial_amplitude_y']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=180, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=139, column=-1}"
                                             },
                                             "data": {
                                                 "type": "list",
                                                 "description": "Values in spatial database.",
                                                 "value": "['0.0*m', '0.0*m']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=181, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=140, column=-1}"
                                             },
                                             "label": {
                                                 "type": "str",
                                                 "description": "Descriptive label for database.",
-                                                "value": "Dirichlet BC +x edge",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=179, column=-1}"
+                                                "value": "Right_BC",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=138, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -1167,8 +1167,8 @@
                                     "label": {
                                         "type": "str",
                                         "description": "Label identifier for boundary.",
-                                        "value": "edge_xpos",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=177, column=-1}"
+                                        "value": "Right_BC",
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=136, column=-1}"
                                     },
                                     "field": {
                                         "type": "str",
@@ -1192,24 +1192,24 @@
                                         "type": "list",
                                         "description": "Constrained degrees of freedom (0=1st DOF, 1=2nd DOF, etc).",
                                         "value": "[0]",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=176, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=135, column=-1}"
                                     }
                                 },
                                 "aliases": [
                                     "dirichlettimedependent",
-                                    "x_pos"
+                                    "Right_BC"
                                 ]
                             },
-                            "x_neg": {
+                            "Left_BC": {
                                 "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=170, column=-1}",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=132, column=-1}",
                                 "class": "<pylith.bc.DirichletTimeDependent.DirichletTimeDependent;  >",
                                 "name": "dirichlettimedependent",
                                 "components": {
                                     "observers": {
                                         "description": "Observers (e.g., output) for constraint.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7ff595dca050>",
+                                        "class": "<pylith.feassemble.SingleObserver.SingleConstraintObserver object at 0x7f7452a471d0>",
                                         "name": "singleintegratorobserver",
                                         "components": {
                                             "observer": {
@@ -1221,15 +1221,15 @@
                                                     "writer": {
                                                         "description": "Writer for data.",
                                                         "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e032a0> >",
+                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a76030> >",
                                                         "name": "datawriterhdf5",
                                                         "components": {},
                                                         "properties": {
                                                             "filename": {
                                                                 "type": "str",
                                                                 "description": "Name of HDF5 file.",
-                                                                "value": "output/terzaghi-bc_xneg.h5",
-                                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=195, column=-1}"
+                                                                "value": "output.h5",
+                                                                "setFrom": "{default}"
                                                             }
                                                         },
                                                         "aliases": [
@@ -1258,7 +1258,7 @@
                                                     },
                                                     "field_filter": {
                                                         "description": "Filter for output fields.",
-                                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=196, column=-1}",
+                                                        "setFrom": "{default}",
                                                         "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
                                                         "name": "fieldfilternone",
                                                         "components": {},
@@ -1298,7 +1298,7 @@
                                     "time_history": {
                                         "description": "Time history with normalized amplitude as a function of time.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7ff595dd4ad0>",
+                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7f7452a63310>",
                                         "name": "nullcomponent",
                                         "components": {},
                                         "properties": {},
@@ -1310,13 +1310,13 @@
                                     "auxiliary_subfields": {
                                         "description": "Discretization of constraint parameters.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7ff595dd4f10>",
+                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7f7452a63450>",
                                         "name": "auxfieldstimedependent",
                                         "components": {
                                             "time_history_amplitude": {
                                                 "description": "Time history amplitude, f_2(x). subfield",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b5b1d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452a152d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1353,7 +1353,7 @@
                                             "initial_amplitude": {
                                                 "description": "Initial amplitude, f_0(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b51b10>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452a08c10>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1390,7 +1390,7 @@
                                             "rate_start": {
                                                 "description": "Rate starting time, t_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b5b2d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452a153d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1427,7 +1427,7 @@
                                             "rate_amplitude": {
                                                 "description": "Rate amplitude, \\dot{f}_1(x), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b51f90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452a150d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1464,7 +1464,7 @@
                                             "time_history_start": {
                                                 "description": "Time history starting time, t_2(s), subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595b5b0d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452a151d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1507,8 +1507,8 @@
                                     },
                                     "db_auxiliary_field": {
                                         "description": "Database for constraint parameters.",
-                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=190, column=-1}",
-                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7ff595e8e480> >",
+                                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=164, column=-1}",
+                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7f7452cbefc0> >",
                                         "name": "uniformdb",
                                         "components": {},
                                         "properties": {
@@ -1516,19 +1516,19 @@
                                                 "type": "list",
                                                 "description": "Names of values in spatial database.",
                                                 "value": "['initial_amplitude_x', 'initial_amplitude_y']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=192, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=166, column=-1}"
                                             },
                                             "data": {
                                                 "type": "list",
                                                 "description": "Values in spatial database.",
                                                 "value": "['0.0*m', '0.0*m']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=193, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=167, column=-1}"
                                             },
                                             "label": {
                                                 "type": "str",
                                                 "description": "Descriptive label for database.",
-                                                "value": "Dirichlet BC +x edge",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=191, column=-1}"
+                                                "value": "Left_BC",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=165, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -1547,8 +1547,8 @@
                                     "label": {
                                         "type": "str",
                                         "description": "Label identifier for boundary.",
-                                        "value": "edge_xneg",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=189, column=-1}"
+                                        "value": "Left_BC",
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=163, column=-1}"
                                     },
                                     "field": {
                                         "type": "str",
@@ -1572,12 +1572,398 @@
                                         "type": "list",
                                         "description": "Constrained degrees of freedom (0=1st DOF, 1=2nd DOF, etc).",
                                         "value": "[0]",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=188, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=162, column=-1}"
                                     }
                                 },
                                 "aliases": [
                                     "dirichlettimedependent",
-                                    "x_neg"
+                                    "Left_BC"
+                                ]
+                            },
+                            "Top_BC": {
+                                "description": "No description available.",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=131, column=-1}",
+                                "class": "<pylith.bc.NeumannTimeDependent.NeumannTimeDependent;  >",
+                                "name": "neumanntimedependent",
+                                "components": {
+                                    "observers": {
+                                        "description": "Observers (e.g., output) for integrator.",
+                                        "setFrom": "{default}",
+                                        "class": "<pylith.feassemble.SingleObserver.SingleIntegratorObserver object at 0x7f74529ab310>",
+                                        "name": "singleintegratorobserver",
+                                        "components": {
+                                            "observer": {
+                                                "description": "Observer of subject.",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.meshio.OutputIntegrator.OutputIntegrator;  >",
+                                                "name": "OutputIntegrator",
+                                                "components": {
+                                                    "writer": {
+                                                        "description": "Writer for data.",
+                                                        "setFrom": "{default}",
+                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a76330> >",
+                                                        "name": "datawriterhdf5",
+                                                        "components": {},
+                                                        "properties": {
+                                                            "filename": {
+                                                                "type": "str",
+                                                                "description": "Name of HDF5 file.",
+                                                                "value": "output.h5",
+                                                                "setFrom": "{default}"
+                                                            }
+                                                        },
+                                                        "aliases": [
+                                                            "datawriterhdf5",
+                                                            "writer"
+                                                        ]
+                                                    },
+                                                    "trigger": {
+                                                        "description": "Trigger defining how often output is written.",
+                                                        "setFrom": "{default}",
+                                                        "class": "<pylith.meshio.OutputTriggerStep.OutputTriggerStep;  >",
+                                                        "name": "outputtriggerstep",
+                                                        "components": {},
+                                                        "properties": {
+                                                            "num_slip": {
+                                                                "type": "int",
+                                                                "description": "Number of solution steps to skip between writes.",
+                                                                "value": "0",
+                                                                "setFrom": "{default}"
+                                                            }
+                                                        },
+                                                        "aliases": [
+                                                            "outputtriggerstep",
+                                                            "trigger"
+                                                        ]
+                                                    },
+                                                    "field_filter": {
+                                                        "description": "Filter for output fields.",
+                                                        "setFrom": "{default}",
+                                                        "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
+                                                        "name": "fieldfilternone",
+                                                        "components": {},
+                                                        "properties": {},
+                                                        "aliases": [
+                                                            "fieldfilternone",
+                                                            "field_filter"
+                                                        ]
+                                                    }
+                                                },
+                                                "properties": {
+                                                    "info_fields": {
+                                                        "type": "list",
+                                                        "description": "Names of information fields to output.",
+                                                        "value": "['all']",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "data_fields": {
+                                                        "type": "list",
+                                                        "description": "Names of data fields to output.",
+                                                        "value": "['all']",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "OutputIntegrator",
+                                                    "observer"
+                                                ]
+                                            }
+                                        },
+                                        "properties": {},
+                                        "aliases": [
+                                            "singleintegratorobserver",
+                                            "observers"
+                                        ]
+                                    },
+                                    "time_history": {
+                                        "description": "Time history with normalized amplitude as a function of time.",
+                                        "setFrom": "{default}",
+                                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7f74529ab4d0>",
+                                        "name": "nullcomponent",
+                                        "components": {},
+                                        "properties": {},
+                                        "aliases": [
+                                            "nullcomponent",
+                                            "time_history"
+                                        ]
+                                    },
+                                    "auxiliary_subfields": {
+                                        "description": "Discretization of time-dependent Neumann parameters.",
+                                        "setFrom": "{default}",
+                                        "class": "<pylith.bc.AuxFieldsTimeDependent.AuxFieldsTimeDependent object at 0x7f74529ab990>",
+                                        "name": "auxfieldstimedependent",
+                                        "components": {
+                                            "time_history_amplitude": {
+                                                "description": "Time history amplitude, f_2(x). subfield",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745294b8d0>",
+                                                "name": "auxsubfield",
+                                                "components": {},
+                                                "properties": {
+                                                    "is_basis_continous": {
+                                                        "type": "bool",
+                                                        "description": "Is basis continuous?",
+                                                        "value": "True",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "finite_element_space": {
+                                                        "type": "str",
+                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
+                                                        "value": "polynomial",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "basis_order": {
+                                                        "type": "int",
+                                                        "description": "Order of basis functions.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "quadrature_order": {
+                                                        "type": "int",
+                                                        "description": "Order of numerical quadrature.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "auxsubfield",
+                                                    "time_history_amplitude"
+                                                ]
+                                            },
+                                            "initial_amplitude": {
+                                                "description": "Initial amplitude, f_0(x), subfield.",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745294b550>",
+                                                "name": "auxsubfield",
+                                                "components": {},
+                                                "properties": {
+                                                    "is_basis_continous": {
+                                                        "type": "bool",
+                                                        "description": "Is basis continuous?",
+                                                        "value": "True",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "finite_element_space": {
+                                                        "type": "str",
+                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
+                                                        "value": "polynomial",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "basis_order": {
+                                                        "type": "int",
+                                                        "description": "Order of basis functions.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "quadrature_order": {
+                                                        "type": "int",
+                                                        "description": "Order of numerical quadrature.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "auxsubfield",
+                                                    "initial_amplitude"
+                                                ]
+                                            },
+                                            "rate_start": {
+                                                "description": "Rate starting time, t_1(x), subfield.",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745294b9d0>",
+                                                "name": "auxsubfield",
+                                                "components": {},
+                                                "properties": {
+                                                    "is_basis_continous": {
+                                                        "type": "bool",
+                                                        "description": "Is basis continuous?",
+                                                        "value": "True",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "finite_element_space": {
+                                                        "type": "str",
+                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
+                                                        "value": "polynomial",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "basis_order": {
+                                                        "type": "int",
+                                                        "description": "Order of basis functions.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "quadrature_order": {
+                                                        "type": "int",
+                                                        "description": "Order of numerical quadrature.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "auxsubfield",
+                                                    "rate_start"
+                                                ]
+                                            },
+                                            "rate_amplitude": {
+                                                "description": "Rate amplitude, \\dot{f}_1(x), subfield.",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745294b6d0>",
+                                                "name": "auxsubfield",
+                                                "components": {},
+                                                "properties": {
+                                                    "is_basis_continous": {
+                                                        "type": "bool",
+                                                        "description": "Is basis continuous?",
+                                                        "value": "True",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "finite_element_space": {
+                                                        "type": "str",
+                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
+                                                        "value": "polynomial",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "basis_order": {
+                                                        "type": "int",
+                                                        "description": "Order of basis functions.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "quadrature_order": {
+                                                        "type": "int",
+                                                        "description": "Order of numerical quadrature.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "auxsubfield",
+                                                    "rate_amplitude"
+                                                ]
+                                            },
+                                            "time_history_start": {
+                                                "description": "Time history starting time, t_2(s), subfield.",
+                                                "setFrom": "{default}",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745294b7d0>",
+                                                "name": "auxsubfield",
+                                                "components": {},
+                                                "properties": {
+                                                    "is_basis_continous": {
+                                                        "type": "bool",
+                                                        "description": "Is basis continuous?",
+                                                        "value": "True",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "finite_element_space": {
+                                                        "type": "str",
+                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
+                                                        "value": "polynomial",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "basis_order": {
+                                                        "type": "int",
+                                                        "description": "Order of basis functions.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    },
+                                                    "quadrature_order": {
+                                                        "type": "int",
+                                                        "description": "Order of numerical quadrature.",
+                                                        "value": "1",
+                                                        "setFrom": "{default}"
+                                                    }
+                                                },
+                                                "aliases": [
+                                                    "auxsubfield",
+                                                    "time_history_start"
+                                                ]
+                                            }
+                                        },
+                                        "properties": {},
+                                        "aliases": [
+                                            "auxfieldstimedependent",
+                                            "auxiliary_subfields"
+                                        ]
+                                    },
+                                    "db_auxiliary_field": {
+                                        "description": "Database for physical property parameters.",
+                                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=146, column=-1}",
+                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7f7452a76300> >",
+                                        "name": "uniformdb",
+                                        "components": {},
+                                        "properties": {
+                                            "values": {
+                                                "type": "list",
+                                                "description": "Names of values in spatial database.",
+                                                "value": "['initial_amplitude_tangential', 'initial_amplitude_normal']",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=148, column=-1}"
+                                            },
+                                            "data": {
+                                                "type": "list",
+                                                "description": "Values in spatial database.",
+                                                "value": "['0.0*MPa', '-1.0*MPa']",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=149, column=-1}"
+                                            },
+                                            "label": {
+                                                "type": "str",
+                                                "description": "Descriptive label for database.",
+                                                "value": "Top_BC",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=147, column=-1}"
+                                            }
+                                        },
+                                        "aliases": [
+                                            "uniformdb",
+                                            "db_auxiliary_field"
+                                        ]
+                                    }
+                                },
+                                "properties": {
+                                    "use_rate": {
+                                        "type": "bool",
+                                        "description": "Use rate term in time-dependent expression.",
+                                        "value": "False",
+                                        "setFrom": "{default}"
+                                    },
+                                    "label": {
+                                        "type": "str",
+                                        "description": "Label identifier for boundary.",
+                                        "value": "Top_BC",
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=145, column=-1}"
+                                    },
+                                    "field": {
+                                        "type": "str",
+                                        "description": "Solution field associated with boundary condition.",
+                                        "value": "displacement",
+                                        "setFrom": "{default}"
+                                    },
+                                    "use_time_history": {
+                                        "type": "bool",
+                                        "description": "Use time history term in time-dependent expression.",
+                                        "value": "False",
+                                        "setFrom": "{default}"
+                                    },
+                                    "use_initial": {
+                                        "type": "bool",
+                                        "description": "Use initial term in time-dependent expression.",
+                                        "value": "True",
+                                        "setFrom": "{default}"
+                                    },
+                                    "ref_dir_2": {
+                                        "type": "list",
+                                        "description": "Second choice for reference direction to discriminate among tangential directions in 3-D.",
+                                        "value": "[0.0, 1.0, 0.0]",
+                                        "setFrom": "{default}"
+                                    },
+                                    "ref_dir_1": {
+                                        "type": "list",
+                                        "description": "First choice for reference direction to discriminate among tangential directions in 3-D.",
+                                        "value": "[0.0, 0.0, 1.0]",
+                                        "setFrom": "{default}"
+                                    }
+                                },
+                                "aliases": [
+                                    "neumanntimedependent",
+                                    "Top_BC"
                                 ]
                             }
                         },
@@ -1589,7 +1975,7 @@
                     "interfaces": {
                         "description": "Interior surfaces with constraints or constitutive models.",
                         "setFrom": "{default}",
-                        "class": "<pylith.utils.EmptyBin.EmptyBin object at 0x7ff595deced0>",
+                        "class": "<pylith.utils.EmptyBin.EmptyBin object at 0x7f7452cb50d0>",
                         "name": "emptybin",
                         "components": {},
                         "properties": {},
@@ -1600,20 +1986,20 @@
                     },
                     "solution": {
                         "description": "Solution field for problem.",
-                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=47, column=-1}",
-                        "class": "<pylith.problems.SolnDispPorPresTracStrain.Solution object at 0x7ff595da8e90>",
+                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=47, column=-1}",
+                        "class": "<pylith.problems.SolnDispPorPresTracStrain.Solution object at 0x7f7452cbcc10>",
                         "name": "solution",
                         "components": {
                             "subfields": {
                                 "description": "Subfields in solution.",
                                 "setFrom": "{default}",
-                                "class": "<pylith.problems.SolnDispPorPresTracStrain.SolnDispPorPresTracStrain object at 0x7ff595b092d0>",
+                                "class": "<pylith.problems.SolnDispPorPresTracStrain.SolnDispPorPresTracStrain object at 0x7f745291e650>",
                                 "name": "solndispporprestracstrain",
                                 "components": {
                                     "pore_pressure": {
                                         "description": "Pore pressure subfield.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.problems.SubfieldPorePressure.SubfieldPorePressure object at 0x7ff595b09f50>",
+                                        "class": "<pylith.problems.SubfieldPorePressure.SubfieldPorePressure object at 0x7f7452925490>",
                                         "name": "subfieldporepressure",
                                         "components": {},
                                         "properties": {
@@ -1633,13 +2019,13 @@
                                                 "type": "int",
                                                 "description": "Order of basis functions.",
                                                 "value": "1",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=58, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=58, column=-1}"
                                             },
                                             "quadrature_order": {
                                                 "type": "int",
                                                 "description": "Order of numerical quadrature.",
                                                 "value": "2",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=59, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=59, column=-1}"
                                             },
                                             "is_basis_continous": {
                                                 "type": "bool",
@@ -1656,7 +2042,7 @@
                                     "displacement": {
                                         "description": "Displacement subfield.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.problems.SubfieldDisplacement.SubfieldDisplacement object at 0x7ff595a36410>",
+                                        "class": "<pylith.problems.SubfieldDisplacement.SubfieldDisplacement object at 0x7f7452925790>",
                                         "name": "subfielddisplacement",
                                         "components": {},
                                         "properties": {
@@ -1676,13 +2062,13 @@
                                                 "type": "int",
                                                 "description": "Order of basis functions.",
                                                 "value": "1",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=50, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=50, column=-1}"
                                             },
                                             "quadrature_order": {
                                                 "type": "int",
                                                 "description": "Order of numerical quadrature.",
                                                 "value": "2",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=51, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=51, column=-1}"
                                             },
                                             "is_basis_continous": {
                                                 "type": "bool",
@@ -1699,7 +2085,7 @@
                                     "trace_strain": {
                                         "description": "Trace strain subfield.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.problems.SubfieldTraceStrain.SubfieldTraceStrain object at 0x7ff595a36810>",
+                                        "class": "<pylith.problems.SubfieldTraceStrain.SubfieldTraceStrain object at 0x7f7452925b90>",
                                         "name": "subfieldtracestrain",
                                         "components": {},
                                         "properties": {
@@ -1719,13 +2105,13 @@
                                                 "type": "int",
                                                 "description": "Order of basis functions.",
                                                 "value": "1",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=54, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=54, column=-1}"
                                             },
                                             "quadrature_order": {
                                                 "type": "int",
                                                 "description": "Order of numerical quadrature.",
                                                 "value": "2",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=55, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=55, column=-1}"
                                             },
                                             "is_basis_continous": {
                                                 "type": "bool",
@@ -1755,51 +2141,32 @@
                     },
                     "gravity_field": {
                         "description": "Database used for gravity field.",
-                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=43, column=-1}",
-                        "class": "<spatialdata.spatialdb.GravityField.GravityField; proxy of <Swig Object of type 'spatialdata::spatialdb::GravityField *' at 0x7ff595e40e70> >",
-                        "name": "gravityfield",
+                        "setFrom": "{default}",
+                        "class": "<pylith.utils.NullComponent.NullComponent object at 0x7f7452d24850>",
+                        "name": "nullcomponent",
                         "components": {},
-                        "properties": {
-                            "acceleration": {
-                                "type": "dimensional",
-                                "description": "Gravitational acceleration.",
-                                "value": "9.80665*m*s**-2",
-                                "setFrom": "{default}"
-                            },
-                            "gravity_dir": {
-                                "type": "list",
-                                "description": "Direction of gravitational body force. (used only with a Cartesian coordinate system.",
-                                "value": "['0.0', '-1.0', '0.0']",
-                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=44, column=-1}"
-                            },
-                            "label": {
-                                "type": "str",
-                                "description": "Descriptive label for gravity field.",
-                                "value": "Gravity field",
-                                "setFrom": "{default}"
-                            }
-                        },
+                        "properties": {},
                         "aliases": [
-                            "gravityfield",
+                            "nullcomponent",
                             "gravity_field"
                         ]
                     },
                     "materials": {
                         "description": "Materials in problem.",
-                        "setFrom": "{built-in} via {file='terzaghi_fieldsplit.cfg', line=76, column=-1}",
-                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7ff595db1c90>",
+                        "setFrom": "{built-in} via {file='terzaghi_oneblock.cfg', line=76, column=-1}",
+                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7f7452cb5850>",
                         "name": "materials",
                         "components": {
-                            "elastic_xneg": {
+                            "ENTIRE_DOMAIN": {
                                 "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=77, column=-1}",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=77, column=-1}",
                                 "class": "<pylith.materials.IsotropicLinearPoroelasticityPlaneStrain.IsotropicLinearPoroelasticityPlaneStrain;  >",
                                 "name": "isotropiclinearporoelasticityplanestrain",
                                 "components": {
                                     "observers": {
                                         "description": "Observers (e.g., output) for integrator.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.feassemble.SingleObserver.SingleIntegratorObserver object at 0x7ff595a5f790>",
+                                        "class": "<pylith.feassemble.SingleObserver.SingleIntegratorObserver object at 0x7f74528d92d0>",
                                         "name": "singleintegratorobserver",
                                         "components": {
                                             "observer": {
@@ -1811,15 +2178,15 @@
                                                     "writer": {
                                                         "description": "Writer for data.",
                                                         "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e037b0> >",
+                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a76600> >",
                                                         "name": "datawriterhdf5",
                                                         "components": {},
                                                         "properties": {
                                                             "filename": {
                                                                 "type": "str",
                                                                 "description": "Name of HDF5 file.",
-                                                                "value": "output/terzaghi-elastic_xneg.h5",
-                                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=119, column=-1}"
+                                                                "value": "output.h5",
+                                                                "setFrom": "{default}"
                                                             }
                                                         },
                                                         "aliases": [
@@ -1848,7 +2215,7 @@
                                                     },
                                                     "field_filter": {
                                                         "description": "Filter for output fields.",
-                                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=120, column=-1}",
+                                                        "setFrom": "{default}",
                                                         "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
                                                         "name": "fieldfilternone",
                                                         "components": {},
@@ -1888,13 +2255,13 @@
                                     "auxiliary_subfields": {
                                         "description": "Discretization of physical properties and state variables.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.materials.AuxFieldsIsotropicLinearPoroelasticity.AuxFieldsIsotropicLinearPoroelasticity object at 0x7ff595a5f0d0>",
+                                        "class": "<pylith.materials.AuxFieldsIsotropicLinearPoroelasticity.AuxFieldsIsotropicLinearPoroelasticity object at 0x7f74528d9c50>",
                                         "name": "auxfieldsisotropiclinearelasticity",
                                         "components": {
                                             "body_force": {
                                                 "description": "Body force subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12fd0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287eb50>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1931,7 +2298,7 @@
                                             "fluid_density": {
                                                 "description": "Fluid density subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12e90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e9d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -1951,13 +2318,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=98, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=97, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=99, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=98, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -1968,7 +2335,7 @@
                                             "reference_stress": {
                                                 "description": "Reference stress subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12cd0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e990>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2005,7 +2372,7 @@
                                             "density": {
                                                 "description": "Density subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12c90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e890>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2025,13 +2392,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=95, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=94, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=96, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=95, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2042,7 +2409,7 @@
                                             "shear_modulus": {
                                                 "description": "Shear modulus subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12b90>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e6d0>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2062,13 +2429,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=92, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=91, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=93, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=92, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2079,7 +2446,7 @@
                                             "isotropic_permeability": {
                                                 "description": "Isotropic permeability subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a129d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e690>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2099,13 +2466,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=113, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=112, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=114, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=113, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2116,7 +2483,7 @@
                                             "fluid_viscosity": {
                                                 "description": "Fluid viscosity subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a12990>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287e590>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2136,13 +2503,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=101, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=100, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=102, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=101, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2153,7 +2520,7 @@
                                             "reference_strain": {
                                                 "description": "Reference strain subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e0d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287ec10>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2190,7 +2557,7 @@
                                             "bulk_modulus": {
                                                 "description": "Bulk modulus subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e1d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287ed10>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2210,13 +2577,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=89, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=88, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=90, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=89, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2227,7 +2594,7 @@
                                             "gravitational_acceleration": {
                                                 "description": "Gravitational acceleration subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e2d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287ee10>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2247,13 +2614,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=116, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=115, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=117, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=116, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2264,7 +2631,7 @@
                                             "fluid_bulk_modulus": {
                                                 "description": "Fluid bulk modulus subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e4d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452885050>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2284,13 +2651,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=104, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=103, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=105, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=104, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2301,7 +2668,7 @@
                                             "biot_coefficient": {
                                                 "description": "Biot coefficient subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e5d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f7452885150>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2321,13 +2688,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=107, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=106, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=108, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=107, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2338,7 +2705,7 @@
                                             "porosity": {
                                                 "description": "Porosity subfield.",
                                                 "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595a1e3d0>",
+                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7f745287ef10>",
                                                 "name": "auxsubfield",
                                                 "components": {},
                                                 "properties": {
@@ -2358,13 +2725,13 @@
                                                         "type": "int",
                                                         "description": "Order of basis functions.",
                                                         "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=110, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=109, column=-1}"
                                                     },
                                                     "quadrature_order": {
                                                         "type": "int",
                                                         "description": "Order of numerical quadrature.",
                                                         "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=111, column=-1}"
+                                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=110, column=-1}"
                                                     }
                                                 },
                                                 "aliases": [
@@ -2381,8 +2748,8 @@
                                     },
                                     "db_auxiliary_field": {
                                         "description": "Database for physical property parameters.",
-                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=84, column=-1}",
-                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7ff595e03540> >",
+                                        "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=83, column=-1}",
+                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7f7452a76510> >",
                                         "name": "uniformdb",
                                         "components": {},
                                         "properties": {
@@ -2390,19 +2757,19 @@
                                                 "type": "list",
                                                 "description": "Names of values in spatial database.",
                                                 "value": "['density', 'vs', 'vp', 'fluid_density', 'fluid_viscosity', 'fluid_bulk_modulus', 'biot_coefficient', 'porosity', 'isotropic_permeability']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=86, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=85, column=-1}"
                                             },
                                             "data": {
                                                 "type": "list",
                                                 "description": "Values in spatial database.",
-                                                "value": "['2500*kg/m**3', '3.0*km/s', '5.2915026*km/s', '1000*kg/m**3', '10.0e-4*Pa*s', '2.0e+9*Pa', '1', '0.1', '10.0e-13*m**2']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=87, column=-1}"
+                                                "value": "['2500*kg/m**3', '3.0*km/s', '5.2915026*km/s', '1000*kg/m**3', '10.0e-4*Pa*s', '2.0e+9*Pa', '0.8', '0.1', '10.0e-13*m**2']",
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=86, column=-1}"
                                             },
                                             "label": {
                                                 "type": "str",
                                                 "description": "Descriptive label for database.",
                                                 "value": "Elastic properties",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=85, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=84, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -2428,13 +2795,13 @@
                                         "type": "int",
                                         "description": "Material identifier (from mesh generator).",
                                         "value": "1",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=83, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=82, column=-1}"
                                     },
                                     "label": {
                                         "type": "str",
                                         "description": "Descriptive label for material.",
                                         "value": "Elastic material on -x side of main fault",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=82, column=-1}"
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=81, column=-1}"
                                     },
                                     "use_inertia": {
                                         "type": "bool",
@@ -2451,671 +2818,7 @@
                                 },
                                 "aliases": [
                                     "isotropiclinearporoelasticityplanestrain",
-                                    "elastic_xneg"
-                                ]
-                            },
-                            "elastic_xpos": {
-                                "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=78, column=-1}",
-                                "class": "<pylith.materials.IsotropicLinearPoroelasticityPlaneStrain.IsotropicLinearPoroelasticityPlaneStrain;  >",
-                                "name": "isotropiclinearporoelasticityplanestrain",
-                                "components": {
-                                    "observers": {
-                                        "description": "Observers (e.g., output) for integrator.",
-                                        "setFrom": "{default}",
-                                        "class": "<pylith.feassemble.SingleObserver.SingleIntegratorObserver object at 0x7ff5959e0610>",
-                                        "name": "singleintegratorobserver",
-                                        "components": {
-                                            "observer": {
-                                                "description": "Observer of subject.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.meshio.OutputIntegrator.OutputIntegrator;  >",
-                                                "name": "OutputIntegrator",
-                                                "components": {
-                                                    "writer": {
-                                                        "description": "Writer for data.",
-                                                        "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e03870> >",
-                                                        "name": "datawriterhdf5",
-                                                        "components": {},
-                                                        "properties": {
-                                                            "filename": {
-                                                                "type": "str",
-                                                                "description": "Name of HDF5 file.",
-                                                                "value": "output/terzaghi-elastic_xpos.h5",
-                                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=161, column=-1}"
-                                                            }
-                                                        },
-                                                        "aliases": [
-                                                            "datawriterhdf5",
-                                                            "writer"
-                                                        ]
-                                                    },
-                                                    "trigger": {
-                                                        "description": "Trigger defining how often output is written.",
-                                                        "setFrom": "{default}",
-                                                        "class": "<pylith.meshio.OutputTriggerStep.OutputTriggerStep;  >",
-                                                        "name": "outputtriggerstep",
-                                                        "components": {},
-                                                        "properties": {
-                                                            "num_slip": {
-                                                                "type": "int",
-                                                                "description": "Number of solution steps to skip between writes.",
-                                                                "value": "0",
-                                                                "setFrom": "{default}"
-                                                            }
-                                                        },
-                                                        "aliases": [
-                                                            "outputtriggerstep",
-                                                            "trigger"
-                                                        ]
-                                                    },
-                                                    "field_filter": {
-                                                        "description": "Filter for output fields.",
-                                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=162, column=-1}",
-                                                        "class": "<pylith.meshio.FieldFilterNone.FieldFilterNone;  >",
-                                                        "name": "fieldfilternone",
-                                                        "components": {},
-                                                        "properties": {},
-                                                        "aliases": [
-                                                            "fieldfilternone",
-                                                            "field_filter"
-                                                        ]
-                                                    }
-                                                },
-                                                "properties": {
-                                                    "info_fields": {
-                                                        "type": "list",
-                                                        "description": "Names of information fields to output.",
-                                                        "value": "['all']",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "data_fields": {
-                                                        "type": "list",
-                                                        "description": "Names of data fields to output.",
-                                                        "value": "['all']",
-                                                        "setFrom": "{default}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "OutputIntegrator",
-                                                    "observer"
-                                                ]
-                                            }
-                                        },
-                                        "properties": {},
-                                        "aliases": [
-                                            "singleintegratorobserver",
-                                            "observers"
-                                        ]
-                                    },
-                                    "auxiliary_subfields": {
-                                        "description": "Discretization of physical properties and state variables.",
-                                        "setFrom": "{default}",
-                                        "class": "<pylith.materials.AuxFieldsIsotropicLinearPoroelasticity.AuxFieldsIsotropicLinearPoroelasticity object at 0x7ff5959e0fd0>",
-                                        "name": "auxfieldsisotropiclinearelasticity",
-                                        "components": {
-                                            "body_force": {
-                                                "description": "Body force subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982b90>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "body_force"
-                                                ]
-                                            },
-                                            "fluid_density": {
-                                                "description": "Fluid density subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982a10>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=140, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=141, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "fluid_density"
-                                                ]
-                                            },
-                                            "reference_stress": {
-                                                "description": "Reference stress subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff5959829d0>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "reference_stress"
-                                                ]
-                                            },
-                                            "density": {
-                                                "description": "Density subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff5959828d0>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=137, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=138, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "density"
-                                                ]
-                                            },
-                                            "shear_modulus": {
-                                                "description": "Shear modulus subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982710>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=134, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=135, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "shear_modulus"
-                                                ]
-                                            },
-                                            "isotropic_permeability": {
-                                                "description": "Isotropic permeability subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff5959826d0>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=155, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=156, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "isotropic_permeability"
-                                                ]
-                                            },
-                                            "fluid_viscosity": {
-                                                "description": "Fluid viscosity subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff5959825d0>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=143, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=144, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "fluid_viscosity"
-                                                ]
-                                            },
-                                            "reference_strain": {
-                                                "description": "Reference strain subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982c50>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "1",
-                                                        "setFrom": "{default}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "reference_strain"
-                                                ]
-                                            },
-                                            "bulk_modulus": {
-                                                "description": "Bulk modulus subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982d50>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=131, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=132, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "bulk_modulus"
-                                                ]
-                                            },
-                                            "gravitational_acceleration": {
-                                                "description": "Gravitational acceleration subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982e50>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=158, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=159, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "gravitational_acceleration"
-                                                ]
-                                            },
-                                            "fluid_bulk_modulus": {
-                                                "description": "Fluid bulk modulus subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595989090>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=146, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=147, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "fluid_bulk_modulus"
-                                                ]
-                                            },
-                                            "biot_coefficient": {
-                                                "description": "Biot coefficient subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595989190>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=149, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=150, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "biot_coefficient"
-                                                ]
-                                            },
-                                            "porosity": {
-                                                "description": "Porosity subfield.",
-                                                "setFrom": "{default}",
-                                                "class": "<pylith.topology.AuxSubfield.AuxSubfield object at 0x7ff595982f50>",
-                                                "name": "auxsubfield",
-                                                "components": {},
-                                                "properties": {
-                                                    "is_basis_continous": {
-                                                        "type": "bool",
-                                                        "description": "Is basis continuous?",
-                                                        "value": "True",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "finite_element_space": {
-                                                        "type": "str",
-                                                        "description": "Finite-element space (polynomial or point). Point space corresponds to delta functions at quadrature points.",
-                                                        "value": "polynomial",
-                                                        "setFrom": "{default}"
-                                                    },
-                                                    "basis_order": {
-                                                        "type": "int",
-                                                        "description": "Order of basis functions.",
-                                                        "value": "0",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=152, column=-1}"
-                                                    },
-                                                    "quadrature_order": {
-                                                        "type": "int",
-                                                        "description": "Order of numerical quadrature.",
-                                                        "value": "2",
-                                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=153, column=-1}"
-                                                    }
-                                                },
-                                                "aliases": [
-                                                    "auxsubfield",
-                                                    "porosity"
-                                                ]
-                                            }
-                                        },
-                                        "properties": {},
-                                        "aliases": [
-                                            "auxfieldsisotropiclinearelasticity",
-                                            "auxiliary_subfields"
-                                        ]
-                                    },
-                                    "db_auxiliary_field": {
-                                        "description": "Database for physical property parameters.",
-                                        "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=126, column=-1}",
-                                        "class": "<spatialdata.spatialdb.UniformDB.UniformDB; proxy of <Swig Object of type 'spatialdata::spatialdb::UniformDB *' at 0x7ff595e03a20> >",
-                                        "name": "uniformdb",
-                                        "components": {},
-                                        "properties": {
-                                            "values": {
-                                                "type": "list",
-                                                "description": "Names of values in spatial database.",
-                                                "value": "['density', 'vs', 'vp', 'fluid_density', 'fluid_viscosity', 'fluid_bulk_modulus', 'biot_coefficient', 'porosity', 'isotropic_permeability']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=128, column=-1}"
-                                            },
-                                            "data": {
-                                                "type": "list",
-                                                "description": "Values in spatial database.",
-                                                "value": "['2500*kg/m**3', '3.0*km/s', '5.2915026*km/s', '1000*kg/m**3', '10.0e-4*Pa*s', '2.0e+9*Pa', '1', '0.1', '10.0e-13*m**2']",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=129, column=-1}"
-                                            },
-                                            "label": {
-                                                "type": "str",
-                                                "description": "Descriptive label for database.",
-                                                "value": "Elastic properties",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=127, column=-1}"
-                                            }
-                                        },
-                                        "aliases": [
-                                            "uniformdb",
-                                            "db_auxiliary_field"
-                                        ]
-                                    }
-                                },
-                                "properties": {
-                                    "use_source_density": {
-                                        "type": "bool",
-                                        "description": "Include source density term in the poroelasticity equation.",
-                                        "value": "False",
-                                        "setFrom": "{default}"
-                                    },
-                                    "use_body_force": {
-                                        "type": "bool",
-                                        "description": "Include body force term in poroelasticity equation.",
-                                        "value": "False",
-                                        "setFrom": "{default}"
-                                    },
-                                    "id": {
-                                        "type": "int",
-                                        "description": "Material identifier (from mesh generator).",
-                                        "value": "2",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=125, column=-1}"
-                                    },
-                                    "label": {
-                                        "type": "str",
-                                        "description": "Descriptive label for material.",
-                                        "value": "Elastic material on +x side of main fault",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=124, column=-1}"
-                                    },
-                                    "use_inertia": {
-                                        "type": "bool",
-                                        "description": "Include inertial term in poroelasticity equation.",
-                                        "value": "False",
-                                        "setFrom": "{default}"
-                                    },
-                                    "use_reference_state": {
-                                        "type": "bool",
-                                        "description": "Use reference stress/strain state.",
-                                        "value": "False",
-                                        "setFrom": "{default}"
-                                    }
-                                },
-                                "aliases": [
-                                    "isotropiclinearporoelasticityplanestrain",
-                                    "elastic_xpos"
+                                    "ENTIRE_DOMAIN"
                                 ]
                             }
                         },
@@ -3126,20 +2829,20 @@
                     },
                     "solution_observers": {
                         "description": "Observers (e.g., output) for solution.",
-                        "setFrom": "{built-in} via {file='terzaghi_fieldsplit.cfg', line=62, column=-1}",
-                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7ff595dbd150>",
+                        "setFrom": "{built-in} via {file='terzaghi_oneblock.cfg', line=62, column=-1}",
+                        "class": "<pyre.inventory.FacilityArrayFacility.FacilityArray object at 0x7f7452cb5390>",
                         "name": "solution_observers",
                         "components": {
                             "boundary": {
                                 "description": "No description available.",
-                                "setFrom": "{imported} via {file='terzaghi_fieldsplit.cfg', line=63, column=-1}",
+                                "setFrom": "{imported} via {file='terzaghi_oneblock.cfg', line=63, column=-1}",
                                 "class": "<pylith.meshio.OutputSolnBoundary.OutputSolnBoundary;  >",
                                 "name": "outputsolnsubset",
                                 "components": {
                                     "writer": {
                                         "description": "Writer for data.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e03630> >",
+                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a764b0> >",
                                         "name": "datawriterhdf5",
                                         "components": {},
                                         "properties": {
@@ -3147,7 +2850,7 @@
                                                 "type": "str",
                                                 "description": "Name of HDF5 file.",
                                                 "value": "output/terzaghi-boundary_ypos.h5",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=70, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=70, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -3197,8 +2900,8 @@
                                     "label": {
                                         "type": "str",
                                         "description": "Label identifier for boundary.",
-                                        "value": "edge_ypos",
-                                        "setFrom": "{file='terzaghi_fieldsplit.cfg', line=69, column=-1}"
+                                        "value": "Top_BC",
+                                        "setFrom": "{file='terzaghi_oneblock.cfg', line=69, column=-1}"
                                     },
                                     "data_fields": {
                                         "type": "list",
@@ -3221,7 +2924,7 @@
                                     "writer": {
                                         "description": "Writer for data.",
                                         "setFrom": "{default}",
-                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7ff595e03600> >",
+                                        "class": "<pylith.meshio.DataWriterHDF5.DataWriterHDF5; proxy of <Swig Object of type 'pylith::meshio::DataWriterHDF5 *' at 0x7f7452a76480> >",
                                         "name": "datawriterhdf5",
                                         "components": {},
                                         "properties": {
@@ -3229,7 +2932,7 @@
                                                 "type": "str",
                                                 "description": "Name of HDF5 file.",
                                                 "value": "output/terzaghi-domain.h5",
-                                                "setFrom": "{file='terzaghi_fieldsplit.cfg', line=66, column=-1}"
+                                                "setFrom": "{file='terzaghi_oneblock.cfg', line=66, column=-1}"
                                             }
                                         },
                                         "aliases": [
@@ -3323,8 +3026,8 @@
                     "solver": {
                         "type": "str",
                         "description": "Type of solver to use ['linear', 'nonlinear'].",
-                        "value": "linear",
-                        "setFrom": "{default}"
+                        "value": "nonlinear",
+                        "setFrom": "{file='terzaghi_oneblock.cfg', line=42, column=-1}"
                     }
                 },
                 "aliases": [
@@ -3333,13 +3036,13 @@
                 ]
             }
         },
-        "class": "<pylith.apps.PyLithApp.PyLithApp object at 0x7ff59bff2c10>"
+        "class": "<pylith.apps.PyLithApp.PyLithApp object at 0x7f7458efdc10>"
     },
     "platform": {
-        "kernel": "4.15.0-36-generic",
+        "kernel": "4.15.0-45-lowlatency",
         "hostname": "raptor",
         "machine": "x86_64",
-        "version": "#39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018",
+        "version": "#48-Ubuntu SMP PREEMPT Tue Jan 29 17:45:27 UTC 2019",
         "os": "Linux",
         "processor": "x86_64"
     },
@@ -3408,5 +3111,5 @@
             "standard": "3.1"
         }
     },
-    "timestamp": "2018-11-02T10:57:35.956008"
+    "timestamp": "2019-02-27T15:57:44.986872"
 }

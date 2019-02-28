@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
+<!ENTITY HeavyData "mandel-xmax_drained.h5">
+]>
+
+<Xdmf>
+  <Domain Name="domain">
+    <DataItem Name="cells" ItemType="Uniform" Format="HDF" NumberType="Float" Precision="8" Dimensions="10 2">
+      &HeavyData;:/topology/cells
+    </DataItem>
+    <DataItem Name="vertices" ItemType="Function" Dimensions="11 3" Function="JOIN($0, $1, $2)">
+      <DataItem Name="verticesX" ItemType="Hyperslab" Type="HyperSlab" Dimensions="11 1">
+        <DataItem Dimensions="3 2" Format="XML">
+          0 0   1 1   11 1
+        </DataItem>
+        <DataItem Dimensions="11 1" Format="HDF">
+          &HeavyData;:/geometry/vertices
+        </DataItem>
+      </DataItem>
+      <DataItem Name="verticesY" ItemType="Hyperslab" Type="HyperSlab" Dimensions="11 1">
+        <DataItem Dimensions="3 2" Format="XML">
+          0 1   1 1   11 1
+        </DataItem>
+        <DataItem Dimensions="11 1" Format="HDF">
+          &HeavyData;:/geometry/vertices
+        </DataItem>
+      </DataItem>
+      <DataItem Name="verticesZ" ItemType="Function" Dimensions="11 1" Function="0*$0">
+        <DataItem Reference="XML">
+          /Xdmf/Domain/DataItem[@Name="vertices"]/DataItem[@Name="verticesX"]
+        </DataItem>
+      </DataItem>
+    </DataItem>
+    <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
+      <Time TimeType="List">
+        <DataItem Format="XML" NumberType="Float" Dimensions="1">
+            3.15576000e+07
+        </DataItem>
+      </Time>
+      <Grid Name="domain" GridType="Uniform">
+        <Topology TopologyType="Polyline" NumberOfElements="10">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Name="displacement" Type="Vector" Center="Node">
+          <DataItem ItemType="Function" Dimensions="11 3" Function="JOIN($0, $1, $2)">
+            <DataItem ItemType="HyperSlab" Dimensions="11 1" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0    1 1 1    1 11 1
+              </DataItem>
+              <DataItem DataType="Float" Precision="8" Dimensions="1 11 2" Format="HDF">
+                &HeavyData;:/vertex_fields/displacement
+              </DataItem>
+            </DataItem>
+            <DataItem ItemType="HyperSlab" Dimensions="11 1" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 1    1 1 1    1 11 1
+              </DataItem>
+              <DataItem DataType="Float" Precision="8" Dimensions="1 11 2" Format="HDF">
+                &HeavyData;:/vertex_fields/displacement
+              </DataItem>
+            </DataItem>
+            <DataItem ItemType="Function" Dimensions="11 1" Function="0*$0">
+              <DataItem Reference="XML">
+                /Xdmf/Domain/Grid/Grid[1]/Attribute[@Name="displacement"]/DataItem[1]/DataItem[1]
+              </DataItem>
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="pore_pressure" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 11 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 11 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 11 1" Format="HDF">
+              &HeavyData;:/vertex_fields/pore_pressure
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Name="trace_strain" Type="Scalar" Center="Node">
+          <DataItem ItemType="HyperSlab" Dimensions="1 11 1" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0    1 1 1    1 11 1
+            </DataItem>
+            <DataItem DataType="Float" Precision="8" Dimensions="1 11 1" Format="HDF">
+              &HeavyData;:/vertex_fields/trace_strain
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
