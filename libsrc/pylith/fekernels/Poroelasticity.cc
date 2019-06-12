@@ -79,7 +79,7 @@ pylith::fekernels::Elasticity::g0v_grav(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // g0 function for generic elasticity terms ( + body forces).
 void
-pylith::fekernels::Elasticity::g0v_grav(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
                                    const PylithInt numS,
                                    const PylithInt numA,
                                    const PylithInt sOff[],
@@ -221,7 +221,7 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // Jf0 function for elasticity equation.
 void
-pylith::fekernels::Elasticity::Jf0vv(const PylithInt dim,
+pylith::fekernels::Poroelasticity::Jf0vv(const PylithInt dim,
                                      const PylithInt numS,
                                      const PylithInt numA,
                                      const PylithInt sOff[],
@@ -261,7 +261,7 @@ pylith::fekernels::Elasticity::Jf0vv(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // g0 function for elasticity equation with gravitational body forces.
 void
-pylith::fekernels::Elasticity::g0v_grav(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
                                         const PylithInt numS,
                                         const PylithInt numA,
                                         const PylithInt sOff[],
@@ -305,7 +305,7 @@ pylith::fekernels::Elasticity::g0v_grav(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // g0 function for elasticity equation with body forces.
 void
-pylith::fekernels::Elasticity::g0v_bodyforce(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0v_bodyforce(const PylithInt dim,
                                              const PylithInt numS,
                                              const PylithInt numA,
                                              const PylithInt sOff[],
@@ -345,7 +345,7 @@ pylith::fekernels::Elasticity::g0v_bodyforce(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // g0 function for elasticity with both gravitational and body forces.
 void
-pylith::fekernels::Elasticity::g0v_gravbodyforce(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0v_gravbodyforce(const PylithInt dim,
                                                  const PylithInt numS,
                                                  const PylithInt numA,
                                                  const PylithInt sOff[],
@@ -390,7 +390,7 @@ pylith::fekernels::Elasticity::g0v_gravbodyforce(const PylithInt dim,
 // ---------------------------------------------------------------------------------------------------------------------
 // Jf0 function for generic elasticity terms (inertia) with implicit time stepping.
 void
-pylith::fekernels::Elasticity::Jf0vv_inertiaimplicit(const PylithInt dim,
+pylith::fekernels::Porolasticity::Jf0vv_inertiaimplicit(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],

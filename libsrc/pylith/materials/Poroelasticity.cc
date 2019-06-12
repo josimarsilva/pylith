@@ -565,7 +565,7 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
 // ----------------------------------------------------------------------
 // Set kernels for LHS Jacobian F(t,s,\dot{s}).
 void
-pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSJacobian(pylith::feassemble::IntegratorDomain* integrator,
+pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::IntegratorDomain* integrator,
                                                                                       const topology::Field& solution) const {
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("_setFEKernelsLHSJacobian(integrator="<<integrator<<",solution="<<solution.label()<<")");
@@ -666,6 +666,33 @@ pylith::materials::IsotropicLinearPoroelasticityPlaneStrain::_setFEKernelsLHSJac
 
     PYLITH_METHOD_END;
 } // _setFEKernelsLHSJacobian
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Set kernels for computing derived field.
+void
+pylith::materials::Poroelasticity::_setKernelsDerivedField(pylith::feassemble::IntegratorDomain* integrator,
+                                                       const topology::Field& solution) const {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_COMPONENT_DEBUG("_setKernelsDerivedField(integrator="<<integrator<<", solution="<<solution.label()<<")");
+
+    const spatialdata::geocoords::CoordSys* coordsys = solution.mesh().coordsys();
+    assert(coordsys);
+
+    std::vector<ProjectKernels> kernels(2);
+    kernels[0] = ProjectKernels("cauchy_stress", _rheology->getKernelDerivedCauchyStress(coordsys));
+
+    const int spaceDim = coordsys->spaceDim();
+    const PetscPointFunc strainKernel =
+        (3 == spaceDim) ? pylith::fekernels::Elasticity3D::cauchyStrain :
+        (2 == spaceDim) ? pylith::fekernels::ElasticityPlaneStrain::cauchyStrain :
+        NULL;
+    kernels[1] = ProjectKernels("cauchy_strain", strainKernel);
+
+    assert(integrator);
+    integrator->setKernelsDerivedField(kernels);
+
+    PYLITH_METHOD_END;
+} // _setKernelsDerivedField
 
 
 // End of file
