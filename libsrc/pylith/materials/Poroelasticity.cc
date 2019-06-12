@@ -421,11 +421,11 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
         const PetscPointJac Jg0uu = NULL;
         const PetscPointJac Jg1uu = NULL;
         const PetscPointJac Jg2uu = NULL;
-        const PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu;
+        const PetscPointJac Jg3uu = pylith::fekernels::Poroelasticity::Jg3vu;
 
         const PetscPointJac Jg0up = NULL;
         const PetscPointJac Jg1up = NULL;
-        const PetscPointJac Jg2up = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg2up;
+        const PetscPointJac Jg2up = pylith::fekernels::Poroelasticity::Jg2up;
         const PetscPointJac Jg3up = NULL;
 
         const PetscPointJac Jg0ue = NULL;
@@ -441,7 +441,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
         const PetscPointJac Jg0pp = NULL;
         const PetscPointJac Jg1pp = NULL;
         const PetscPointJac Jg2pp = NULL;
-        const PetscPointJac Jg3pp = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp;
+        const PetscPointJac Jg3pp = pylith::fekernels::Poroelasticity::Jg3pp;
 
         const PetscPointJac Jg0pe = NULL;
         const PetscPointJac Jg1pe = NULL;
@@ -449,7 +449,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
         const PetscPointJac Jg3pe = NULL;
 
         const PetscPointJac Jg0eu = NULL;
-        const PetscPointJac Jg1eu = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg1eu;
+        const PetscPointJac Jg1eu = pylith::fekernels::Poroelasticity::Jg1eu;
         const PetscPointJac Jg2eu = NULL;
         const PetscPointJac Jg3eu = NULL;
 
@@ -458,7 +458,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
         const PetscPointJac Jg2ep = NULL;
         const PetscPointJac Jg3ep = NULL;
 
-        const PetscPointJac Jg0ee = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg0ee;
+        const PetscPointJac Jg0ee = pylith::fekernels::Poroelasticity::Jg0ee;
         const PetscPointJac Jg1ee = NULL;
         const PetscPointJac Jg2ee = NULL;
         const PetscPointJac Jg3ee = NULL;
@@ -493,7 +493,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
         const PetscPointJac Jg0vu = NULL;
         const PetscPointJac Jg1vu = NULL;
         const PetscPointJac Jg2vu = NULL;
-        const PetscPointJac Jg3vu = pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu;
+        const PetscPointJac Jg3vu = pylith::fekernels::Poroelasticity::Jg3vu;
 
         const PetscPointJac Jg0vv = NULL;
         const PetscPointJac Jg1vv = NULL;
