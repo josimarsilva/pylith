@@ -110,80 +110,116 @@ public:
                        const PylithScalar constants[],
                        PylithScalar g0[]);
 
+     // ----------------------------------------------------------------------
+     //g0v_gravbodyforce - g0 function for isotropic linear Poroelasticity plane strain with both gravity and body forces.
+     static
+     void g0v_gravbodyforce(const PylithInt dim,
+                            const PylithInt numS,
+                            const PylithInt numA,
+                            const PylithInt sOff[],
+                            const PylithInt sOff_x[],
+                            const PylithScalar s[],
+                            const PylithScalar s_t[],
+                            const PylithScalar s_x[],
+                            const PylithInt aOff[],
+                            const PylithInt aOff_x[],
+                            const PylithScalar a[],
+                            const PylithScalar a_t[],
+                            const PylithScalar a_x[],
+                            const PylithReal t,
+                            const PylithScalar x[],
+                            const PylithInt numConstants,
+                            const PylithScalar constants[],
+                            PylithScalar g0[]);
+
     // ----------------------------------------------------------------------
     // g0p function for generic poroelasticity terms (source density).
     static
     void g0p_source(const PylithInt dim,
-                  const PylithInt numS,
-                  const PylithInt numA,
-                  const PylithInt sOff[],
-                  const PylithInt sOff_x[],
-                  const PylithScalar s[],
-                  const PylithScalar s_t[],
-                  const PylithScalar s_x[],
-                  const PylithInt aOff[],
-                  const PylithInt aOff_x[],
-                  const PylithScalar a[],
-                  const PylithScalar a_t[],
-                  const PylithScalar a_x[],
-                  const PylithReal t,
-                  const PylithScalar x[],
-                  const PylithInt numConstants,
-                  const PylithScalar constants[],
-                  PylithScalar g0p_source[]);
+                    const PylithInt numS,
+                    const PylithInt numA,
+                    const PylithInt sOff[],
+                    const PylithInt sOff_x[],
+                    const PylithScalar s[],
+                    const PylithScalar s_t[],
+                    const PylithScalar s_x[],
+                    const PylithInt aOff[],
+                    const PylithInt aOff_x[],
+                    const PylithScalar a[],
+                    const PylithScalar a_t[],
+                    const PylithScalar a_x[],
+                    const PylithReal t,
+                    const PylithScalar x[],
+                    const PylithInt numConstants,
+                    const PylithScalar constants[],
+                    PylithScalar g0p_source[]);
 
     // ----------------------------------------------------------------------
     // f0p function for generic poroelasticity terms (source density).
     static
     void f0p_couple(const PylithInt dim,
-                  const PylithInt numS,
-                  const PylithInt numA,
-                  const PylithInt sOff[],
-                  const PylithInt sOff_x[],
-                  const PylithScalar s[],
-                  const PylithScalar s_t[],
-                  const PylithScalar s_x[],
-                  const PylithInt aOff[],
-                  const PylithInt aOff_x[],
-                  const PylithScalar a[],
-                  const PylithScalar a_t[],
-                  const PylithScalar a_x[],
-                  const PylithReal t,
-                  const PylithScalar x[],
-                  const PylithInt numConstants,
-                  const PylithScalar constants[],
-                  PylithScalar f0p_couple[]);
+                    const PylithInt numS,
+                    const PylithInt numA,
+                    const PylithInt sOff[],
+                    const PylithInt sOff_x[],
+                    const PylithScalar s[],
+                    const PylithScalar s_t[],
+                    const PylithScalar s_x[],
+                    const PylithInt aOff[],
+                    const PylithInt aOff_x[],
+                    const PylithScalar a[],
+                    const PylithScalar a_t[],
+                    const PylithScalar a_x[],
+                    const PylithReal t,
+                    const PylithScalar x[],
+                    const PylithInt numConstants,
+                    const PylithScalar constants[],
+                    PylithScalar f0p_couple[]);
 
-
-    /** M function for storage at constant strain. Fluid volume released per unit drop in pressure
-     *
-     * \vec{f0} = \frac{(\alpha-\phi}{K} + \frac{\phi}{K_f}
-     *
-     * Auxiliary fields: [bulkModulus(2), porosity(4), fluidBulkModulus(7), biotCoefficient(8)]
-     */
-    /*
+    / ------------------------------------------------------------------------------
+    // g0p function for isotropic linear Poroelasticity plane strain with source density, gravity, and body force.
     static
-    void mstorage(const PylithInt dim,
-                     const PylithInt numS,
-                     const PylithInt numA,
-                     const PylithInt sOff[],
-                     const PylithInt sOff_x[],
-                     const PylithScalar s[],
-                     const PylithScalar s_t[],
-                     const PylithScalar s_x[],
-                     const PylithInt aOff[],
-                     const PylithInt aOff_x[],
-                     const PylithScalar a[],
-                     const PylithScalar a_t[],
-                     const PylithScalar a_x[],
-                     const PylithReal t,
-                     const PylithScalar x[],
-                     const PylithInt numConstants,
-                     const PylithScalar constants[],
-                     PylithReal storageCoefficientStrain);
-     */
+    void g0p_sourceDensity_grav_body(const PylithInt dim,
+                                     const PylithInt numS,
+                                     const PylithInt numA,
+                                     const PylithInt sOff[],
+                                     const PylithInt sOff_x[],
+                                     const PylithScalar s[],
+                                     const PylithScalar s_t[],
+                                     const PylithScalar s_x[],
+                                     const PylithInt aOff[],
+                                     const PylithInt aOff_x[],
+                                     const PylithScalar a[],
+                                     const PylithScalar a_t[],
+                                     const PylithScalar a_x[],
+                                     const PylithReal t,
+                                     const PylithScalar x[],
+                                     const PylithInt numConstants,
+                                     const PylithScalar constants[],
+                                     PylithScalar g0p[]);
 
-}; // Elasticity
+     // ----------------------------------------------------------------------
+     // g0E function for isotropic linear Poroelasticity plane strain.
+     void g0e_trace_strain(const PylithInt dim,
+                          const PylithInt numS,
+                          const PylithInt numA,
+                          const PylithInt sOff[],
+                          const PylithInt sOff_x[],
+                          const PylithScalar s[],
+                          const PylithScalar s_t[],
+                          const PylithScalar s_x[],
+                          const PylithInt aOff[],
+                          const PylithInt aOff_x[],
+                          const PylithScalar a[],
+                          const PylithScalar a_t[],
+                          const PylithScalar a_x[],
+                          const PylithReal t,
+                          const PylithScalar x[],
+                          const PylithInt numConstants,
+                          const PylithScalar constants[],
+                          PylithScalar g0E[]);
+
+}; // Poroelasticity
 
 #endif // pylith_fekernels_poroelasticity_hh
 

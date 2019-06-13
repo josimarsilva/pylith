@@ -63,19 +63,18 @@ pylith::fekernels::Poroelasticity::g0v_grav(const PylithInt dim,
                                    const PylithScalar constants[],
                                    PylithScalar g0[]) {
 
-    // Incoming solution fields.
+    // Incoming auxililary fields.
     const PylithInt i_porosity     = 0;
     const PylithInt i_density      = 1;
     const PylithInt i_fluidDensity = 2;
 
-    // Incoming auxiliary fields.
     const PylithInt i_gravityField = 4;
 
     // assert(_numS == numS);
     // assert(_numA == numA);
     assert(aOff);
     assert(aOff[i_density] >= 0);
-    assert(aOff[i_fluiddensity] >= 0);
+    assert(aOff[i_fluidDensity] >= 0);
     assert(aOff[i_gravityField] >= 0);
     assert(a);
 
@@ -237,14 +236,11 @@ pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt d
                                                                        const PylithInt numConstants,
                                                                        const PylithScalar constants[],
                                                                        PylithScalar g0p[]) {
-    const PylithInt _dim = 2;
+
 
     // Incoming auxiliary fields.
-    const PylithInt i_sourceDensity = 11;
+    const PylithInt i_sourceDensity = 4;
 
-    assert(_dim == dim);
-    assert(3 == numS || 4 == numS);
-    assert(numA >= 12);
     assert(aOff);
     assert(aOff_x);
 
