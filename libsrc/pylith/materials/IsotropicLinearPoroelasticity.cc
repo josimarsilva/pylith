@@ -99,12 +99,12 @@ pylith::materials::IsotropicLinearPoroelasticity::addAuxiliarySubfields(void) {
         _auxiliaryFactory->addReferenceStress();
         _auxiliaryFactory->addReferenceStrain();
     } // if
-    _auxiliaryFactory->addShearModulus();
-    _auxiliaryFactory->addBulkModulus();
+    _auxiliaryFactory->addShearModulus(); //4
+    _auxiliaryFactory->addBulkModulus();  //5
 
-    _auxiliaryFactory->addBiotCoefficient();
-    _auxiliaryFactory->addIsotropicPermeability();
-    _auxiliaryFactory->addFluidBulkModulus();
+    _auxiliaryFactory->addBiotCoefficient();  //6
+    _auxiliaryFactory->addIsotropicPermeability();  //7
+    _auxiliaryFactory->addFluidBulkModulus();  //8
 
     PYLITH_METHOD_END;
 } // addAuxiliarySubfields

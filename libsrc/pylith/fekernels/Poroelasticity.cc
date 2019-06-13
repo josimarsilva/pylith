@@ -18,7 +18,7 @@
 
 #include <portinfo>
 
-#include "pylith/fekernels/Porolasticity.hh"
+#include "pylith/fekernels/Poroelasticity.hh"
 
 #include <cassert> // USES assert()
 #include <iostream> // use to output data to screen
@@ -211,7 +211,7 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
     f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
   } // f0p
 
-  
+
   /* ======================================================================
    * Generic poroelasticity pointwise functions
    * ======================================================================
