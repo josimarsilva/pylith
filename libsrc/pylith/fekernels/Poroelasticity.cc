@@ -216,9 +216,10 @@ pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
     } // for
 } // g0p_source
 
+/ ------------------------------------------------------------------------------
 // g0p function for isotropic linear Poroelasticity plane strain with source density, gravity, and body force.
 void
-pylith::fekernels::Poroelasticity::g0p_sourceDensity_gravbody(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt dim,
                                                                        const PylithInt numS,
                                                                        const PylithInt numA,
                                                                        const PylithInt sOff[],
@@ -257,7 +258,7 @@ pylith::fekernels::Poroelasticity::g0p_sourceDensity_gravbody(const PylithInt di
                                                  NULL, NULL, NULL, NULL, NULL,
                                                  aOffSource, aOffSource_x, a, a_t, a_x,
                                                  t, x, numConstants, constants, g0p);
-} // g0p_sourceDensity_gravbody
+} // g0p_sourceDensity_grav_body
 
 // =============================================================================
 // Volumetric Strain
