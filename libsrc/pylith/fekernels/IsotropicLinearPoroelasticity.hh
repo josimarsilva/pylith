@@ -23,15 +23,21 @@
  * Solution fields: [disp(2), pressure(1),trace_strain(1) ]
  *
  * Auxiliary fields:
- * - 0: density(1)
- * - 1: shear_modulus(1)
- * - 2: bulk_modulus(1)
- * - 3: isotropic_permeability(1)  // future extension, more component
- * - 4: porosity(1)
- * - 5: fluid_density(1)
- * - 6: fluid_viscosity(1)
- * - 7: fluid_bulk_modulus(1)
- * - 8: biot_coefficient(1)
+ * -- numA : number of auxiliary fields
+ ***** Required fields(govening equations) + option fields + required fields (rheology)
+ * - 0: addPorosity(1)
+ * - 1: addSolidDensity(1)
+ * - 2: addFluidDensity(1)
+ * - 3: fluid_viscosity(1)
+        *** optional fields come here *****
+ * - numA - 5: addShearModulus(1)
+ * - numA - 4: addBulkModulus(1)
+ * - numA - 3: addBiotCoefficient(1)
+ * - numA - 2: addIsotropicPermeability(1)
+ * - numA - 1: addFluidBulkModulus(1)
+ *
+
+ ** Optional fields
  * - 9: gravity_field (2, optional)
  * - 10: body_force(2,optional)
  * - 11: source_density(1,optional)
@@ -45,15 +51,15 @@
  * ======================================================================
  */
 
-#if !defined(pylith_fekernels_isotropiclinearporoelasticityplanestrain_hh)
-#define pylith_fekernels_isotropiclinearporoelasticityplanestrain_hh
+#if !defined(pylith_fekernels_isotropiclinearporoelasticity_hh)
+#define pylith_fekernels_isotropiclinearporoelasticity_hh
 
 // Include directives ---------------------------------------------------
 #include "fekernelsfwd.hh" // forward declarations
 
 #include "pylith/utils/types.hh"
 
-class pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain {
+class pylith::fekernels::IsotropicLinearPoroelasticity {
 
     // PUBLIC MEMBERS ///////////////////////////////////////////////////////
 public:
