@@ -314,7 +314,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 2; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
+    const PylithInt i_poro_pres = 1; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = numA - 5;
@@ -383,7 +383,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 2; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
+    const PylithInt i_poro_pres = 1; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = numA - 5;

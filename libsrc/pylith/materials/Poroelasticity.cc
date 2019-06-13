@@ -23,7 +23,7 @@
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // HASA RheologyPoroelasticity
 #include "pylith/materials/AuxiliaryFactoryPoroelasticity.hh" // USES AuxiliaryFactory
-#include "pylith/materials/DerivedFactoryPorolasticity.hh" // USES DerivedFactoryPoroelasticity
+#include "pylith/materials/DerivedFactoryElasticity.hh" // USES DerivedFactoryPoroelasticity
 #include "pylith/feassemble/IntegratorDomain.hh" // USES IntegratorDomain
 #include "pylith/topology/Mesh.hh" // USES Mesh
 #include "pylith/topology/Field.hh" // USES Field::SubfieldInfo
@@ -343,7 +343,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
                                    (_gravityField) ? pylith::fekernels::Poroelasticity::g0v_grav :
                                    (_useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_bodyforce :
                                    NULL;
-        const PetscPointFunc g1u = (!_useReferenceState) ? pylith::fekernels::Poroelasticity::g1v : pylith::fekernels::Poroelasticity::g1v_refstate;
+        const PetscPointFunc g1u = (!_useReferenceState) ? pylith::fekernels::IsotropicLinearPoroelasticity::g1v : pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate;
 
         const int bitSourceDensity = _useSourceDensity ? 0x1 : 0x0;
         const int bitGravityField = _gravityField ? 0x2 : 0x0;
@@ -372,7 +372,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
             //const PetscPointFunc g0p = NULL;
             break;
         case 0x7:
-            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_gravbody;
+            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
             break;
         case 0x0:
             //const PetscPointFunc g0p = NULL;
@@ -385,7 +385,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
         const PetscPointFunc g1p = _rheology->getKernelRHSResidualPressure(coordsys);
         //const PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv : pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav ;
 
-        const PetscPointFunc g0e =  pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0e_trace_strain;
+        const PetscPointFunc g0e =  pylith::fekernels::Poroelasticity::g0e_trace_strain;
         const PetscPointFunc g1e =  NULL;
 
 
@@ -541,7 +541,7 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
         const PetscPointFunc f0u = NULL;
         const PetscPointFunc f1u = NULL;
 
-        const PetscPointFunc f0p = pylith::fekernels::Poroelasticity::f0p;
+        const PetscPointFunc f0p = pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple;
         const PetscPointFunc f1p = NULL;
 
         const PetscPointFunc f0e = NULL;
@@ -605,12 +605,12 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::
         const PetscPointJac Jf2pu = NULL;
         const PetscPointJac Jf3pu = NULL;
 
-        const PetscPointJac Jf0pp = pylith::fekernels::Poroelasticity::Jf0pp;
+        const PetscPointJac Jf0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp;
         const PetscPointJac Jf1pp = NULL;
         const PetscPointJac Jf2pp = NULL;
         const PetscPointJac Jf3pp = NULL;
 
-        const PetscPointJac Jf0pe = pylith::fekernels::Poroelasticity::Jf0pe;
+        const PetscPointJac Jf0pe = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe;
         const PetscPointJac Jf1pe = NULL;
         const PetscPointJac Jf2pe = NULL;
         const PetscPointJac Jf3pe = NULL;
