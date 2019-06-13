@@ -75,6 +75,7 @@ libpylith_la_SOURCES = \
 	materials/Elasticity.cc \
 	materials/RheologyElasticity.cc \
 	materials/AuxiliaryFactoryElasticity.cc \
+	materials/AuxiliaryFactoryPoroelasticity.cc \
 	materials/DerivedFactoryElasticity.cc \
 	materials/IsotropicLinearElasticity.cc \
 	materials/IsotropicLinearMaxwell.cc \
@@ -84,7 +85,10 @@ libpylith_la_SOURCES = \
 	materials/AuxiliaryFactoryViscoelastic.cc \
 	materials/IncompressibleElasticity.cc \
 	materials/RheologyIncompressibleElasticity.cc \
+	materials/RheologyPoroelasticity.cc \
 	materials/IsotropicLinearIncompElasticity.cc \
+	materials/IsotropicLinearPoroelasticity.cc\
+	materials/Poroelasticity.cc\
 	materials/Query.cc \
 	meshio/BinaryIO.cc \
 	meshio/GMVFile.cc \
