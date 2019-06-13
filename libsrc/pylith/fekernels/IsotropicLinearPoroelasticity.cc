@@ -289,6 +289,146 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
     //} // for
 } // f0p
 
+// ----------------------------------------------------------------------
+// g1 function for isotropic linear Poroelasticity plane strain WITHOUT reference stress and strain.
+void
+pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt dim,
+                                                             const PylithInt numS,
+                                                             const PylithInt numA,
+                                                             const PylithInt sOff[],
+                                                             const PylithInt sOff_x[],
+                                                             const PylithScalar s[],
+                                                             const PylithScalar s_t[],
+                                                             const PylithScalar s_x[],
+                                                             const PylithInt aOff[],
+                                                             const PylithInt aOff_x[],
+                                                             const PylithScalar a[],
+                                                             const PylithScalar a_t[],
+                                                             const PylithScalar a_x[],
+                                                             const PylithReal t,
+                                                             const PylithScalar x[],
+                                                             const PylithInt numConstants,
+                                                             const PylithScalar constants[],
+                                                             PylithScalar g1[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution fields.
+    const PylithInt i_disp = 0;
+    const PylithInt i_poro_pres = 2; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
+
+    // Incoming auxiliary fields.
+    const PylithInt i_shearModulus = numA - 5;
+    const PylithInt i_bulkModulus = numA - 4;
+    const PylithInt i_biotCoefficient = numA - 3;
+
+    assert(_dim == dim);
+    assert(3 == numS || 4 == numS);
+    assert(numA >= 9);
+    assert(sOff);
+    assert(sOff_x);
+    assert(aOff);
+    assert(aOff_x);
+
+    const PylithInt _numS = 2; // Number passed on to stress kernels.
+    const PylithInt sOffCouple[2] = { sOff[i_disp], sOff[i_poro_pres] };
+    const PylithInt sOffCouple_x[2] = { sOff_x[i_disp], sOff_x[i_poro_pres] };
+
+    const PylithInt numAMean = 2; // Number passed to mean stress kernel.
+    const PylithInt aOffMean[2] = { aOff[i_bulkModulus], aOff[i_biotCoefficient] };
+    const PylithInt aOffMean_x[2] = { aOff_x[i_bulkModulus], aOff_x[i_biotCoefficient] };
+
+    const PylithInt numADev = 1; // Number passed to deviatoric stress kernel.
+    const PylithInt aOffDev[1] = { aOff[i_shearModulus] };
+    const PylithInt aOffDev_x[1] = { aOff_x[i_shearModulus] };
+
+    PylithScalar stress[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+
+    pylith::fekernels::PoroelasticityPlaneStrain::meanStress(_dim, _numS, numAMean,
+                                                         sOffCouple, sOffCouple_x, s, s_t, s_x,
+                                                         aOffMean, aOffMean_x, a, a_t, a_x,
+                                                         t, x, numConstants, constants, stress);
+
+    pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress(_dim, _numS, numADev,
+                                                               sOffCouple, sOffCouple_x, s, s_t, s_x,
+                                                               aOffDev, aOffDev_x, a, a_t, a_x,
+                                                               t, x, numConstants, constants, stress);
+
+    for (PylithInt i = 0; i < _dim*_dim; ++i) {
+        g1[i] -= stress[i];
+    } // for
+} // g1v
+
+// ----------------------------------------------------------------------
+// g1 function for isotropic linear Poroelasticity plane strain with reference stress and strain.
+void
+pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const PylithInt dim,
+                                                                      const PylithInt numS,
+                                                                      const PylithInt numA,
+                                                                      const PylithInt sOff[],
+                                                                      const PylithInt sOff_x[],
+                                                                      const PylithScalar s[],
+                                                                      const PylithScalar s_t[],
+                                                                      const PylithScalar s_x[],
+                                                                      const PylithInt aOff[],
+                                                                      const PylithInt aOff_x[],
+                                                                      const PylithScalar a[],
+                                                                      const PylithScalar a_t[],
+                                                                      const PylithScalar a_x[],
+                                                                      const PylithReal t,
+                                                                      const PylithScalar x[],
+                                                                      const PylithInt numConstants,
+                                                                      const PylithScalar constants[],
+                                                                      PylithScalar g1[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution fields.
+    const PylithInt i_disp = 0;
+    const PylithInt i_poro_pres = 2; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
+
+    // Incoming auxiliary fields.
+    const PylithInt i_shearModulus = numA - 5;
+    const PylithInt i_bulkModulus = numA - 4;
+    const PylithInt i_rstress = 4;
+    const PylithInt i_rstrain = 5;
+    const PylithInt i_biotCoefficient = numA - 3 ;
+
+    assert(_dim == dim);
+    assert(3 == numS || 4 == numS);
+    assert(numA >= 11);
+    assert(sOff);
+    assert(sOff_x);
+    assert(aOff);
+    assert(aOff_x);
+
+    const PylithInt _numS = 2; // Number passed on to stress kernels.
+    const PylithInt sOffCouple[2] = { sOff[i_disp], sOff[i_poro_pres] };
+    const PylithInt sOffCouple_x[2] = { sOff_x[i_disp], sOff_x[i_poro_pres] };
+
+    const PylithInt numAMean = 4; // Number passed to mean stress kernel.
+    const PylithInt aOffMean[4] = { aOff[i_bulkModulus], aOff[i_biotCoefficient], aOff[i_rstress], aOff[i_rstrain] };
+    const PylithInt aOffMean_x[4] = { aOff_x[i_bulkModulus], aOff_x[i_biotCoefficient], aOff_x[i_rstress], aOff_x[i_rstrain] };
+
+    const PylithInt numADev = 3; // Number passed to deviatoric stress kernel.
+    const PylithInt aOffDev[3] = { aOff[i_shearModulus], aOff[i_rstress], aOff[i_rstrain] };
+    const PylithInt aOffDev_x[3] = { aOff_x[i_shearModulus], aOff_x[i_rstress], aOff_x[i_rstrain] };
+
+    PylithScalar stress[4] = {0.0, 0.0, 0.0, 0.0};
+
+    pylith::fekernels::PoroelasticityPlaneStrain::meanStress_refstate(_dim, _numS, numAMean,
+                                                                  sOffCouple, sOffCouple_x, s, s_t, s_x,
+                                                                  aOffMean, aOffMean_x, a, a_t, a_x,
+                                                                  t, x, numConstants, constants, stress);
+
+    pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress_refstate(_dim, _numS, numADev,
+                                                                        sOffCouple, sOffCouple_x, s, s_t, s_x,
+                                                                        aOffDev, aOffDev_x, a, a_t, a_x,
+                                                                        t, x, numConstants, constants, stress);
+
+    for (PylithInt i = 0; i < _dim*_dim; ++i) {
+        g1[i] -= stress[i];
+    } // for
+} // g1v_refstate
+
 // Jf0pe function for isotropic linear poroelasticity plane strain.
 void
 pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pe(const PylithInt dim,

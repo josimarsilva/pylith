@@ -187,6 +187,57 @@ public:
                    const PylithScalar constants[],
                    PylithScalar f0p_couple[]);
 
+     /** g1 function for isotropic linear poroelasticity plane strain WITHOUT reference stress and reference strain.
+      *
+      * Solution fields: [disp(dim), pore_pres(dim), vel(dim, optional)]
+      * Auxiliary fields: [density(1), shear_modulus(1), bulk_modulus(1), ...]
+      */
+     static
+     void g1v(const PylithInt dim,
+              const PylithInt numS,
+              const PylithInt numA,
+              const PylithInt sOff[],
+              const PylithInt sOff_x[],
+              const PylithScalar s[],
+              const PylithScalar s_t[],
+              const PylithScalar s_x[],
+              const PylithInt aOff[],
+              const PylithInt aOff_x[],
+              const PylithScalar a[],
+              const PylithScalar a_t[],
+              const PylithScalar a_x[],
+              const PylithReal t,
+              const PylithScalar x[],
+              const PylithInt numConstants,
+              const PylithScalar constants[],
+              PylithScalar g1[]);
+
+      /** g1 function for isotropic linear poroelasticity plane strain WITH reference stress and reference strain.
+       *
+       * Solution fields: [disp(dim), pres(dim), vel(dim, optional)]
+       * Auxiliary fields: [density(1), shear_modulus(1), bulk_modulus(1), ..., refstress(4), refstrain(4)]
+       */
+      static
+      void g1v_refstate(const PylithInt dim,
+                        const PylithInt numS,
+                        const PylithInt numA,
+                        const PylithInt sOff[],
+                        const PylithInt sOff_x[],
+                        const PylithScalar s[],
+                        const PylithScalar s_t[],
+                        const PylithScalar s_x[],
+                        const PylithInt aOff[],
+                        const PylithInt aOff_x[],
+                        const PylithScalar a[],
+                        const PylithScalar a_t[],
+                        const PylithScalar a_x[],
+                        const PylithReal t,
+                        const PylithScalar x[],
+                        const PylithInt numConstants,
+                        const PylithScalar constants[],
+                        PylithScalar g1[]);
+
+
      /** Jf0_pe entry function for 2-D plane strain isotropic linear poroelasticity.
       *
       * Solution fields: [...]

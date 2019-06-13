@@ -394,7 +394,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
         kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
         kernels[2] = ResidualKernels("trace_strain", g0e, g1e);
     } else {
-      // Displacement
+      // Velocity
       const PetscPointFunc g0u = pylith::fekernels::DispVel::g0u;
       const PetscPointFunc g1u = NULL;
 
