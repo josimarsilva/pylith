@@ -29,7 +29,15 @@
  * - 1: addSolidDensity(1)
  * - 2: addFluidDensity(1)
  * - 3: fluid_viscosity(1)
-        *** optional fields come here *****
+
+ ** Optional fields
+ * - +1: gravity_field (2, optional)
+ * - +1: body_force(2,optional)
+ * - +1: source_density(1,optional)
+ * - +1: reference_stress(4,optional) (stress_xx, stress_yy, stress_xy, stress_zz)
+ * - +1: reference_strain(4,optional) (strain_xx, strain_yy, strain_xy, strain_zz)
+
+ ** Rheological fields
  * - numA - 5: addShearModulus(1)
  * - numA - 4: addBulkModulus(1)
  * - numA - 3: addBiotCoefficient(1)
@@ -37,12 +45,7 @@
  * - numA - 1: addFluidBulkModulus(1)
  *
 
- ** Optional fields
- * - 9: gravity_field (2, optional)
- * - 10: body_force(2,optional)
- * - 11: source_density(1,optional)
- * - 12: reference_stress(4,optional) (stress_xx, stress_yy, stress_xy, stress_zz)
- * - 13: reference_strain(4,optional) (strain_xx, strain_yy, strain_xy, strain_zz)
+
  *
  * \int_V \vec{\phi}_u \cdot \left( \rho \frac{\partial \vec{v}(t)}{\partial t} \right) \, dV =
  *   \int_V \vec{\phi}_u \cdot \vec{f}(t) - \nabla \vec{\phi}_u : \tensor{\sigma}(\vec{u}) \, dV +
