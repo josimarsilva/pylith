@@ -232,7 +232,15 @@ pylith::materials::Poroelasticity::createAuxiliaryField(const pylith::topology::
     // acceleration will have a scale of pressure divided by length and should be within a few orders
     // of magnitude of 1.
 
-    auxiliaryFactory->addDensity(); // 0
+    // ---------------------------------
+    // Required Auxiliary
+    auxiliaryFactory->addPorosity();      // 0
+    auxiliaryFactory->addDensity();       // 1
+    auxiliaryFactory->addFluidDensity();  // 2
+    auxiliaryFactory->addFluidViscosity();// 3
+
+    // ---------------------------------
+    // Optional Auxiliary
     if (_useBodyForce) {
         auxiliaryFactory->addBodyForce();
     } // if
@@ -246,6 +254,9 @@ pylith::materials::Poroelasticity::createAuxiliaryField(const pylith::topology::
         auxiliaryFactory->addReferenceStress();
         auxiliaryFactory->addReferenceStrain();
     } // if
+
+    // ----------------------------------
+
     _rheology->addAuxiliarySubfields();
 
     auxiliaryField->subfieldsSetup();
@@ -371,8 +382,8 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
             throw std::logic_error("Unknown combination of flags for source density.");
         } // switch
 
-
-        const PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv : pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav ;
+        const PetscPointFunc g1p = _rheology->getKernelRHSResidualPressure(coordsys);
+        //const PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv : pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav ;
 
         const PetscPointFunc g0e =  pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0e_trace_strain;
         const PetscPointFunc g1e =  NULL;
@@ -392,7 +403,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
                                  (_gravityField) ? pylith::fekernels::Elasticity::g0v_grav :
                                  (_useBodyForce) ? pylith::fekernels::Elasticity::g0v_bodyforce :
                                  NULL;
-      const PetscPointFunc g1v = _rheology->getKernelRHSResidualStress(coordsys);
+      const PetscPointFunc g1v = _rheology->getKernelRHSResidualPorePressure(coordsys);
 
       kernels.resize(2);
       kernels[0] = ResidualKernels("displacement", g0u, g1u);
