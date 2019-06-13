@@ -65,8 +65,8 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
     const PylithInt i_poro_pres = 1;
 
     // Incoming auxiliary field.
-    const PylithInt i_bulkModulus = 0;
-    const PylithInt i_biotCoefficient = 1;
+    const PylithInt i_bulkModulus = numA - 4;
+    const PylithInt i_biotCoefficient = numA - 3;
 
     PylithInt i;
 
@@ -93,6 +93,71 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
         stress[i*_dim+i] += (meanStress + alphaPres);
     } // for
 } // meanStress
+
+// ----------------------------------------------------------------------
+/* Calculate darcy flow rate for 2-D plane strain isotropic linear
+ * poroelasticity WITH gravity.
+ *
+ * darcyFlow = -k(det_poro_pressure - grav)
+ *
+ */
+void
+pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
+                                                     const PylithInt numS,
+                                                     const PylithInt numA,
+                                                     const PylithInt sOff[],
+                                                     const PylithInt sOff_x[],
+                                                     const PylithScalar s[],
+                                                     const PylithScalar s_t[],
+                                                     const PylithScalar s_x[],
+                                                     const PylithInt aOff[],
+                                                     const PylithInt aOff_x[],
+                                                     const PylithScalar a[],
+                                                     const PylithScalar a_t[],
+                                                     const PylithScalar a_x[],
+                                                     const PylithReal t,
+                                                     const PylithScalar x[],
+                                                     const PylithInt numConstants,
+                                                     const PylithScalar constants[],
+                                                     PylithScalar g1p[]) {
+    const PylithInt _dim = 2;
+
+    PylithInt i;
+
+    assert(_dim == dim);
+    assert(1 == numS);
+    assert(4 == numA);
+    assert(sOff_x);
+    assert(aOff);
+    assert(s_x);
+    assert(a);
+
+    // Incoming solution field.
+    const PylithInt i_poro_pres = 0;
+    const PylithInt i_poro_pres_x = 0;
+
+    // Incoming auxiliary field.
+    const PylithInt i_fluidDensity = 2;
+    const PylithInt i_isotropicPerm = numA - 2;
+    const PylithInt i_viscosity = 3;
+    const PylithInt i_gravityField = 3;
+
+    const PylithScalar poro_pres = s[sOff[i_poro_pres]];
+    const PylithScalar* poro_pres_x = &s_x[sOff_x[i_poro_pres_x]];
+
+    const PylithScalar fluidDensity = a[aOff[i_fluidDensity]];
+    const PylithScalar isotropicPerm = a[aOff[i_isotropicPerm]];
+    const PylithScalar viscosity = a[aOff[i_viscosity]];
+    const PylithScalar* gravityField = &a[aOff[i_gravityField]];
+
+
+    const PylithScalar darcyConductivity = isotropicPerm / viscosity;
+
+    for (PylithInt i = 0; i < dim; ++i) {
+        g1p[i] += -darcyConductivity * (poro_pres_x[i] - fluidDensity*gravityField[i]);
+    } // for
+
+} // darcyFlowGrav
 
 
 // End of file

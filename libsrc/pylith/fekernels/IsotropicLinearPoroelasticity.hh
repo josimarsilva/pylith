@@ -28,7 +28,7 @@
  * - 0: addPorosity(1)
  * - 1: addSolidDensity(1)
  * - 2: addFluidDensity(1)
- * - 3: fluid_viscosity(1)
+ * - 3: addFluidViscosity(1)
         *** optional fields come here *****
  * - numA - 5: addShearModulus(1)
  * - numA - 4: addBulkModulus(1)
