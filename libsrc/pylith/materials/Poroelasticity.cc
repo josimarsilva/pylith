@@ -22,7 +22,7 @@
 #include "pylith/materials/Poroelasticity.hh" // implementation of object methods
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // HASA RheologyPoroelasticity
-#include "pylith/materials/AuxiliaryFactoryPoroelasticity.hh" // USES AuxiliaryFactory
+#include "pylith/materials/AuxiliaryFactoryPoroelastic.hh" // USES AuxiliaryFactory
 #include "pylith/materials/DerivedFactoryElasticity.hh" // USES DerivedFactoryPoroelasticity
 #include "pylith/feassemble/IntegratorDomain.hh" // USES IntegratorDomain
 #include "pylith/topology/Mesh.hh" // USES Mesh

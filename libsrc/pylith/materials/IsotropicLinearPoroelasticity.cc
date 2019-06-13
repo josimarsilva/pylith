@@ -20,7 +20,7 @@
 
 #include "pylith/materials/IsotropicLinearPoroelasticity.hh" // implementation of object methods
 
-#include "pylith/materials/AuxiliaryFactoryPoroelasticity.hh" // USES AuxiliaryFactory
+#include "pylith/materials/AuxiliaryFactoryPoroelastic.hh" // USES AuxiliaryFactory
 #include "pylith/fekernels/IsotropicLinearPoroelasticity.hh" // USES IsotropicLinearIncompElasticity kernels
 
 #include "pylith/fekernels/Elasticity.hh" // USES Elasticity kernels

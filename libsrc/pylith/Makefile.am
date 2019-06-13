@@ -60,6 +60,8 @@ libpylith_la_SOURCES = \
 	feassemble/AuxiliaryFactory.cc \
 	fekernels/Elasticity.cc \
 	fekernels/IsotropicLinearElasticity.cc \
+	fekernels/IsotropicLinearPoroelasticity.cc \
+	fekernels/Poroelasticity.cc \
 	fekernels/Viscoelasticity.cc \
 	fekernels/IsotropicLinearMaxwell.cc \
 	fekernels/IsotropicLinearGenMaxwell.cc \
