@@ -36,6 +36,11 @@
 /* -------------------------------------------------------------------------- */
 /*                           RHS Residuals                                    */
 /* -------------------------------------------------------------------------- */
+// Quasi-Static
+
+// =============================================================================
+// Displacement
+// =============================================================================
 // ---------------------------------------------------------------------------------------------------------------------
 // g0v_grav - g0 function for generic elasticity terms ( + grav body forces).
 void
@@ -172,6 +177,9 @@ pylith::fekernels::Poroelasticity::g0v_gravbodyforce(const PylithInt dim,
 
 } // g0v_gravbodyforce
 
+// =============================================================================
+// Pressure
+// =============================================================================
 
 // ----------------------------------------------------------------------
 //g0p_source - g0p function for generic poroelasticity terms (source density).
@@ -207,6 +215,101 @@ pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
         g0p_source[i] += sourceDensity[i];
     } // for
 } // g0p_source
+
+// g0p function for isotropic linear Poroelasticity plane strain with source density, gravity, and body force.
+void
+pylith::fekernels::Poroelasticity::g0p_sourceDensity_gravbody(const PylithInt dim,
+                                                                       const PylithInt numS,
+                                                                       const PylithInt numA,
+                                                                       const PylithInt sOff[],
+                                                                       const PylithInt sOff_x[],
+                                                                       const PylithScalar s[],
+                                                                       const PylithScalar s_t[],
+                                                                       const PylithScalar s_x[],
+                                                                       const PylithInt aOff[],
+                                                                       const PylithInt aOff_x[],
+                                                                       const PylithScalar a[],
+                                                                       const PylithScalar a_t[],
+                                                                       const PylithScalar a_x[],
+                                                                       const PylithReal t,
+                                                                       const PylithScalar x[],
+                                                                       const PylithInt numConstants,
+                                                                       const PylithScalar constants[],
+                                                                       PylithScalar g0p[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming auxiliary fields.
+    const PylithInt i_sourceDensity = 11;
+
+    assert(_dim == dim);
+    assert(3 == numS || 4 == numS);
+    assert(numA >= 12);
+    assert(aOff);
+    assert(aOff_x);
+
+    const PylithInt _numS = 0; // Number passed on to g0p_source.
+
+    const PylithInt numASource = 1; // Number passed on to g0p_source.
+    const PylithInt aOffSource[1] = { aOff[i_sourceDensity] };
+    const PylithInt aOffSource_x[1] = { aOff_x[i_sourceDensity] };
+
+    pylith::fekernels::Poroelasticity::g0p_source(_dim, _numS, numASource,
+                                                 NULL, NULL, NULL, NULL, NULL,
+                                                 aOffSource, aOffSource_x, a, a_t, a_x,
+                                                 t, x, numConstants, constants, g0p);
+} // g0p_sourceDensity_gravbody
+
+// =============================================================================
+// Volumetric Strain
+// =============================================================================
+// ----------------------------------------------------------------------
+// g0E function for isotropic linear Poroelasticity plane strain.
+void
+pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g0e_trace_strain(const PylithInt dim,
+                                                             const PylithInt numS,
+                                                             const PylithInt numA,
+                                                             const PylithInt sOff[],
+                                                             const PylithInt sOff_x[],
+                                                             const PylithScalar s[],
+                                                             const PylithScalar s_t[],
+                                                             const PylithScalar s_x[],
+                                                             const PylithInt aOff[],
+                                                             const PylithInt aOff_x[],
+                                                             const PylithScalar a[],
+                                                             const PylithScalar a_t[],
+                                                             const PylithScalar a_x[],
+                                                             const PylithReal t,
+                                                             const PylithScalar x[],
+                                                             const PylithInt numConstants,
+                                                             const PylithScalar constants[],
+                                                             PylithScalar g0E[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution fields.
+    const PylithInt i_disp = 0;
+    const PylithInt i_trace = 2;
+
+    // Incoming auxiliary fields.
+
+    assert(_dim == dim);
+    assert(3 == numS || 4 == numS);
+    assert(numA >= 9);
+    assert(sOff);
+    assert(sOff_x);
+    assert(aOff);
+    assert(aOff_x);
+
+    const PylithInt _numS = 2; // Number passed on to stress kernels.
+    const PylithInt sOffTrace[2] = { sOff[i_disp], sOff[i_trace] };
+    const PylithInt sOffTrace_x[2] = { sOff_x[i_disp], sOff_x[i_trace] };
+
+    pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(_dim, _numS, 0,
+                                                         sOffTrace, sOffTrace_x, s, s_t, s_x,
+                                                         NULL, NULL, NULL, NULL, NULL,
+                                                         t, x, numConstants, constants, g0E);
+} // g0e_trace_strain
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                           LHS Jacobian                                     */

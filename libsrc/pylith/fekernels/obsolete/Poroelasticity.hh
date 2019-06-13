@@ -183,7 +183,7 @@ public:
     // Jg1eu - Jg1 function for isotropic linear poroelasticity plane strain.
     static
     void
-    pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg1eu(const PylithInt dim,
+    pylith::fekernels::Poroelasticity::Jg1eu(const PylithInt dim,
                                                     const PylithInt numS,
                                                     const PylithInt numA,
                                                     const PylithInt sOff[],
