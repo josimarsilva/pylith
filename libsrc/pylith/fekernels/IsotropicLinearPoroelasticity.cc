@@ -167,7 +167,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
  *
  */
 void
-pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowNoGrav(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowNoGrav(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -226,7 +226,7 @@ pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowNoGrav(const PylithInt di
 // ----------------------------------------------------------------------
 // f0p function for generic poroelasticity terms (body forces).
 void
-pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple(const PylithInt dim,
                                              const PylithInt numS,
                                              const PylithInt numA,
                                              const PylithInt sOff[],
@@ -292,7 +292,7 @@ pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
 // ----------------------------------------------------------------------
 // g1 function for isotropic linear Poroelasticity plane strain WITHOUT reference stress and strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
                                                              const PylithInt numS,
                                                              const PylithInt numA,
                                                              const PylithInt sOff[],
@@ -361,7 +361,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
 // ----------------------------------------------------------------------
 // g1 function for isotropic linear Poroelasticity plane strain with reference stress and strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate(const PylithInt dim,
                                                                       const PylithInt numS,
                                                                       const PylithInt numA,
                                                                       const PylithInt sOff[],
@@ -414,12 +414,12 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
 
     PylithScalar stress[4] = {0.0, 0.0, 0.0, 0.0};
 
-    pylith::fekernels::PoroelasticityPlaneStrain::meanStress_refstate(_dim, _numS, numAMean,
+    pylith::fekernels::IsotropicLinearPoroelasticity::meanStress_refstate(_dim, _numS, numAMean,
                                                                   sOffCouple, sOffCouple_x, s, s_t, s_x,
                                                                   aOffMean, aOffMean_x, a, a_t, a_x,
                                                                   t, x, numConstants, constants, stress);
 
-    pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress_refstate(_dim, _numS, numADev,
+    pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(_dim, _numS, numADev,
                                                                         sOffCouple, sOffCouple_x, s, s_t, s_x,
                                                                         aOffDev, aOffDev_x, a, a_t, a_x,
                                                                         t, x, numConstants, constants, stress);
@@ -431,7 +431,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
 
 // Jf0pe function for isotropic linear poroelasticity plane strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pe(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -464,7 +464,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pe(const PylithI
 } // Jf0pe
 
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -508,7 +508,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithI
 
 // Jg2 function for isotropic linear poroelasticity plane strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg2up(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg2up(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -552,7 +552,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg2up(const PylithI
  * isotropic permeability (scalar). dimension (1,1,2,2)
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3pp(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
                                                                const PylithInt numS,
                                                                const PylithInt numA,
                                                                const PylithInt sOff[],

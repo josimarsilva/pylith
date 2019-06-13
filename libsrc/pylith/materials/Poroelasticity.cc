@@ -176,7 +176,7 @@ pylith::materials::Poroelasticity::verifyConfiguration(const pylith::topology::F
     if (!solution.hasSubfield("pore_pressure")) {
         throw std::runtime_error("Cannot find 'pore_pressure' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain'.");
     } // if
-    if (!solution.hasSubfield("trace_strain")) {
+    if (!_useInertia && !solution.hasSubfield("trace_strain")) {
         throw std::runtime_error("Cannot find 'trace_strain' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain'.");
     } // if
     if (_useInertia && !solution.hasSubfield("velocity")) {
@@ -337,6 +337,52 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
 
     std::vector<ResidualKernels> kernels;
 
+    // Both formulations have pressure and the residuals do not change from
+    // quasi-static to dynamic
+
+    // Generate pressure residuals
+    const int bitSourceDensity = _useSourceDensity ? 0x1 : 0x0;
+    const int bitGravityField = _gravityField ? 0x2 : 0x0;
+    const int bitBodyForce = _useBodyForce ? 0x4 : 0x0;
+    const int bitUse = bitSourceDensity | bitGravityField | bitBodyForce;
+
+    PetscPointFunc g0p = NULL;
+
+    switch (bitUse) {
+    case 0x1:
+        g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity;
+        break;
+    case 0x2:
+        //g0p = NULL;
+        break;
+    case 0x4:
+        //const PetscPointFunc g0p = NULL;
+        break;
+    case 0x3:
+        g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
+        break;
+    case 0x5:
+        g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
+        break;
+    case 0x6:
+        //const PetscPointFunc g0p = NULL;
+        break;
+    case 0x7:
+        g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
+        break;
+    case 0x0:
+        //const PetscPointFunc g0p = NULL;
+        break;
+    default:
+        PYLITH_COMPONENT_ERROR("Unknown combination of flags for source density (_useSourceDensity="<<_useSourceDensity<<", _gravityField="<<_gravityField<<", _useBodyForce="<<_useBodyForce<<").");
+        throw std::logic_error("Unknown combination of flags for source density.");
+    } // switch
+
+    // g1p is darcy velocity, ship over to rheology section
+    const PetscPointFunc g1p = _rheology->getKernelRHSDarcyVelocity(coordsys);
+    //const PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv : pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav ;
+
+    // Remaining parts of RHS residuals change with dynamics.
     if (!solution.hasSubfield("velocity")) {
         // Displacement
         const PetscPointFunc g0u = (_gravityField && _useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_gravbodyforce :
@@ -345,56 +391,17 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
                                    NULL;
         const PetscPointFunc g1u = (!_useReferenceState) ? pylith::fekernels::IsotropicLinearPoroelasticity::g1v : pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate;
 
-        const int bitSourceDensity = _useSourceDensity ? 0x1 : 0x0;
-        const int bitGravityField = _gravityField ? 0x2 : 0x0;
-        const int bitBodyForce = _useBodyForce ? 0x4 : 0x0;
-        const int bitUse = bitSourceDensity | bitGravityField | bitBodyForce;
-
-        PetscPointFunc g0p = NULL;
-
-        switch (bitUse) {
-        case 0x1:
-            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity;
-            break;
-        case 0x2:
-            //g0p = NULL;
-            break;
-        case 0x4:
-            //const PetscPointFunc g0p = NULL;
-            break;
-        case 0x3:
-            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
-            break;
-        case 0x5:
-            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
-            break;
-        case 0x6:
-            //const PetscPointFunc g0p = NULL;
-            break;
-        case 0x7:
-            g0p = pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body;
-            break;
-        case 0x0:
-            //const PetscPointFunc g0p = NULL;
-            break;
-        default:
-            PYLITH_COMPONENT_ERROR("Unknown combination of flags for source density (_useSourceDensity="<<_useSourceDensity<<", _gravityField="<<_gravityField<<", _useBodyForce="<<_useBodyForce<<").");
-            throw std::logic_error("Unknown combination of flags for source density.");
-        } // switch
-
-        const PetscPointFunc g1p = _rheology->getKernelRHSResidualPressure(coordsys);
-        //const PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_nograv : pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_grav ;
-
+        // Volumetric Strain
         const PetscPointFunc g0e =  pylith::fekernels::Poroelasticity::g0e_trace_strain;
         const PetscPointFunc g1e =  NULL;
-
 
         kernels.resize(3);
         kernels[0] = ResidualKernels("displacement", g0u, g1u);
         kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
         kernels[2] = ResidualKernels("trace_strain", g0e, g1e);
-    } else {
-      // Velocity
+
+    } else {      // Dynamic case (u,p,v) to ease residuals and jacobians
+      // Displacement
       const PetscPointFunc g0u = pylith::fekernels::DispVel::g0u;
       const PetscPointFunc g1u = NULL;
 
@@ -405,9 +412,10 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
                                  NULL;
       const PetscPointFunc g1v = _rheology->getKernelRHSResidualPorePressure(coordsys);
 
-      kernels.resize(2);
+      kernels.resize(3);
       kernels[0] = ResidualKernels("displacement", g0u, g1u);
-      kernels[1] = ResidualKernels("velocity", g0v, g1v);
+      kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
+      kernels[2] = ResidualKernels("velocity", g0v, g1v);
     } // if/else
 
     assert(integrator);
