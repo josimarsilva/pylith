@@ -543,14 +543,15 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
 
     std::vector<ResidualKernels> kernels;
 
+  // Both  and dynamics use pressure
+  const PetscPointFunc f0p = pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple;
+  const PetscPointFunc f1p = NULL;
+
     if (!solution.hasSubfield("velocity")) {
 
         // F(t,s,\dot{s}) = \vec{0}.
         const PetscPointFunc f0u = NULL;
         const PetscPointFunc f1u = NULL;
-
-        const PetscPointFunc f0p = pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple;
-        const PetscPointFunc f1p = NULL;
 
         const PetscPointFunc f0e = NULL;
         const PetscPointFunc f1e = NULL;
@@ -571,7 +572,8 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
 
         kernels.resize(2);
         kernels[0] = ResidualKernels("displacement", f0u, f1u);
-        kernels[1] = ResidualKernels("velocity",  f0v, f1v);
+        kernels[1] = ResidualKernels("pore_pressure", f0p, f1p);
+        kernels[2] = ResidualKernels("velocity",  f0v, f1v);
     } // if/else
 
     assert(integrator);
