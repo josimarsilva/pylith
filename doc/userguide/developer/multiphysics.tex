@@ -1210,7 +1210,7 @@ porous material
 
 We consider the displacement $\vec{u}$, volumetric strain $e$, and fluid pressure $p_f$ as unknowns,
 \begin{align}
-  \vec{s}^T &= (\vec{u} e \quad p_f)^T, \\
+  \vec{s}^T &= (\vec{u}, \quad p_f, \quad e)^T, \\
 %
 % elasticity equilibrium equation
   \vec{0} &= \vec{f}(\vec{x},t) + \tensor{\nabla} \cdot \tensor{\sigma}(\vec{u},p_f) 
@@ -1221,7 +1221,7 @@ We consider the displacement $\vec{u}$, volumetric strain $e$, and fluid pressur
 (p_f) \text{ in }
 \Omega, \\
 %
-\bigtriangledown . \vec{u} &= e \text{ in } \Omega, \\
+\bigtriangledown \cdot \vec{u} &= e \text{ in } \Omega, \\
 %
 % Darcy's law
   \vec{q}(p_f) &= -\kappa (\nabla p_f - \vec{f}_f), \\
@@ -1239,28 +1239,55 @@ We consider the displacement $\vec{u}$, volumetric strain $e$, and fluid pressur
 
 Using trial functions $\vec{\psi^u}_{trial}$, $\vec{\psi^e}_{trial}$, and $\vec{\psi^p}_{trial}$ and incorporating the Neumann boundary conditions, we write the weak form as \\
 \begin{equation}
-\vec{0} = \int_{\Omega} \vec{\psi}_{trial}^u . \vec{f}(\vec{x},t) + \bigtriangledown \vec{\psi}_{trial}^u : -\sigma(\vec{u},p_f) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . \vec{\tau}(\vec{x},t) \ d\Gamma,
+\vec{0} = \int_{\Omega} \vec{\psi}_{trial}^u \cdot \vec{f}(\vec{x},t) + 
+\bigtriangledown \vec{\psi}_{trial}^u : -\sigma(\vec{u},p_f) \ d\Omega + 
+\int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u \cdot \vec{\tau}(\vec{x},t) \ d\Gamma,
 \end{equation}
 \begin{equation}
 \int_{\Omega} \psi_{trial}^p \frac{\partial \zeta (\vec{u},p_f)}{\partial t} \ d\Omega = \int_{\Omega} \psi_{trial}^p \gamma(\vec{x},t) + \bigtriangledown \psi_{trial}^p . \vec{q}(p_f) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma.
 \end{equation}
 \begin{equation}
-\vec{0} = \int_{\Omega} \psi_{trial}^e .(\bigtriangledown . \vec{u} - e) \ d\Omega
+\vec{0} = \int_{\Omega} \psi_{trial}^e \cdot (\bigtriangledown . \vec{u} - e) \ 
+d\Omega
 \end{equation} \\
 
 Identifying $F(t,s,\dot{s})$ and $G(t,s)$ we have 
 \begin{align}
 F^u(t,s,\dot{s}) &= \vec{0} \\
+%
+F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta 
+(\vec{u},p_f)}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p 
+(\frac{\partial}{\partial t}(\alpha e + \frac{p_f}{M})) \ d\Omega \\
+&= \int_{\Omega} \psi_{trial}^p \eqnannotate{\left(\alpha \frac{\partial 
+e}{\partial t} + \frac{1}{M} \frac{\partial p_f}{\partial t} \right)}{f_0^p} \ 
+d\Omega \\
+%
 F^e(t,s,\dot{s}) &= \vec{0} \\
-F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta (\vec{u},p_f)}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p (\frac{\partial}{\partial t}(\alpha e + \frac{p_f}{M})) \ d\Omega \\
-&= \int_{\Omega} \psi_{trial}^p (\alpha \frac{\partial e}{\partial t} + \frac{1}{M} \frac{\partial p_f}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p (f_0^p) \ d\Omega \\
-G^u(t,s) &= \int_{\Omega} \vec{\psi}_{trial}^u . (\vec{f}(\vec{x},t)) + \bigtriangledown \vec{\psi}_{trial}^u : (-\sigma(\vec{u},p_f)) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (\vec{\tau}(\vec{x},t)) \ d\Gamma \\
-&= \int_{\Omega} \vec{\psi}_{trial}^u . (\vec{f}(\vec{x},t)) + \bigtriangledown \vec{\psi}_{trial}^u : (-(C:\varepsilon+\alpha p_f I)) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (\vec{\tau}(\vec{x},t)) \ d\Gamma \\
-&= \int_{\Omega} \vec{\psi}_{trial}^u . (g_0^u) + \bigtriangledown \vec{\psi}_{trial}^u : (g_1^u) \ d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u . (g_0^u) \ d\Gamma \\
-G^e(t,s) &= \int_{\Omega} \psi_{trial}^e .(\bigtriangledown . \vec{u} - e) \ d\Omega = \int_{\Omega} \psi_{trial}^e . (g_0^e) \ d\Omega \\
-G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \bigtriangledown \psi_{trial}^p . (\vec{q}(p_f)) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma \\
-&= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \bigtriangledown \psi_{trial}^p . (-\kappa (\bigtriangledown p_f - \vec{f_f})) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (-q_0(\vec{x},t)) \ d\Gamma \\
-&= \int_{\Omega} \psi_{trial}^p (g_0^p) + \bigtriangledown \psi_{trial}^p . (g_1^p) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p (g_0^p) \ d\Gamma &&
+%
+G^u(t,s) &= \int_{\Omega} \vec{\psi}_{trial}^u \cdot (\vec{f}(\vec{x},t)) + 
+\bigtriangledown \vec{\psi}_{trial}^u : \left(-\sigma(\vec{u},p_f) \right) \ 
+d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u \cdot 
+(\vec{\tau}(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \vec{\psi}_{trial}^u \cdot 
+\eqnannotate{\left(\vec{f}(\vec{x},t) \right)}{g_0^u} + 
+\bigtriangledown \vec{\psi}_{trial}^u : 
+\eqnannotate{\left(-(C:\varepsilon+\alpha p_f I)\right)}{g_1^u} \ 
+d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u \cdot 
+\eqnannotate{\left(\vec{\tau}(\vec{x},t) \right)}{g_0^u} \ 
+d\Gamma \\
+%
+G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \bigtriangledown 
+\psi_{trial}^p \cdot (\vec{q}(p_f)) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
+(-q_0(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(\gamma(\vec{x},t)\right)}{g_0^p} + \bigtriangledown \cdot 
+\psi_{trial}^p  \eqnannotate{\left(-\kappa (\bigtriangledown p_f - \vec{f_f}) 
+\right)}{g_1^p} \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
+\eqnannotate{ \left(-q_0(\vec{x},t) \right) }{g_0^p} \ d\Gamma \\
+%
+G^e(t,s) &= \int_{\Omega} \psi_{trial}^e \cdot 
+\eqnannotate{\left(\bigtriangledown \cdot \vec{u} - e \right)}{g_0^e} 
+\ d\Omega
 \end{align} \\ 
 
 \subsubsection{Jacobians}
@@ -1281,22 +1308,40 @@ J_F^{ep} &= \frac{\partial F^e}{\partial p} + t_{shift} \frac{\partial F^e}{\par
 %
 J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial F^p}{\partial \dot{u}} = 0 \\
 %
-J_F^{pe} &= \frac{\partial F^p}{\partial e} + t_{shift} \frac{\partial F^p}{\partial \dot{e}} = \int_{\Omega} \psi_{trial}^p t_{shift} \alpha \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p (t_{shift} \alpha ) \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p (J_{f0}^{pe}) \psi_{basis}^e \ d\Omega \\
+J_F^{pe} &= \frac{\partial F^p}{\partial e} + t_{shift} \frac{\partial 
+F^p}{\partial \dot{e}} = \int_{\Omega} \psi_{trial}^p t_{shift} \alpha 
+\psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(t_{shift} \alpha \right)}{J_{f0}^{pe}} \psi_{basis}^e \ 
+d\Omega \\
 %
-J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p (t_{shift} \frac{1}{M}) \psi_{basis}^p \ d\Omega = \int_{\Omega} \psi_{trial}^p (J_{f0}^{pp}) \psi_{basis}^p \ d\Omega 
+J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial 
+F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} \psi_{basis}^p \ 
+d\Omega
 \end{align}
 
 \begin{align}
 J_G^{uu} &= \frac{\partial G^u}{\partial u} = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial u} (- \sigma(\vec{u},p)) \ d\Omega = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial u} (-(C:\varepsilon +\alpha p I)) \ d\Omega \\
-&= \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : -C: \frac{1}{2} (\bigtriangledown + \bigtriangledown^T) \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial i,k}^u (-C_{ikjl}) \psi_{basis j,l}^u \ d\Omega = \int_{\Omega} \psi_{trial i,k}^u (J_{g3}^{uu}) \psi_{basis j,l}^u \ d\Omega \\
+&= \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : -C: \frac{1}{2} 
+(\bigtriangledown + \bigtriangledown^T) \vec{\psi}_{basis}^u \ d\Omega = 
+\int_{\Omega} \psi_{trial i,k}^u 
+\eqnannotate{\left(-C_{ikjl}\right)}{J_{g3}^{uu}} \psi_{basis j,l}^u \ d\Omega 
+\\
 %
 J_G^{ue} &= \frac{\partial G^u}{\partial e} = 0 \\
 %
-J_G^{up} &= \frac{\partial G^u}{\partial p} = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^u : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = \int_{\Omega} \psi_{trial i,j}^u (-\alpha \delta_{ij}) \psi_{basis}^p \ d\Omega = \int_{\Omega} \psi_{trial i,j}^u (J_{g2}^{up}) \psi_{basis}^p \ d\Omega \\
+J_G^{up} &= \frac{\partial G^u}{\partial p} = \int_{\Omega} \bigtriangledown 
+\vec{\psi}_{trial}^u : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = 
+\int_{\Omega} \psi_{trial i,j}^u \eqnannotate{\left(-\alpha 
+\delta_{ij}\right)}{J_{g2}^{up}} \psi_{basis}^p \ d\Omega \\
 %
-J_G^{eu} &= \frac{\partial G^e}{\partial u} = \int_{\Omega} \psi_{trial}^e  \bigtriangledown . \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e (\delta_{ij}) \psi_{basis i,j}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e (J_{g1}^{eu}) \psi_{basis i,j}^u \ d\Omega \\
+J_G^{eu} &= \frac{\partial G^e}{\partial u} = \int_{\Omega} \psi_{trial}^e  
+\bigtriangledown . \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e 
+\eqnannotate{\left(\delta_{ij}\right)}{J_{g1}^{eu}} \psi_{basis i,j}^u \ 
+d\Omega = \\
 %
-J_G^{ee} &= \frac{\partial G^e}{\partial e} = \int_{\Omega} \psi_{trial}^e (-1) \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^e (J_{g0}^{ee}) \psi_{basis}^e \ d\Omega \\
+J_G^{ee} &= \frac{\partial G^e}{\partial e} = \int_{\Omega} \psi_{trial}^e 
+\eqnannotate{\left(-1\right)}{J_{g0}^{ee}} \psi_{basis}^e \ d\Omega = \\
 %
 J_G^{ep} &= \frac{\partial G^e}{\partial p} = 0 \\
 %
@@ -1304,8 +1349,12 @@ J_G^{pu} &= \frac{\partial G^p}{\partial u} = 0 \\
 %
 J_G^{pe} &= \frac{\partial G^p}{\partial e} = 0 \\
 %
-J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown \psi_{trial}^p. \frac{\partial}{\partial p} (-\kappa (\bigtriangledown p_f - \vec{f}) \ d\Omega = \int_{\Omega} \bigtriangledown \psi_{trial}^ p (- \kappa \bigtriangledown . \psi_{basis}^p) \ d\Omega = \int_{\Omega} \psi_{trial,k}^p (- \kappa \delta_{kl}) \psi_{basis,l}^p \ d\Omega \\
-&= \int_{\Omega} \psi_{trial,k}^p (J_{g3}^{pp}) \psi_{basis,l}^p \ d\Omega 
+J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown 
+\psi_{trial}^p. \frac{\partial}{\partial p} (-\kappa (\bigtriangledown p_f - 
+\vec{f}) \ d\Omega = \int_{\Omega} \bigtriangledown \psi_{trial}^ p (- \kappa 
+\bigtriangledown \cdot \psi_{basis}^p) \ d\Omega = \int_{\Omega} 
+\psi_{trial,k}^p \eqnannotate{\left(- \kappa \delta_{kl}\right)}{J_{g3}^{pp}} 
+\psi_{basis,l}^p \ d\Omega \\
 \end{align} \\
 
 
@@ -1322,12 +1371,12 @@ negligible, resulting in an unchanged conservation of mass term.\\
   \vec{s}^T &= (\vec{u},\quad p_f, \quad \vec{v})^T, \\
   \frac{\partial \vec{u}}{\partial t} &= \vec{v}, \\
   %
+  \frac{\partial \zeta(e,p_f)}{\partial t} &= \gamma(\vec{x},t) - \nabla \cdot 
+  \vec{q}(p_f) \text{ in } \Omega, \\
+  %
   \rho_{b}\frac{\partial \vec{u}}{\partial t} &= \vec{f}(\vec{x},t) + 
   \tensor{\nabla} \cdot \tensor{\sigma}(\vec{u},p_f) 
   \text{ in }\Omega, \\
-  %
-  \frac{\partial \zeta(e,p_f)}{\partial t} &= \gamma(\vec{x},t) - \nabla \cdot 
-  \vec{q}(p_f) \text{ in } \Omega, \\
   %
   \bigtriangledown \cdot \vec{u} &= e \text{ in } \Omega, \\
   %
@@ -1425,8 +1474,8 @@ J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial
 F^p}{\partial \dot{u}} = 0 \\
 %
 J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial 
-F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p (t_{shift} \frac{1}{M}) 
-\psi_{basis}^p \ d\Omega = \int_{\Omega} \psi_{trial}^p (J_{f0}^{pp}) 
+F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} 
 \psi_{basis}^p \ d\Omega \\
 %
 J_F^{pv} &= \frac{\partial F^p}{\partial v} + t_{shift} \frac{\partial 
@@ -1461,9 +1510,9 @@ J_G^{pu} &= \frac{\partial G^p}{\partial u} = 0 \\
 J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown 
 \psi_{trial}^p. \frac{\partial}{\partial p} (-\kappa (\bigtriangledown p_f - 
 \vec{f}) \ d\Omega = \int_{\Omega} \bigtriangledown \psi_{trial}^ p (- \kappa 
-\bigtriangledown . \psi_{basis}^p) \ d\Omega = \int_{\Omega} \psi_{trial,k}^p 
-(-\kappa \delta_{kl}) \psi_{basis,l}^p \ d\Omega \\
-&= \int_{\Omega} \psi_{trial,k}^p (J_{g3}^{pp}) \psi_{basis,l}^p \ d\Omega \\
+\bigtriangledown \cdot \psi_{basis}^p) \ d\Omega = \int_{\Omega} 
+\psi_{trial,k}^p \eqnannotate{\left(-\kappa \delta_{kl}\right)}{J_{g3}^{pp}} 
+\psi_{basis,l}^p \ d\Omega \\
 %
 J_G^{pv} &= \frac{\partial G^p}{\partial v} = 0 \\
 %
