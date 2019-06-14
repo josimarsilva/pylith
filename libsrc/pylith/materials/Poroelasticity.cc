@@ -384,7 +384,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
 
     // Remaining parts of RHS residuals change with dynamics.
     if (!solution.hasSubfield("velocity")) {
-        // Displacement
+        // Displacement - use velocity kernels, as they are the same for RHS
         const PetscPointFunc g0u = (_gravityField && _useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_gravbodyforce :
                                    (_gravityField) ? pylith::fekernels::Poroelasticity::g0v_grav :
                                    (_useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_bodyforce :
@@ -400,7 +400,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
         kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
         kernels[2] = ResidualKernels("trace_strain", g0e, g1e);
 
-    } else {      // Dynamic case (u,p,v) to ease residuals and jacobians
+    } else {      // Dynamic case (u,p,v) to ease input
       // Displacement
       const PetscPointFunc g0u = pylith::fekernels::DispVel::g0u;
       const PetscPointFunc g1u = NULL;
@@ -410,7 +410,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
                                  (_gravityField) ? pylith::fekernels::Elasticity::g0v_grav :
                                  (_useBodyForce) ? pylith::fekernels::Elasticity::g0v_bodyforce :
                                  NULL;
-      const PetscPointFunc g1v = _rheology->getKernelRHSResidualPorePressure(coordsys);
+      const PetscPointFunc g1v = _rheology->getKernelRHSResidualStress(coordsys);
 
       kernels.resize(3);
       kernels[0] = ResidualKernels("displacement", g0u, g1u);
@@ -436,6 +436,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
 
     std::vector<JacobianKernels> kernels;
 
+    // Quasi - Static
     if (!solution.hasSubfield("velocity")) {
         const PetscPointJac Jg0uu = NULL;
         const PetscPointJac Jg1uu = NULL;
@@ -444,7 +445,7 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
 
         const PetscPointJac Jg0up = NULL;
         const PetscPointJac Jg1up = NULL;
-        const PetscPointJac Jg2up = pylith::fekernels::Poroelasticity::Jg2up;
+        const PetscPointJac Jg2up = pylith::fekernels::Poroelasticity::Jg2vp;
         const PetscPointJac Jg3up = NULL;
 
         const PetscPointJac Jg0ue = NULL;
@@ -486,44 +487,73 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
 
         kernels[0] = JacobianKernels("displacement", "displacement", Jg0uu, Jg1uu, Jg2uu, Jg3uu);
         kernels[1] = JacobianKernels("displacement", "pore_pressure", Jg0up, Jg1up, Jg2up, Jg3up);
+        kernels[2] = JacobianKernels("displacement", "trace_strain", Jg0ue, Jg1ue, Jg2ue, Jg3ue);
         kernels[2] = JacobianKernels("pore_pressure", "displacement", Jg0pu, Jg1pu, Jg2pu, Jg3pu);
         kernels[3] = JacobianKernels("pore_pressure", "pore_pressure", Jg0pp, Jg1pp, Jg2pp, Jg3pp);
-
         kernels[4] = JacobianKernels("pore_pressure", "trace_strain", Jg0pe, Jg1pe, Jg2pe, Jg3pe);
-        kernels[5] = JacobianKernels("displacement", "trace_strain", Jg0ue, Jg1ue, Jg2ue, Jg3ue);
         kernels[6] = JacobianKernels("trace_strain", "trace_strain", Jg0ee, Jg1ee, Jg2ee, Jg3ee);
-
         kernels[7] = JacobianKernels("trace_strain", "pore_pressure", Jg0ep, Jg1ep, Jg2ep, Jg3ep);
         kernels[8] = JacobianKernels("trace_strain", "displacement", Jg0eu, Jg1eu, Jg2eu, Jg3eu);
 
+    // Dynamic
     } else {
 
         // Jacobian kernels
-        const PetscPointJac Jg0uu = NULL;
+        const PetscPointJac Jg0uu = pylith::fekernels::DispVel::Jf0uu_stshift;
         const PetscPointJac Jg1uu = NULL;
         const PetscPointJac Jg2uu = NULL;
         const PetscPointJac Jg3uu = NULL;
+
+        const PetscPointJac Jg0up = NULL;
+        const PetscPointJac Jg1up = NULL;
+        const PetscPointJac Jg2up = NULL;
+        const PetscPointJac Jg3up = NULL;
 
         const PetscPointJac Jg0uv = pylith::fekernels::DispVel::Jg0uv;
         const PetscPointJac Jg1uv = NULL;
         const PetscPointJac Jg2uv = NULL;
         const PetscPointJac Jg3uv = NULL;
 
+        const PetscPointJac Jg0pu = NULL;
+        const PetscPointJac Jg1pu = NULL;
+        const PetscPointJac Jg2pu = NULL;
+        const PetscPointJac Jg3pu = NULL;
+
+        const PetscPointJac Jg0pp = NULL;
+        const PetscPointJac Jg1pp = NULL;
+        const PetscPointJac Jg2pp = NULL;
+        const PetscPointJac Jg3pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp;
+
+        const PetscPointJac Jg0pv = NULL;
+        const PetscPointJac Jg1pv = NULL;
+        const PetscPointJac Jg2pv = NULL;
+        const PetscPointJac Jg3pv = NULL;
+
         const PetscPointJac Jg0vu = NULL;
         const PetscPointJac Jg1vu = NULL;
         const PetscPointJac Jg2vu = NULL;
         const PetscPointJac Jg3vu = pylith::fekernels::Poroelasticity::Jg3vu;
+
+        const PetscPointJac Jg0vp = NULL;
+        const PetscPointJac Jg1vp = NULL;
+        const PetscPointJac Jg2vp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg2vp;
+        const PetscPointJac Jg3vp = NULL;
 
         const PetscPointJac Jg0vv = NULL;
         const PetscPointJac Jg1vv = NULL;
         const PetscPointJac Jg2vv = NULL;
         const PetscPointJac Jg3vv = NULL;
 
-        kernels.resize(4);
-        kernels[1] = JacobianKernels("displacement", "displacement", Jg0uu, Jg1uu, Jg2uu, Jg3uu);
-        kernels[2] = JacobianKernels("displacement", "velocity",  Jg0uv, Jg1uv, Jg2uv, Jg3uv);
-        kernels[3] = JacobianKernels("velocity",  "displacement", Jg0vu, Jg1vu, Jg2vu, Jg3vu);
-        kernels[4] = JacobianKernels("velocity",  "velocity",  Jg0vv, Jg1vv, Jg2vv, Jg3vv);
+        kernels.resize(9);
+        kernels[0] = JacobianKernels("displacement",  "displacement",  Jg0uu, Jg1uu, Jg2uu, Jg3uu);
+        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jg0up, Jg1up, Jg2up, Jg3up);
+        kernels[2] = JacobianKernels("displacement",  "velocity",      Jg0uv, Jg1uv, Jg2uv, Jg3uv);
+        kernels[2] = JacobianKernels("pore_pressure", "displacement",  Jg0pu, Jg1pu, Jg2pu, Jg3pu);
+        kernels[3] = JacobianKernels("pore_pressure", "pore_pressure", Jg0pp, Jg1pp, Jg2pp, Jg3pp);
+        kernels[4] = JacobianKernels("pore_pressure", "velocity",      Jg0pv, Jg1pv, Jg2pv, Jg3pv);
+        kernels[6] = JacobianKernels("velocity",      "displacement",  Jg0vu, Jg1vu, Jg2vu, Jg3vu);
+        kernels[7] = JacobianKernels("velocity",      "pore_pressure", Jg0vp, Jg1vp, Jg2vp, Jg3vp);
+        kernels[8] = JacobianKernels("velocity",      "velocity",      Jg0vv, Jg1vv, Jg2vv, Jg3vv);
     } // if/else
 
     assert(integrator);
@@ -550,9 +580,12 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
     if (!solution.hasSubfield("velocity")) {
 
         // F(t,s,\dot{s}) = \vec{0}.
+
+        // Displacement
         const PetscPointFunc f0u = NULL;
         const PetscPointFunc f1u = NULL;
 
+        // Volumetric Stress
         const PetscPointFunc f0e = NULL;
         const PetscPointFunc f1e = NULL;
 
@@ -642,17 +675,17 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::
 
         kernels.resize(9);
 
-        kernels[0] = JacobianKernels("displacement", "displacement", Jf0uu, Jf1uu, Jf2uu, Jf3uu);
-        kernels[1] = JacobianKernels("displacement", "pore_pressure",  Jf0up, Jf1up, Jf2up, Jf3up);
-        kernels[2] = JacobianKernels("pore_pressure",  "displacement", Jf0pu, Jf1pu, Jf2pu, Jf3pu);
-        kernels[3] = JacobianKernels("pore_pressure", "pore_pressure",  Jf0pp, Jf1pp, Jf2pp, Jf3pp);
+        kernels[0] = JacobianKernels("displacement",  "displacement",  Jf0uu, Jf1uu, Jf2uu, Jf3uu);
+        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jf0up, Jf1up, Jf2up, Jf3up);
+        kernels[2] = JacobianKernels("displacement",  "trace_strain",  Jf0ue, Jf1ue, Jf2ue, Jf3ue);
+        kernels[3] = JacobianKernels("pore_pressure", "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
+        kernels[4] = JacobianKernels("pore_pressure", "pore_pressure", Jf0pp, Jf1pp, Jf2pp, Jf3pp);
+        kernels[5] = JacobianKernels("pore_pressure", "trace_strain",  Jf0pe, Jf1pe, Jf2pe, Jf3pe);
+        kernels[6] = JacobianKernels("trace_strain",  "displacement",  Jf0eu, Jf1eu, Jf2eu, Jf3eu);
+        kernels[7] = JacobianKernels("trace_strain",  "pore_pressure", Jf0ep, Jf1ep, Jf2ep, Jf3ep);
+        kernels[8] = JacobianKernels("trace_strain",  "trace_strain",  Jf0ee, Jf1ee, Jf2ee, Jf3ee);
 
-        kernels[4] = JacobianKernels("pore_pressure", "trace_strain", Jf0pe, Jf1pe, Jf2pe, Jf3pe);
-        kernels[5] = JacobianKernels("trace_strain", "pore_pressure", Jf0ep, Jf1ep, Jf2ep, Jf3ep);
-        kernels[6] = JacobianKernels("trace_strain", "displacement", Jf0eu, Jf1eu, Jf2eu, Jf3eu);
-        kernels[7] = JacobianKernels("trace_strain", "trace_strain", Jf0ee, Jf1ee, Jf2ee, Jf3ee);
-        kernels[8] = JacobianKernels("displacement", "trace_strain", Jf0ue, Jf1ue, Jf2ue, Jf3ue);
-
+    // Dynamic
     } else {
         // Jacobian kernels
         const PetscPointJac Jf0uu = pylith::fekernels::DispVel::Jf0uu_utshift;
@@ -660,26 +693,57 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::
         const PetscPointJac Jf2uu = NULL;
         const PetscPointJac Jf3uu = NULL;
 
+        const PetscPointJac Jf0up = NULL;
+        const PetscPointJac Jf1up = NULL;
+        const PetscPointJac Jf2up = NULL;
+        const PetscPointJac Jf3up = NULL;
+
         const PetscPointJac Jf0uv = NULL;
         const PetscPointJac Jf1uv = NULL;
         const PetscPointJac Jf2uv = NULL;
         const PetscPointJac Jf3uv = NULL;
+
+        const PetscPointJac Jf0pu = NULL;
+        const PetscPointJac Jf1pu = NULL;
+        const PetscPointJac Jf2pu = NULL;
+        const PetscPointJac Jf3pu = NULL;
+
+        const PetscPointJac Jf0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp;
+        const PetscPointJac Jf1pp = NULL;
+        const PetscPointJac Jf2pp = NULL;
+        const PetscPointJac Jf3pp = NULL;
+
+        const PetscPointJac Jf0pv = NULL;
+        const PetscPointJac Jf1pv = NULL;
+        const PetscPointJac Jf2pv = NULL;
+        const PetscPointJac Jf3pv = NULL;
 
         const PetscPointJac Jf0vu = NULL;
         const PetscPointJac Jf1vu = NULL;
         const PetscPointJac Jf2vu = NULL;
         const PetscPointJac Jf3vu = NULL;
 
+        const PetscPointJac Jf0vp = NULL;
+        const PetscPointJac Jf1vp = NULL;
+        const PetscPointJac Jf2vp = NULL;
+        const PetscPointJac Jf3vp = NULL;
+
         const PetscPointJac Jf0vv = (_useInertia) ? pylith::fekernels::DispVel::Jf0uu_utshift : NULL;
         const PetscPointJac Jf1vv = NULL;
         const PetscPointJac Jf2vv = NULL;
         const PetscPointJac Jf3vv = NULL;
 
-        kernels.resize(4);
-        kernels[0] = JacobianKernels("displacement", "displacement", Jf0uu, Jf1uu, Jf2uu, Jf3uu);
-        kernels[1] = JacobianKernels("displacement", "velocity",  Jf0uv, Jf1uv, Jf2uv, Jf3uv);
-        kernels[2] = JacobianKernels("velocity",  "displacement", Jf0vu, Jf1vu, Jf2vu, Jf3vu);
-        kernels[3] = JacobianKernels("velocity",  "velocity",  Jf0vv, Jf1vv, Jf2vv, Jf3vv);
+        kernels.resize(9);
+
+        kernels[0] = JacobianKernels("displacement",  "displacement",  Jf0uu, Jf1uu, Jf2uu, Jf3uu);
+        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jf0up, Jf1up, Jf2up, Jf3up);
+        kernels[2] = JacobianKernels("displacement",  "velocity",      Jf0uv, Jf1uv, Jf2uv, Jf3uv);
+        kernels[3] = JacobianKernels("pore_pressure", "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
+        kernels[4] = JacobianKernels("pore_pressure", "pore_pressure", Jf0pp, Jf1pp, Jf2pp, Jf3pp);
+        kernels[5] = JacobianKernels("pore_pressure", "velocity",      Jf0pv, Jf1pv, Jf2pv, Jf3pv);
+        kernels[6] = JacobianKernels("velocity",      "displacement",  Jf0vu, Jf1vu, Jf2vu, Jf3vu);
+        kernels[7] = JacobianKernels("velocity",      "pore_pressure", Jf0vp, Jf1vp, Jf2vp, Jf3vp);
+        kernels[8] = JacobianKernels("velocity",      "velocity",      Jf0vv, Jf1vv, Jf2vv, Jf3vv);
     } // if/else
 
     assert(integrator);

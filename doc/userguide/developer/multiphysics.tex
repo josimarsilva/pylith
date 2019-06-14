@@ -1296,28 +1296,32 @@ With three fields we have nine Jacobians for each side of the equation associate
 \begin{align}
 J_F^{uu} &= \frac{\partial F^u}{\partial u} + t_{shift} \frac{\partial F^u}{\partial \dot{u}} = 0 \\
 %
-J_F^{ue} &= \frac{\partial F^u}{\partial e} + t_{shift} \frac{\partial F^u}{\partial \dot{e}} = 0 \\
+J_F^{up} &= \frac{\partial F^u}{\partial p} + t_{shift} \frac{\partial 
+F^u}{\partial \dot{p}} = 0 \\
 %
-J_F^{up} &= \frac{\partial F^u}{\partial p} + t_{shift} \frac{\partial F^u}{\partial \dot{p}} = 0 \\
+J_F^{ue} &= \frac{\partial F^u}{\partial e} + t_{shift} \frac{\partial 
+F^u}{\partial \dot{e}} = 0 \\
 %
 J_F^{eu} &= \frac{\partial F^e}{\partial u} + t_{shift} \frac{\partial F^e}{\partial \dot{u}} = 0 \\
 %
-J_F^{ee} &= \frac{\partial F^e}{\partial e} + t_{shift} \frac{\partial F^e}{\partial \dot{e}} = 0 \\
+J_F^{ep} &= \frac{\partial F^e}{\partial p} + t_{shift} \frac{\partial 
+F^e}{\partial \dot{p}} = 0 \\
 %
-J_F^{ep} &= \frac{\partial F^e}{\partial p} + t_{shift} \frac{\partial F^e}{\partial \dot{p}} = 0 \\
+J_F^{ee} &= \frac{\partial F^e}{\partial e} + t_{shift} \frac{\partial 
+F^e}{\partial \dot{e}} = 0 \\
 %
 J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial F^p}{\partial \dot{u}} = 0 \\
+%
+J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial 
+F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} \psi_{basis}^p \ 
+d\Omega \\
 %
 J_F^{pe} &= \frac{\partial F^p}{\partial e} + t_{shift} \frac{\partial 
 F^p}{\partial \dot{e}} = \int_{\Omega} \psi_{trial}^p t_{shift} \alpha 
 \psi_{basis}^e \ d\Omega = \int_{\Omega} \psi_{trial}^p 
 \eqnannotate{\left(t_{shift} \alpha \right)}{J_{f0}^{pe}} \psi_{basis}^e \ 
-d\Omega \\
-%
-J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial 
-F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p 
-\eqnannotate{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} \psi_{basis}^p \ 
-d\Omega
+d\Omega 
 \end{align}
 
 \begin{align}
@@ -1328,26 +1332,14 @@ J_G^{uu} &= \frac{\partial G^u}{\partial u} = \int_{\Omega} \bigtriangledown \ve
 \eqnannotate{\left(-C_{ikjl}\right)}{J_{g3}^{uu}} \psi_{basis j,l}^u \ d\Omega 
 \\
 %
-J_G^{ue} &= \frac{\partial G^u}{\partial e} = 0 \\
-%
 J_G^{up} &= \frac{\partial G^u}{\partial p} = \int_{\Omega} \bigtriangledown 
 \vec{\psi}_{trial}^u : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = 
 \int_{\Omega} \psi_{trial i,j}^u \eqnannotate{\left(-\alpha 
 \delta_{ij}\right)}{J_{g2}^{up}} \psi_{basis}^p \ d\Omega \\
 %
-J_G^{eu} &= \frac{\partial G^e}{\partial u} = \int_{\Omega} \psi_{trial}^e  
-\bigtriangledown . \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e 
-\eqnannotate{\left(\delta_{ij}\right)}{J_{g1}^{eu}} \psi_{basis i,j}^u \ 
-d\Omega = \\
-%
-J_G^{ee} &= \frac{\partial G^e}{\partial e} = \int_{\Omega} \psi_{trial}^e 
-\eqnannotate{\left(-1\right)}{J_{g0}^{ee}} \psi_{basis}^e \ d\Omega = \\
-%
-J_G^{ep} &= \frac{\partial G^e}{\partial p} = 0 \\
+J_G^{ue} &= \frac{\partial G^u}{\partial e} = 0 \\
 %
 J_G^{pu} &= \frac{\partial G^p}{\partial u} = 0 \\
-%
-J_G^{pe} &= \frac{\partial G^p}{\partial e} = 0 \\
 %
 J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown 
 \psi_{trial}^p. \frac{\partial}{\partial p} (-\kappa (\bigtriangledown p_f - 
@@ -1355,6 +1347,18 @@ J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown
 \bigtriangledown \cdot \psi_{basis}^p) \ d\Omega = \int_{\Omega} 
 \psi_{trial,k}^p \eqnannotate{\left(- \kappa \delta_{kl}\right)}{J_{g3}^{pp}} 
 \psi_{basis,l}^p \ d\Omega \\
+%
+J_G^{pe} &= \frac{\partial G^p}{\partial e} = 0 \\
+%
+J_G^{eu} &= \frac{\partial G^e}{\partial u} = \int_{\Omega} \psi_{trial}^e  
+\bigtriangledown . \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} \psi_{trial}^e 
+\eqnannotate{\left(\delta_{ij}\right)}{J_{g1}^{eu}} \psi_{basis i,j}^u \ 
+d\Omega = \\
+%
+J_G^{ep} &= \frac{\partial G^e}{\partial p} = 0 \\
+%
+J_G^{ee} &= \frac{\partial G^e}{\partial e} = \int_{\Omega} \psi_{trial}^e 
+\eqnannotate{\left(-1\right)}{J_{g0}^{ee}} \psi_{basis}^e \ d\Omega
 \end{align} \\
 
 

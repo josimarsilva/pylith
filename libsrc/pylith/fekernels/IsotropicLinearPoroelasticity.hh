@@ -297,7 +297,7 @@ public:
         * Auxiliary fields: [density(1), shear_modulus(1), bulk_modulus(1), other poroelastic related param ...]
         */
        static
-       void Jg2up(const PylithInt dim,
+       void Jg2vp(const PylithInt dim,
                   const PylithInt numS,
                   const PylithInt numA,
                   const PylithInt sOff[],
@@ -342,6 +342,41 @@ public:
                  const PylithInt numConstants,
                  const PylithScalar constants[],
                  PylithScalar Jg3[]);
+
+// ----------------------------------------------------------------------
+/* Jg3_vu entry function for 2-D plane strain isotropic linear elasticity.
+*
+* stress_ij = C_ijkl strain_kl
+*
+* stress_11 = C1111 strain_11 + C1122 strain_22, C1111=lambda+2mu, C1122=lambda.
+*
+* stress_12 = C1212 strain_12 + C1221 strain_21. C1212 = C1221 from symmetry, so C1212 = C1221 = shearModulus.
+*
+* For reference:
+*
+* Isotropic:
+*  C_ijkl = bulkModulus * delta_ij * delta_kl + shearModulus * (delta_ik*delta_jl + delta_il*delta*jk - 2/3*delta_ij*delta_kl)
+*/
+void
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu(const PylithInt dim,
+                                                        const PylithInt numS,
+                                                        const PylithInt numA,
+                                                        const PylithInt sOff[],
+                                                        const PylithInt sOff_x[],
+                                                        const PylithScalar s[],
+                                                        const PylithScalar s_t[],
+                                                        const PylithScalar s_x[],
+                                                        const PylithInt aOff[],
+                                                        const PylithInt aOff_x[],
+                                                        const PylithScalar a[],
+                                                        const PylithScalar a_t[],
+                                                        const PylithScalar a_x[],
+                                                        const PylithReal t,
+                                                        const PylithReal utshift,
+                                                        const PylithScalar x[],
+                                                        const PylithInt numConstants,
+                                                        const PylithScalar constants[],
+                                                        PylithScalar Jg3[])
 
 }; // IsotropicLinearPoroelasticity
 
