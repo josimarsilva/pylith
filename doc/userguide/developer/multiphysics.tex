@@ -1503,7 +1503,12 @@ J_G^{uu} &= \frac{\partial G^u}{\partial u} = 0 \\
 %
 J_G^{up} &= \frac{\partial G^u}{\partial p} = 0 \\
 %
-J_G^{uv} &= \frac{\partial G^u}{\partial v} = 0 \\
+J_G^{uv} &= \frac{\partial G^u}{\partial v} = \int_\Omega \trialvec[u] \cdot 
+\basisvec[v] \, 
+d\Omega = 
+\int_\Omega \trialscalar[u]_i \, \eqnannotate{\delta_{ij}}{J_{g0}^{uv}} \, 
+\basisscalar[v]_j 
+\, d\Omega \\
 %
 J_G^{pu} &= \frac{\partial G^p}{\partial u} = 0 \\
 %
@@ -1516,9 +1521,20 @@ J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \bigtriangledown
 %
 J_G^{pv} &= \frac{\partial G^p}{\partial v} = 0 \\
 %
-J_G^{vu} &= \frac{\partial G^v}{\partial u} = 0 \\
+J_G^{vu} &= \frac{\partial G^v}{\partial u} = \int_{\Omega} \bigtriangledown 
+\vec{\psi}_{trial}^v : \frac{\partial}{\partial u} (- \sigma(\vec{u},p)) \ 
+d\Omega = \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^v : 
+\frac{\partial}{\partial u} (-(C:\varepsilon +\alpha p I)) \ d\Omega \\
+&= \int_{\Omega} \bigtriangledown \vec{\psi}_{trial}^v : -C: \frac{1}{2} 
+(\bigtriangledown + \bigtriangledown^T) \vec{\psi}_{basis}^u \ d\Omega = 
+\int_{\Omega} \psi_{trial i,k}^v 
+\eqnannotate{\left(-C_{ikjl}\right)}{J_{g3}^{vu}} \psi_{basis j,l}^u \ d\Omega 
+\\
 %
-J_G^{vp} &= \frac{\partial G^v}{\partial p} = 0 \\
+J_G^{vp} &= \frac{\partial G^v}{\partial p} = \int_{\Omega} \bigtriangledown 
+\vec{\psi}_{trial}^v : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = 
+\int_{\Omega} \psi_{trial i,j}^v \eqnannotate{\left(-\alpha 
+\delta_{ij}\right)}{J_{g2}^{vp}} \psi_{basis}^p \ d\Omega \\
 %
 J_G^{vv} &= \frac{\partial G^v}{\partial v} = 0
 \end{align} \\
