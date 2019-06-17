@@ -176,7 +176,7 @@ public:
                     const PylithScalar constants[],
                     PylithScalar f0p_couple[]);
 
-    / ------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------
     // g0p function for isotropic linear Poroelasticity plane strain with source density, gravity, and body force.
     static
     void g0p_sourceDensity_grav_body(const PylithInt dim,
@@ -218,6 +218,32 @@ public:
                           const PylithInt numConstants,
                           const PylithScalar constants[],
                           PylithScalar g0E[]);
+
+      // ----------------------------------------------------------------------
+      /* Calculate darcy flow rate for 2-D plane strain isotropic linear
+      * poroelasticity.
+      *
+      */
+      static
+      void trace_strainCal(const PylithInt dim,
+                  const PylithInt numS,
+                  const PylithInt numA,
+                  const PylithInt sOff[],
+                  const PylithInt sOff_x[],
+                  const PylithScalar s[],
+                  const PylithScalar s_t[],
+                  const PylithScalar s_x[],
+                  const PylithInt aOff[],
+                  const PylithInt aOff_x[],
+                  const PylithScalar a[],
+                  const PylithScalar a_t[],
+                  const PylithScalar a_x[],
+                  const PylithReal t,
+                  const PylithScalar x[],
+                  const PylithInt numConstants,
+                  const PylithScalar constants[],
+                  PylithScalar g1E[]);
+
 
 }; // Poroelasticity
 

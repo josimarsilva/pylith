@@ -115,7 +115,7 @@ pylith::fekernels::Poroelasticity::g0v_bodyforce(const PylithInt dim,
   assert(aOff[i_bodyForce] >= 0);
   assert(a);
 
-  const PylithScalar* sourceDensity = &a[aOff[i_bodyForce]];
+  const PylithScalar* bodyForce = &a[aOff[i_bodyForce]];
 
   for (PylithInt i = 0; i < dim; ++i) {
     g0[i] += bodyForce[i];
@@ -155,14 +155,14 @@ pylith::fekernels::Poroelasticity::g0v_gravbodyforce(const PylithInt dim,
     assert(aOff);
     assert(aOff_x);
     assert(aOff[i_density] >= 0);
-    assert(aOff[i_fluiddensity] >= 0);
+    assert(aOff[i_fluidDensity] >= 0);
     assert(aOff[i_gravityField] >= 0);
     assert(aOff[i_bodyForce] >= 0);
     assert(a);
 
     const PylithScalar density = (1 - a[aOff[i_porosity]]) * a[aOff[i_density]] + a[aOff[i_porosity]] * a[aOff[i_fluidDensity]];
     const PylithScalar* gravityField = &a[aOff[i_gravityField]];
-    const PylithScalar* sourceDensity = &a[aOff[i_bodyForce]];
+    const PylithScalar* bodyForce = &a[aOff[i_bodyForce]];
 
     // gravity field
     for (PylithInt i = 0; i < dim; ++i) {
@@ -215,7 +215,7 @@ pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
     } // for
 } // g0p_source
 
-/ ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // g0p function for isotropic linear Poroelasticity plane strain with source density, gravity, and body force.
 void
 pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt dim,
@@ -238,6 +238,8 @@ pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt d
                                                                        PylithScalar g0p[]) {
 
 
+    const PylithInt _dim = 2;
+    
     // Incoming auxiliary fields.
     const PylithInt i_sourceDensity = 4;
 
@@ -300,11 +302,62 @@ pylith::fekernels::Poroelasticity::g0e_trace_strain(const PylithInt dim,
     const PylithInt sOffTrace[2] = { sOff[i_disp], sOff[i_trace] };
     const PylithInt sOffTrace_x[2] = { sOff_x[i_disp], sOff_x[i_trace] };
 
-    pylith::fekernels::PoroelasticityPlaneStrain::trace_strainCal(_dim, _numS, 0,
+    pylith::fekernels::Poroelasticity::trace_strainCal(_dim, _numS, 0,
                                                          sOffTrace, sOffTrace_x, s, s_t, s_x,
                                                          NULL, NULL, NULL, NULL, NULL,
                                                          t, x, numConstants, constants, g0E);
 } // g0e_trace_strain
+
+// ----------------------------------------------------------------------
+/* Calculate darcy flow rate for 2-D plane strain isotropic linear
+ * poroelasticity.
+ *
+ */
+void
+pylith::fekernels::Poroelasticity::trace_strainCal(const PylithInt dim,
+                                                     const PylithInt numS,
+                                                     const PylithInt numA,
+                                                     const PylithInt sOff[],
+                                                     const PylithInt sOff_x[],
+                                                     const PylithScalar s[],
+                                                     const PylithScalar s_t[],
+                                                     const PylithScalar s_x[],
+                                                     const PylithInt aOff[],
+                                                     const PylithInt aOff_x[],
+                                                     const PylithScalar a[],
+                                                     const PylithScalar a_t[],
+                                                     const PylithScalar a_x[],
+                                                     const PylithReal t,
+                                                     const PylithScalar x[],
+                                                     const PylithInt numConstants,
+                                                     const PylithScalar constants[],
+                                                     PylithScalar g0E[]) {
+    const PylithInt _dim = 2;
+
+    //PylithInt i;
+
+    // Incoming solution field.
+    const PylithInt i_disp = 0;
+    const PylithInt i_trace = 2;
+
+    assert(_dim == dim);
+    assert(2 == numS);
+    assert(sOff_x);
+    assert(s_x);
+
+    const PylithScalar* disp = &s[sOff[i_disp]];
+    const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
+    const PylithScalar trace = s[sOff[i_trace]];
+
+    // g0E = uxx + uyy - trace
+
+    for (PylithInt i = 0; i < _dim; ++i) {
+        g0E[0] += disp_x[i*_dim+i];
+    } // for
+
+    g0E[0] += -trace;
+
+} // trace_strainCal
 
 
 

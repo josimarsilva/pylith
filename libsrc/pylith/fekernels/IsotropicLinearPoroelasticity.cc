@@ -102,7 +102,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
  *
  */
 void
-pylith::fekernels::PoroelasticityPlaneStrain::darcyFlowGrav(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowGrav(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -260,7 +260,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple(const PylithInt dim
     const PylithInt i_bulkModulus = numA - 4;
     const PylithInt i_porosity = 0;
     const PylithInt i_fluidBulkModulus = numA - 1;
-    const PylithInt i_biotCoefficient = num - 3;
+    const PylithInt i_biotCoefficient = numA - 3;
 
     assert(_dim == dim);
     assert(2 == numS);
@@ -343,12 +343,12 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
 
     PylithScalar stress[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
 
-    pylith::fekernels::PoroelasticityPlaneStrain::meanStress(_dim, _numS, numAMean,
+    pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(_dim, _numS, numAMean,
                                                          sOffCouple, sOffCouple_x, s, s_t, s_x,
                                                          aOffMean, aOffMean_x, a, a_t, a_x,
                                                          t, x, numConstants, constants, stress);
 
-    pylith::fekernels::PoroelasticityPlaneStrain::deviatoricStress(_dim, _numS, numADev,
+    pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress(_dim, _numS, numADev,
                                                                sOffCouple, sOffCouple_x, s, s_t, s_x,
                                                                aOffDev, aOffDev_x, a, a_t, a_x,
                                                                t, x, numConstants, constants, stress);
@@ -622,7 +622,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
  *  C_ijkl = bulkModulus * delta_ij * delta_kl + shearModulus * (delta_ik*delta_jl + delta_il*delta*jk - 2/3*delta_ij*delta_kl)
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu(const PylithInt dim,
                                                                const PylithInt numS,
                                                                const PylithInt numA,
                                                                const PylithInt sOff[],
