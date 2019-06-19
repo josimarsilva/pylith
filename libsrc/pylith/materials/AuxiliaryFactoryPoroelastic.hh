@@ -21,8 +21,8 @@
  * @brief C++ helper class for setting up auxiliary subfields for elastic materials.
  */
 
-#if !defined(pylith_materials_auxiliaryfactoryelastic_hh)
-#define pylith_materials_auxiliaryfactoryelastic_hh
+#if !defined(pylith_materials_auxiliaryfactoryporoelastic_hh)
+#define pylith_materials_auxiliaryfactoryporoelastic_hh
 
 #include "materialsfwd.hh" // forward declarations
 #include "pylith/materials/AuxiliaryFactoryElasticity.hh" // ISA AuxiliaryFactoryElasticity
@@ -57,9 +57,11 @@ public:
     /// Add fluid Bulk Modulus subfield to auxiliary subfields.
     void addBiotCoefficient(void);
 
-    /// Add Biot Coefficientsubfield to auxiliary subfields.
-    void addBiotCoefficient(void);
+    /// Add reference sourceDensity subfield to auxiliary fields.
+    void addSourceDensity(void);
 
+    /// Add reference stress subfield to auxiliary fields.
+    void addReferenceStress(void);
 
     // NOT IMPLEMENTED /////////////////////////////////////////////////////////////////////////////////////////////////
 private:

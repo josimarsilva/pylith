@@ -239,7 +239,7 @@ pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt d
 
 
     const PylithInt _dim = 2;
-    
+
     // Incoming auxiliary fields.
     const PylithInt i_sourceDensity = 4;
 
@@ -422,6 +422,7 @@ pylith::fekernels::Poroelasticity::Jg1eu(const PylithInt dim,
                                                 const PylithInt numConstants,
                                                 const PylithScalar constants[],
                                                 PylithScalar Jg1[]) {
+    const PylithInt _dim = 2;
     PylithInt i;
     assert(aOff);
     assert(a);
@@ -430,127 +431,3 @@ pylith::fekernels::Poroelasticity::Jg1eu(const PylithInt dim,
         Jg1[i*_dim+i] += 1.;
     } // for
 } // Jg1eu
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // ----------------------------------------------------------------------
-// // f0p function for generic poroelasticity terms (body forces).
-// void
-// pylith::fekernels::Poroelasticity::f0p_couple(const PylithInt dim,
-//                                              const PylithInt numS,
-//                                              const PylithInt numA,
-//                                              const PylithInt sOff[],
-//                                              const PylithInt sOff_x[],
-//                                              const PylithScalar s[],
-//                                              const PylithScalar s_t[],
-//                                              const PylithScalar s_x[],
-//                                              const PylithInt aOff[],
-//                                              const PylithInt aOff_x[],
-//                                              const PylithScalar a[],
-//                                              const PylithScalar a_t[],
-//                                              const PylithScalar a_x[],
-//                                              const PylithReal t,
-//                                              const PylithScalar x[],
-//                                              const PylithInt numConstants,
-//                                              const PylithScalar constants[],
-//                                              PylithScalar f0p_couple[]) {
-//
-//     const PylithInt _numS = 2;
-//     const PylithInt _numA = 4;
-//
-//     // Incoming repacked solution field
-//     const PylithInt i_poro_pres = 0;
-//     const PylithInt i_trace_strain = 1;
-//
-//     // Incoming repacked auxiliary field
-//     const PylithInt i_bulkModulus = 0;
-//     const PylithInt i_porosity = 1;
-//     const PylithInt i_fluidBulkModulus = 2;
-//     const PylithInt i_biotCoefficient = 3;
-//
-//     assert(2 == numS);
-//     assert(4 == numA);
-//     assert(sOff_x);
-//     assert(aOff);
-//     assert(s_x);
-//     assert(a);
-//
-//     const PylithScalar poro_pres_t = s_t[sOff[i_poro_pres]];
-//     const PylithScalar trace_strain_t = s_t[sOff[i_trace_strain]];
-//
-//
-//     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
-//     const PylithScalar porosity = a[aOff[i_porosity]];
-//     const PylithScalar fluidBulkModulus = a[aOff[i_fluidBulkModulus]];
-//     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
-//
-//     const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M
-//     f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
-//   } // f0p
-
-
-  /* ======================================================================
-   * Generic poroelasticity pointwise functions
-   * ======================================================================
-   */
-  // ----------------------------------------------------------------------
-  // mstorage function for compute storage at constant strain.
-  /*
-  void
-  pylith::fekernels::Poroelasticity::mstorage(const PylithInt dim,
-                                             const PylithInt numS,
-                                             const PylithInt numA,
-                                             const PylithInt sOff[],
-                                             const PylithInt sOff_x[],
-                                             const PylithScalar s[],
-                                             const PylithScalar s_t[],
-                                             const PylithScalar s_x[],
-                                             const PylithInt aOff[],
-                                             const PylithInt aOff_x[],
-                                             const PylithScalar a[],
-                                             const PylithScalar a_t[],
-                                             const PylithScalar a_x[],
-                                             const PylithReal t,
-                                             const PylithScalar x[],
-                                             const PylithInt numConstants,
-                                             const PylithScalar constants[],
-                                             PylithReal storageCoefficientStrain) {
-      const PylithInt _numS = 3;
-      const PylithInt _numA = 13; // check if optional fields are always initialized...
-      // Incoming auxiliary fields.
-      const PylithInt i_density = 0;
-      const PylithInt i_biotCoefficient = 8;
-      const PylithInt i_porosity= 4;
-      const PylithInt i_fluidBulkModulus = 7;
-      const PylithInt i_bulkModulus = 2;
-      assert(_numS == numS);
-      assert(_numA == numA);
-      assert(sOff);
-      assert(s_t);
-      assert(aOff);
-      assert(a);
-      const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
-      const PylithScalar porosity = a[aOff[i_porosity]];
-      const PylithScalar fluidBulkModulus = a[aOff[i_fluidBulkModulus]];
-      const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
-      //const PylithScalar storageCoefficientStrain= (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus ;
-  } // mstorage
-  */
-
-// End of file

@@ -50,6 +50,12 @@ namespace pylith {
         class RheologyIncompressibleElasticity;
         class IsotropicLinearIncompElasticity;
 
+
+        class AuxiliaryFactoryPoroelastic;
+	class RheologyPoroelasticity;
+	class IsotropicLinearPoroelasticity;
+	class Poroelasticity;
+
         class Query;
 
     } // materials

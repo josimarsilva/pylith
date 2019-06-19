@@ -23,7 +23,7 @@
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // HASA RheologyPoroelasticity
 #include "pylith/materials/AuxiliaryFactoryPoroelastic.hh" // USES AuxiliaryFactory
-#include "pylith/materials/DerivedFactoryElasticity.hh" // USES DerivedFactoryPoroelasticity
+#include "pylith/materials/DerivedFactoryElasticity.hh" // USES DerivedFactoryElasticity
 #include "pylith/feassemble/IntegratorDomain.hh" // USES IntegratorDomain
 #include "pylith/topology/Mesh.hh" // USES Mesh
 #include "pylith/topology/Field.hh" // USES Field::SubfieldInfo
@@ -53,7 +53,7 @@ pylith::materials::Poroelasticity::Poroelasticity(void) :
     _useSourceDensity(false),
     _useReferenceState(false),
     _rheology(NULL),
-    _derivedFactory(new pylith::materials::DerivedFactoryPoroelasticity) {
+    _derivedFactory(new pylith::materials::DerivedFactoryElasticity) {
     pylith::utils::PyreComponent::setName("poroelasticity");
 } // constructor
 

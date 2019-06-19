@@ -55,7 +55,7 @@ public:
      * @return Auxiliary factory for physics object.
      */
     virtual
-    pylith::materials::AuxiliaryFactoryPoroelasticity* getAuxiliaryFactory(void) = 0;
+    pylith::materials::AuxiliaryFactoryPoroelastic* getAuxiliaryFactory(void) = 0;
 
     /// Add rheology subfields to auxiliary field.
     virtual

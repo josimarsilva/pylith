@@ -66,8 +66,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addIsotropicPermeability(void)
     description.scale = permeabilityScale;
     description.validator = NULL;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // addIsotropicPermeability
@@ -95,8 +95,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addPorosity(void)
     description.scale = noScale;
     description.validator = NULL;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // addPorosity
@@ -122,8 +122,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addFluidDensity(void)
     description.scale = densityScale;
     description.validator = pylith::topology::FieldQuery::validatorPositive;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // addFluidDensity
@@ -151,8 +151,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addFluidViscosity(void)
     description.scale = viscosityScale;
     description.validator = pylith::topology::FieldQuery::validatorPositive;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 
@@ -179,8 +179,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addFluidBulkModulus(void)
     description.scale = pressureScale;
     description.validator = NULL;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // addFluidBulkModulus
@@ -208,8 +208,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addBiotCoefficient(void)
     description.scale = noScale;
     description.validator = NULL;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 } // addBiotCoefficient
@@ -237,11 +237,42 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addSourceDensity(void)
     description.scale = sourceDensityScale;
     description.validator = pylith::topology::FieldQuery::validatorPositive;
 
-    _field->subfieldAdd(description, subfieldDiscretization(fieldName));
-    _subfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
 
     PYLITH_METHOD_END;
 
 } // addSourceDensity
+
+// ----------------------------------------------------------------------
+// Add reference stress subfield to auxiliary fields.
+void
+pylith::materials::AuxiliaryFactoryPoroelastic::addReferenceStress(void)
+{ // referenceStress
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("referenceStress(void)");
+
+    const char* fieldName = "reference_stress";
+    const char* componentNames[6] = { "reference_stress_xx", "reference_stress_yy", "reference_stress_zz", "reference_stress_xy", "reference_stress_yz", "reference_stress_xz" };
+    const int stressSize = (3 == _spaceDim) ? 6 : (2 == _spaceDim) ? 4 : 1;
+    const PylithReal pressureScale = _normalizer->pressureScale();
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::OTHER;
+    description.numComponents = stressSize;
+    description.componentNames.resize(stressSize);
+    for (int i = 0; i < stressSize; ++i) {
+        description.componentNames[i] = componentNames[i];
+    } // for
+    description.scale = pressureScale;
+    description.validator = NULL;
+
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+
+    PYLITH_METHOD_END;
+} // addReferenceStress
 
 // End of file

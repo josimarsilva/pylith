@@ -95,6 +95,218 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
 } // meanStress
 
 // ----------------------------------------------------------------------
+/* Calculate mean stress for 2-D plane strain isotropic linear
+ * poroelasticity WITH reference stress and reference strain.
+ *
+ * We compute the stress relative to a reference stress/strain state.
+ *
+ * meanStress = meanRefStress + bulkModulus * (strain_kk - refstrain_kk)
+ *
+ * stress += meanStress * delta_ij
+ */
+void
+pylith::fekernels::IsotropicLinearPoroelasticity::meanStress_refstate(const PylithInt dim,
+                                                              const PylithInt numS,
+                                                              const PylithInt numA,
+                                                              const PylithInt sOff[],
+                                                              const PylithInt sOff_x[],
+                                                              const PylithScalar s[],
+                                                              const PylithScalar s_t[],
+                                                              const PylithScalar s_x[],
+                                                              const PylithInt aOff[],
+                                                              const PylithInt aOff_x[],
+                                                              const PylithScalar a[],
+                                                              const PylithScalar a_t[],
+                                                              const PylithScalar a_x[],
+                                                              const PylithReal t,
+                                                              const PylithScalar x[],
+                                                              const PylithInt numConstants,
+                                                              const PylithScalar constants[],
+                                                              PylithScalar stress[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution field.
+    const PylithInt i_disp = 0;
+    const PylithInt i_poro_pres = 1;
+
+
+    // Incoming auxiliary fields.
+    const PylithInt i_bulkModulus = numA - 4;
+    const PylithInt i_biotCoefficient = numA - 3;
+    const PylithInt i_rstress = 4;
+    const PylithInt i_rstrain = 5;
+
+
+    PylithInt i;
+
+    assert(_dim == dim);
+    assert(2 == numS);
+    assert(4 == numA);
+    assert(sOff_x);
+    assert(aOff);
+    assert(s_x);
+    assert(a);
+    assert(stress);
+
+    const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
+    const PylithScalar poro_pres = s[sOff[i_poro_pres]];
+
+    const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
+    const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
+    const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, streass_zz, stress_xy
+    const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
+
+    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
+
+    const PylithReal meanrstress = (refstress[0] + refstress[1] + refstress[2]) / 3.0;
+    const PylithReal meanStress = meanrstress + bulkModulus * (strainTrace - refstrainTrace);
+
+    const PylithReal alphaPres = biotCoefficient * poro_pres;
+
+    for (i = 0; i < _dim; ++i) {
+        stress[i*_dim+i] += (meanStress + alphaPres);
+    } // for
+} // meanStress_refstate
+
+// ----------------------------------------------------------------------
+/* Calculate deviatoric stress for 2-D plane strain isotropic linear
+ * elasticity WITHOUT reference stress and strain.
+ *
+ * devStress_ij = stress_ij - meanStress*delta_ij
+ *
+ * i==j
+ * devStress_ii = 2*shearModulus*strain_ii - 2/3*shearModulus*strain_kk
+ *
+ * i!=j
+ * devStress_ij = 2*shearModulus*strain_ij
+ */
+void
+pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress(const PylithInt dim,
+                                                           const PylithInt numS,
+                                                           const PylithInt numA,
+                                                           const PylithInt sOff[],
+                                                           const PylithInt sOff_x[],
+                                                           const PylithScalar s[],
+                                                           const PylithScalar s_t[],
+                                                           const PylithScalar s_x[],
+                                                           const PylithInt aOff[],
+                                                           const PylithInt aOff_x[],
+                                                           const PylithScalar a[],
+                                                           const PylithScalar a_t[],
+                                                           const PylithScalar a_x[],
+                                                           const PylithReal t,
+                                                           const PylithScalar x[],
+                                                           const PylithInt numConstants,
+                                                           const PylithScalar constants[],
+                                                           PylithScalar stress[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution field.
+    const PylithInt i_disp = 0;
+
+    // Incoming auxiliary field.
+    const PylithInt i_shearModulus = numA - 5;
+
+    assert(_dim == dim);
+    assert(2 == numS);
+    assert(1 == numA);
+    assert(sOff_x);
+    assert(aOff);
+    assert(s_x);
+    assert(a);
+    assert(stress);
+
+    const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
+    const PylithScalar shearModulus = a[aOff[i_shearModulus]];
+
+    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    const PylithReal traceTerm = -2.0/3.0*shearModulus * strainTrace;
+    const PylithReal twomu = 2.0*shearModulus;
+
+    const PylithScalar stress_xx = twomu*disp_x[0*_dim+0] + traceTerm;
+    const PylithScalar stress_yy = twomu*disp_x[1*_dim+1] + traceTerm;
+    const PylithScalar stress_xy = shearModulus * (disp_x[0*_dim+1] + disp_x[1*_dim+0]);
+
+    stress[0*_dim+0] += stress_xx;
+    stress[1*_dim+1] += stress_yy;
+    stress[0*_dim+1] += stress_xy;
+    stress[1*_dim+0] += stress_xy;
+} // deviatoricStress
+
+// ----------------------------------------------------------------------
+/* Calculate deviatoric stress for 2-D plane strain isotropic linear
+ * elasticity WITH reference stress and reference strain.
+ *
+ * devStress_ij = stress_ij - meanStress*delta_ij
+ *
+ * i==j
+ * devStress_ii = refstress_ii - meanRefstress + 2*shearModulus*(strain_ii - refstrain_ii) - 2/3*shearModulus*(strain_kk - refstrain_kk)
+ *
+ * i!=j
+ * devStress_ij = refstress_ij + 2*shearModulus*(strain_ij - refstrain_ij)
+ */
+void
+pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(const PylithInt dim,
+                                                                    const PylithInt numS,
+                                                                    const PylithInt numA,
+                                                                    const PylithInt sOff[],
+                                                                    const PylithInt sOff_x[],
+                                                                    const PylithScalar s[],
+                                                                    const PylithScalar s_t[],
+                                                                    const PylithScalar s_x[],
+                                                                    const PylithInt aOff[],
+                                                                    const PylithInt aOff_x[],
+                                                                    const PylithScalar a[],
+                                                                    const PylithScalar a_t[],
+                                                                    const PylithScalar a_x[],
+                                                                    const PylithReal t,
+                                                                    const PylithScalar x[],
+                                                                    const PylithInt numConstants,
+                                                                    const PylithScalar constants[],
+                                                                    PylithScalar stress[]) {
+    const PylithInt _dim = 2;
+
+    // Incoming solution field.
+    const PylithInt i_disp = 0;
+
+    // Incoming auxiliary fields.
+    const PylithInt i_shearModulus = numA - 5;
+    const PylithInt i_rstress = 4;
+    const PylithInt i_rstrain = 5;
+
+    assert(_dim == dim);
+    assert(1 == numS);
+    assert(3 == numA);
+    assert(sOff_x);
+    assert(aOff);
+    assert(s_x);
+    assert(a);
+    assert(stress);
+
+    const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
+    const PylithScalar shearModulus = a[aOff[i_shearModulus]];
+    const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
+    const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
+
+    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
+    const PylithReal meanrstress = (refstress[0] + refstress[1] + refstress[2]) / 3.0;
+    const PylithReal traceTerm = -2.0/3.0*shearModulus * (strainTrace - refstrainTrace);
+    const PylithReal twomu = 2.0*shearModulus;
+
+    const PylithScalar stress_xx = refstress[0] - meanrstress + twomu*(disp_x[0*_dim+0]-refstrain[0]) + traceTerm;
+    const PylithScalar stress_yy = refstress[1] - meanrstress + twomu*(disp_x[1*_dim+1]-refstrain[1]) + traceTerm;
+    const PylithScalar stress_xy = refstress[3] + twomu * (0.5*(disp_x[0*_dim+1] + disp_x[1*_dim+0]) - refstrain[3]);
+
+    stress[0*_dim+0] += stress_xx;
+    stress[1*_dim+1] += stress_yy;
+    stress[0*_dim+1] += stress_xy;
+    stress[1*_dim+0] += stress_xy;
+
+} // deviatoricStress_refstate
+
+// ----------------------------------------------------------------------
 /* Calculate darcy flow rate for 2-D plane strain isotropic linear
  * poroelasticity WITH gravity.
  *

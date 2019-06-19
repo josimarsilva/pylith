@@ -115,6 +115,84 @@ public:
                      const PylithScalar constants[],
                      PylithScalar stress[]);
 
+     /** Calculate mean stress for 2-D plane strain isotropic linear
+      * poroelasticity WITH reference stress and reference strain.
+      *
+      * Solution fields: [disp(dim), pore_pres(dim), vel(dim, optional)]
+      * Auxiliary fields: [bulk_modulus(1), reference_stress(4), reference_strain(4)]
+      */
+     static
+     void meanStress_refstate(const PylithInt dim,
+                              const PylithInt numS,
+                              const PylithInt numA,
+                              const PylithInt sOff[],
+                              const PylithInt sOff_x[],
+                              const PylithScalar s[],
+                              const PylithScalar s_t[],
+                              const PylithScalar s_x[],
+                              const PylithInt aOff[],
+                              const PylithInt aOff_x[],
+                              const PylithScalar a[],
+                              const PylithScalar a_t[],
+                              const PylithScalar a_x[],
+                              const PylithReal t,
+                              const PylithScalar x[],
+                              const PylithInt numConstants,
+                              const PylithScalar constants[],
+                              PylithScalar stress[]);
+
+     /** Calculate deviatoric stress for 2-D plane strain isotropic linear
+      * poroelasticity WITHOUT reference stress and strain.
+      *
+      * Solution fields: [disp(dim), pore_pres(dim), vel(dim, optional)]
+      * Auxiliary fields: [shear_modulus(1)]
+      */
+     static
+     void deviatoricStress(const PylithInt dim,
+                           const PylithInt numS,
+                           const PylithInt numA,
+                           const PylithInt sOff[],
+                           const PylithInt sOff_x[],
+                           const PylithScalar s[],
+                           const PylithScalar s_t[],
+                           const PylithScalar s_x[],
+                           const PylithInt aOff[],
+                           const PylithInt aOff_x[],
+                           const PylithScalar a[],
+                           const PylithScalar a_t[],
+                           const PylithScalar a_x[],
+                           const PylithReal t,
+                           const PylithScalar x[],
+                           const PylithInt numConstants,
+                           const PylithScalar constants[],
+                           PylithScalar stress[]);
+
+       /** Calculate deviatoric stress for 2-D plane strain isotropic linear
+        * poroelasticity WITH reference stress and strain.
+        *
+        * Solution fields: [disp(dim), pore_pres(dim), vel(dim, optional)]
+        * Auxiliary fields: [shear_modulus(1), reference_stress(4), reference_strain(4)]
+        */
+       static
+       void deviatoricStress_refstate(const PylithInt dim,
+                                      const PylithInt numS,
+                                      const PylithInt numA,
+                                      const PylithInt sOff[],
+                                      const PylithInt sOff_x[],
+                                      const PylithScalar s[],
+                                      const PylithScalar s_t[],
+                                      const PylithScalar s_x[],
+                                      const PylithInt aOff[],
+                                      const PylithInt aOff_x[],
+                                      const PylithScalar a[],
+                                      const PylithScalar a_t[],
+                                      const PylithScalar a_x[],
+                                      const PylithReal t,
+                                      const PylithScalar x[],
+                                      const PylithInt numConstants,
+                                      const PylithScalar constants[],
+                                      PylithScalar stress[]);
+
      // ----------------------------------------------------------------------
      /* Calculate darcy flow rate for 2-D plane strain isotropic linear
      * poroelasticity.

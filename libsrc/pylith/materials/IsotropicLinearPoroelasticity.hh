@@ -28,7 +28,7 @@
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // ISA RheologyIncompressibleElasticity
 
-class pylith::materials::IsotropicLinearPoroelasticiticy : public pylith::materials::RheologyIncompressibleElasticity {
+class pylith::materials::IsotropicLinearPoroelasticity : public pylith::materials::RheologyPoroelasticity {
     friend class TestIsotropicLinearPoroelasticity; // unit testing
 
     // PUBLIC METHODS //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ public:
      *
      * @return Auxiliary factory for physics object.
      */
-    pylith::materials::AuxiliaryFactoryPoroelasticity* getAuxiliaryFactory(void);
+    pylith::materials::AuxiliaryFactoryPoroelastic* getAuxiliaryFactory(void);
 
     /** Add rheology subfields to auxiliary field.
      *
@@ -119,7 +119,7 @@ protected:
     // PRIVATE MEMBERS /////////////////////////////////////////////////////////////////////////////////////////////////
 private:
 
-    pylith::materials::AuxiliaryFactoryElastic* _auxiliaryFactory; ///< Factory for auxiliary subfields.
+    pylith::materials::AuxiliaryFactoryPoroelastic* _auxiliaryFactory; ///< Factory for auxiliary subfields.
     bool _useReferenceState; ///< Flag to use reference stress and strain.
 
     // NOT IMPLEMENTED /////////////////////////////////////////////////////////////////////////////////////////////////
