@@ -307,7 +307,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(cons
 } // deviatoricStress_refstate
 
 // ----------------------------------------------------------------------
-/* Calculate darcy flow rate for isotropic linear
+/* Calculate quasi-static darcy flow rate for isotropic linear
  * poroelasticity WITH or WITHOUT gravity.
  *
  * darcyFlow = -(k/mu_f)(det_poro_pressure - grav)
@@ -336,16 +336,16 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1p(const PylithInt dim,
 
     PylithInt i;
 
-    assert(1 == numS);
-    assert(4 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
     assert(a);
 
+    //
+
     // Incoming solution field.
-    const PylithInt i_poro_pres = 0;
-    const PylithInt i_poro_pres_x = 0;
+    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres_x = 1;
 
     // Incoming auxiliary field.
     const PylithInt i_fluidDensity = 2;
@@ -369,8 +369,6 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1p(const PylithInt dim,
     } // for
 
 } // g1p - darcyFlow
-
-
 
 
 // ----------------------------------------------------------------------
@@ -399,21 +397,17 @@ pylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowGrav(const PylithInt 
                                                      const PylithInt numConstants,
                                                      const PylithScalar constants[],
                                                      PylithScalar g1p[]) {
-    const PylithInt _dim = 2;
 
     PylithInt i;
 
-    assert(_dim == dim);
-    assert(1 == numS);
-    assert(4 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
     assert(a);
 
     // Incoming solution field.
-    const PylithInt i_poro_pres = 0;
-    const PylithInt i_poro_pres_x = 0;
+    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres_x = 1;
 
     // Incoming auxiliary field.
     const PylithInt i_fluidDensity = 2;
@@ -464,21 +458,16 @@ pylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowNoGrav(const PylithIn
                                                      const PylithInt numConstants,
                                                      const PylithScalar constants[],
                                                      PylithScalar g1p[]) {
-    const PylithInt _dim = 2;
-
     PylithInt i;
 
-    assert(_dim == dim);
-    assert(1 == numS);
-    assert(3 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
     assert(a);
 
     // Incoming solution field.
-    const PylithInt i_poro_pres = 0;
-    const PylithInt i_poro_pres_x = 0;
+    const PylithInt i_poro_pres = 1;
+    const PylithInt i_poro_pres_x = 1;
 
 
     // Incoming auxiliary field.
@@ -524,16 +513,12 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple(const PylithInt dim
                                              const PylithScalar constants[],
                                              PylithScalar f0p[]) {
 
-    const PylithInt _dim = 2;
-
-    const PylithInt _numS = 2;
-    const PylithInt _numA = 4;
 
     PylithInt i;
 
     // Incoming re-packed solution field.
-    const PylithInt i_poro_pres = 0;
-    const PylithInt i_trace_strain = 1;
+    const PylithInt i_poro_pres = 1;
+    const PylithInt i_trace_strain = 2;
 
     // Incoming re-packed auxiliary field.
     const PylithInt i_bulkModulus = numA - 4;
@@ -541,9 +526,6 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple(const PylithInt dim
     const PylithInt i_fluidBulkModulus = numA - 1;
     const PylithInt i_biotCoefficient = numA - 3;
 
-    assert(_dim == dim);
-    assert(2 == numS);
-    assert(4 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
@@ -559,7 +541,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple(const PylithInt dim
     const PylithScalar fluidBulkModulus = a[aOff[i_fluidBulkModulus]];
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
 
-    const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M
+    const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M (biot modulus)
 
 	  f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
 
@@ -594,6 +576,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
     // Incoming solution fields.
     const PylithInt i_disp = 0;
     const PylithInt i_poro_pres = 1; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
+                                      // it is (RLW)
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = numA - 5;

@@ -1296,8 +1296,8 @@ G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \nabla
 \eqnannotate{ \left(-q_0(\vec{x},t) \right) }{g_0^p} \ d\Gamma \\
 %
 G^{\epsilon_{v}}(t,s) &= \int_{\Omega} \psi_{trial}^{\epsilon_{v}} \cdot 
-\eqnannotate{\left(\nabla \cdot \vec{u} - 
-\epsilon_{v} \right)}{g_{0}^{\epsilon_{v}} 
+\eqnannotate{\left(\nabla \cdot \vec{u} - \epsilon_{v} 
+\right)}{g_{0}^{\epsilon_{v}}} 
 \ d\Omega
 \end{align} \\
 
@@ -1451,30 +1451,34 @@ d\Omega &=
 \end{align}
 
 Identifying $F(t,s,\dot{s})$ and $G(t,s)$, we have
-\begin{alignat}{2}
+\begin{align}
   F^u(t,s,\dot{s}) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\left( 
 \frac{\partial 
 \vec{u}}{\partial t} 
-\right)}{f_0^u} \, d\Omega,
-  & \qquad
-  G^u(t,s) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\vec{v}}{g_0^u} \, 
+\right)}{f_0^u} \, d\Omega \\
+%
+F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta 
+(\vec{u},p_f)}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p 
+(\frac{\partial}{\partial t}(\alpha \epsilon_{v} + \frac{p_f}{M})) \ d\Omega \\
+&= \int_{\Omega} \psi_{trial}^p \eqnannotate{\left(\alpha \frac{\partial 
+\epsilon_{v}}{\partial t} + \frac{1}{M} \frac{\partial p_f}{\partial t} 
+\right)}{f_0^p} \ 
+d\Omega \\
+%
+  F^v(t,s,\dot{s}) &= \int_\Omega \trialvec[v] \cdot \eqnannotate{\left( 
+\rho_{b} \frac{\partial 
+\vec{v}}{\partial t} 
+\right)}{f_0^v} \, d\Omega \\
+%
+ G^u(t,s) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\vec{v}}{g_0^u} \, 
 d\Omega, \\
-  %
-  F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p \eqnannotate{\left( 
-\frac{\partial \zeta 
-(\vec{u},p_f)}{\partial t} \right)}{f_0^p} d\Omega,
-  & \qquad
+%
   G^p(t,s) &= \int_{\Omega} \psi_{trial}^p 
 \eqnannotate{\gamma(\vec{x},t)}{g_0^p} + \nabla \psi_{trial}^p \cdot 
 \eqnannotate{\vec{q}(p_f)}{g_1^u} \ d\Omega + 
 \int_{\Gamma_q} \psi_{trial}^p \eqnannotate{(-q_0(\vec{x},t))}{g_0^p} \ 
 d\Gamma, \\
-  %
-  F^v(t,s,\dot{s}) &= \int_\Omega \trialvec[v] \cdot \eqnannotate{\left( 
-\rho_{b} \frac{\partial 
-\vec{v}}{\partial t} 
-\right)}{f_0^v} \, d\Omega,
-  & \qquad
+%
   G^v(t,s) &= \int_\Omega \trialvec[v] \cdot 
 \eqnannotate{\vec{f}(\vec{x},t)}{g_0^v} + \nabla 
 \trialvec[v] : 
@@ -1482,7 +1486,7 @@ d\Gamma, \\
 \int_{\Gamma_\tau} \trialvec[u] 
 \cdot 
 \eqnannotate{\vec{\tau}(\vec{x},t)}{g_0^v} \, d\Gamma.
-\end{alignat}
+\end{align}
 
 
 \subsubsection{Jacobians}
