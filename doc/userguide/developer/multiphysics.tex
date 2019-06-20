@@ -1260,14 +1260,23 @@ d\Gamma.
 d\Omega
 \end{equation} \\
 
+The structure of the code is such that the residual and jacobian functions 
+relating solely to the governing equations are addressed separately from those 
+involving the material rheology. For the reference of the developers, 
+{\color{red} the labels underlying those residuals and jacobians dealing with 
+the governing equations shall be colored RED}, and the {\color{green} the 
+labels underlying those residuals and jacobians dealing with 
+the material rheology shall be colored GREEN}.
+
 Identifying $F(t,s,\dot{s})$ and $G(t,s)$ we have 
+
 \begin{align}
 F^u(t,s,\dot{s}) &= \vec{0} \\
 %
 F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta 
 (\vec{u},p_f)}{\partial t}) \ d\Omega = \int_{\Omega} \psi_{trial}^p 
 (\frac{\partial}{\partial t}(\alpha \epsilon_{v} + \frac{p_f}{M})) \ d\Omega \\
-&= \int_{\Omega} \psi_{trial}^p \eqnannotate{\left(\alpha \frac{\partial 
+&= \int_{\Omega} \psi_{trial}^p \eqnannotaterheo{\left(\alpha \frac{\partial 
 \epsilon_{v}}{\partial t} + \frac{1}{M} \frac{\partial p_f}{\partial t} 
 \right)}{f_0^p} \ 
 d\Omega \\
@@ -1279,24 +1288,24 @@ G^u(t,s) &= \int_{\Omega} \vec{\psi}_{trial}^u \cdot (\vec{f}(\vec{x},t)) +
 d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u \cdot 
 (\vec{\tau}(\vec{x},t)) \ d\Gamma \\
 &= \int_{\Omega} \vec{\psi}_{trial}^u \cdot 
-\eqnannotate{\left(\vec{f}(\vec{x},t) \right)}{g_0^u} + 
+\eqnannotategovern{\left(\vec{f}(\vec{x},t) \right)}{g_0^u} + 
 \nabla \vec{\psi}_{trial}^u : 
-\eqnannotate{\left(-(C:\varepsilon+\alpha p_f I)\right)}{g_1^u} \ 
+\eqnannotaterheo{\left(-(C:\varepsilon+\alpha p_f I)\right)}{g_1^u} \ 
 d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^u \cdot 
-\eqnannotate{\left(\vec{\tau}(\vec{x},t) \right)}{g_0^u} \ 
+\eqnannotategovern{\left(\vec{\tau}(\vec{x},t) \right)}{g_0^u} \ 
 d\Gamma \\
 %
 G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \nabla 
 \psi_{trial}^p \cdot (\vec{q}(p_f)) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
 (-q_0(\vec{x},t)) \ d\Gamma \\
 &= \int_{\Omega} \psi_{trial}^p 
-\eqnannotate{\left(\gamma(\vec{x},t)\right)}{g_0^p} + \nabla \cdot 
-\psi_{trial}^p  \eqnannotate{\left(-\kappa (\nabla p_f - \vec{f_f}) 
+\eqnannotategovern{\left(\gamma(\vec{x},t)\right)}{g_0^p} + \nabla \cdot 
+\psi_{trial}^p  \eqnannotaterheo{\left(-\kappa (\nabla p_f - \vec{f_f}) 
 \right)}{g_1^p} \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
-\eqnannotate{ \left(-q_0(\vec{x},t) \right) }{g_0^p} \ d\Gamma \\
+\eqnannotategovern{ \left(-q_0(\vec{x},t) \right) }{g_0^p} \ d\Gamma \\
 %
 G^{\epsilon_{v}}(t,s) &= \int_{\Omega} \psi_{trial}^{\epsilon_{v}} \cdot 
-\eqnannotate{\left(\nabla \cdot \vec{u} - \epsilon_{v} 
+\eqnannotategovern{\left(\nabla \cdot \vec{u} - \epsilon_{v} 
 \right)}{g_{0}^{\epsilon_{v}}} 
 \ d\Omega
 \end{align} \\
@@ -1329,7 +1338,8 @@ J_F^{pu} &= \frac{\partial F^p}{\partial u} + t_{shift} \frac{\partial F^p}{\par
 %
 J_F^{pp} &= \frac{\partial F^p}{\partial p} + t_{shift} \frac{\partial 
 F^p}{\partial \dot{p}} = \int_{\Omega} \psi_{trial}^p 
-\eqnannotate{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} \psi_{basis}^p \ 
+\eqnannotaterheo{\left(t_{shift} \frac{1}{M}\right)}{J_{f0}^{pp}} 
+\psi_{basis}^p \ 
 d\Omega \\
 %
 J_F^{p\epsilon_{v}} &= \frac{\partial F^p}{\partial \epsilon_{v}} + t_{shift} 
@@ -1337,7 +1347,7 @@ J_F^{p\epsilon_{v}} &= \frac{\partial F^p}{\partial \epsilon_{v}} + t_{shift}
 F^p}{\partial \dot{\epsilon_{v}}} = \int_{\Omega} \psi_{trial}^p t_{shift} 
 \alpha 
 \psi_{basis}^{\epsilon_{v}} \ d\Omega = \int_{\Omega} \psi_{trial}^p 
-\eqnannotate{\left(t_{shift} \alpha \right)}{J_{f0}^{p\epsilon_{v}}} 
+\eqnannotaterheo{\left(t_{shift} \alpha \right)}{J_{f0}^{p\epsilon_{v}}} 
 \psi_{basis}^{\epsilon_{v}} \
 d\Omega 
 \end{align}
@@ -1350,12 +1360,13 @@ d\Omega = \int_{\Omega} \nabla \vec{\psi}_{trial}^u :
 &= \int_{\Omega} \nabla \vec{\psi}_{trial}^u : -C: \frac{1}{2} 
 (\nabla + \nabla^T) \vec{\psi}_{basis}^u \ d\Omega = 
 \int_{\Omega} \psi_{trial i,k}^u 
-\eqnannotate{\left(-C_{ikjl}\right)}{J_{g3}^{uu}} \psi_{basis j,l}^u \ d\Omega 
+\eqnannotaterheo{\left(-C_{ikjl}\right)}{J_{g3}^{uu}} \psi_{basis j,l}^u \ 
+d\Omega 
 \\
 %
 J_G^{up} &= \frac{\partial G^u}{\partial p} = \int_{\Omega} \nabla 
 \vec{\psi}_{trial}^u : \frac{\partial}{\partial p} (-\alpha p_f I) \ d\Omega = 
-\int_{\Omega} \psi_{trial i,j}^u \eqnannotate{\left(-\alpha 
+\int_{\Omega} \psi_{trial i,j}^u \eqnannotaterheo{\left(-\alpha 
 \delta_{ij}\right)}{J_{g2}^{up}} \psi_{basis}^p \ d\Omega \\
 %
 J_G^{u\epsilon_{v}} &= \frac{\partial G^u}{\partial \epsilon_{v}} = 0 \\
@@ -1366,7 +1377,8 @@ J_G^{pp} &= \frac{\partial G^p}{\partial p} = \int_{\Omega} \nabla
 \psi_{trial}^p \cdot \frac{\partial}{\partial p} (-\kappa (\nabla p_f - 
 \vec{f}) \ d\Omega = \int_{\Omega} \nabla \psi_{trial}^ p (- \kappa 
 \nabla \cdot \psi_{basis}^p) \ d\Omega = \int_{\Omega} 
-\psi_{trial,k}^p \eqnannotate{\left(- \kappa \delta_{kl}\right)}{J_{g3}^{pp}} 
+\psi_{trial,k}^p \eqnannotaterheo{\left(- \kappa 
+\delta_{kl}\right)}{J_{g3}^{pp}} 
 \psi_{basis,l}^p \ d\Omega \\
 %
 J_G^{p\epsilon_{v}} &= \frac{\partial G^p}{\partial \epsilon_{v}} = 0 \\
@@ -1376,7 +1388,8 @@ J_G^{\epsilon_{v}u} &= \frac{\partial G^{\epsilon_{v}}}{\partial u} =
 \psi_{trial}^{\epsilon_{v}}
 \nabla \cdot \vec{\psi}_{basis}^u \ d\Omega = \int_{\Omega} 
 \psi_{trial}^{\epsilon_{v}} 
-\eqnannotate{\left(\delta_{ij}\right)}{J_{g1}^{\epsilon_{v}u}} \psi_{basis 
+\eqnannotategovern{\left(\delta_{ij}\right)}{J_{g1}^{\epsilon_{v}u}} 
+\psi_{basis 
 i,j}^u \ 
 d\Omega\\
 %
@@ -1384,7 +1397,7 @@ J_G^{\epsilon_{v}p} &= \frac{\partial G^{\epsilon_{v}}}{\partial p} = 0 \\
 %
 J_G^{\epsilon_{v} \epsilon_{v}} &= \frac{\partial G^{\epsilon_{v}}}{\partial 
 \epsilon_{v}} = \int_{\Omega} \psi_{trial}^{\epsilon_{v}}
-\eqnannotate{\left(-1\right)}{J_{g0}^{\epsilon_{v}\epsilon_{v}}} 
+\eqnannotategovern{\left(-1\right)}{J_{g0}^{\epsilon_{v}\epsilon_{v}}} 
 \psi_{basis}^{\epsilon_{v}} \ d\Omega
 \end{align} \\
 
@@ -1465,27 +1478,34 @@ F^p(t,s,\dot{s}) &= \int_{\Omega} \psi_{trial}^p (\frac{\partial \zeta
 \right)}{f_0^p} \ 
 d\Omega \\
 %
-  F^v(t,s,\dot{s}) &= \int_\Omega \trialvec[v] \cdot \eqnannotate{\left( 
+F^v(t,s,\dot{s}) &= \int_\Omega \trialvec[v] \cdot \eqnannotate{\left( 
 \rho_{b} \frac{\partial 
 \vec{v}}{\partial t} 
 \right)}{f_0^v} \, d\Omega \\
 %
- G^u(t,s) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\vec{v}}{g_0^u} \, 
-d\Omega, \\
+G^u(t,s) &= \int_\Omega \trialvec[u] \cdot \eqnannotate{\vec{v}}{g_0^u} \, 
+d\Omega \\
 %
-  G^p(t,s) &= \int_{\Omega} \psi_{trial}^p 
-\eqnannotate{\gamma(\vec{x},t)}{g_0^p} + \nabla \psi_{trial}^p \cdot 
-\eqnannotate{\vec{q}(p_f)}{g_1^u} \ d\Omega + 
-\int_{\Gamma_q} \psi_{trial}^p \eqnannotate{(-q_0(\vec{x},t))}{g_0^p} \ 
-d\Gamma, \\
+G^p(t,s) &= \int_{\Omega} \psi_{trial}^p (\gamma(\vec{x},t)) + \nabla 
+\psi_{trial}^p \cdot (\vec{q}(p_f)) \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
+(-q_0(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \psi_{trial}^p 
+\eqnannotate{\left(\gamma(\vec{x},t)\right)}{g_0^p} + \nabla \cdot 
+\psi_{trial}^p  \eqnannotate{\left(-\kappa (\nabla p_f - \vec{f_f}) 
+\right)}{g_1^p} \ d\Omega + \int_{\Gamma_q} \psi_{trial}^p 
+\eqnannotate{ \left(-q_0(\vec{x},t) \right) }{g_0^p} \ d\Gamma \\
 %
-  G^v(t,s) &= \int_\Omega \trialvec[v] \cdot 
-\eqnannotate{\vec{f}(\vec{x},t)}{g_0^v} + \nabla 
-\trialvec[v] : 
-\eqnannotate{-\tensor{\sigma}(\vec{u,p_{f}})}{g_1^v} \, d\Omega + 
-\int_{\Gamma_\tau} \trialvec[u] 
-\cdot 
-\eqnannotate{\vec{\tau}(\vec{x},t)}{g_0^v} \, d\Gamma.
+G^v(t,s) &= \int_{\Omega} \vec{\psi}_{trial}^v \cdot (\vec{f}(\vec{x},t)) + 
+\nabla \vec{\psi}_{trial}^v : \left(-\sigma(\vec{v},p_f) \right) \ 
+d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^v \cdot 
+(\vec{\tau}(\vec{x},t)) \ d\Gamma \\
+&= \int_{\Omega} \vec{\psi}_{trial}^v \cdot 
+\eqnannotate{\left(\vec{f}(\vec{x},t) \right)}{g_0^v} + 
+\nabla \vec{\psi}_{trial}^v : 
+\eqnannotate{\left(-(C:\varepsilon+\alpha p_f I)\right)}{g_1^v} \ 
+d\Omega + \int_{\Gamma_{\tau}} \vec{\psi}_{trial}^v \cdot 
+\eqnannotate{\left(\vec{\tau}(\vec{x},t) \right)}{g_0^v} \ 
+d\Gamma 
 \end{align}
 
 

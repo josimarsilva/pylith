@@ -28,51 +28,51 @@
 \contentsline {section}{\numberline {1.5}Poroelasticity with Infinitesimal Strain and No Faults or Inertia}{15}{section.1.5}
 \contentsline {subsection}{\numberline {1.5.1}Notation}{16}{subsection.1.5.1}
 \contentsline {subsection}{\numberline {1.5.2}Neglecting Inertia}{17}{subsection.1.5.2}
-\contentsline {subsubsection}{\numberline {1.5.2.1}Jacobians}{18}{subsubsection.1.5.2.1}
-\contentsline {subsection}{\numberline {1.5.3}Including Inertia}{19}{subsection.1.5.3}
-\contentsline {subsubsection}{\numberline {1.5.3.1}Jacobians}{21}{subsubsection.1.5.3.1}
-\contentsline {chapter}{\numberline {2}Extending PyLith}{23}{chapter.2}
-\contentsline {section}{\numberline {2.1}Code Layout}{23}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Directory Structure}{23}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}PyLith Application Flow}{24}{subsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.2.1}Time-Dependent Problem}{25}{subsubsection.2.1.2.1}
-\contentsline {subsubsection}{\numberline {2.1.2.2}Boundary between Python and C++}{25}{subsubsection.2.1.2.2}
-\contentsline {subsubsection}{\numberline {2.1.2.3}SWIG Interface Files}{28}{subsubsection.2.1.2.3}
-\contentsline {section}{\numberline {2.2}Building for Development}{29}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Developer Workflow}{29}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Developer Binary}{31}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}PyLith Installer for Development}{31}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Keeping Your Fork in Sync with {\ttfamily geodyamics/pylith}}{33}{subsection.2.2.4}
-\contentsline {subsubsection}{\numberline {2.2.4.1}Set the upstream repository (done once per computer)}{33}{subsubsection.2.2.4.1}
-\contentsline {subsubsection}{\numberline {2.2.4.2}Merging Updates from the Upstream Repository}{33}{subsubsection.2.2.4.2}
-\contentsline {subsection}{\numberline {2.2.5}Creating a New Feature Branch}{34}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Staging, Committing, and Pushing Changes}{34}{subsection.2.2.6}
-\contentsline {subsection}{\numberline {2.2.7}Making Pull Requests}{34}{subsection.2.2.7}
-\contentsline {subsection}{\numberline {2.2.8}Rebuilding PETSc}{34}{subsection.2.2.8}
-\contentsline {subsection}{\numberline {2.2.9}Rebuilding PyLith}{35}{subsection.2.2.9}
-\contentsline {subsubsection}{\numberline {2.2.9.1}Overview}{35}{subsubsection.2.2.9.1}
-\contentsline {subsubsection}{\numberline {2.2.9.2}Makefiles}{35}{subsubsection.2.2.9.2}
-\contentsline {subsubsection}{\numberline {2.2.9.3}Build Targets}{35}{subsubsection.2.2.9.3}
-\contentsline {section}{\numberline {2.3}PETSc Finite-Element Implementation}{36}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}{\sffamily DMPlex}}{37}{subsection.2.3.1}
-\contentsline {subsubsection}{\numberline {2.3.1.1}Point Depth and Height}{37}{subsubsection.2.3.1.1}
-\contentsline {subsection}{\numberline {2.3.2}{\sffamily PetscSection} and {\sffamily PetscVec}}{37}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Integration}{39}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Projection}{40}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}Point-wise Functions}{41}{subsection.2.3.5}
-\contentsline {section}{\numberline {2.4}Adding New Governing Equations and/or Materials}{42}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Python}{43}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}C++}{43}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}C++ Unit Tests}{44}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Python Unit Tests}{45}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Debugging}{45}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Runing PyLith in a Debugger}{45}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Runing Valgrind on PyLith}{48}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Debugging Output}{48}{subsection.2.5.3}
-\contentsline {chapter}{\numberline {3}Coding Style}{53}{chapter.3}
-\contentsline {section}{\numberline {3.1}Error Checking}{54}{section.3.1}
-\contentsline {section}{\numberline {3.2}C/C++}{55}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Object Definition Files}{55}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Object Implementation Files}{58}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Python}{63}{section.3.3}
-\contentsline {section}{\numberline {3.4}Formatting C++ and Python Source Files}{65}{section.3.4}
+\contentsline {subsubsection}{\numberline {1.5.2.1}Jacobians}{19}{subsubsection.1.5.2.1}
+\contentsline {subsection}{\numberline {1.5.3}Including Inertia}{20}{subsection.1.5.3}
+\contentsline {subsubsection}{\numberline {1.5.3.1}Jacobians}{22}{subsubsection.1.5.3.1}
+\contentsline {chapter}{\numberline {2}Extending PyLith}{25}{chapter.2}
+\contentsline {section}{\numberline {2.1}Code Layout}{25}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Directory Structure}{25}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}PyLith Application Flow}{26}{subsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Time-Dependent Problem}{27}{subsubsection.2.1.2.1}
+\contentsline {subsubsection}{\numberline {2.1.2.2}Boundary between Python and C++}{27}{subsubsection.2.1.2.2}
+\contentsline {subsubsection}{\numberline {2.1.2.3}SWIG Interface Files}{30}{subsubsection.2.1.2.3}
+\contentsline {section}{\numberline {2.2}Building for Development}{31}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Developer Workflow}{31}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Developer Binary}{33}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}PyLith Installer for Development}{33}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Keeping Your Fork in Sync with {\ttfamily geodyamics/pylith}}{35}{subsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.4.1}Set the upstream repository (done once per computer)}{35}{subsubsection.2.2.4.1}
+\contentsline {subsubsection}{\numberline {2.2.4.2}Merging Updates from the Upstream Repository}{35}{subsubsection.2.2.4.2}
+\contentsline {subsection}{\numberline {2.2.5}Creating a New Feature Branch}{36}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Staging, Committing, and Pushing Changes}{36}{subsection.2.2.6}
+\contentsline {subsection}{\numberline {2.2.7}Making Pull Requests}{36}{subsection.2.2.7}
+\contentsline {subsection}{\numberline {2.2.8}Rebuilding PETSc}{36}{subsection.2.2.8}
+\contentsline {subsection}{\numberline {2.2.9}Rebuilding PyLith}{37}{subsection.2.2.9}
+\contentsline {subsubsection}{\numberline {2.2.9.1}Overview}{37}{subsubsection.2.2.9.1}
+\contentsline {subsubsection}{\numberline {2.2.9.2}Makefiles}{37}{subsubsection.2.2.9.2}
+\contentsline {subsubsection}{\numberline {2.2.9.3}Build Targets}{37}{subsubsection.2.2.9.3}
+\contentsline {section}{\numberline {2.3}PETSc Finite-Element Implementation}{38}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}{\sffamily DMPlex}}{39}{subsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1.1}Point Depth and Height}{39}{subsubsection.2.3.1.1}
+\contentsline {subsection}{\numberline {2.3.2}{\sffamily PetscSection} and {\sffamily PetscVec}}{39}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Integration}{41}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Projection}{42}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Point-wise Functions}{43}{subsection.2.3.5}
+\contentsline {section}{\numberline {2.4}Adding New Governing Equations and/or Materials}{44}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Python}{45}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}C++}{45}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}C++ Unit Tests}{46}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Python Unit Tests}{47}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Debugging}{47}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Runing PyLith in a Debugger}{47}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Runing Valgrind on PyLith}{50}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Debugging Output}{50}{subsection.2.5.3}
+\contentsline {chapter}{\numberline {3}Coding Style}{55}{chapter.3}
+\contentsline {section}{\numberline {3.1}Error Checking}{56}{section.3.1}
+\contentsline {section}{\numberline {3.2}C/C++}{57}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Object Definition Files}{57}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Object Implementation Files}{60}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Python}{65}{section.3.3}
+\contentsline {section}{\numberline {3.4}Formatting C++ and Python Source Files}{67}{section.3.4}

@@ -307,75 +307,10 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(cons
 } // deviatoricStress_refstate
 
 // ----------------------------------------------------------------------
-/* Calculate quasi-static darcy flow rate for isotropic linear
- * poroelasticity WITH or WITHOUT gravity.
- *
- * darcyFlow = -(k/mu_f)(det_poro_pressure - grav)
- *
- */
-void
-pylith::fekernels::IsotropicLinearPoroelasticity::g1p(const PylithInt dim,
-                                                     const PylithInt numS,
-                                                     const PylithInt numA,
-                                                     const PylithInt sOff[],
-                                                     const PylithInt sOff_x[],
-                                                     const PylithScalar s[],
-                                                     const PylithScalar s_t[],
-                                                     const PylithScalar s_x[],
-                                                     const PylithInt aOff[],
-                                                     const PylithInt aOff_x[],
-                                                     const PylithScalar a[],
-                                                     const PylithScalar a_t[],
-                                                     const PylithScalar a_x[],
-                                                     const PylithReal t,
-                                                     const PylithScalar x[],
-                                                     const PylithInt numConstants,
-                                                     const PylithScalar constants[],
-                                                     PylithScalar g1p[]) {
-
-
-    PylithInt i;
-
-    assert(sOff_x);
-    assert(aOff);
-    assert(s_x);
-    assert(a);
-
-    //
-
-    // Incoming solution field.
-    const PylithInt i_poro_pres = 1;
-    const PylithInt i_poro_pres_x = 1;
-
-    // Incoming auxiliary field.
-    const PylithInt i_fluidDensity = 2;
-    const PylithInt i_isotropicPerm = numA - 2;
-    const PylithInt i_viscosity = 3;
-    const PylithInt i_gravityField = 4;
-
-    const PylithScalar poro_pres = s[sOff[i_poro_pres]];
-    const PylithScalar* poro_pres_x = &s_x[sOff_x[i_poro_pres_x]];
-
-    const PylithScalar fluidDensity = a[aOff[i_fluidDensity]];
-    const PylithScalar isotropicPerm = a[aOff[i_isotropicPerm]];
-    const PylithScalar viscosity = a[aOff[i_viscosity]];
-    const PylithScalar* gravityField = &a[aOff[i_gravityField]];
-
-
-    const PylithScalar darcyConductivity = isotropicPerm / viscosity;
-
-    for (PylithInt i = 0; i < dim; ++i) {
-        g1p[i] += -darcyConductivity * (poro_pres_x[i] - fluidDensity*gravityField[i]);
-    } // for
-
-} // g1p - darcyFlow
-
-
-// ----------------------------------------------------------------------
-/* Calculate darcy flow rate for 2-D plane strain isotropic linear
+/* Calculate darcy flow rate for isotropic linear
  * poroelasticity WITH gravity.
  *
- * darcyFlow = -k(det_poro_pressure - grav)
+ * darcyFlow = -k / mu_f (det_poro_pressure - grav)
  *
  */
 void
@@ -433,10 +368,10 @@ pylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowGrav(const PylithInt 
 } // darcyFlowGrav
 
 // ----------------------------------------------------------------------
-/* Calculate darcy flow rate for 2-D plane strain isotropic linear
+/* Calculate darcy flow rate for isotropic linear
  * poroelasticity WITHOUT gravity.
  *
- * darcyFlow = -k(det_poro_pressure)
+ * darcyFlow = -k / mu_f (det_poro_pressure)
  *
  */
 void
