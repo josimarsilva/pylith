@@ -118,12 +118,9 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualStress(con
     PYLITH_COMPONENT_DEBUG("getKernelRHSResidualStress(coordsys="<<typeid(coordsys).name()<<")");
 
     const int spaceDim = coordsys->spaceDim();
-    PetscPointFunc g1u =
-        (!_useReferenceState && 3 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticity3D::g1u :
-        (!_useReferenceState && 2 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1u :
-        (_useReferenceState && 3 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticity3D::g1u_refstate :
-        (_useReferenceState && 2 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1u_refstate :
-        NULL;
+    PetscPointFunc g1u = (!_useReferenceState) ?
+                          pylith::fekernels::IsotropicLinearPoroelasticity::g1u :
+                          pylith::fekernels::IsotropicLinearPoroelasticity::g1u_refstate;
 
     PYLITH_METHOD_RETURN(g1u);
 } // getKernelRHSResidualStress
@@ -148,9 +145,11 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(c
 PetscPointFunc
 pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSDarcyVelocity(const spatialdata::geocoords::CoordSys* coordsys) const {
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("getKernelRHSResidualPressure(coordsys="<<typeid(coordsys).name()<<")");
+    PYLITH_COMPONENT_DEBUG("getKernelRHSDarcyVelocitycoordsys="<<typeid(coordsys).name()<<")");
 
-    PetscPointFunc g1p = pylith::fekernels::IsotropicLinearPoroelasticity::g1p;
+    PetscPointFunc g1p = (!_addGravityField) ?
+                          usepylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowNoGrav :
+                          usepylith::fekernels::IsotropicLinearPoroelasticity::darcyFlowGrav;
 
     PYLITH_METHOD_RETURN(g1p);
   } // getKernelRHSDarcyVelocity
@@ -165,10 +164,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianElasticCon
     PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianElasticConstants(coordsys="<<typeid(coordsys).name()<<")");
 
     const int spaceDim = coordsys->spaceDim();
-    PetscPointJac Jg3uu =
-        (3 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticity3D::Jg3uu :
-        (2 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3uu :
-        NULL;
+    PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3uu;
 
     PYLITH_METHOD_RETURN(Jg3uu);
 } // getKernelRHSJacobianElasticConstants
@@ -195,12 +191,9 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelDerivedCauchyStress(c
     PYLITH_COMPONENT_DEBUG("getKernelDerivedCauchyStress(coordsys="<<typeid(coordsys).name()<<")");
 
     const int spaceDim = coordsys->spaceDim();
-    PetscPointFunc kernel =
-        (!_useReferenceState && 3 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticity3D::cauchyStress :
-        (!_useReferenceState && 2 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::cauchyStress :
-        (_useReferenceState && 3 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticity3D::cauchyStress_refstate :
-        (_useReferenceState && 2 == spaceDim) ? pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::cauchyStress_refstate :
-        NULL;
+    PetscPointFunc kernel = (!_useReferenceState) ?
+                              pylith::fekernels::IsotropicLinearPoroelasticity::cauchyStress :
+                              pylith::fekernels::IsotropicLinearPoroelasticity::cauchyStress_refstate;
 
     PYLITH_METHOD_RETURN(kernel);
 } // getKernelDerivedCauchyStress
