@@ -141,7 +141,20 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(c
                          pylith::fekernels::IsotropicLinearPoroelasticity::g0p_refstate;
 
     PYLITH_METHOD_RETURN(g0p);
-} // getKernelRHSREsidualPressure
+} // getKernelRHSResidualPressure
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Get darcy velocity kernel for RHS residual, G(t,s)
+PetscPointFunc
+pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSDarcyVelocity(const spatialdata::geocoords::CoordSys* coordsys) const {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_COMPONENT_DEBUG("getKernelRHSResidualPressure(coordsys="<<typeid(coordsys).name()<<")");
+
+    PetscPointFunc g1p = pylith::fekernels::IsotropicLinearPoroelasticity::g1p;
+
+    PYLITH_METHOD_RETURN(g1p);
+  } // getKernelRHSDarcyVelocity
+
 
 
 // ---------------------------------------------------------------------------------------------------------------------

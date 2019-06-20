@@ -337,6 +337,8 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
 
     std::vector<ResidualKernels> kernels;
 
+    // 1) Pressure
+
     // Both formulations have pressure and the residuals do not change from
     // quasi-static to dynamic
 
@@ -384,14 +386,15 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
 
     // Remaining parts of RHS residuals change with dynamics.
     if (!solution.hasSubfield("velocity")) {
-        // Displacement - use velocity kernels, as they are the same for RHS
+
+        // 0) Displacement - use velocity kernels, as they are the same for RHS
         const PetscPointFunc g0u = (_gravityField && _useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_gravbodyforce :
                                    (_gravityField) ? pylith::fekernels::Poroelasticity::g0v_grav :
                                    (_useBodyForce) ? pylith::fekernels::Poroelasticity::g0v_bodyforce :
                                    NULL;
         const PetscPointFunc g1u = (!_useReferenceState) ? pylith::fekernels::IsotropicLinearPoroelasticity::g1v : pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate;
 
-        // Volumetric Strain
+        // 2) Volumetric Strain
         const PetscPointFunc g0e =  pylith::fekernels::Poroelasticity::g0e_trace_strain;
         const PetscPointFunc g1e =  NULL;
 
@@ -401,11 +404,12 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
         kernels[2] = ResidualKernels("trace_strain", g0e, g1e);
 
     } else {      // Dynamic case (u,p,v) to ease input
-      // Displacement
+
+      // 0) Displacement - use kernels from DispVel
       const PetscPointFunc g0u = pylith::fekernels::DispVel::g0u;
       const PetscPointFunc g1u = NULL;
 
-      // Velocity
+      // 2) Velocity - same kernels as displacement in quasi-static
       const PetscPointFunc g0v = (_gravityField && _useBodyForce) ? pylith::fekernels::Elasticity::g0v_gravbodyforce :
                                  (_gravityField) ? pylith::fekernels::Elasticity::g0v_grav :
                                  (_useBodyForce) ? pylith::fekernels::Elasticity::g0v_bodyforce :
@@ -413,9 +417,9 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
       const PetscPointFunc g1v = _rheology->getKernelRHSResidualStress(coordsys);
 
       kernels.resize(3);
-      kernels[0] = ResidualKernels("displacement", g0u, g1u);
+      kernels[0] = ResidualKernels("displacement",  g0u, g1u);
       kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
-      kernels[2] = ResidualKernels("velocity", g0v, g1v);
+      kernels[2] = ResidualKernels("velocity",      g0v, g1v);
     } // if/else
 
     assert(integrator);

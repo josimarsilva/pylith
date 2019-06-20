@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  14 JUN 2019 13:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  19 JUN 2019 17:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1088,43 +1088,76 @@ LaTeX Font Info:    Try loading font information for U+futs on input line 898.
 File: ufuts.fd 2004/03/26 Fontinst v1.926 font definitions for U/futs.
 )
 [12] [13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1252--1253
+Underfull \hbox (badness 10000) in paragraph at lines 1261--1262
 
  []
 
+Runaway argument?
+ F^u(t,s,\dot {s}) &= \vec {0} \\ F^p(t,s,\dot {s}) &= \int _{\Omega \ETC.
+! Paragraph ended before \align was complete.
+<to be read again> 
+                   \par 
+l.1303 
+       
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.1303 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.1303 
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.1303 
+       
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1291--1292
+Underfull \hbox (badness 10000) in paragraph at lines 1389--1390
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 1362--1363
+Underfull \hbox (badness 10000) in paragraph at lines 1395--1401
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1368--1373
+Underfull \hbox (badness 10000) in paragraph at lines 1430--1433
 
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 1401--1404
+[19] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 1573--1574
 
  []
 
-[20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1544--1545
+) (./developer/developer.tex [21] [22
 
- []
-
-) (./developer/developer.tex [22]
+]
 Chapter 2.
 (./developer/codelayout.tex
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 15.
- [23
-
-]
+ [23]
 Overfull \hbox (41.61462pt too wide) in paragraph at lines 81--83
 []\T1/ptm/m/n/10 Preinitialize the prob-lem by pass-ing in-for-ma-tion from Pyt
 hon to C++ and do-ing min-i-mal setup; \T1/phv/m/n/10 pylith.Problem.preinitial
@@ -1166,13 +1199,13 @@ LaTeX Warning: Reference `sec:developer:installer' on page 29 undefined on inpu
 t line 14.
 
 [29]
-<developer/figs/gitworkflow_repositories.pdf, id=1129, 472.7pt x 243.2839pt>
+<developer/figs/gitworkflow_repositories.pdf, id=1119, 472.7pt x 243.2839pt>
 File: developer/figs/gitworkflow_repositories.pdf Graphic file (type pdf)
 <use developer/figs/gitworkflow_repositories.pdf>
 Package pdftex.def Info: developer/figs/gitworkflow_repositories.pdf  used on i
 nput line 70.
 (pdftex.def)             Requested size: 330.88774pt x 170.29756pt.
-<developer/figs/gitworkflow_branch.pdf, id=1130, 723.5542pt x 270.67021pt>
+<developer/figs/gitworkflow_branch.pdf, id=1120, 723.5542pt x 270.67021pt>
 File: developer/figs/gitworkflow_branch.pdf Graphic file (type pdf)
 <use developer/figs/gitworkflow_branch.pdf>
 Package pdftex.def Info: developer/figs/gitworkflow_branch.pdf  used on input l
@@ -1197,7 +1230,7 @@ LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10.95> not available
 [34] [35]) (./developer/datastructures.tex [36]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 32.
-<developer/figs/meshtopology.pdf, id=1379, 465.0444pt x 226.7682pt>
+<developer/figs/meshtopology.pdf, id=1370, 465.0444pt x 226.7682pt>
 File: developer/figs/meshtopology.pdf Graphic file (type pdf)
 <use developer/figs/meshtopology.pdf>
 Package pdftex.def Info: developer/figs/meshtopology.pdf  used on input line 79
@@ -1207,21 +1240,21 @@ Package pdftex.def Info: developer/figs/meshtopology.pdf  used on input line 79
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 212.
  [39] [40] [41]) (./developer/newmaterial.tex [42]
-<developer/figs/solution_classdiagram.pdf, id=1614, 522.39766pt x 375.41255pt>
+<developer/figs/solution_classdiagram.pdf, id=1605, 522.39766pt x 375.41255pt>
 File: developer/figs/solution_classdiagram.pdf Graphic file (type pdf)
 <use developer/figs/solution_classdiagram.pdf>
 Package pdftex.def Info: developer/figs/solution_classdiagram.pdf  used on inpu
 t line 75.
 (pdftex.def)             Requested size: 417.91869pt x 300.33043pt.
  [43]
-<developer/figs/material_classdiagram.pdf, id=1629, 179.54378pt x 239.2669pt>
+<developer/figs/material_classdiagram.pdf, id=1620, 179.54378pt x 239.2669pt>
 File: developer/figs/material_classdiagram.pdf Graphic file (type pdf)
 <use developer/figs/material_classdiagram.pdf>
 Package pdftex.def Info: developer/figs/material_classdiagram.pdf  used on inpu
 t line 127.
 (pdftex.def)             Requested size: 143.6352pt x 191.41377pt.
  [44 <./developer/figs/solution_classdiagram.pdf>]
-<developer/figs/testmaterial_classdiagram.pdf, id=1652, 497.67831pt x 341.22382
+<developer/figs/testmaterial_classdiagram.pdf, id=1643, 497.67831pt x 341.22382
 pt>
 File: developer/figs/testmaterial_classdiagram.pdf Graphic file (type pdf)
 <use developer/figs/testmaterial_classdiagram.pdf>
@@ -1302,9 +1335,22 @@ Overfull \hbox (12.51527pt too wide) in paragraph at lines 646--647
  []
 
 [62] [63] [64] [65])) [66]
+
+! LaTeX Error: \begin{align} on input line 1264 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.75 \end{document}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
- (./developer.aux)
+(./developer.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
 Package rerunfilecheck Info: File `developer.out' has not changed.
@@ -1314,39 +1360,44 @@ Package rerunfilecheck Info: File `developer.out' has not changed.
 LaTeX Warning: There were undefined references.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 1264 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 26170 strings out of 492982
- 448339 string characters out of 6134896
- 561436 words of memory out of 5000000
+ 26161 strings out of 492982
+ 448195 string characters out of 6134896
+ 561699 words of memory out of 5000000
  27296 multiletter control sequences out of 15000+600000
  141519 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,24n,91p,961b,1908s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/fourier/fourier-mex.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/fourier/fourier-ml.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/fourier/fourier-mlitb.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/four
-ier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/pu
-tb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putbi8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
-ier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on developer.pdf (72 pages, 514093 bytes).
+ 62i,24n,91p,961b,1971s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/fourier/fourier-mex.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/fourier/fourier-ml.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/fourier/fourier-mlitb.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/fourier/fourier-orns.pfb></usr/share/texlive/texmf-dist/fonts/type1/a
+dobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/
+putbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
+lvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfdi
+ng/uzdr.pfb>
+Output written on developer.pdf (72 pages, 510686 bytes).
 PDF statistics:
- 3217 PDF objects out of 3580 (max. 8388607)
- 3013 compressed objects within 31 object streams
- 1945 named destinations out of 2073 (max. 500000)
+ 3203 PDF objects out of 3580 (max. 8388607)
+ 3000 compressed objects within 30 object streams
+ 1936 named destinations out of 2073 (max. 500000)
  1033 words of extra memory for PDF output out of 10000 (max. 10000000)
 
