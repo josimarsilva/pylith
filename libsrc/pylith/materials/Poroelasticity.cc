@@ -652,12 +652,12 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::
         const PetscPointJac Jf2pu = NULL;
         const PetscPointJac Jf3pu = NULL;
 
-        const PetscPointJac Jf0pp = _rheology->getKernelRHSJacobianSpecificStorage(coordsys);
+        const PetscPointJac Jf0pp = _rheology->getKernelLHSJacobianSpecificStorage(coordsys);
         const PetscPointJac Jf1pp = NULL;
         const PetscPointJac Jf2pp = NULL;
         const PetscPointJac Jf3pp = NULL;
 
-        const PetscPointJac Jf0pe = _rheology->getKernelRHSJacobianTshiftBiotCoefficient(coordsys);
+        const PetscPointJac Jf0pe = _rheology->getKernelLHSJacobianTshiftBiotCoefficient(coordsys);
         const PetscPointJac Jf1pe = NULL;
         const PetscPointJac Jf2pe = NULL;
         const PetscPointJac Jf3pe = NULL;

@@ -109,18 +109,18 @@ pylith::materials::IsotropicLinearPoroelasticity::addAuxiliarySubfields(void) {
     PYLITH_METHOD_END;
 } // addAuxiliarySubfields
 
-
+// ================================ RHS ========================================
 // ---------------------------------------------------------------------------------------------------------------------
 // Get stress kernel for RHS residual, G(t,s).
 PetscPointFunc
-pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualStress(const spatialdata::geocoords::CoordSys* coordsys) const {
+pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualEffectiveStress(const spatialdata::geocoords::CoordSys* coordsys) const {
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSResidualStress(coordsys="<<typeid(coordsys).name()<<")");
 
     const int spaceDim = coordsys->spaceDim();
     PetscPointFunc g1u = (!_useReferenceState) ?
-                          pylith::fekernels::IsotropicLinearPoroelasticity::g1u :
-                          pylith::fekernels::IsotropicLinearPoroelasticity::g1u_refstate;
+                          pylith::fekernels::IsotropicLinearPoroelasticity::g1v :
+                          pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate;
 
     PYLITH_METHOD_RETURN(g1u);
 } // getKernelRHSResidualStress
@@ -164,24 +164,62 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianElasticCon
     PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianElasticConstants(coordsys="<<typeid(coordsys).name()<<")");
 
     const int spaceDim = coordsys->spaceDim();
-    PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3uu;
+    PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu;
 
     PYLITH_METHOD_RETURN(Jg3uu);
 } // getKernelRHSJacobianElasticConstants
 
-
 // ---------------------------------------------------------------------------------------------------------------------
-// Get inverse of the bulk modulus kernel for RHS Jacobian G(t,s).
+// Get biot coefficient kernel for RHS Jacobian G(t,s).
 PetscPointJac
-pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianInverseBulkModulus(const spatialdata::geocoords::CoordSys* coordsys) const {
+pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const {
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianInverseBulkModulus(coordsys="<<typeid(coordsys).name()<<")");
+    PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianBiotCoefficient(coordsys="<<typeid(coordsys).name()<<")");
 
     PetscPointJac Jg0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg0pp;
 
     PYLITH_METHOD_RETURN(Jg0pp);
-} // getKernelRHSJacobianInverseBulkModulus
+} // getKernelRHSJacobianBiotCoefficient
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Get Darcy Conductivity kernel for RHS Jacobian G(t,s).
+PetscPointJac
+pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianDarcyConductivity(coordsys="<<typeid(coordsys).name()<<")");
+
+    PetscPointJac Jg3pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp;
+
+    PYLITH_METHOD_RETURN(Jg3pp);
+} // getKernelRHSJacobianDarcyConductivity
+
+// =============================== LHS =========================================
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Get variation in fluid content kernel for LHS residual, F(t,s,\dot{s})
+PetscPointFunc
+pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys) const {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_COMPONENT_DEBUG("getKernelLHSVariationInFluidContent="<<typeid(coordsys).name()<<")");
+
+    PetscPointFunc f0p = pylith::fekernels::IsotropicLinearPoroelasticity::f0p_couple;
+
+    PYLITH_METHOD_RETURN(f0p);
+  } // getKernelLHSVariationInFluidContent
+
+  // ---------------------------------------------------------------------------------------------------------------------
+  // Get biot coefficient kernel for LHS Jacobian F(t,s, \dot{s}).
+  PetscPointJac
+  pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const {
+      PYLITH_METHOD_BEGIN;
+      PYLITH_COMPONENT_DEBUG("getKernelLHSJacobianTshiftBiotCoefficient(coordsys="<<typeid(coordsys).name()<<")");
+
+      PetscPointJac Jf0pe = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe;
+
+      PYLITH_METHOD_RETURN(Jf0pe);
+  } // getKernelLHSJacobianSpecificStorage
+
+// =========================== DERIVED FIELDS ==================================
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Get stress kernel for derived field.
