@@ -74,7 +74,7 @@ public:
      *
      * @return RHS residual kernel for stress.
      */
-    PetscPointFunc getKernelRHSResidualStress(const spatialdata::geocoords::CoordSys* coordsys) const;
+    PetscPointFunc getKernelRHSResidualEffectiveStress(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get pressure kernel for RHS residual, G(t,s).
      *
@@ -107,6 +107,30 @@ public:
      * @return Project kernel for computing stress subfield in derived field.
      */
     PetscPointFunc getKernelDerivedCauchyStress(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get stress kernel for derived field.
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return Project kernel for computing stress subfield in derived field.
+     */
+    PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get stress kernel for derived field.
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return Project kernel for computing stress subfield in derived field.
+     */
+    PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get stress kernel for derived field.
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return Project kernel for computing stress subfield in derived field.
+     */
+    //PetscPointFunc getKernelRHSDarcyVelocity(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     // PROTECTED METHODS ///////////////////////////////////////////////////////////////////////////////////////////////
 protected:

@@ -63,6 +63,15 @@ public:
     /// Add reference stress subfield to auxiliary fields.
     void addReferenceStress(void);
 
+    /// Add reference strain subfield to auxiliary fields.
+    void addReferenceStrain(void);
+
+    /// Add shear modulus subfield to auxiliary subfields.
+    void addShearModulus(void);
+
+    /// Add bulk subfield to auxiliary subfields.
+    void addBulkModulus(void);
+
     // NOT IMPLEMENTED /////////////////////////////////////////////////////////////////////////////////////////////////
 private:
 
