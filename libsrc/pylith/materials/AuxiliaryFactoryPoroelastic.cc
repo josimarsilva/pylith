@@ -275,4 +275,87 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addReferenceStress(void)
     PYLITH_METHOD_END;
 } // addReferenceStress
 
+
+// ----------------------------------------------------------------------
+// Add reference strain subfield to auxiliary fields.
+void
+pylith::materials::AuxiliaryFactoryPoroelastic::addReferenceStrain(void)
+{ // addReferenceStrain
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("refrenceStrain(void)");
+
+    const char* fieldName = "reference_strain";
+    const char* componentNames[6] = { "reference_strain_xx", "reference_strain_yy", "reference_strain_zz", "reference_strain_xy", "reference_strain_yz", "reference_strain_xz" };
+    const int strainSize = (3 == _spaceDim) ? 6 : (2 == _spaceDim) ? 4 : 1;
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = (3 == _spaceDim) ? pylith::topology::Field::TENSOR : pylith::topology::Field::OTHER;
+    description.numComponents = strainSize;
+    description.componentNames.resize(strainSize);
+    for (int i = 0; i < strainSize; ++i) {
+        description.componentNames[i] = componentNames[i];
+    } // for
+    description.scale = 1.0;
+    description.validator = NULL;
+
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+
+    PYLITH_METHOD_END;
+} // addReferenceStrain
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Add shear modulus subfield to auxiliary fields.
+void
+pylith::materials::AuxiliaryFactoryPoroelastic::addShearModulus(void) {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("addShearModulus(void)");
+
+    const char* fieldName = "shear_modulus";
+    const PylithReal pressureScale = _normalizer->pressureScale();
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = fieldName;
+    description.scale = pressureScale;
+    description.validator = pylith::topology::FieldQuery::validatorNonnegative;
+
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryShearModulus);
+
+    PYLITH_METHOD_END;
+} // addShearModulus
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Add bulk modulus subfield to auxiliary fields.
+void
+pylith::materials::AuxiliaryFactoryPoroelastic::addBulkModulus(void) {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("addBulkModulus(void)");
+
+    const char* fieldName = "bulk_modulus";
+    const PylithReal pressureScale = _normalizer->pressureScale();
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = fieldName;
+    description.scale = pressureScale;
+    description.validator = pylith::topology::FieldQuery::validatorPositive;
+
+    _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
+    _setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryBulkModulus);
+
+    PYLITH_METHOD_END;
+} // addBulkModulus
+
 // End of file
