@@ -34,13 +34,12 @@
 
 // ================================= LHS =======================================
 
+
 // ----------------------------------------------------------------------
 // f0p function for generic poroelasticity terms (body forces).
-// \left( \alpha \frac{\partial \epsilon_{v}}{\partial t} + \frac{1}{M} \frac{\partial p_{f}}{\partial t} \right)
-// \frac{\partial \epsilon)_{v}}{\partial t} = \frac{\nabla \cdot \vec{u}}{dt}
 
 void
-pylith::fekernels::IsotropicLinearPoroelasticity::f0p(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::f0p_QS(const PylithInt dim,
                                              const PylithInt numS,
                                              const PylithInt numA,
                                              const PylithInt sOff[],
@@ -94,7 +93,77 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p(const PylithInt dim,
     //for (PylithInt i = 0; i < dim; ++i) {
     //  f0p[i] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t[i];
     //} // for
-} // f0p
+} // f0p_QS
+
+// ----------------------------------------------------------------------
+// f0p function for generic poroelasticity terms (body forces).
+// \left( \alpha \frac{\partial \epsilon_{v}}{\partial t} + \frac{1}{M} \frac{\partial p_{f}}{\partial t} \right)
+// \frac{\partial \epsilon)_{v}}{\partial t} = \frac{\nabla \cdot \vec{u}}{dt}
+
+void
+pylith::fekernels::IsotropicLinearPoroelasticity::f0p_DYN(const PylithInt dim,
+                                             const PylithInt numS,
+                                             const PylithInt numA,
+                                             const PylithInt sOff[],
+                                             const PylithInt sOff_x[],
+                                             const PylithScalar s[],
+                                             const PylithScalar s_t[],
+                                             const PylithScalar s_x[],
+                                             const PylithInt aOff[],
+                                             const PylithInt aOff_x[],
+                                             const PylithScalar a[],
+                                             const PylithScalar a_t[],
+                                             const PylithScalar a_x[],
+                                             const PylithReal t,
+                                             const PylithScalar x[],
+                                             const PylithInt numConstants,
+                                             const PylithScalar constants[],
+                                             PylithScalar f0p[]) {
+
+
+    PylithInt i;
+
+    // Incoming re-packed solution field.
+    const PylithInt i_poro_pres = 1;
+    const PylithInt i_velocity = 2;
+
+    // Incoming re-packed auxiliary field.
+    const PylithInt i_bulkModulus = numA - 4;
+    const PylithInt i_porosity = 0;
+    const PylithInt i_fluidBulkModulus = numA - 1;
+    const PylithInt i_biotCoefficient = numA - 3;
+
+    assert(sOff_x);
+    assert(aOff);
+    assert(s_x);
+    assert(a);
+
+
+    const PylithScalar poro_pres_t = s_t[sOff[i_poro_pres]];
+    const PylithScalar* vel_x = &s_x[sOff[i_velocity]];
+
+    if (dim == 1) {
+        const PylithReal trace_strain_t = vel_x[0*dim+0];
+    } else if (dim == 2) {
+        const PylithReal trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1];
+    } else if (dim == 3) {
+        const PylithReal trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1] + vel_x[2*dim+2];
+    } //elseif
+
+
+    const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
+    const PylithScalar porosity = a[aOff[i_porosity]];
+    const PylithScalar fluidBulkModulus = a[aOff[i_fluidBulkModulus]];
+    const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
+
+    const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M (biot modulus)
+
+	  f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
+
+    //for (PylithInt i = 0; i < dim; ++i) {
+    //  f0p[i] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t[i];
+    //} // for
+} // f0p_DYN
 
 // -----------------------------------------------------------------------------
 // Jf0pe function for isotropic linear poroelasticity plane strain.

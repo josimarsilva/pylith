@@ -68,6 +68,8 @@ public:
      */
     void addAuxiliarySubfields(void);
 
+    // ============================= RHS ==================================== //
+
     /** Get stress kernel for RHS residual, G(t,s).
      *
      * @param[in] coordsys Coordinate system.
@@ -80,7 +82,7 @@ public:
      *
      * @param[in] coordsys Coordinate system.
      *
-     * @return RHS residual kernel for pressure.
+     * @return RHS residual kernel for Darcy velocity.
      */
     PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const;
 
@@ -92,13 +94,41 @@ public:
      */
     PetscPointJac getKernelRHSJacobianElasticConstants(const spatialdata::geocoords::CoordSys* coordsys) const;
 
-    /** Get inverse of the bulk modulus kernel for RHS Jacobian G(t,s).
+    /** Get Biot Coefficient for RHS Jacobian G(t,s).
      *
      * @param[in] coordsys Coordinate system.
      *
-     * @return RHS Jacobian kernel for inverse of bulk modulus.
+     * @return RHS Jacobian kernel for Biot Coefficient.
      */
-    PetscPointJac getKernelRHSJacobianInverseBulkModulus(const spatialdata::geocoords::CoordSys* coordsys) const;
+    PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get DarcyConductivity for RHS Jacobian G(t,s).
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return RHS Jacobian kernel for DarcyConductivity
+     */
+    PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    // ============================= LHS ==================================== //
+
+    /** Get variation in fluid content for LHS residual, F(t,s,\dot{s})
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return LHS residual kernel for variation in fluid contenty.
+     */
+    PetscPointFunc getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get biot coefficient for LHS residual, F(t,s,\dot{s})
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return LHS jacobian kernel for biot coefficient.
+     */
+    PetscPointJac getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    // ============================ DERIVED FIELDS ========================== //
 
     /** Get stress kernel for derived field.
      *
