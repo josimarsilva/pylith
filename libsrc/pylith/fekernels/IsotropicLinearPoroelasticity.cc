@@ -40,7 +40,7 @@
 // \frac{\partial \epsilon)_{v}}{\partial t} = \frac{\nabla \cdot \vec{u}}{dt}
 
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::f0p(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::f0p(const PylithInt dim,
                                              const PylithInt numS,
                                              const PylithInt numA,
                                              const PylithInt sOff[],
@@ -99,7 +99,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::f0p(const PylithInt
 // -----------------------------------------------------------------------------
 // Jf0pe function for isotropic linear poroelasticity plane strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jf0pe(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -118,12 +118,12 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jf0pe(const PylithI
                                                 const PylithInt numConstants,
                                                 const PylithScalar constants[],
                                                 PylithScalar Jf0[]) {
-    const PylithInt _dim = 2;
+    //const PylithInt _dim = 2;
 
     const PylithInt i_biotCoefficient = numA - 3;
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS);
     assert(numA >= 9);
     assert(aOff);
@@ -133,7 +133,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jf0pe(const PylithI
 
 // -----------------------------------------------------------------------------
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -152,7 +152,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithI
                                                 const PylithInt numConstants,
                                                 const PylithScalar constants[],
                                                 PylithScalar Jf0[]) {
-    const PylithInt _dim = 2;
+    //const PylithInt _dim = 2;
 
     const PylithInt i_porosity= 0;
     const PylithInt i_fluidBulkModulus = numA - 1;
@@ -166,7 +166,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithI
 
     const PylithScalar storageCoefficientStrain= (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus ;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS);
     assert(numA >= 9);
     assert(aOff);
@@ -186,7 +186,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jf0pp(const PylithI
  *
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::g1p_grav(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1p_grav(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -247,7 +247,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::g1p_grav(const Pyli
  *
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_NoGrav(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1p_NoGrav(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -301,7 +301,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1p_NoGrav(const Py
 // ----------------------------------------------------------------------
 // g1 function for isotropic linear Poroelasticity plane strain WITHOUT reference stress and strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
                                                              const PylithInt numS,
                                                              const PylithInt numA,
                                                              const PylithInt sOff[],
@@ -319,7 +319,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
                                                              const PylithInt numConstants,
                                                              const PylithScalar constants[],
                                                              PylithScalar g1[]) {
-    const PylithInt _dim = 2;
+    //const PylithInt _dim = 2;
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
@@ -331,7 +331,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
     const PylithInt i_bulkModulus = numA - 4;
     const PylithInt i_biotCoefficient = numA - 3;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS || 4 == numS);
     assert(numA >= 9);
     assert(sOff);
@@ -351,17 +351,23 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
     const PylithInt aOffDev[1] = { aOff[i_shearModulus] };
     const PylithInt aOffDev_x[1] = { aOff_x[i_shearModulus] };
 
-    PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+    if (dim == 1) {
+      PylithScalar stressTensor[1] = {0.0}; // Full stress tensor
+    } else if (dim == 2) {
+      PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+    } else if (dim == 3) {
+      PylithScalar stressTensor[9] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+    } // else if
 
-    meanStress(_dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
+    meanStress(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
                aOffMean, aOffMean_x, a, a_t, a_x, t, x, numConstants, constants,
                stressTensor);
 
-    deviatoricStress(_dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
+    deviatoricStress(dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
                      aOffDev, aOffDev_x, a, a_t, a_x,t, x, numConstants, constants,
                       stressTensor);
 
-    for (PylithInt i = 0; i < _dim*_dim; ++i) {
+    for (PylithInt i = 0; i < dim*dim; ++i) {
         g1[i] -= stressTensor[i];
     } // for
 } // g1v
@@ -369,7 +375,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v(const PylithInt
 // ----------------------------------------------------------------------
 // g1 function for isotropic linear Poroelasticity plane strain with reference stress and strain.
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate(const PylithInt dim,
                                                                       const PylithInt numS,
                                                                       const PylithInt numA,
                                                                       const PylithInt sOff[],
@@ -387,7 +393,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
                                                                       const PylithInt numConstants,
                                                                       const PylithScalar constants[],
                                                                       PylithScalar g1[]) {
-    const PylithInt _dim = 2;
+    //const PylithInt _dim = 2;
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
@@ -400,7 +406,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
     const PylithInt i_rstrain = 5;
     const PylithInt i_biotCoefficient = numA - 3 ;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS || 4 == numS);
     assert(numA >= 11);
     assert(sOff);
@@ -420,17 +426,23 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
     const PylithInt aOffDev[3] = { aOff[i_shearModulus], aOff[i_rstress], aOff[i_rstrain] };
     const PylithInt aOffDev_x[3] = { aOff_x[i_shearModulus], aOff_x[i_rstress], aOff_x[i_rstrain] };
 
-    PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0};
+    if (dim == 1) {
+      PylithScalar stressTensor[1] = {0.0}; // Full stress tensor
+    } else if (dim == 2) {
+      PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+    } else if (dim == 3) {
+      PylithScalar stressTensor[9] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+    } // else if
 
-    meanStress_refstate(_dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
+    meanStress_refstate(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
                         s_x,aOffMean, aOffMean_x, a, a_t, a_x,t, x, numConstants,
                         constants, stressTensor);
 
-    deviatoricStress_refstate(_dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
+    deviatoricStress_refstate(dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
                               s_t, s_x,aOffDev, aOffDev_x, a, a_t, a_x,t, x,
                               numConstants, constants, stressTensor);
 
-    for (PylithInt i = 0; i < _dim*_dim; ++i) {
+    for (PylithInt i = 0; i < dim*dim; ++i) {
         g1[i] -= stressTensor[i];
     } // for
 } // g1v_refstate
@@ -440,7 +452,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::g1v_refstate(const 
 // Jg2 function for isotropic linear poroelasticity plane strain.
 // vp refers to dynamic formulation (velocity / pressure)
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg2vp(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg2vp(const PylithInt dim,
                                                 const PylithInt numS,
                                                 const PylithInt numA,
                                                 const PylithInt sOff[],
@@ -459,21 +471,21 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg2vp(const PylithI
                                                 const PylithInt numConstants,
                                                 const PylithScalar constants[],
                                                 PylithScalar Jg2[]) {
-    const PylithInt _dim = 2;
+    // const PylithInt _dim = 2;
 
     const PylithInt i_biotCoefficient = numA - 3;
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
 
     PylithInt i;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS);
     assert(numA >= 9);
     assert(aOff);
     assert(a);
 
-    for (i = 0; i < _dim; ++i) {
-        Jg2[i*_dim+i] -= biotCoefficient ;
+    for (i = 0; i < dim; ++i) {
+        Jg2[i*dim+i] -= biotCoefficient ;
     } // for
 } // Jg2up
 
@@ -484,7 +496,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg2vp(const PylithI
  * isotropic permeability (scalar). dimension (1,1,2,2)
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg3pp(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
                                                                const PylithInt numS,
                                                                const PylithInt numA,
                                                                const PylithInt sOff[],
@@ -503,13 +515,13 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg3pp(const PylithI
                                                                const PylithInt numConstants,
                                                                const PylithScalar constants[],
                                                                PylithScalar Jg3[]) {
-    const PylithInt _dim = 2;
+  //  const PylithInt _dim = 2;
 
     // index of Incoming auxiliary fields.
     const PylithInt i_isotropicPermeability = numA - 2;
     const PylithInt i_fluidViscousity = 3;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(3 == numS);
     assert(numA >= 9);
     assert(aOff);
@@ -517,7 +529,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg3pp(const PylithI
     assert(Jg3);
 
     const PylithScalar isotropicPermeablity = a[aOff[i_isotropicPermeability]];
-    const PylithScalar fluidViscousity = a[aOff[i_fluidViscousity]];
+    const PylithScalar fluidViscosity = a[aOff[i_fluidViscousity]];
 
     PylithInt j_dim;
     PylithInt k_dim;
@@ -529,7 +541,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg3pp(const PylithI
         for (PylithInt n1 = 0; n1 < 1; ++n1 ){
           for (PylithInt n2 = 0; n2 < 1; ++n2  ){
             if (j_dim == k_dim){
-                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity/fluidViscousity;
+                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity/fluidViscosity;
             }
           }
         }
@@ -553,7 +565,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::Jg3pp(const PylithI
  *  C_ijkl = bulkModulus * delta_ij * delta_kl + shearModulus * (delta_ik*delta_jl + delta_il*delta*jk - 2/3*delta_ij*delta_kl)
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu(const PylithInt dim,
                                                                const PylithInt numS,
                                                                const PylithInt numA,
                                                                const PylithInt sOff[],
@@ -634,7 +646,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu(const PylithI
 // ========================== Helper Kernels ===================================
 
 // ----------------------------------------------------------------------
-/* Calculate mean stress for 2-D plane strain isotropic linear
+/* Calculate mean stress for isotropic linear
  * poroelasticity WITHOUT reference stress and strain.
  *
  * meanStress = bulkModulus * strain_kk
@@ -642,7 +654,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::Jg3vu(const PylithI
  * stress += meanStress * delta_ij
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::meanStress(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -660,7 +672,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::meanStress(const Py
                                                      const PylithInt numConstants,
                                                      const PylithScalar constants[],
                                                      PylithScalar stress[]) {
-    const PylithInt _dim = 2;
+    //const PylithInt _dim = 2;
 
     // Incoming solution field.
     const PylithInt i_disp = 0;
@@ -672,7 +684,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::meanStress(const Py
 
     PylithInt i;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(2 == numS);
     assert(2 == numA);
     assert(sOff_x);
@@ -687,17 +699,25 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::meanStress(const Py
     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
 
-    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    if (dim == 1) {
+        const PylithReal strainTrace = disp_x[0*dim+0];
+    } else if (dim == 2) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+    } else if (dim == 3) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+    } //elseif
+
+
     const PylithReal meanStress = bulkModulus * strainTrace;
     const PylithReal alphaPres = biotCoefficient * poro_pres;
 
-    for (i = 0; i < _dim; ++i) {
-        stress[i*_dim+i] += (meanStress + alphaPres);
+    for (i = 0; i < dim; ++i) {
+        stress[i*dim+i] += (meanStress + alphaPres);
     } // for
 } // meanStress
 
 // -----------------------------------------------------------------------------
-/* Calculate mean stress for 2-D plane strain isotropic linear
+/* Calculate mean stress for isotropic linear
  * poroelasticity WITH reference stress and reference strain.
  *
  * We compute the stress relative to a reference stress/strain state.
@@ -707,7 +727,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::meanStress(const Py
  * stress += meanStress * delta_ij
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::meanStress_refstate(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::meanStress_refstate(const PylithInt dim,
                                                               const PylithInt numS,
                                                               const PylithInt numA,
                                                               const PylithInt sOff[],
@@ -741,7 +761,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::meanStress_refstate
 
     PylithInt i;
 
-    assert(_dim == dim);
+    //assert(_dim == dim);
     assert(2 == numS);
     assert(4 == numA);
     assert(sOff_x);
@@ -758,7 +778,14 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::meanStress_refstate
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
     const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
 
-    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    if (dim == 1) {
+        const PylithReal strainTrace = disp_x[0*dim+0];
+    } else if (dim == 2) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+    } else if (dim == 3) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+    } //elseif
+
     const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
 
     const PylithReal meanrstress = (refstress[0] + refstress[1] + refstress[2]) / 3.0;
@@ -766,8 +793,8 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::meanStress_refstate
 
     const PylithReal alphaPres = biotCoefficient * poro_pres;
 
-    for (i = 0; i < _dim; ++i) {
-        stress[i*_dim+i] += (meanStress + alphaPres);
+    for (i = 0; i < dim; ++i) {
+        stress[i*dim+i] += (meanStress + alphaPres);
     } // for
 } // meanStress_refstate
 
@@ -784,7 +811,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::meanStress_refstate
  * devStress_ij = 2*shearModulus*strain_ij
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress(const PylithInt dim,
                                                            const PylithInt numS,
                                                            const PylithInt numA,
                                                            const PylithInt sOff[],
@@ -802,7 +829,8 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress(co
                                                            const PylithInt numConstants,
                                                            const PylithScalar constants[],
                                                            PylithScalar stress[]) {
-    const PylithInt _dim = 2;
+    PylithInt i,j;
+    // const PylithInt _dim = 2;
 
     // Incoming solution field.
     const PylithInt i_disp = 0;
@@ -810,7 +838,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress(co
     // Incoming auxiliary field.
     const PylithInt i_shearModulus = numA - 5;
 
-    assert(_dim == dim);
+    // assert(_dim == dim);
     assert(2 == numS);
     assert(1 == numA);
     assert(sOff_x);
@@ -821,19 +849,35 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress(co
 
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar shearModulus = a[aOff[i_shearModulus]];
-    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+
+    if (dim == 1) {
+        const PylithReal strainTrace = disp_x[0*dim+0];
+    } else if (dim == 2) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+    } else if (dim == 3) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+    } //elseif
 
     const PylithReal traceTerm = -2.0/3.0*shearModulus * strainTrace;
-    const PylithReal twomu = 2.0*shearModulus;
+    // const PylithReal twomu = 2.0*shearModulus;
+    //
+    // const PylithScalar stress_xx = twomu*disp_x[0*_dim+0] + traceTerm;
+    // const PylithScalar stress_yy = twomu*disp_x[1*_dim+1] + traceTerm;
+    // const PylithScalar stress_xy = shearModulus * (disp_x[0*_dim+1] + disp_x[1*_dim+0]);
 
-    const PylithScalar stress_xx = twomu*disp_x[0*_dim+0] + traceTerm;
-    const PylithScalar stress_yy = twomu*disp_x[1*_dim+1] + traceTerm;
-    const PylithScalar stress_xy = shearModulus * (disp_x[0*_dim+1] + disp_x[1*_dim+0]);
+    for (i = 0; i < dim; ++i) {
+      for (j = 0; j< dim; ++j) {
+        stress[i*dim+j] += 2.0 * shearModulus * (disp_x[i*dim+j] + disp_x[i*dim+j]) / 2.0;
+        if (i == j){
+          stress[i*dim+j] += traceTerm;
+        } // if
+      } // for j
+    } // for i
 
-    stress[0*_dim+0] += stress_xx;
-    stress[1*_dim+1] += stress_yy;
-    stress[0*_dim+1] += stress_xy;
-    stress[1*_dim+0] += stress_xy;
+    // stress[0*_dim+0] += stress_xx;
+    // stress[1*_dim+1] += stress_yy;
+    // stress[0*_dim+1] += stress_xy;
+    // stress[1*_dim+0] += stress_xy;
 } // deviatoricStress
 
 // -----------------------------------------------------------------------------
@@ -849,7 +893,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress(co
  * devStress_ij = refstress_ij + 2*shearModulus*(strain_ij - refstrain_ij)
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress_refstate(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(const PylithInt dim,
                                                                     const PylithInt numS,
                                                                     const PylithInt numA,
                                                                     const PylithInt sOff[],
@@ -867,7 +911,8 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress_re
                                                                     const PylithInt numConstants,
                                                                     const PylithScalar constants[],
                                                                     PylithScalar stress[]) {
-    const PylithInt _dim = 2;
+    PylithInt i,j;
+  //  const PylithInt _dim = 2;
 
     // Incoming solution field.
     const PylithInt i_disp = 0;
@@ -877,7 +922,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress_re
     const PylithInt i_rstress = 4;
     const PylithInt i_rstrain = 5;
 
-    assert(_dim == dim);
+  //  assert(_dim == dim);
     assert(1 == numS);
     assert(3 == numA);
     assert(sOff_x);
@@ -891,20 +936,43 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlainStrain::deviatoricStress_re
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
     const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
 
-    const PylithReal strainTrace = disp_x[0*_dim+0] + disp_x[1*_dim+1];
+    if (dim == 1) {
+        const PylithReal strainTrace = disp_x[0*dim+0];
+    } else if (dim == 2) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+    } else if (dim == 3) {
+        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+    } //elseif
+
     const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
     const PylithReal meanrstress = (refstress[0] + refstress[1] + refstress[2]) / 3.0;
     const PylithReal traceTerm = -2.0/3.0*shearModulus * (strainTrace - refstrainTrace);
-    const PylithReal twomu = 2.0*shearModulus;
+    // const PylithReal twomu = 2.0*shearModulus;
+    //
+    // const PylithScalar stress_xx = refstress[0] - meanrstress + twomu*(disp_x[0*_dim+0]-refstrain[0]) + traceTerm;
+    // const PylithScalar stress_yy = refstress[1] - meanrstress + twomu*(disp_x[1*_dim+1]-refstrain[1]) + traceTerm;
+    // const PylithScalar stress_xy = refstress[3] + twomu * (0.5*(disp_x[0*_dim+1] + disp_x[1*_dim+0]) - refstrain[3]);
+    //
+    // const PylithReal twomu = 2.0*shearModulus;
+    //
+    // const PylithScalar stress_xx = twomu*disp_x[0*_dim+0] + traceTerm;
+    // const PylithScalar stress_yy = twomu*disp_x[1*_dim+1] + traceTerm;
+    // const PylithScalar stress_xy = shearModulus * (disp_x[0*_dim+1] + disp_x[1*_dim+0]);
 
-    const PylithScalar stress_xx = refstress[0] - meanrstress + twomu*(disp_x[0*_dim+0]-refstrain[0]) + traceTerm;
-    const PylithScalar stress_yy = refstress[1] - meanrstress + twomu*(disp_x[1*_dim+1]-refstrain[1]) + traceTerm;
-    const PylithScalar stress_xy = refstress[3] + twomu * (0.5*(disp_x[0*_dim+1] + disp_x[1*_dim+0]) - refstrain[3]);
+    for (i = 0; i < dim; ++i) {
+      for (j = 0; j< dim; ++j) {
+        stress[i*dim+j] += 2.0 * shearModulus * (disp_x[i*dim+j] + disp_x[i*dim+j]) / 2.0 - refstrain[i*dim+j];
+        if (i == j){
+          stress[i*dim+j] += refstress[i*dim+j] - meanrstress +  traceTerm;
+        } // if
+      } // for j
+    } // for i
 
-    stress[0*_dim+0] += stress_xx;
-    stress[1*_dim+1] += stress_yy;
-    stress[0*_dim+1] += stress_xy;
-    stress[1*_dim+0] += stress_xy;
+
+    // stress[0*_dim+0] += stress_xx;
+    // stress[1*_dim+1] += stress_yy;
+    // stress[0*_dim+1] += stress_xy;
+    // stress[1*_dim+0] += stress_xy;
 
 } // deviatoricStress_refstate
 
