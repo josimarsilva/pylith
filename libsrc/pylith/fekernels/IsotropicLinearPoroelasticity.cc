@@ -142,12 +142,14 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_DYN(const PylithInt dim,
     const PylithScalar poro_pres_t = s_t[sOff[i_poro_pres]];
     const PylithScalar* vel_x = &s_x[sOff[i_velocity]];
 
+    PylithReal trace_strain_t = 0.0;
+
     if (dim == 1) {
-        const PylithReal trace_strain_t = vel_x[0*dim+0];
+        trace_strain_t = vel_x[0*dim+0];
     } else if (dim == 2) {
-        const PylithReal trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1];
+        trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1];
     } else if (dim == 3) {
-        const PylithReal trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1] + vel_x[2*dim+2];
+        trace_strain_t = vel_x[0*dim+0] + vel_x[1*dim+1] + vel_x[2*dim+2];
     } //elseif
 
 
@@ -422,23 +424,43 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
 
     if (dim == 1) {
       PylithScalar stressTensor[1] = {0.0}; // Full stress tensor
+        meanStress(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                   aOffMean, aOffMean_x, a, a_t, a_x, t, x, numConstants, constants,
+                   stressTensor);
+
+        deviatoricStress(dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                         aOffDev, aOffDev_x, a, a_t, a_x,t, x, numConstants, constants,
+                          stressTensor);
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for
+
     } else if (dim == 2) {
       PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+        meanStress(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                   aOffMean, aOffMean_x, a, a_t, a_x, t, x, numConstants, constants,
+                   stressTensor);
+
+        deviatoricStress(dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                         aOffDev, aOffDev_x, a, a_t, a_x,t, x, numConstants, constants,
+                          stressTensor);
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for
+
     } else if (dim == 3) {
       PylithScalar stressTensor[9] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+        meanStress(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                   aOffMean, aOffMean_x, a, a_t, a_x, t, x, numConstants, constants,
+                   stressTensor);
+
+        deviatoricStress(dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
+                         aOffDev, aOffDev_x, a, a_t, a_x,t, x, numConstants, constants,
+                          stressTensor);
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for
     } // else if
-
-    meanStress(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t, s_x,
-               aOffMean, aOffMean_x, a, a_t, a_x, t, x, numConstants, constants,
-               stressTensor);
-
-    deviatoricStress(dim, _numS, numADev,sOffCouple, sOffCouple_x, s, s_t, s_x,
-                     aOffDev, aOffDev_x, a, a_t, a_x,t, x, numConstants, constants,
-                      stressTensor);
-
-    for (PylithInt i = 0; i < dim*dim; ++i) {
-        g1[i] -= stressTensor[i];
-    } // for
 } // g1v
 
 // ----------------------------------------------------------------------
@@ -497,23 +519,49 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate(const PylithInt d
 
     if (dim == 1) {
       PylithScalar stressTensor[1] = {0.0}; // Full stress tensor
+        meanStress_refstate(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
+                            s_x,aOffMean, aOffMean_x, a, a_t, a_x,t, x, numConstants,
+                            constants, stressTensor);
+
+        deviatoricStress_refstate(dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
+                                  s_t, s_x,aOffDev, aOffDev_x, a, a_t, a_x,t, x,
+                                  numConstants, constants, stressTensor);
+
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for    
+
     } else if (dim == 2) {
       PylithScalar stressTensor[4] = {0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+        meanStress_refstate(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
+                            s_x,aOffMean, aOffMean_x, a, a_t, a_x,t, x, numConstants,
+                            constants, stressTensor);
+
+        deviatoricStress_refstate(dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
+                                  s_t, s_x,aOffDev, aOffDev_x, a, a_t, a_x,t, x,
+                                  numConstants, constants, stressTensor);
+
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for    
+    
     } else if (dim == 3) {
       PylithScalar stressTensor[9] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // Full stress tensor
+        meanStress_refstate(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
+                            s_x,aOffMean, aOffMean_x, a, a_t, a_x,t, x, numConstants,
+                            constants, stressTensor);
+
+        deviatoricStress_refstate(dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
+                                  s_t, s_x,aOffDev, aOffDev_x, a, a_t, a_x,t, x,
+                                  numConstants, constants, stressTensor);
+
+        for (PylithInt i = 0; i < dim*dim; ++i) {
+            g1[i] -= stressTensor[i];
+        } // for
+
     } // else if
 
-    meanStress_refstate(dim, _numS, numAMean,sOffCouple, sOffCouple_x, s, s_t,
-                        s_x,aOffMean, aOffMean_x, a, a_t, a_x,t, x, numConstants,
-                        constants, stressTensor);
 
-    deviatoricStress_refstate(dim, _numS, numADev,sOffCouple, sOffCouple_x, s,
-                              s_t, s_x,aOffDev, aOffDev_x, a, a_t, a_x,t, x,
-                              numConstants, constants, stressTensor);
-
-    for (PylithInt i = 0; i < dim*dim; ++i) {
-        g1[i] -= stressTensor[i];
-    } // for
 } // g1v_refstate
 
 
@@ -605,12 +653,12 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
 
 
     //Accessing index of a 4-D array: offset = n_4 + N_4*n_3 + N_4*N_3*n_2 + N_4*N_3*n_2*n_1
-    for (j_dim =0; j_dim < _dim; ++j_dim ){
-      for (k_dim =0; k_dim < _dim; ++k_dim ){
+    for (j_dim =0; j_dim < dim; ++j_dim ){
+      for (k_dim =0; k_dim < dim; ++k_dim ){
         for (PylithInt n1 = 0; n1 < 1; ++n1 ){
           for (PylithInt n2 = 0; n2 < 1; ++n2  ){
             if (j_dim == k_dim){
-                Jg3[ j_dim + k_dim*_dim + _dim*_dim*n2 + _dim*_dim*n1*n2 ] = -isotropicPermeablity/fluidViscosity;
+                Jg3[ j_dim + k_dim*dim + dim*dim*n2 + dim*dim*n1*n2 ] = -isotropicPermeablity/fluidViscosity;
             }
           }
         }
@@ -767,13 +815,14 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
 
     const PylithScalar bulkModulus = a[aOff[i_bulkModulus]];
     const PylithScalar biotCoefficient = a[aOff[i_biotCoefficient]];
+    PylithReal strainTrace = 0.0;
 
     if (dim == 1) {
-        const PylithReal strainTrace = disp_x[0*dim+0];
+        strainTrace = disp_x[0*dim+0];
     } else if (dim == 2) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
     } else if (dim == 3) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
     } //elseif
 
 
@@ -847,12 +896,14 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress_refstate(const Pyli
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
     const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
 
+    PylithReal strainTrace = 0.0;
+
     if (dim == 1) {
-        const PylithReal strainTrace = disp_x[0*dim+0];
+         strainTrace = disp_x[0*dim+0];
     } else if (dim == 2) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+         strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
     } else if (dim == 3) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+         strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
     } //elseif
 
     const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];
@@ -919,12 +970,14 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress(const PylithI
     const PylithScalar* disp_x = &s_x[sOff_x[i_disp]];
     const PylithScalar shearModulus = a[aOff[i_shearModulus]];
 
+    PylithReal strainTrace = 0.0;
+
     if (dim == 1) {
-        const PylithReal strainTrace = disp_x[0*dim+0];
+        strainTrace = disp_x[0*dim+0];
     } else if (dim == 2) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
     } else if (dim == 3) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
     } //elseif
 
     const PylithReal traceTerm = -2.0/3.0*shearModulus * strainTrace;
@@ -1005,12 +1058,14 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(cons
     const PylithScalar* refstress = &a[aOff[i_rstress]]; // stress_xx, stress_yy, stress_zz, stress_xy
     const PylithScalar* refstrain = &a[aOff[i_rstrain]]; // strain_xx, strain_yy, strain_zz, strain_xy
 
+    PylithReal strainTrace = 0.0;
+
     if (dim == 1) {
-        const PylithReal strainTrace = disp_x[0*dim+0];
+        strainTrace = disp_x[0*dim+0];
     } else if (dim == 2) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1];
     } else if (dim == 3) {
-        const PylithReal strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
+        strainTrace = disp_x[0*dim+0] + disp_x[1*dim+1] + disp_x[2*dim+2];
     } //elseif
 
     const PylithReal refstrainTrace = refstrain[0] + refstrain[1] + refstrain[2];

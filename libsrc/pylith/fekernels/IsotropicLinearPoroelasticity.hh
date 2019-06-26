@@ -220,7 +220,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1p_grav(const PylithInt dim,
                                                      const PylithScalar x[],
                                                      const PylithInt numConstants,
                                                      const PylithScalar constants[],
-                                                     PylithScalar g1p[])
+                                                     PylithScalar g1p[]);
 
  // -----------------------------------------------------------------------------
  /** g1p / darcy flow / without gravity
@@ -247,7 +247,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1p_grav(const PylithInt dim,
                                                       const PylithScalar x[],
                                                       const PylithInt numConstants,
                                                       const PylithScalar constants[],
-                                                      PylithScalar g1p[])
+                                                      PylithScalar g1p[]);
 
 // -----------------------------------------------------------------------------
 /** g1 function for isotropic linear poroelasticity plane strain WITHOUT reference stress and reference strain.
