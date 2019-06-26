@@ -228,7 +228,7 @@ void g1p_grav(const PylithInt dim,
  * Auxiliary fields: [density(1), shear_modulus(1), bulk_modulus(1), other poroelastic related param ...]
  */
  static
- void (const PylithInt dim,
+ void g1p_NoGrav(const PylithInt dim,
                                                       const PylithInt numS,
                                                       const PylithInt numA,
                                                       const PylithInt sOff[],
