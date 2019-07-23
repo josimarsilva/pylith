@@ -219,7 +219,7 @@ pylith::materials::Poroelasticity::createAuxiliaryField(const pylith::topology::
     auxiliaryField->label("Poroelasticity auxiliary field");
 
     assert(_rheology);
-    pylith::materials::AuxiliaryFactoryPoroelasticity* auxiliaryFactory = _rheology->getAuxiliaryFactory();assert(auxiliaryFactory);
+    pylith::materials::AuxiliaryFactoryPoroelastic* auxiliaryFactory = _rheology->getAuxiliaryFactory();assert(auxiliaryFactory);
 
     assert(_normalizer);
     auxiliaryFactory->initialize(auxiliaryField, *_normalizer, domainMesh.dimension());
