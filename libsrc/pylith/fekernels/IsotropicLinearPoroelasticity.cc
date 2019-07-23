@@ -773,7 +773,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu(const PylithInt dim,
  * Auxiliary fields: [density(1), ..., shear_modulus(1), bulk_modulus(1)]
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::cauchyStress(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::cauchyStress(const PylithInt dim,
                                                                       const PylithInt numS,
                                                                       const PylithInt numA,
                                                                       const PylithInt sOff[],
@@ -850,7 +850,7 @@ pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::cauchyStress(const 
  * Auxiliary fields: [density(1), ..., refstress(4), refstrain(4), shear_modulus(1), bulk_modulus(1)]
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticityPlaneStrain::cauchyStress_refstate(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::cauchyStress_refstate(const PylithInt dim,
                                                                                const PylithInt numS,
                                                                                const PylithInt numA,
                                                                                const PylithInt sOff[],
