@@ -160,9 +160,9 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianBiotCoeffi
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianBiotCoefficient(coordsys="<<typeid(coordsys).name()<<")");
 
-    PetscPointJac Jg0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg0pp;
+    PetscPointJac Jg2vp = pylith::fekernels::IsotropicLinearPoroelasticity::Jg2vp;
 
-    PYLITH_METHOD_RETURN(Jg0pp);
+    PYLITH_METHOD_RETURN(Jg2vp);
 } // getKernelRHSJacobianBiotCoefficient
 
 // ---------------------------------------------------------------------------------------------------------------------
