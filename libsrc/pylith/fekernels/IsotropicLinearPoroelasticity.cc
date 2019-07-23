@@ -257,7 +257,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp(const PylithInt dim,
  *
  */
 void
-pylith::fekernels::IsotropicLinearPoroelasticity::g1p_grav(const PylithInt dim,
+pylith::fekernels::IsotropicLinearPoroelasticity::g1p_Grav(const PylithInt dim,
                                                      const PylithInt numS,
                                                      const PylithInt numA,
                                                      const PylithInt sOff[],
@@ -308,7 +308,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1p_grav(const PylithInt dim,
         g1p[i] += -darcyConductivity * (poro_pres_x[i] - fluidDensity*gravityField[i]);
     } // for
 
-} // g1p_grav
+} // g1p_Grav
 
 // ----------------------------------------------------------------------
 /* Calculate darcy flow rate for isotropic linear
