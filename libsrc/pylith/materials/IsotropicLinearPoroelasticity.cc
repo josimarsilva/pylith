@@ -132,7 +132,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(c
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSDarcyVelocity="<<typeid(coordsys).name()<<")");
 
-    PetscPointFunc g1p = (!_addGravityField) ?
+    PetscPointFunc g1p = (!_gravityField) ?
                           pylith::fekernels::IsotropicLinearPoroelasticity::g1p_NoGrav :
                           pylith::fekernels::IsotropicLinearPoroelasticity::g1p_Grav;
 
