@@ -203,23 +203,23 @@ void Jf0pe(const PylithInt dim,
 */
 static
 void g1p_grav(const PylithInt dim,
-                                                     const PylithInt numS,
-                                                     const PylithInt numA,
-                                                     const PylithInt sOff[],
-                                                     const PylithInt sOff_x[],
-                                                     const PylithScalar s[],
-                                                     const PylithScalar s_t[],
-                                                     const PylithScalar s_x[],
-                                                     const PylithInt aOff[],
-                                                     const PylithInt aOff_x[],
-                                                     const PylithScalar a[],
-                                                     const PylithScalar a_t[],
-                                                     const PylithScalar a_x[],
-                                                     const PylithReal t,
-                                                     const PylithScalar x[],
-                                                     const PylithInt numConstants,
-                                                     const PylithScalar constants[],
-                                                     PylithScalar g1p[]);
+             const PylithInt numS,
+             const PylithInt numA,
+             const PylithInt sOff[],
+             const PylithInt sOff_x[],
+             const PylithScalar s[],
+             const PylithScalar s_t[],
+             const PylithScalar s_x[],
+             const PylithInt aOff[],
+             const PylithInt aOff_x[],
+             const PylithScalar a[],
+             const PylithScalar a_t[],
+             const PylithScalar a_x[],
+             const PylithReal t,
+             const PylithScalar x[],
+             const PylithInt numConstants,
+             const PylithScalar constants[],
+             PylithScalar g1p[]);
 
  // -----------------------------------------------------------------------------
  /** g1p / darcy flow / without gravity
@@ -229,23 +229,23 @@ void g1p_grav(const PylithInt dim,
  */
  static
  void g1p_NoGrav(const PylithInt dim,
-                                                      const PylithInt numS,
-                                                      const PylithInt numA,
-                                                      const PylithInt sOff[],
-                                                      const PylithInt sOff_x[],
-                                                      const PylithScalar s[],
-                                                      const PylithScalar s_t[],
-                                                      const PylithScalar s_x[],
-                                                      const PylithInt aOff[],
-                                                      const PylithInt aOff_x[],
-                                                      const PylithScalar a[],
-                                                      const PylithScalar a_t[],
-                                                      const PylithScalar a_x[],
-                                                      const PylithReal t,
-                                                      const PylithScalar x[],
-                                                      const PylithInt numConstants,
-                                                      const PylithScalar constants[],
-                                                      PylithScalar g1p[]);
+                const PylithInt numS,
+                const PylithInt numA,
+                const PylithInt sOff[],
+                const PylithInt sOff_x[],
+                const PylithScalar s[],
+                const PylithScalar s_t[],
+                const PylithScalar s_x[],
+                const PylithInt aOff[],
+                const PylithInt aOff_x[],
+                const PylithScalar a[],
+                const PylithScalar a_t[],
+                const PylithScalar a_x[],
+                const PylithReal t,
+                const PylithScalar x[],
+                const PylithInt numConstants,
+                const PylithScalar constants[],
+                PylithScalar g1p[]);
 
 // -----------------------------------------------------------------------------
 /** g1 function for isotropic linear poroelasticity plane strain WITHOUT reference stress and reference strain.
@@ -394,6 +394,59 @@ void Jg3pp(const PylithInt dim,
 
 
 // ======================= HELPER KERNELS ======================================
+/** Calculate stress for 3-D isotropic linear elasticity WITHOUT a reference stress and strain.
+ *
+ * Used to output the stress field.
+ *
+ * Solution fields: [disp(dim)]
+ * Auxiliary fields: [..., shear_modulus(1), bulk_modulus(1)]
+ */
+static
+void cauchyStress(const PylithInt dim,
+                  const PylithInt numS,
+                  const PylithInt numA,
+                  const PylithInt sOff[],
+                  const PylithInt sOff_x[],
+                  const PylithScalar s[],
+                  const PylithScalar s_t[],
+                  const PylithScalar s_x[],
+                  const PylithInt aOff[],
+                  const PylithInt aOff_x[],
+                  const PylithScalar a[],
+                  const PylithScalar a_t[],
+                  const PylithScalar a_x[],
+                  const PylithReal t,
+                  const PylithScalar x[],
+                  const PylithInt numConstants,
+                  const PylithScalar constants[],
+                  PylithScalar stress[]);
+
+/** Calculate stress for 3-D isotropic linear elasticity WITH a reference stress/strain.
+ *
+ * Used to output the stress field.
+ *
+ * Solution fields: [disp(dim)]
+ * Auxiliary fields: [..., refstress(6), refstrain(6), shear_modulus(1), bulk_modulus(1)]
+ */
+static
+void cauchyStress_refstate(const PylithInt dim,
+                           const PylithInt numS,
+                           const PylithInt numA,
+                           const PylithInt sOff[],
+                           const PylithInt sOff_x[],
+                           const PylithScalar s[],
+                           const PylithScalar s_t[],
+                           const PylithScalar s_x[],
+                           const PylithInt aOff[],
+                           const PylithInt aOff_x[],
+                           const PylithScalar a[],
+                           const PylithScalar a_t[],
+                           const PylithScalar a_x[],
+                           const PylithReal t,
+                           const PylithScalar x[],
+                           const PylithInt numConstants,
+                           const PylithScalar constants[],
+                           PylithScalar stress[]);
 
 // ----------------------------------------------------------------------
 /** Calculate mean stress for 2-D plane strain isotropic linear
