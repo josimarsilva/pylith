@@ -102,14 +102,6 @@ public:
      */
     PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
 
-    /** Get DarcyConductivity for RHS Jacobian G(t,s).
-     *
-     * @param[in] coordsys Coordinate system.
-     *
-     * @return RHS Jacobian kernel for DarcyConductivity
-     */
-    PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
-
     // ============================= LHS ==================================== //
 
     /** Get variation in fluid content for LHS residual, F(t,s,\dot{s})
@@ -137,14 +129,6 @@ public:
      * @return Project kernel for computing stress subfield in derived field.
      */
     PetscPointFunc getKernelDerivedCauchyStress(const spatialdata::geocoords::CoordSys* coordsys) const;
-
-    /** Get stress kernel for derived field.
-     *
-     * @param[in] coordsys Coordinate system.
-     *
-     * @return Project kernel for computing stress subfield in derived field.
-     */
-    PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get stress kernel for derived field.
      *
