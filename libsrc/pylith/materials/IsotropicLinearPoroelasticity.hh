@@ -84,7 +84,7 @@ public:
      *
      * @return RHS residual kernel for Darcy velocity.
      */
-    PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const;
+    PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys, const bool _gravityField) const;
 
     /** Get elastic constants kernel for RHS Jacobian G(t,s).
      *
@@ -110,7 +110,7 @@ public:
      *
      * @return LHS residual kernel for variation in fluid contenty.
      */
-    PetscPointFunc getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys) const;
+    PetscPointFunc getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys, const bool _useInertia) const;
 
     /** Get biot coefficient for LHS residual, F(t,s,\dot{s})
      *
