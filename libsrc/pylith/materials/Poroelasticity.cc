@@ -327,11 +327,11 @@ pylith::materials::Poroelasticity::_getDerivedFactory(void) {
 // ----------------------------------------------------------------------
 // Set kernels for RHS residual G(t,s).
 void
-pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::IntegratorDomain* integrator,
+pylith::materials::Poroelasticity::_setKernelsRHSResidual(pylith::feassemble::IntegratorDomain* integrator,
                                                             const topology::Field& solution) const {
 
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("_setFEKernelsRHSResidual(integrator="<<integrator<<", solution="<<solution.label()<<")");
+    PYLITH_COMPONENT_DEBUG("_setKernelsRHSResidual(integrator="<<integrator<<", solution="<<solution.label()<<")");
 
     const spatialdata::geocoords::CoordSys* coordsys = solution.mesh().coordsys();
 
@@ -427,15 +427,15 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSResidual(pylith::feassemble::
     integrator->setKernelsRHSResidual(kernels);
 
     PYLITH_METHOD_END;
-} // _setFEKernelsRHSResidual
+} // _setKernelsRHSResidual
 
 
 // ----------------------------------------------------------------------
 // Set kernels for RHS Jacobian G(t,s).
 void
-pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Field& solution) const {
+pylith::materials::Poroelasticity::_setKernelsRHSJacobian(const topology::Field& solution) const {
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("_setFEKernelsRHSJacobian(integrator="<<integrator<<",solution="<<solution.label()<<")");
+    PYLITH_COMPONENT_DEBUG("_setKernelsRHSJacobian(integrator="<<integrator<<",solution="<<solution.label()<<")");
 
     const spatialdata::geocoords::CoordSys* coordsys = solution.mesh().coordsys();
 
@@ -565,16 +565,16 @@ pylith::materials::Poroelasticity::_setFEKernelsRHSJacobian(const topology::Fiel
     integrator->setKernelsRHSJacobian(kernels);
 
     PYLITH_METHOD_END;
-} // _setFEKernelsRHSJacobian
+} // _setKernelsRHSJacobian
 
 
 // ----------------------------------------------------------------------
 // Set kernels for LHS residual F(t,s,\dot{s}).
 void
-pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::IntegratorDomain* integrator,
+pylith::materials::Poroelasticity::_setKernelsLHSResidual(pylith::feassemble::IntegratorDomain* integrator,
                                                             const topology::Field& solution) const {
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("_setFEKernelsLHSResidual(integrator="<<integrator<<",solution="<<solution.label()<<")");
+    PYLITH_COMPONENT_DEBUG("_setKernelsLHSResidual(integrator="<<integrator<<",solution="<<solution.label()<<")");
 
     std::vector<ResidualKernels> kernels;
 
@@ -618,16 +618,16 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSResidual(pylith::feassemble::
     integrator->setKernelsLHSResidual(kernels);
 
     PYLITH_METHOD_END;
-} // _setFEKernelsLHSResidual
+} // _setKernelsLHSResidual
 
 
 // ----------------------------------------------------------------------
 // Set kernels for LHS Jacobian F(t,s,\dot{s}).
 void
-pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::IntegratorDomain* integrator,
+pylith::materials::Poroelasticity::_setKernelsLHSJacobian(pylith::feassemble::IntegratorDomain* integrator,
                                                                                       const topology::Field& solution) const {
     PYLITH_METHOD_BEGIN;
-    PYLITH_COMPONENT_DEBUG("_setFEKernelsLHSJacobian(integrator="<<integrator<<",solution="<<solution.label()<<")");
+    PYLITH_COMPONENT_DEBUG("_setKernelsLHSJacobian(integrator="<<integrator<<",solution="<<solution.label()<<")");
 
     std::vector<JacobianKernels> kernels;
 
@@ -755,7 +755,7 @@ pylith::materials::Poroelasticity::_setFEKernelsLHSJacobian(pylith::feassemble::
     integrator->setKernelsLHSJacobian(kernels);
 
     PYLITH_METHOD_END;
-} // _setFEKernelsLHSJacobian
+} // _setKernelsLHSJacobian
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Set kernels for computing derived field.
