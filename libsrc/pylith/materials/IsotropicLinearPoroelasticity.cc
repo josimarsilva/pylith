@@ -128,7 +128,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualEffectiveS
 // ---------------------------------------------------------------------------------------------------------------------
 // Get darcy velocity kernel for RHS residual, G(t,s)
 PetscPointFunc
-pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys, const bool _gravityField) const {
+pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const {
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSDarcyVelocity="<<typeid(coordsys).name()<<")");
 

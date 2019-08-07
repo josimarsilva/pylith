@@ -70,6 +70,15 @@ public:
     virtual
     PetscPointFunc getKernelRHSResidualStress(const spatialdata::geocoords::CoordSys* coordsys) const = 0;
 
+    /** Get pressure kernel for RHS residual, G(t,s).
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return RHS residual kernel for pressure.
+     */
+    virtual
+    PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const = 0;
+
     /** Get elastic constants kernel for RHS Jacobian G(t,s).
      *
      * @param[in] coordsys Coordinate system.
