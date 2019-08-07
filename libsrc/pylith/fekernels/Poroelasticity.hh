@@ -135,7 +135,7 @@ public:
     // ----------------------------------------------------------------------
     // g0p function for generic poroelasticity terms (source density).
     static
-    void g0p_source(const PylithInt dim,
+    void g0p_sourceDensity(const PylithInt dim,
                     const PylithInt numS,
                     const PylithInt numA,
                     const PylithInt sOff[],

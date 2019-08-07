@@ -181,9 +181,9 @@ pylith::fekernels::Poroelasticity::g0v_gravbodyforce(const PylithInt dim,
 // =============================================================================
 
 // ----------------------------------------------------------------------
-//g0p_source - g0p function for generic poroelasticity terms (source density).
+//g0p_sourceDensity - g0p function for generic poroelasticity terms (source density).
 void
-pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
+pylith::fekernels::Poroelasticity::g0p_sourceDensity(const PylithInt dim,
                                              const PylithInt numS,
                                              const PylithInt numA,
                                              const PylithInt sOff[],
@@ -200,7 +200,7 @@ pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
                                              const PylithScalar x[],
                                              const PylithInt numConstants,
                                              const PylithScalar constants[],
-                                             PylithScalar g0p_source[]) {
+                                             PylithScalar g0p_sourceDensity[]) {
     // Incoming auxiliary fields.
     const PylithInt i_sourceDensity = 4;
 
@@ -211,7 +211,7 @@ pylith::fekernels::Poroelasticity::g0p_source(const PylithInt dim,
     const PylithScalar* sourceDensity = &a[aOff[i_sourceDensity]];
 
     for (PylithInt i = 0; i < dim; ++i) {
-        g0p_source[i] += sourceDensity[i];
+        g0p_sourceDensity[i] += sourceDensity[i];
     } // for
 } // g0p_source
 
@@ -252,7 +252,7 @@ pylith::fekernels::Poroelasticity::g0p_sourceDensity_grav_body(const PylithInt d
     const PylithInt aOffSource[1] = { aOff[i_sourceDensity] };
     const PylithInt aOffSource_x[1] = { aOff_x[i_sourceDensity] };
 
-    pylith::fekernels::Poroelasticity::g0p_source(_dim, _numS, numASource,
+    pylith::fekernels::Poroelasticity::g0p_sourceDensity(_dim, _numS, numASource,
                                                  NULL, NULL, NULL, NULL, NULL,
                                                  aOffSource, aOffSource_x, a, a_t, a_x,
                                                  t, x, numConstants, constants, g0p);
