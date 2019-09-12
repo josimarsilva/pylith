@@ -90,6 +90,7 @@ public:
      *
      * @param g Gravity field.
      */
+    virtual
     void setGravityField(spatialdata::spatialdb::GravityField* const g);
 
     /** Create constraint and set kernels.

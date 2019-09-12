@@ -23,7 +23,7 @@
 
 #if !defined(pylith_materials_rheologyelasticity_hh)
 #define pylith_materials_rheologyelasticity_hh
-
+#include "spatialdata/spatialdb/GravityField.hh" // USES GravityField
 #include "materialsfwd.hh" // forward declarations
 #include "pylith/utils/PyreComponent.hh" // ISA PyreComponent
 
@@ -50,6 +50,10 @@ public:
     /// Deallocate PETSc and local data structures.
     void deallocate(void);
 
+    // Add _graivityField
+    virtual
+    void setGravityField(spatialdata::spatialdb::GravityField* const g);
+
     /** Get auxiliary factory associated with physics.
      *
      * @return Auxiliary factory for physics object.
@@ -68,7 +72,7 @@ public:
      * @return RHS residual kernel for stress.
      */
     virtual
-    PetscPointFunc getKernelRHSResidualStress(const spatialdata::geocoords::CoordSys* coordsys) const = 0;
+    PetscPointFunc getKernelRHSResidualEffectiveStress(const spatialdata::geocoords::CoordSys* coordsys) const = 0;
 
     /** Get pressure kernel for RHS residual, G(t,s).
      *
@@ -87,6 +91,47 @@ public:
      */
     virtual
     PetscPointJac getKernelRHSJacobianElasticConstants(const spatialdata::geocoords::CoordSys* coordsys) const = 0;
+
+    /** Get Biot Coefficient for RHS Jacobian G(t,s).
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return RHS Jacobian kernel for Biot Coefficient.
+     */
+    PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get stress kernel for derived field.
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return Project kernel for computing stress subfield in derived field.
+     */
+    PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get variation in fluid content for LHS residual, F(t,s,\dot{s})
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return LHS residual kernel for variation in fluid contenty.
+     */
+    PetscPointFunc getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys, const bool _useInertia) const;
+
+    /** Get kernel for RHS Jacobian G(t,s).
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return RHS Jacobian kernel for tshift * 1/M (Jf0pp)
+     */
+    PetscPointJac getKernelLHSJacobianSpecificStorage(const spatialdata::geocoords::CoordSys* coordsys) const;
+
+    /** Get biot coefficient for LHS residual, F(t,s,\dot{s})
+     *
+     * @param[in] coordsys Coordinate system.
+     *
+     * @return LHS jacobian kernel for biot coefficient.
+     */
+    PetscPointJac getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
+    
 
     /** Get stress kernel for derived field.
      *
@@ -114,6 +159,10 @@ public:
     virtual
     void updateKernelConstants(pylith::real_array* kernelConstants,
                                const PylithReal dt) const;
+
+protected:
+
+    spatialdata::spatialdb::GravityField* _gravityField; ///< Gravity field for gravitational body forces.
 
     // NOT IMPLEMENTED /////////////////////////////////////////////////////////////////////////////////////////////////
 private:

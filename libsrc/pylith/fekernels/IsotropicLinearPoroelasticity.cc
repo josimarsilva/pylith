@@ -88,7 +88,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_QS(const PylithInt dim,
 
     const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M (biot modulus)
 
-	  f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
+	f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
 
     //for (PylithInt i = 0; i < dim; ++i) {
     //  f0p[i] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t[i];
@@ -160,7 +160,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::f0p_DYN(const PylithInt dim,
 
     const PylithScalar storageCoefficientStrain = (biotCoefficient - porosity) / bulkModulus + porosity / fluidBulkModulus; // 1/M (biot modulus)
 
-	  f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
+	f0p[0] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t;
 
     //for (PylithInt i = 0; i < dim; ++i) {
     //  f0p[i] += biotCoefficient * trace_strain_t + storageCoefficientStrain * poro_pres_t[i];
@@ -394,8 +394,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::g1v(const PylithInt dim,
 
     // Incoming solution fields.
     const PylithInt i_disp = 0;
-    const PylithInt i_poro_pres = 1; ///SHOULDN'T THIS BE EQUAL TO 1 ??? (JOSIMAR)
-                                      // it is (RLW)
+    const PylithInt i_poro_pres = 1;
 
     // Incoming auxiliary fields.
     const PylithInt i_shearModulus = numA - 5;

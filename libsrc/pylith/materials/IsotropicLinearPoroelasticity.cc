@@ -193,17 +193,31 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSVariationInFluidCo
     PYLITH_METHOD_RETURN(f0p);
   } // getKernelLHSVariationInFluidContent
 
-  // ---------------------------------------------------------------------------------------------------------------------
-  // Get biot coefficient kernel for LHS Jacobian F(t,s, \dot{s}).
-  PetscPointJac
-  pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const {
-      PYLITH_METHOD_BEGIN;
-      PYLITH_COMPONENT_DEBUG("getKernelLHSJacobianTshiftBiotCoefficient(coordsys="<<typeid(coordsys).name()<<")");
+// ---------------------------------------------------------------------------------------------------------------------
+// Get biot coefficient kernel for LHS Jacobian F(t,s, \dot{s}).
+PetscPointJac
+pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const {
+  PYLITH_METHOD_BEGIN;
+  PYLITH_COMPONENT_DEBUG("getKernelLHSJacobianTshiftBiotCoefficient(coordsys="<<typeid(coordsys).name()<<")");
 
-      PetscPointJac Jf0pe = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe;
+  PetscPointJac Jf0pe = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pe;
 
-      PYLITH_METHOD_RETURN(Jf0pe);
-  } // getKernelLHSJacobianSpecificStorage
+  PYLITH_METHOD_RETURN(Jf0pe);
+} // getKernelLHSJacobianTshiftBiotCoefficient
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Get biot coefficient kernel for LHS Jacobian F(t,s, \dot{s}).
+PetscPointJac
+pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSJacobianSpecificStorage(const spatialdata::geocoords::CoordSys* coordsys) const {
+  PYLITH_METHOD_BEGIN;
+  PYLITH_COMPONENT_DEBUG("getKernelLHSJacobianSpecificStorage(coordsys="<<typeid(coordsys).name()<<")");
+
+  PetscPointJac Jf0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp;
+
+  PYLITH_METHOD_RETURN(Jf0pp);
+} // getKernelLHSJacobianTshiftBiotCoefficient
+
 
 // =========================== DERIVED FIELDS ==================================
 

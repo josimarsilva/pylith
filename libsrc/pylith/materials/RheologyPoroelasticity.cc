@@ -19,7 +19,7 @@
 #include <portinfo>
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // implementation of object methods
-
+//#include "spatialdata/spatialdb/GravityField.hh" // USES GravityField
 #include "pylith/utils/error.hh" // USES PYLITH_METHOD_BEGIN/END
 #include "pylith/utils/journals.hh" // USES PYLITH_COMPONENT_DEBUG
 
@@ -71,6 +71,13 @@ pylith::materials::RheologyPoroelasticity::addKernelsUpdateStateVars(std::vector
 
     PYLITH_METHOD_END;
 } // addKernelsUpdateStateVars
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Set gravity field.
+void
+pylith::materials::RheologyPoroelasticity::setGravityField(spatialdata::spatialdb::GravityField* const g) {
+    _gravityField = g;
+} // setGravityField
 
 
 // End of file
