@@ -1,0 +1,472 @@
+True
+test_bcdirichlet_info (__main__.TestQuad) ... True
+test_bcdirichlet_info (__main__.TestQuad) ... 
+
+**********************************************************
+
+Open MPI does not support recursive calls of mpirun
+
+**********************************************************
+/home/dockimble/build/pylith/bin/nemesis: mpirun: exit 1
+ERROR
+test_bcdirichlet_solution (__main__.TestQuad) ... 
+
+**********************************************************
+
+Open MPI does not support recursive calls of mpirun
+
+**********************************************************
+/home/dockimble/build/pylith/bin/nemesis: mpirun: exit 1
+ERROR
+test_domain_solution (__main__.TestQuad) ... ERROR
+test_material_info (__main__.TestQuad) ... ERROR
+test_material_solution (__main__.TestQuad) ... ERROR
+test_bcdirichlet_info (__main__.TestTri) ... ERROR
+test_bcdirichlet_solution (__main__.TestQuad) ... ERROR
+test_domain_solution (__main__.TestQuad) ... ERROR
+test_material_info (__main__.TestQuad) ... ERROR
+test_material_solution (__main__.TestQuad) ... ERROR
+test_bcdirichlet_info (__main__.TestTri) ... 
+
+**********************************************************
+
+Open MPI does not support recursive calls of mpirun
+
+**********************************************************
+/home/dockimble/build/pylith/bin/nemesis: mpirun: exit 1
+
+
+**********************************************************
+
+Open MPI does not support recursive calls of mpirun
+
+**********************************************************
+/home/dockimble/build/pylith/bin/nemesis: mpirun: exit 1
+ERROR
+test_bcdirichlet_solution (__main__.TestTri) ... ERROR
+test_domain_solution (__main__.TestTri) ... ERROR
+test_material_info (__main__.TestTri) ... ERROR
+test_material_solution (__main__.TestTri) ... ERROR
+
+======================================================================
+ERROR: test_bcdirichlet_info (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 92, in setUp
+    TestCase.run_pylith(self, self.NAME, ["axialdisp.cfg", "axialdisp_quad.cfg"])
+  File "TestAxialDisp.py", line 48, in run_pylith
+    FullTestCase.run_pylith(self, testName, args, GenerateDB)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 49, in run_pylith
+    run_pylith(testName, args, generatedb)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 259, in run_pylith
+    app.run(argv=["pylith"] + cfgfiles)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Application.py", line 42, in run
+    shell.run(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Shell.py", line 143, in run
+    method(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 35, in execute
+    self.onLoginNode(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 39, in onLoginNode
+    self.scheduleJob(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 65, in scheduleJob
+    self.scheduler.schedule(job)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/schedulers/SchedulerNone.py", line 41, in schedule
+    sys.exit("%s: %s: exit %d" % (sys.argv[0], argv[0], ret))
+SystemExit: TestAxialDisp.py: /home/dockimble/build/pylith/bin/nemesis: exit 1
+
+======================================================================
+ERROR: test_bcdirichlet_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 82, in test_bcdirichlet_solution
+    check_data(filename, self, self.BOUNDARIES[bc], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-bc_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_domain_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 54, in test_domain_solution
+    check_data(filename, self, self.DOMAIN, vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-domain.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_info (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 61, in test_material_info
+    check_data(filename, self, self.MATERIALS[material], cellFields=cellFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-elastic_xneg_info.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 68, in test_material_solution
+    check_data(filename, self, self.MATERIALS[material], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-elastic_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_bcdirichlet_info (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 102, in setUp
+    TestCase.run_pylith(self, self.NAME, ["axialdisp.cfg", "axialdisp_tri.cfg"])
+  File "TestAxialDisp.py", line 48, in run_pylith
+    FullTestCase.run_pylith(self, testName, args, GenerateDB)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 49, in run_pylith
+    run_pylith(testName, args, generatedb)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 259, in run_pylith
+    app.run(argv=["pylith"] + cfgfiles)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Application.py", line 42, in run
+    shell.run(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Shell.py", line 143, in run
+    method(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 35, in execute
+    self.onLoginNode(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 39, in onLoginNode
+    self.scheduleJob(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 65, in scheduleJob
+    self.scheduler.schedule(job)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/schedulers/SchedulerNone.py", line 41, in schedule
+    sys.exit("%s: %s: exit %d" % (sys.argv[0], argv[0], ret))
+SystemExit: TestAxialDisp.py: /home/dockimble/build/pylith/bin/nemesis: exit 1
+
+======================================================================
+ERROR: test_bcdirichlet_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 82, in test_bcdirichlet_solution
+    check_data(filename, self, self.BOUNDARIES[bc], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-bc_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_domain_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 54, in test_domain_solution
+    check_data(filename, self, self.DOMAIN, vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-domain.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_info (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 61, in test_material_info
+    check_data(filename, self, self.MATERIALS[material], cellFields=cellFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-elastic_xneg_info.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 68, in test_material_solution
+    check_data(filename, self, self.MATERIALS[material], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-elastic_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.537s
+
+FAILED (errors=10)
+ERROR
+test_bcdirichlet_solution (__main__.TestTri) ... ERROR
+test_domain_solution (__main__.TestTri) ... ERROR
+test_material_info (__main__.TestTri) ... ERROR
+test_material_solution (__main__.TestTri) ... ERROR
+
+======================================================================
+ERROR: test_bcdirichlet_info (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 92, in setUp
+    TestCase.run_pylith(self, self.NAME, ["axialdisp.cfg", "axialdisp_quad.cfg"])
+  File "TestAxialDisp.py", line 48, in run_pylith
+    FullTestCase.run_pylith(self, testName, args, GenerateDB)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 49, in run_pylith
+    run_pylith(testName, args, generatedb)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 259, in run_pylith
+    app.run(argv=["pylith"] + cfgfiles)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Application.py", line 42, in run
+    shell.run(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Shell.py", line 143, in run
+    method(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 35, in execute
+    self.onLoginNode(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 39, in onLoginNode
+    self.scheduleJob(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 65, in scheduleJob
+    self.scheduler.schedule(job)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/schedulers/SchedulerNone.py", line 41, in schedule
+    sys.exit("%s: %s: exit %d" % (sys.argv[0], argv[0], ret))
+SystemExit: TestAxialDisp.py: /home/dockimble/build/pylith/bin/nemesis: exit 1
+
+======================================================================
+ERROR: test_bcdirichlet_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 82, in test_bcdirichlet_solution
+    check_data(filename, self, self.BOUNDARIES[bc], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-bc_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_domain_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 54, in test_domain_solution
+    check_data(filename, self, self.DOMAIN, vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-domain.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_info (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 61, in test_material_info
+    check_data(filename, self, self.MATERIALS[material], cellFields=cellFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-elastic_xneg_info.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_solution (__main__.TestQuad)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 68, in test_material_solution
+    check_data(filename, self, self.MATERIALS[material], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_quad-elastic_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_bcdirichlet_info (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 102, in setUp
+    TestCase.run_pylith(self, self.NAME, ["axialdisp.cfg", "axialdisp_tri.cfg"])
+  File "TestAxialDisp.py", line 48, in run_pylith
+    FullTestCase.run_pylith(self, testName, args, GenerateDB)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 49, in run_pylith
+    run_pylith(testName, args, generatedb)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 259, in run_pylith
+    app.run(argv=["pylith"] + cfgfiles)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Application.py", line 42, in run
+    shell.run(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/applications/Shell.py", line 143, in run
+    method(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 35, in execute
+    self.onLoginNode(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 39, in onLoginNode
+    self.scheduleJob(*args, **kwds)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/mpi/Application.py", line 65, in scheduleJob
+    self.scheduler.schedule(job)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pythia-0.8.1.18-py2.7.egg/pyre/schedulers/SchedulerNone.py", line 41, in schedule
+    sys.exit("%s: %s: exit %d" % (sys.argv[0], argv[0], ret))
+SystemExit: TestAxialDisp.py: /home/dockimble/build/pylith/bin/nemesis: exit 1
+
+======================================================================
+ERROR: test_bcdirichlet_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 82, in test_bcdirichlet_solution
+    check_data(filename, self, self.BOUNDARIES[bc], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-bc_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_domain_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 54, in test_domain_solution
+    check_data(filename, self, self.DOMAIN, vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-domain.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_info (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 61, in test_material_info
+    check_data(filename, self, self.MATERIALS[material], cellFields=cellFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-elastic_xneg_info.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+======================================================================
+ERROR: test_material_solution (__main__.TestTri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "TestAxialDisp.py", line 68, in test_material_solution
+    check_data(filename, self, self.MATERIALS[material], vertexFields=vertexFields)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 208, in check_data
+    checker = HDF5Checker(filename, testcase, mesh)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/pylith/tests/FullTestApp.py", line 98, in __init__
+    self.h5 = h5py.File(filename, "r")
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/home/dockimble/build/pylith/lib/python2.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+IOError: Unable to open file (unable to open file: name = 'output/axialdisp_tri-elastic_xneg.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.540s
+
+FAILED (errors=10)
