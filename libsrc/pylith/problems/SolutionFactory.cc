@@ -157,6 +157,32 @@ pylith::problems::SolutionFactory::addFluidPressure(const pylith::topology::Fiel
     PYLITH_METHOD_END;
 } // addFluidPressure
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Add volumetric strain subfield to solution field.
+void
+pylith::problems::SolutionFactory::addTraceStrain(const pylith::topology::Field::Discretization& discretization) {
+    PYLITH_METHOD_BEGIN;
+    PYLITH_JOURNAL_DEBUG("traceStrain(discretization=typeid(discretization).name())");
+
+    const char* fieldName = "trace_strain";
+    const char* componentNames[1] = { "trace_strain" };
+
+    pylith::topology::Field::Description description;
+    description.label = fieldName;
+    description.alias = fieldName;
+    description.vectorFieldType = pylith::topology::Field::SCALAR;
+    description.numComponents = 1;
+    description.componentNames.resize(1);
+    description.componentNames[0] = componentNames[0];
+    description.scale = _normalizer.pressureScale();
+    description.validator = NULL;
+
+    _solution.subfieldAdd(description, discretization);
+
+    PYLITH_METHOD_END;
+} // addTraceStrain
+
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Add fault Lagrange multiplier subfield to solution field.
