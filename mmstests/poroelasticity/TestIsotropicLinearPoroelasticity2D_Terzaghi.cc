@@ -35,29 +35,32 @@
 
 namespace pylith {
     namespace mmstests {
-        class TestIsotropicLinearPoroelasticity2D_Gravity;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi;
 
-        class TestIsotropicLinearPoroelasticity2D_Gravity_TriP1;
-        class TestIsotropicLinearPoroelasticity2D_Gravity_TriP2;
-        class TestIsotropicLinearPoroelasticity2D_Gravity_TriP3;
-        class TestIsotropicLinearPoroelasticity2D_Gravity_TriP4;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP1;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP2;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP3;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP4;
 
-        class TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2;
-        class TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3;
-        class TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ4;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ2;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ3;
+        class TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ4;
 
     } // materials
 } // pylith
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity :
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi :
     public pylith::mmstests::TestIsotropicLinearPoroelasticity {
     static const double LENGTHSCALE;
     static const double TIMESCALE;
     static const double PRESSURESCALE;
     static const double GACC;
+    static const double YMIN;
     static const double YMAX;
 
+    const double pi = 3.1415926535;
+    const double w = -1.0; // overpressure for top BC
     /// Spatial database user functions for auxiiliary subfields (includes derived fields).
 
     // Porosity
@@ -148,36 +151,96 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity :
 
     // Solution fields (nondimensional)
 
-    // Displacement
-    static double disp_x(const double x,
-                         const double y) {
-        return 0.0 / LENGTHSCALE;
-    } // disp_x
+    // Initial Pressure
+    static double pressure_0(const double x,
+                             const double y) {
+        const double ksgN = solid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kflN = fluid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kdrN = (1.0 - biot_coefficient(x,y)) * ksgN;
+        const double MN = 1.0 / ( (biot_coefficient(x,y) - porosity(x,y)) / ksgN + porosity(x,y)/kflN );
 
-    static double disp_y(const double x,
-                         const double y) {
-        return 0.0 / LENGTHSCALE;
-    } // disp_y
+        return (biot_coefficient(x,y)*MN)/(kdrN + biot_coefficient(x,y)*biot_coefficient(x,y)*MN) * w;
 
+    } // initial pressure
+
+    // Initial Displacement
+    static double disp_0(const double x,
+                         const double y) {
+        const double ksgN = solid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kflN = fluid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kdrN = (1.0 - biot_coefficient(x,y)) * ksgN;
+        const double MN = 1.0 / ( (biot_coefficient(x,y) - porosity(x,y)) / ksgN + porosity(x,y)/kflN );
+        const double LN = (YMAX - YMIN) / LENGTHSCALE;
+
+        return 1.0/(kdrN + biot_coefficient(x,y)*biot_coefficient(x,y)*MN) * w * (LN - y);
+
+    } // initial displacement
 
     // Pressure
     static double pressure(const double x,
-                           const double y) {
+                           const double y,
+                           const double t) {
         const double velocityScale = LENGTHSCALE / TIMESCALE;
         const double accelerationScale = LENGTHSCALE / (TIMESCALE * TIMESCALE);
         const double densityScale = PRESSURESCALE / (velocityScale * velocityScale);
-        
+
+        const double ksgN = solid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kflN = fluid_bulk_modulus(x,y) / PRESSURESCALE;
+        const double kdrN = (1.0 - biot_coefficient(x,y)) * ksgN;
+        const double MN = 1.0 / ( (biot_coefficient(x,y) - porosity(x,y)) / ksgN + porosity(x,y)/kflN );
+        const double LN = (YMAX - YMIN) / LENGTHSCALE;
+        const double cfN = (isotropic_permeability(x,y) / fluid_viscosity(x,y) ) *
+                          (PRESSURESCALE*TIMESCALE) / (LENGTHSCALE * LENGTHSCALE) *
+                          MN * (kdrN/(kdrN + biot_coefficient(x,y)*biot_coefficient(x,y)*MN));
+
         const double yminN = YMIN / LENGTHSCALE;
         const double ymaxN = YMAX / LENGTHSCALE;
 
+        double summation = 0;
+        for (int m = 0; m < 10000; m++) {
+          summation += (1.0 / 2.0*m + 1.0) * exp( (-1.0*pow(2.0*m+1.0,2) + pi*pi * cfN * t) /
+                 (4.0*LN*LN)) * sin( ((2.0*m + 1.0)*pi*y)/2.0*LN);
+        }
 
-        return density(x,y) / densityScale * GACC / (accelerationScale) * (YMAX/LENGTHSCALE-y);
+        return 4.0/pi * pressure_0(x,y) * summation;
 
+      } // pressure
 
+      // Displacement
+    static double disp_x(const double x,
+                           const double y,
+                           const double t) {
+          return 0.0 / LENGTHSCALE;
+      } // disp_x
 
+    static double disp_y(const double x,
+                           const double y,
+                           const double t) {
+       const double velocityScale = LENGTHSCALE / TIMESCALE;
+       const double accelerationScale = LENGTHSCALE / (TIMESCALE * TIMESCALE);
+       const double densityScale = PRESSURESCALE / (velocityScale * velocityScale);
 
+       const double ksgN = solid_bulk_modulus(x,y) / PRESSURESCALE;
+       const double kflN = fluid_bulk_modulus(x,y) / PRESSURESCALE;
+       const double kdrN = (1.0 - biot_coefficient(x,y)) * ksgN;
+       const double MN = 1.0 / ( (biot_coefficient(x,y) - porosity(x,y)) / ksgN + porosity(x,y)/kflN );
+       const double LN = (YMAX - YMIN) / LENGTHSCALE;
+       const double cfN = (isotropic_permeability(x,y) / fluid_viscosity(x,y) ) *
+                         (PRESSURESCALE*TIMESCALE) / (LENGTHSCALE * LENGTHSCALE) *
+                         MN * (kdrN/(kdrN + biot_coefficient(x,y)*biot_coefficient(x,y)*MN));
 
-    } // pressure
+       const double yminN = YMIN / LENGTHSCALE;
+       const double ymaxN = YMAX / LENGTHSCALE;
+
+       double summation = 0;
+       for (int m = 0; m < 10000; m++) {
+         summation += (1.0 / pow(2.0*m + 1.0,2) * exp( (-1.0*pow(2.0*m+1.0,2) + pi*pi * cfN * t) /
+                (4.0*LN*LN)) * cos( ((2.0*m + 1.0)*pi*y)/2.0*LN);
+       }
+
+       return disp_0(x,y) + biot_coefficient(x,y)/kdrN * pressure_0(x,y) *( (LN - y) - 8.0*LN/(pi*pi) * summation);
+      } // disp_y
+
 
     static PetscErrorCode solnkernel_disp(PetscInt spaceDim,
                                           PetscReal t,
@@ -190,8 +253,8 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity :
         CPPUNIT_ASSERT(s);
         CPPUNIT_ASSERT(x);
 
-        s[0] = disp_x(x[0], x[1]);
-        s[1] = disp_y(x[0], x[1]);
+        s[0] = disp_x(x[0], x[1], t);
+        s[1] = disp_y(x[0], x[1], t);
 
         return 0;
     } // solnkernel_disp
@@ -207,7 +270,7 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity :
         CPPUNIT_ASSERT(1 == numComponents);
         CPPUNIT_ASSERT(s);
 
-        s[0] = pressure(x[0], x[1]);
+        s[0] = pressure(x[0], x[1], t);
 
         return 0;
     } // solnkernel_pressure
@@ -218,7 +281,7 @@ protected:
         TestIsotropicLinearPoroelasticity::setUp();
 
         // Overwrite component names for control of debugging info at test level.
-        GenericComponent::setName("TestIsotropicLinearPoroelasticity2D_Gravity");
+        GenericComponent::setName("TestIsotropicLinearPoroelasticity2D_Terzaghi");
         journal::debug_t debug(GenericComponent::getName());
         // debug.activate(); // DEBUGGING
 
@@ -307,22 +370,22 @@ protected:
         err = PetscDSSetExactSolution(prob, 1, solnkernel_pressure, NULL);CPPUNIT_ASSERT(!err);
     } // _setExactSolution
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity
-const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity::LENGTHSCALE = 1.0e+3;
-const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity::TIMESCALE = 2.0;
-const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity::PRESSURESCALE = 2.25e+10;
-const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity::GACC = 9.80665;
-const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity::YMAX = +4.0e+3; // nondimensional
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi
+const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi::LENGTHSCALE = 1.0e+3;
+const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi::TIMESCALE = 2.0;
+const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi::PRESSURESCALE = 2.25e+10;
+const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi::GACC = 9.80665;
+const double pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi::YMAX = +4.0e+3; // nondimensional
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP1 :
-    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity {
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Gravity_TriP1,
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP1 :
+    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi {
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP1,
                            TestIsotropicLinearPoroelasticity);
     CPPUNIT_TEST_SUITE_END();
 
     void setUp(void) {
-        TestIsotropicLinearPoroelasticity2D_Gravity::setUp();
+        TestIsotropicLinearPoroelasticity2D_Terzaghi::setUp();
         CPPUNIT_ASSERT(_data);
 
         _data->meshFilename = "data/tri.mesh";
@@ -344,18 +407,18 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP1 :
 
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity_TriP1
-CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP1);
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP1
+CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP1);
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP2 :
-    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity {
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Gravity_TriP2,
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP2 :
+    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi {
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP2,
                            TestIsotropicLinearPoroelasticity);
     CPPUNIT_TEST_SUITE_END();
 
     void setUp(void) {
-        TestIsotropicLinearPoroelasticity2D_Gravity::setUp();
+        TestIsotropicLinearPoroelasticity2D_Terzaghi::setUp();
         CPPUNIT_ASSERT(_data);
 
         _data->meshFilename = "data/tri.mesh";
@@ -377,18 +440,18 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP2 :
 
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity_TriP2
-// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP2);
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP2
+// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP2);
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP3 :
-    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity {
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Gravity_TriP3,
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP3 :
+    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi {
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP3,
                            TestIsotropicLinearPoroelasticity);
     CPPUNIT_TEST_SUITE_END();
 
     void setUp(void) {
-        TestIsotropicLinearPoroelasticity2D_Gravity::setUp();
+        TestIsotropicLinearPoroelasticity2D_Terzaghi::setUp();
         CPPUNIT_ASSERT(_data);
 
         _data->meshFilename = "data/tri.mesh";
@@ -410,17 +473,17 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP3 :
 
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity_TriP3
-// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_TriP3);
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP3
+// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_TriP3);
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2 :
-    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity {
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2,  TestIsotropicLinearPoroelasticity);
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ2 :
+    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi {
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ2,  TestIsotropicLinearPoroelasticity);
     CPPUNIT_TEST_SUITE_END();
 
     void setUp(void) {
-        TestIsotropicLinearPoroelasticity2D_Gravity::setUp();
+        TestIsotropicLinearPoroelasticity2D_Terzaghi::setUp();
         CPPUNIT_ASSERT(_data);
 
         _data->meshFilename = "data/quad_aligned.mesh";
@@ -442,17 +505,17 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2 :
 
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2
-// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ2);
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ2
+// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ2);
 
 // ---------------------------------------------------------------------------------------------------------------------
-class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3 :
-    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity {
-    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3,  TestIsotropicLinearPoroelasticity);
+class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ3 :
+    public pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi {
+    CPPUNIT_TEST_SUB_SUITE(TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ3,  TestIsotropicLinearPoroelasticity);
     CPPUNIT_TEST_SUITE_END();
 
     void setUp(void) {
-        TestIsotropicLinearPoroelasticity2D_Gravity::setUp();
+        TestIsotropicLinearPoroelasticity2D_Terzaghi::setUp();
         CPPUNIT_ASSERT(_data);
 
         _data->meshFilename = "data/quad_aligned.mesh";
@@ -474,7 +537,7 @@ class pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3 :
 
     } // setUp
 
-}; // TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3
-// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Gravity_QuadQ3);
+}; // TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ3
+// CPPUNIT_TEST_SUITE_REGISTRATION(pylith::mmstests::TestIsotropicLinearPoroelasticity2D_Terzaghi_QuadQ3);
 
 // End of file
