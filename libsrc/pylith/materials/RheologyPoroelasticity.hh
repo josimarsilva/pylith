@@ -98,6 +98,7 @@ public:
      *
      * @return RHS Jacobian kernel for Biot Coefficient.
      */
+    virtual
     PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get stress kernel for derived field.
@@ -106,14 +107,16 @@ public:
      *
      * @return Project kernel for computing stress subfield in derived field.
      */
+    virtual
     PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get variation in fluid content for LHS residual, F(t,s,\dot{s})
      *
      * @param[in] coordsys Coordinate system.
      *
-     * @return LHS residual kernel for variation in fluid contenty.
+     * @return LHS residual kernel for variation in fluid content.
      */
+    virtual
     PetscPointFunc getKernelLHSVariationInFluidContent(const spatialdata::geocoords::CoordSys* coordsys, const bool _useInertia) const;
 
     /** Get kernel for RHS Jacobian G(t,s).
@@ -122,6 +125,7 @@ public:
      *
      * @return RHS Jacobian kernel for tshift * 1/M (Jf0pp)
      */
+    virtual
     PetscPointJac getKernelLHSJacobianSpecificStorage(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get biot coefficient for LHS residual, F(t,s,\dot{s})
@@ -130,8 +134,8 @@ public:
      *
      * @return LHS jacobian kernel for biot coefficient.
      */
+    virtual
     PetscPointJac getKernelLHSJacobianTshiftBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
-    
 
     /** Get stress kernel for derived field.
      *

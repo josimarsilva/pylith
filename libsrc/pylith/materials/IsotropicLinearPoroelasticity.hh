@@ -102,7 +102,6 @@ public:
      */
     PetscPointJac getKernelRHSJacobianBiotCoefficient(const spatialdata::geocoords::CoordSys* coordsys) const;
 
-
     /** Get kernel for RHS Jacobian G(t,s).
      *
      * @param[in] coordsys Coordinate system.
