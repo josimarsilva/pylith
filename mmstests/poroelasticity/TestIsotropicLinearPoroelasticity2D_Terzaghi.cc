@@ -286,7 +286,7 @@ protected:
         // debug.activate(); // DEBUGGING
 
         CPPUNIT_ASSERT(!_data);
-        _data = new TestIncompressibleElasticity_Data();CPPUNIT_ASSERT(_data);
+        _data = new TestPoroelasticity_Data();CPPUNIT_ASSERT(_data);
         _isJacobianLinear = true;
 
         _data->spaceDim = 2;
@@ -317,9 +317,15 @@ protected:
         _data->numAuxSubfields = 4;
         static const char* _auxSubfields[4] = {
             "density",
+            "solid_density",
+            "fluid_density",
+            "fluid_viscosity",
             "gravitational_acceleration",
             "shear_modulus",
             "bulk_modulus",
+            "biot_coefficient",
+            "isotropic_permeability",
+            "fluid_bulk_modulus"
         };
         _data->auxSubfields = _auxSubfields;
         static const pylith::topology::Field::Discretization _auxDiscretizations[4] = {
