@@ -635,7 +635,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
 
     // index of Incoming auxiliary fields.
     const PylithInt i_isotropicPermeability = numA - 2;
-    const PylithInt i_fluidViscousity = 3;
+    const PylithInt i_fluidViscosity = 3;
 
     //assert(_dim == dim);
     assert(3 == numS);
@@ -645,7 +645,7 @@ pylith::fekernels::IsotropicLinearPoroelasticity::Jg3pp(const PylithInt dim,
     assert(Jg3);
 
     const PylithScalar isotropicPermeablity = a[aOff[i_isotropicPermeability]];
-    const PylithScalar fluidViscosity = a[aOff[i_fluidViscousity]];
+    const PylithScalar fluidViscosity = a[aOff[i_fluidViscosity]];
 
     PylithInt j_dim;
     PylithInt k_dim;

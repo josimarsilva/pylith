@@ -116,7 +116,6 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualEffectiveS
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSResidualEffectiveStress(coordsys="<<typeid(coordsys).name()<<")");
 
-    const int spaceDim = coordsys->spaceDim();
     PetscPointFunc g1u = (!_useReferenceState) ?
                           pylith::fekernels::IsotropicLinearPoroelasticity::g1v :
                           pylith::fekernels::IsotropicLinearPoroelasticity::g1v_refstate;
@@ -147,7 +146,6 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSJacobianElasticCon
     PYLITH_METHOD_BEGIN;
     PYLITH_COMPONENT_DEBUG("getKernelRHSJacobianElasticConstants(coordsys="<<typeid(coordsys).name()<<")");
 
-    const int spaceDim = coordsys->spaceDim();
     PetscPointJac Jg3uu = pylith::fekernels::IsotropicLinearPoroelasticity::Jg3vu;
 
     PYLITH_METHOD_RETURN(Jg3uu);
@@ -216,7 +214,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelLHSJacobianSpecificSt
   PetscPointJac Jf0pp = pylith::fekernels::IsotropicLinearPoroelasticity::Jf0pp;
 
   PYLITH_METHOD_RETURN(Jf0pp);
-} // getKernelLHSJacobianTshiftBiotCoefficient
+} // getKernelLHSJacobianSpecificStorage
 
 
 // =========================== DERIVED FIELDS ==================================

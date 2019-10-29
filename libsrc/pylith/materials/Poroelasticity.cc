@@ -18,9 +18,9 @@
 
 #include <portinfo>
 
-
 #include "pylith/materials/Poroelasticity.hh" // implementation of object methods
 #include "pylith/fekernels/Elasticity.hh" // USES Elasticity methods
+
 #include "pylith/materials/RheologyPoroelasticity.hh" // HASA RheologyPoroelasticity
 #include "pylith/materials/AuxiliaryFactoryPoroelastic.hh" // USES AuxiliaryFactory
 #include "pylith/materials/DerivedFactoryElasticity.hh" // USES DerivedFactoryElasticity
@@ -111,6 +111,7 @@ pylith::materials::Poroelasticity::useBodyForce(void) const {
     return _useBodyForce;
 } // useBodyForce
 
+
 // ----------------------------------------------------------------------
 // Include source density?
 void
@@ -128,6 +129,7 @@ pylith::materials::Poroelasticity::useSourceDensity(void) const {
     return _useSourceDensity;
 } // useSourceDensity
 
+
 // ----------------------------------------------------------------------
 // Use reference stress and strain in computation of stress and
 // strain?
@@ -137,6 +139,7 @@ pylith::materials::Poroelasticity::useReferenceState(const bool value) {
 
     _useReferenceState = value;
 } // useReferenceState
+
 
 // ----------------------------------------------------------------------
 // Use reference stress and strain in computation of stress and
@@ -162,6 +165,7 @@ pylith::materials::Poroelasticity::getBulkRheology(void) const {
     return _rheology;
 } // getBulkRheology
 
+
 // ----------------------------------------------------------------------
 // Verify configuration is acceptable.
 void
@@ -171,16 +175,16 @@ pylith::materials::Poroelasticity::verifyConfiguration(const pylith::topology::F
 
     // Verify solution contains expected fields.
     if (!solution.hasSubfield("displacement")) {
-        throw std::runtime_error("Cannot find 'displacement' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain'.");
+        throw std::runtime_error("Cannot find 'displacement' field in solution; required for material 'Poroelasticity'.");
     } // if
     if (!solution.hasSubfield("pore_pressure")) {
-        throw std::runtime_error("Cannot find 'pore_pressure' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain'.");
+        throw std::runtime_error("Cannot find 'pore_pressure' field in solution; required for material 'Poroelasticity'.");
     } // if
     if (!_useInertia && !solution.hasSubfield("trace_strain")) {
-        throw std::runtime_error("Cannot find 'trace_strain' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain'.");
+        throw std::runtime_error("Cannot find 'trace_strain' field in solution; required for material 'Poroelasticity'.");
     } // if
     if (_useInertia && !solution.hasSubfield("velocity")) {
-        throw std::runtime_error("Cannot find 'velocity' field in solution; required for material 'IsotropicLinearPoroelasticityPlaneStrain' with inertia.");
+        throw std::runtime_error("Cannot find 'velocity' field in solution; required for material 'Poroelasticity' with inertia.");
     } // if
 
     PYLITH_METHOD_END;
@@ -382,7 +386,6 @@ pylith::materials::Poroelasticity::_setKernelsRHSResidual(pylith::feassemble::In
 
     // g1p is darcy velocity, ship over to rheology section
     const PetscPointFunc g1p = _rheology->getKernelRHSResidualPressure(coordsys);  //JS: OK fixed this.
-                                                                                                  //RLW: I DO
     //PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticity::g1p_NoGrav : pylith::fekernels::IsotropicLinearPoroelasticity::g1p_Grav;
 
     // Remaining parts of RHS residuals change with dynamics.
