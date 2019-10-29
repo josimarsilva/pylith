@@ -114,6 +114,7 @@ class TimeDependent(Problem, ModuleTimeDependent):
         ModuleTimeDependent.setInitialCondition(self, self.ic.components())
         return
 
+<<<<<<< HEAD
     def run(self, app):
         """
         Solve time dependent problem.
@@ -142,6 +143,40 @@ class TimeDependent(Problem, ModuleTimeDependent):
         """
         ModuleTimeDependent.__init__(self)
         return
+=======
+  def cleanup(self):
+    self.formulation.deallocate()
+    Problem.cleanup(self)
+    return
+    
+  
+  def checkpoint(self):
+    """
+    Save problem state for restart.
+    """
+    Problem.checkpoint()
+    
+    # Save state of this object
+    raise NotImplementedError, "TimeDependent::checkpoint() not implemented."
+  
+    # Save state of children
+    self.formulation.checkpoint()
+    return
+  
+
+  # PRIVATE METHODS ////////////////////////////////////////////////////
+
+  def _configure(self):
+    """
+    Set members based using inventory.
+    """
+    Problem._configure(self)
+    self.elasticPrestep = self.inventory.elasticPrestep
+    self.formulation = self.inventory.formulation
+    self.progressMonitor = self.inventory.progressMonitor
+    self.checkpointTimer = self.inventory.checkpointTimer
+    return
+>>>>>>> origin/master
 
 
 # FACTORIES ////////////////////////////////////////////////////////////

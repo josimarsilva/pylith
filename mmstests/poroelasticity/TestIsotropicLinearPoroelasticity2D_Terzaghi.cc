@@ -286,7 +286,7 @@ protected:
         // debug.activate(); // DEBUGGING
 
         CPPUNIT_ASSERT(!_data);
-        _data = new TestIncompressibleElasticity_Data();CPPUNIT_ASSERT(_data);
+        _data = new TestPoroelasticity_Data();CPPUNIT_ASSERT(_data);
         _isJacobianLinear = true;
 
         _data->spaceDim = 2;
