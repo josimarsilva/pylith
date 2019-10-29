@@ -33,13 +33,17 @@ __all__ = [
     "SolnDisp",
     "SolnDispVelLagrange",
     "SolnDispVel",
+    "SolnDispPorPresTracStrain",
     "SolutionSubfield",
     "SubfieldDisplacement",
     "SubfieldLagrangeFault",
+    "SubfieldPorePressure",
     "SubfieldPressure",
+    "SubfieldTraceStrain",
     "SubfieldTemperature",
     "SubfieldVelocity",
     "SingleObserver",
+
 ]
 
 
