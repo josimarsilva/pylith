@@ -94,7 +94,7 @@ def solution():
     """
     Factory associated with Solution.
     """
-    print('\n \t JosimarTST \n \t')
+#    print('\n \t JosimarTST \n \t')
     return Solution()
 
 
