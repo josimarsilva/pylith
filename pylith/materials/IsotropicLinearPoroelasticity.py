@@ -48,7 +48,7 @@ class IsotropicLinearPoroelasticity(RheologyPoroelasticity, ModuleLinearPoroelas
     from pylith.topology.Subfield import subfieldFactory
     auxiliarySubfields = pyre.inventory.facilityArray(
         "auxiliary_subfields", itemFactory=subfieldFactory, factory=AuxSubfieldsIsotropicLinearPoroelasticity)
-    auxiliarySubfields.meta['tip'] = "Discretization of linear elastic rheology physical properties."
+    auxiliarySubfields.meta['tip'] = "Discretization of linear poroelastic rheology physical properties."
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
 

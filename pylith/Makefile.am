@@ -56,6 +56,10 @@ nobase_pkgpyexec_PYTHON = \
 	materials/AuxSubfieldsIsotropicPowerLaw.py \
 	materials/RheologyIncompressibleElasticity.py \
 	materials/IsotropicLinearIncompElasticity.py \
+    materials/Poroelasticity.py \
+    materials/AuxSubfieldsIsotropicLinearPoroelasticity.py \
+    materials/RheologyPoroelasticity.py \
+    materials/IsotropicLinearPoroelasticity.py \
 	meshio/__init__.py \
 	meshio/DataWriter.py \
 	meshio/DataWriterVTK.py \
@@ -89,9 +93,12 @@ nobase_pkgpyexec_PYTHON = \
 	problems/SolnDispVelLagrange.py \
 	problems/SolnDispPres.py \
 	problems/SolnDispPresLagrange.py \
+    problems/SolnDispPorPresTracStrain.py \
 	problems/SubfieldDisplacement.py \
 	problems/SubfieldVelocity.py \
 	problems/SubfieldPressure.py \
+    problems/SubfieldTraceStrain.py \
+    problems/SubfieldPorePressure.py \
 	problems/SubfieldTemperature.py \
 	problems/SubfieldLagrangeFault.py \
 	problems/SingleObserver.py \
