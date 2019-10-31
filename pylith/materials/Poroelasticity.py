@@ -36,7 +36,7 @@ class Poroelasticity(Material, ModulePoroelasticity):
       - *use_body_force* Include body force term in Poroelasticity equation.
 
     Facilities
-      - *bulk_rheology* Bulk rheology for elastic material.
+      - *bulk_rheology* Bulk rheology for poroelastic material.
 
     FACTORY: material
     """
