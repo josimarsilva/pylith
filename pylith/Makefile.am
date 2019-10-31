@@ -56,6 +56,9 @@ nobase_pkgpyexec_PYTHON = \
 	materials/AuxSubfieldsIsotropicPowerLaw.py \
 	materials/RheologyIncompressibleElasticity.py \
 	materials/IsotropicLinearIncompElasticity.py \
+    materials/Poroelasticity.py \
+    materials/RheologyPoroelasticity.py \
+    materials/IsotropicLinearPoroelasticity.py \
 	meshio/__init__.py \
 	meshio/DataWriter.py \
 	meshio/DataWriterVTK.py \

@@ -64,13 +64,13 @@ public:
              *
              * @param[in] rheology Bulk rheology for poroelasticity.
              */
-            void setBulkRheology(pylith::materials::RheologyElasticity* const rheology);
+            void setBulkRheology(pylith::materials::RheologyPoroelasticity* const rheology);
 
             /** Get bulk rheology.
              *
              * @returns Bulk rheology for poroelasticity.
              */
-            pylith::materials::RheologyElasticity* getBulkRheology(void) const;
+            pylith::materials::RheologyPoroelasticity* getBulkRheology(void) const;
 
             /** Verify configuration is acceptable.
              *
