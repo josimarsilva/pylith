@@ -26,11 +26,14 @@ __all__ = [
     "AuxSubfieldsIsotropicLinearGenMaxwell",
     "AuxSubfieldsIsotropicLinearMaxwell",
     "AuxSubfieldsIsotropicPowerLaw",
+    "AuxFieldsIsotropicLinearPoroelasticity",
     "DerivedSubfieldsElasticity",
     "Elasticity",
     "Homogeneous",
     "IncompressibleElasticity",
+    "Poroelasticity",
     "IsotropicLinearElasticity",
+    "IsotropicLinearPoroelasticity",
     "IsotropicLinearGenMaxwell",
     "IsotropicLinearIncompElasticity",
     "IsotropicLinearMaxwell",
@@ -38,6 +41,7 @@ __all__ = [
     "Material",
     "RheologyElasticity",
     "RheologyIncompressibleElasticity",
+    "RheologyPoroelasticity",
 ]
 
 

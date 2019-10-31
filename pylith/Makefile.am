@@ -89,9 +89,12 @@ nobase_pkgpyexec_PYTHON = \
 	problems/SolnDispVelLagrange.py \
 	problems/SolnDispPres.py \
 	problems/SolnDispPresLagrange.py \
+    problems/SolnDispPorPresTracStrain.py \
 	problems/SubfieldDisplacement.py \
 	problems/SubfieldVelocity.py \
 	problems/SubfieldPressure.py \
+    problems/SubfieldPorePressure.py \
+    problems/SubfieldTraceStrain.py \
 	problems/SubfieldTemperature.py \
 	problems/SubfieldLagrangeFault.py \
 	problems/SingleObserver.py \
