@@ -23,7 +23,7 @@
 
 namespace pylith {
     namespace materials {
-        class RheologyElasticity : public pylith::utils::PyreComponent {
+        class RheologyPoroelasticity : public pylith::utils::PyreComponent {
             // PUBLIC METHODS //////////////////////////////////////////////////////////////////////////////////////////
 public:
 
@@ -36,7 +36,7 @@ public:
       /// Deallocate PETSc and local data structures.
       void deallocate(void);
 
-      // Add _graivityField
+      // Add _gravityField
       virtual
       void setGravityField(spatialdata::spatialdb::GravityField* const g);
 
@@ -153,7 +153,7 @@ public:
 
         };
 
-        // class RheologyElasticity
+        // class RheologyPoroelasticity
 
     } // materials
 } // pylith
