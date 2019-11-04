@@ -36,7 +36,7 @@ class RheologyPoroelasticity(PetscComponent, ModuleRheology):
     Facilities
       - None
 
-    FACTORY: incompressible_elasticity_rheology
+    FACTORY: poroelasticity_rheology
     """
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ class RheologyPoroelasticity(PetscComponent, ModuleRheology):
 
 # FACTORIES ////////////////////////////////////////////////////////////
 
-def incompressible_elasticity_rheology():
+def poroelasticity_rheology():
     """
     Factory associated with RheologyPoroelasticity.
     """

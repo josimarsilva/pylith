@@ -19,7 +19,6 @@
 #include <portinfo>
 
 #include "pylith/materials/Poroelasticity.hh" // implementation of object methods
-#include "pylith/fekernels/Elasticity.hh" // USES Elasticity methods
 
 #include "pylith/materials/RheologyPoroelasticity.hh" // HASA RheologyPoroelasticity
 #include "pylith/materials/AuxiliaryFactoryPoroelastic.hh" // USES AuxiliaryFactory
@@ -30,6 +29,7 @@
 #include "pylith/topology/FieldOps.hh" // USES FieldOps
 
 #include "pylith/fekernels/Poroelasticity.hh" // USES Elasticity kernels
+#include "pylith/fekernels/Elasticity.hh" // USES Elasticity kernels
 #include "pylith/fekernels/DispVel.hh" // USES DispVel kernels
 
 #include "pylith/utils/journals.hh" // USES PYLITH_COMPONENT_*

@@ -13,9 +13,9 @@
 #
 # ----------------------------------------------------------------------
 #
-# @file pylith/materials/AuxSubieldsElasticity.py
+# @file pylith/materials/AuxSubieldsPoroelasticity.py
 #
-# @brief Python container for elasticity equation subfields.
+# @brief Python container for poroelasticity equation subfields.
 
 from pylith.utils.PetscComponent import PetscComponent
 
@@ -42,16 +42,16 @@ class AuxSubfieldsPoroelasticity(PetscComponent):
 
     from pylith.topology.Subfield import Subfield
 
-    porosity = pyre.inventory.facility("porosity", family="auxiliary_subfield", factory=AuxSubfield)
+    porosity = pyre.inventory.facility("porosity", family="auxiliary_subfield", factory=Subfield)
     porosity.meta['tip'] = "Porosity subfield."
 
     density = pyre.inventory.facility("density", family="auxiliary_subfield", factory=Subfield)
     density.meta['tip'] = "Density subfield."
 
-    fluidDensity = pyre.inventory.facility("fluid_density", family="auxiliary_subfield", factory=AuxSubfield)
+    fluidDensity = pyre.inventory.facility("fluid_density", family="auxiliary_subfield", factory=Subfield)
     fluidDensity.meta['tip'] = "Fluid density subfield."
 
-    fluidViscosity = pyre.inventory.facility("fluid_viscosity", family="auxiliary_subfield", factory=AuxSubfield)
+    fluidViscosity = pyre.inventory.facility("fluid_viscosity", family="auxiliary_subfield", factory=Subfield)
     fluidViscosity.meta['tip'] = "Fluid viscosity subfield."
 
     bodyForce = pyre.inventory.facility("body_force", family="auxiliary_subfield", factory=Subfield)
@@ -63,7 +63,7 @@ class AuxSubfieldsPoroelasticity(PetscComponent):
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
 
-    def __init__(self, name="auxsubfieldselasticity"):
+    def __init__(self, name="auxsubfieldsporoelasticity"):
         """
         Constructor.
         """
@@ -81,9 +81,9 @@ class AuxSubfieldsPoroelasticity(PetscComponent):
 
 def auxiliary_subfields():
     """
-    Factory associated with AuxSubfieldsElasticity.
+    Factory associated with AuxSubfieldsPoroelasticity.
     """
-    return AuxSubfieldsElasticity()
+    return AuxSubfieldsPoroelasticity()
 
 
 # End of file

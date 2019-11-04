@@ -26,7 +26,7 @@ from pylith.utils.PetscComponent import PetscComponent
 # AuxFieldsIsotropicLinearPoroelasticity class
 
 
-class AuxFieldsIsotropicLinearPoroelasticity(PetscComponent):
+class AuxSubfieldsIsotropicLinearPoroelasticity(PetscComponent):
     """
     Python subfields container for isotropic, linear poroelasticity subfields.
 
@@ -66,27 +66,27 @@ class AuxFieldsIsotropicLinearPoroelasticity(PetscComponent):
 
     import pyre.inventory
 
-    from pylith.topology.AuxSubfield import Subfield
+    from pylith.topology.Subfield import Subfield
 
-    referenceStress = pyre.inventory.facility("reference_stress", family="auxiliary_subfield", factory=AuxSubfield)
+    referenceStress = pyre.inventory.facility("reference_stress", family="auxiliary_subfield", factory=Subfield)
     referenceStress.meta['tip'] = "Reference stress subfield."
 
-    referenceStrain = pyre.inventory.facility("reference_strain", family="auxiliary_subfield", factory=AuxSubfield)
+    referenceStrain = pyre.inventory.facility("reference_strain", family="auxiliary_subfield", factory=Subfield)
     referenceStrain.meta['tip'] = "Reference strain subfield."
 
-    shearModulus = pyre.inventory.facility("shear_modulus", family="auxiliary_subfield", factory=AuxSubfield)
+    shearModulus = pyre.inventory.facility("shear_modulus", family="auxiliary_subfield", factory=Subfield)
     shearModulus.meta['tip'] = "Shear modulus subfield."
 
-    bulkModulus = pyre.inventory.facility("bulk_modulus", family="auxiliary_subfield", factory=AuxSubfield)
+    bulkModulus = pyre.inventory.facility("bulk_modulus", family="auxiliary_subfield", factory=Subfield)
     bulkModulus.meta['tip'] = "Bulk modulus subfield."
 
-    biotCoefficient = pyre.inventory.facility("biot_coefficient", family="auxiliary_subfield", factory=AuxSubfield)
+    biotCoefficient = pyre.inventory.facility("biot_coefficient", family="auxiliary_subfield", factory=Subfield)
     biotCoefficient.meta['tip'] = "Biot coefficient subfield."
 
-    isotropicPermeability = pyre.inventory.facility("isotropic_permeability", family="auxiliary_subfield", factory=AuxSubfield)
+    isotropicPermeability = pyre.inventory.facility("isotropic_permeability", family="auxiliary_subfield", factory=Subfield)
     isotropicPermeability.meta['tip'] = "Isotropic permeability subfield."
 
-    fluidBulkModulus = pyre.inventory.facility("fluid_bulk_modulus", family="auxiliary_subfield", factory=AuxSubfield)
+    fluidBulkModulus = pyre.inventory.facility("fluid_bulk_modulus", family="auxiliary_subfield", factory=Subfield)
     fluidBulkModulus.meta['tip'] = "Fluid bulk modulus subfield."
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
@@ -110,7 +110,7 @@ def auxiliary_subfields():
     """
     Factory associated with AuxSubfieldsIsotropicLinearPoroelasticity.
     """
-    return AuxSubfieldsIsotropicLinearElasticity()
+    return AuxSubfieldsIsotropicLinearPoroelasticity()
 
 
 

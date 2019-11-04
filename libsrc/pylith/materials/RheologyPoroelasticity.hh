@@ -18,11 +18,11 @@
 
 /** @file libsrc/materials/RheologyPoroelasticity.hh
  *
- * @brief C++ abstract base class for bulk rheologies associated with the elasticity equation.
+ * @brief C++ abstract base class for bulk rheologies associated with the poroelasticity equation.
  */
 
-#if !defined(pylith_materials_rheologyelasticity_hh)
-#define pylith_materials_rheologyelasticity_hh
+#if !defined(pylith_materials_rheologyporoelasticity_hh)
+#define pylith_materials_rheologyporoelasticity_hh
 #include "spatialdata/spatialdb/GravityField.hh" // USES GravityField
 #include "materialsfwd.hh" // forward declarations
 #include "pylith/utils/PyreComponent.hh" // ISA PyreComponent
@@ -176,6 +176,6 @@ private:
 
 }; // class RheologyPoroelasticity
 
-#endif // pylith_materials_rheologyelasticity_hh
+#endif // pylith_materials_rheologyporoelasticity_hh
 
 // End of file
