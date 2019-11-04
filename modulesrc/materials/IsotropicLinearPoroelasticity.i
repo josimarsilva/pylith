@@ -23,7 +23,7 @@
 
 namespace pylith {
     namespace materials {
-        class IsotropicLinearPoroelasticity : public pylith::materials::RheologyElasticity {
+        class IsotropicLinearPoroelasticity : public pylith::materials::RheologyPoroelasticity {
             // PUBLIC METHODS //////////////////////////////////////////////////////////////////////////////////////////
 public:
 
