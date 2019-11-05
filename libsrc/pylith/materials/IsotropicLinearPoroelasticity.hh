@@ -26,7 +26,7 @@
 
 #include "materialsfwd.hh" // forward declarations
 
-#include "pylith/materials/RheologyPoroelasticity.hh" // ISA RheologyIncompressibleElasticity
+#include "pylith/materials/RheologyPoroelasticity.hh" // ISA RheologyPoroelasticity
 
 class pylith::materials::IsotropicLinearPoroelasticity : public pylith::materials::RheologyPoroelasticity {
     friend class TestIsotropicLinearPoroelasticity; // unit testing

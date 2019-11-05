@@ -62,7 +62,7 @@ class Poroelasticity(Material, ModulePoroelasticity):
     useBodyForce = pyre.inventory.bool("use_body_force", default=False)
     useBodyForce.meta['tip'] = "Include body force term in Poroelasticity equation."
 
-    rheology = pyre.inventory.facility("bulk_rheology", family="Poroelasticity_rheology", factory=IsotropicLinearPoroelasticity)
+    rheology = pyre.inventory.facility("bulk_rheology", family="poroelasticity_rheology", factory=IsotropicLinearPoroelasticity)
     rheology.meta['tip'] = "Bulk rheology for poroelastic material."
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
