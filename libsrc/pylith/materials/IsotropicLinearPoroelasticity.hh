@@ -84,7 +84,7 @@ public:
      *
      * @return RHS residual kernel for Darcy velocity.
      */
-    //PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const;
+    PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const;
 
     /** Get elastic constants kernel for RHS Jacobian G(t,s).
      *

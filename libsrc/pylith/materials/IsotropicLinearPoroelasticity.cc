@@ -123,7 +123,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualEffectiveS
     PYLITH_METHOD_RETURN(g1u);
 } // getKernelRHSResidualStress
 
-/*
+
 // ---------------------------------------------------------------------------------------------------------------------
 // Get darcy velocity kernel for RHS residual, G(t,s)
 PetscPointFunc
@@ -137,7 +137,7 @@ pylith::materials::IsotropicLinearPoroelasticity::getKernelRHSResidualPressure(c
 
     PYLITH_METHOD_RETURN(g1p);
   } // getKernelRHSResidualPressure
-*/
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Get elastic constants kernel for RHS Jacobian G(t,s).
