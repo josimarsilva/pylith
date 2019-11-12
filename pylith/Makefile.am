@@ -52,15 +52,15 @@ nobase_pkgpyexec_PYTHON = \
 	materials/AuxSubfieldsIsotropicLinearElasticity.py \
 	materials/AuxSubfieldsIsotropicLinearMaxwell.py \
 	materials/AuxSubfieldsIsotropicLinearGenMaxwell.py \
-    materials/AuxSubfieldsIsotropicLinearPoroelasticity.py \
-    materials/AuxSubfieldsPoroelasticity.py \
+  materials/AuxSubfieldsIsotropicLinearPoroelasticity.py \
+  materials/AuxSubfieldsPoroelasticity.py \
 	materials/IncompressibleElasticity.py \
 	materials/AuxSubfieldsIsotropicPowerLaw.py \
 	materials/RheologyIncompressibleElasticity.py \
 	materials/IsotropicLinearIncompElasticity.py \
-    materials/Poroelasticity.py \
-    materials/RheologyPoroelasticity.py \
-    materials/IsotropicLinearPoroelasticity.py \
+  materials/Poroelasticity.py \
+  materials/RheologyPoroelasticity.py \
+  materials/IsotropicLinearPoroelasticity.py \
 	meshio/__init__.py \
 	meshio/DataWriter.py \
 	meshio/DataWriterVTK.py \
@@ -94,12 +94,11 @@ nobase_pkgpyexec_PYTHON = \
 	problems/SolnDispVelLagrange.py \
 	problems/SolnDispPres.py \
 	problems/SolnDispPresLagrange.py \
-    problems/SolnDispPorPresTracStrain.py \
+  problems/SolnDispPresTracStrain.py \
 	problems/SubfieldDisplacement.py \
 	problems/SubfieldVelocity.py \
 	problems/SubfieldPressure.py \
-    problems/SubfieldPorePressure.py \
-    problems/SubfieldTraceStrain.py \
+  problems/SubfieldTraceStrain.py \
 	problems/SubfieldTemperature.py \
 	problems/SubfieldLagrangeFault.py \
 	problems/SingleObserver.py \

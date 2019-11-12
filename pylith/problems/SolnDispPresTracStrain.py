@@ -16,7 +16,7 @@
 # ----------------------------------------------------------------------
 #
 
-# @file pylith/problems/SolnDispPorPresTracStrain.py
+# @file pylith/problems/SolnDispPresTracStrain.py
 ##
 # @brief Python subfields container with displacement, pore pressure, and trace strain subfields.
 
@@ -24,7 +24,7 @@ from pylith.utils.PetscComponent import PetscComponent
 from .Solution import Solution as SolutionBase
 
 
-class SolnDispPorPresTracStrain(PetscComponent):
+class SolnDispPresTracStrain(PetscComponent):
     """
     Python subfields container with displacement, pore pressure, and trace strain subfields.
 
@@ -38,7 +38,7 @@ class SolnDispPorPresTracStrain(PetscComponent):
 
     Facilities
       - *displacement* Displacement subfield.
-      - *pore_pressure* PorePressure subfield.
+      - *pressure* Pressure subfield.
       - *trace_strain* TraceStrain subfield.
     """
 
@@ -48,9 +48,9 @@ class SolnDispPorPresTracStrain(PetscComponent):
     displacement = pyre.inventory.facility("displacement", family="soln_subfield", factory=SubfieldDisplacement)
     displacement.meta['tip'] = "Displacement subfield."
 
-    from .SubfieldPorePressure import SubfieldPorePressure
-    pressure = pyre.inventory.facility("pore_pressure", family="soln_subfield", factory=SubfieldPorePressure)
-    pressure.meta['tip'] = "Pore pressure subfield."
+    from .SubfieldPressure import SubfieldPressure
+    pressure = pyre.inventory.facility("pressure", family="soln_subfield", factory=SubfieldPressure)
+    pressure.meta['tip'] = "Pressure subfield."
 
     from .SubfieldTraceStrain import SubfieldTraceStrain
     traceStrain = pyre.inventory.facility("trace_strain", family="soln_subfield", factory=SubfieldTraceStrain)
@@ -58,7 +58,7 @@ class SolnDispPorPresTracStrain(PetscComponent):
 
     # PUBLIC METHODS /////////////////////////////////////////////////////
 
-    def __init__(self, name="solndispporprestracstrain"):
+    def __init__(self, name="solndispprestracstrain"):
         """
         Constructor.
         """
@@ -72,20 +72,20 @@ class SolnDispPorPresTracStrain(PetscComponent):
     def components(self):
         """
         Order of facilities in Inventory is ambiguous, so overwrite
-        components() to insure order is [displacement, pore_pressure, trace_strain].
+        components() to insure order is [displacement, pressure, trace_strain].
 
         """
         return [self.displacement, self.pressure, self.traceStrain]
 
 
 class Solution(SolutionBase):
-    """Python solution field with displacement, pore pressure, and trace strain subfields.
+    """Python solution field with displacement, pressure, and trace strain subfields.
     """
 
     import pyre.inventory
 
     from .SolutionSubfield import subfieldFactory
-    subfields = pyre.inventory.facilityArray("subfields", family="soln_subfields", itemFactory=subfieldFactory, factory=SolnDispPorPresTracStrain)
+    subfields = pyre.inventory.facilityArray("subfields", family="soln_subfields", itemFactory=subfieldFactory, factory=SolnDispPresTracStrain)
     subfields.meta['tip'] = "Subfields in solution."
 
 

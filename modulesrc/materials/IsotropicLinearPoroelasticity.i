@@ -78,7 +78,7 @@ public:
        *
        * @return RHS residual kernel for Darcy velocity.
        */
-      //PetscPointFunc getKernelRHSResidualPressure(const spatialdata::geocoords::CoordSys* coordsys) const;
+      PetscPointFunc getKernelRHSDarcyVelocity(const spatialdata::geocoords::CoordSys* coordsys) const;
 
       /** Get elastic constants kernel for RHS Jacobian G(t,s).
        *
@@ -141,13 +141,6 @@ public:
        */
       PetscPointJac getKernelRHSJacobianDarcyConductivity(const spatialdata::geocoords::CoordSys* coordsys) const;
 
-      /** Get stress kernel for derived field.
-       *
-       * @param[in] coordsys Coordinate system.
-       *
-       * @return Project kernel for computing stress subfield in derived field.
-       */
-      //PetscPointFunc getKernelRHSDarcyVelocity(const spatialdata::geocoords::CoordSys* coordsys) const;
 
         };
 

@@ -177,8 +177,8 @@ pylith::materials::Poroelasticity::verifyConfiguration(const pylith::topology::F
     if (!solution.hasSubfield("displacement")) {
         throw std::runtime_error("Cannot find 'displacement' field in solution; required for material 'Poroelasticity'.");
     } // if
-    if (!solution.hasSubfield("pore_pressure")) {
-        throw std::runtime_error("Cannot find 'pore_pressure' field in solution; required for material 'Poroelasticity'.");
+    if (!solution.hasSubfield("pressure")) {
+        throw std::runtime_error("Cannot find 'pressure' field in solution; required for material 'Poroelasticity'.");
     } // if
     if (!_useInertia && !solution.hasSubfield("trace_strain")) {
         throw std::runtime_error("Cannot find 'trace_strain' field in solution; required for material 'Poroelasticity'.");
@@ -385,7 +385,7 @@ pylith::materials::Poroelasticity::_setKernelsRHSResidual(pylith::feassemble::In
     } // switch
 
     // g1p is darcy velocity, ship over to rheology section
-    const PetscPointFunc g1p = _rheology->getKernelRHSResidualPressure(coordsys);  //JS: OK fixed this.
+    const PetscPointFunc g1p = _rheology->getKernelRHSDarcyVelocity(coordsys);  //JS: OK fixed this.
     //PetscPointFunc g1p = (!_gravityField) ? pylith::fekernels::IsotropicLinearPoroelasticity::g1p_NoGrav : pylith::fekernels::IsotropicLinearPoroelasticity::g1p_Grav;
 
     // Remaining parts of RHS residuals change with dynamics.
@@ -404,7 +404,7 @@ pylith::materials::Poroelasticity::_setKernelsRHSResidual(pylith::feassemble::In
 
         kernels.resize(3);
         kernels[0] = ResidualKernels("displacement", g0u, g1u);
-        kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
+        kernels[1] = ResidualKernels("pressure",     g0p, g1p);
         kernels[2] = ResidualKernels("trace_strain", g0e, g1e);
 
     } else {      // Dynamic case (u,p,v) to ease input
@@ -422,7 +422,7 @@ pylith::materials::Poroelasticity::_setKernelsRHSResidual(pylith::feassemble::In
 
       kernels.resize(3);
       kernels[0] = ResidualKernels("displacement",  g0u, g1u);
-      kernels[1] = ResidualKernels("pore_pressure", g0p, g1p);
+      kernels[1] = ResidualKernels("pressure",      g0p, g1p);
       kernels[2] = ResidualKernels("velocity",      g0v, g1v);
     } // if/else
 
@@ -494,13 +494,13 @@ pylith::materials::Poroelasticity::_setKernelsRHSJacobian(pylith::feassemble::In
         kernels.resize(9);
 
         kernels[0] = JacobianKernels("displacement", "displacement", Jg0uu, Jg1uu, Jg2uu, Jg3uu);
-        kernels[1] = JacobianKernels("displacement", "pore_pressure", Jg0up, Jg1up, Jg2up, Jg3up);
+        kernels[1] = JacobianKernels("displacement", "pressure",     Jg0up, Jg1up, Jg2up, Jg3up);
         kernels[2] = JacobianKernels("displacement", "trace_strain", Jg0ue, Jg1ue, Jg2ue, Jg3ue);
-        kernels[2] = JacobianKernels("pore_pressure", "displacement", Jg0pu, Jg1pu, Jg2pu, Jg3pu);
-        kernels[3] = JacobianKernels("pore_pressure", "pore_pressure", Jg0pp, Jg1pp, Jg2pp, Jg3pp);
-        kernels[4] = JacobianKernels("pore_pressure", "trace_strain", Jg0pe, Jg1pe, Jg2pe, Jg3pe);
+        kernels[2] = JacobianKernels("pressure",     "displacement", Jg0pu, Jg1pu, Jg2pu, Jg3pu);
+        kernels[3] = JacobianKernels("pressure",     "pressure",     Jg0pp, Jg1pp, Jg2pp, Jg3pp);
+        kernels[4] = JacobianKernels("pressure",     "trace_strain", Jg0pe, Jg1pe, Jg2pe, Jg3pe);
         kernels[6] = JacobianKernels("trace_strain", "trace_strain", Jg0ee, Jg1ee, Jg2ee, Jg3ee);
-        kernels[7] = JacobianKernels("trace_strain", "pore_pressure", Jg0ep, Jg1ep, Jg2ep, Jg3ep);
+        kernels[7] = JacobianKernels("trace_strain", "pressure",     Jg0ep, Jg1ep, Jg2ep, Jg3ep);
         kernels[8] = JacobianKernels("trace_strain", "displacement", Jg0eu, Jg1eu, Jg2eu, Jg3eu);
 
     // Dynamic
@@ -554,13 +554,13 @@ pylith::materials::Poroelasticity::_setKernelsRHSJacobian(pylith::feassemble::In
 
         kernels.resize(9);
         kernels[0] = JacobianKernels("displacement",  "displacement",  Jg0uu, Jg1uu, Jg2uu, Jg3uu);
-        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jg0up, Jg1up, Jg2up, Jg3up);
+        kernels[1] = JacobianKernels("displacement",  "pressure",      Jg0up, Jg1up, Jg2up, Jg3up);
         kernels[2] = JacobianKernels("displacement",  "velocity",      Jg0uv, Jg1uv, Jg2uv, Jg3uv);
-        kernels[2] = JacobianKernels("pore_pressure", "displacement",  Jg0pu, Jg1pu, Jg2pu, Jg3pu);
-        kernels[3] = JacobianKernels("pore_pressure", "pore_pressure", Jg0pp, Jg1pp, Jg2pp, Jg3pp);
-        kernels[4] = JacobianKernels("pore_pressure", "velocity",      Jg0pv, Jg1pv, Jg2pv, Jg3pv);
+        kernels[2] = JacobianKernels("pressure",      "displacement",  Jg0pu, Jg1pu, Jg2pu, Jg3pu);
+        kernels[3] = JacobianKernels("pressure",      "pressure",      Jg0pp, Jg1pp, Jg2pp, Jg3pp);
+        kernels[4] = JacobianKernels("pressure",      "velocity",      Jg0pv, Jg1pv, Jg2pv, Jg3pv);
         kernels[6] = JacobianKernels("velocity",      "displacement",  Jg0vu, Jg1vu, Jg2vu, Jg3vu);
-        kernels[7] = JacobianKernels("velocity",      "pore_pressure", Jg0vp, Jg1vp, Jg2vp, Jg3vp);
+        kernels[7] = JacobianKernels("velocity",      "pressure",      Jg0vp, Jg1vp, Jg2vp, Jg3vp);
         kernels[8] = JacobianKernels("velocity",      "velocity",      Jg0vv, Jg1vv, Jg2vv, Jg3vv);
     } // if/else
 
@@ -600,7 +600,7 @@ pylith::materials::Poroelasticity::_setKernelsLHSResidual(pylith::feassemble::In
 
         kernels.resize(3);
         kernels[0] = ResidualKernels("displacement", f0u, f1u);
-        kernels[1] = ResidualKernels("pore_pressure", f0p, f1p);
+        kernels[1] = ResidualKernels("pressure",     f0p, f1p);
         kernels[2] = ResidualKernels("trace_strain", f0e, f1e);
 
     } else {
@@ -614,8 +614,8 @@ pylith::materials::Poroelasticity::_setKernelsLHSResidual(pylith::feassemble::In
 
         kernels.resize(2);
         kernels[0] = ResidualKernels("displacement", f0u, f1u);
-        kernels[1] = ResidualKernels("pore_pressure", f0p, f1p);
-        kernels[2] = ResidualKernels("velocity",  f0v, f1v);
+        kernels[1] = ResidualKernels("pressure",     f0p, f1p);
+        kernels[2] = ResidualKernels("velocity",     f0v, f1v);
     } // if/else
 
     assert(integrator);
@@ -685,13 +685,13 @@ pylith::materials::Poroelasticity::_setKernelsLHSJacobian(pylith::feassemble::In
         kernels.resize(9);
 
         kernels[0] = JacobianKernels("displacement",  "displacement",  Jf0uu, Jf1uu, Jf2uu, Jf3uu);
-        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jf0up, Jf1up, Jf2up, Jf3up);
+        kernels[1] = JacobianKernels("displacement",  "pressure",      Jf0up, Jf1up, Jf2up, Jf3up);
         kernels[2] = JacobianKernels("displacement",  "trace_strain",  Jf0ue, Jf1ue, Jf2ue, Jf3ue);
-        kernels[3] = JacobianKernels("pore_pressure", "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
-        kernels[4] = JacobianKernels("pore_pressure", "pore_pressure", Jf0pp, Jf1pp, Jf2pp, Jf3pp);
-        kernels[5] = JacobianKernels("pore_pressure", "trace_strain",  Jf0pe, Jf1pe, Jf2pe, Jf3pe);
+        kernels[3] = JacobianKernels("pressure",      "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
+        kernels[4] = JacobianKernels("pressure",      "pressure",      Jf0pp, Jf1pp, Jf2pp, Jf3pp);
+        kernels[5] = JacobianKernels("pressure",      "trace_strain",  Jf0pe, Jf1pe, Jf2pe, Jf3pe);
         kernels[6] = JacobianKernels("trace_strain",  "displacement",  Jf0eu, Jf1eu, Jf2eu, Jf3eu);
-        kernels[7] = JacobianKernels("trace_strain",  "pore_pressure", Jf0ep, Jf1ep, Jf2ep, Jf3ep);
+        kernels[7] = JacobianKernels("trace_strain",  "pressure",      Jf0ep, Jf1ep, Jf2ep, Jf3ep);
         kernels[8] = JacobianKernels("trace_strain",  "trace_strain",  Jf0ee, Jf1ee, Jf2ee, Jf3ee);
 
     // Dynamic
@@ -747,13 +747,13 @@ pylith::materials::Poroelasticity::_setKernelsLHSJacobian(pylith::feassemble::In
         kernels.resize(9);
 
         kernels[0] = JacobianKernels("displacement",  "displacement",  Jf0uu, Jf1uu, Jf2uu, Jf3uu);
-        kernels[1] = JacobianKernels("displacement",  "pore_pressure", Jf0up, Jf1up, Jf2up, Jf3up);
+        kernels[1] = JacobianKernels("displacement",  "pressure",      Jf0up, Jf1up, Jf2up, Jf3up);
         kernels[2] = JacobianKernels("displacement",  "velocity",      Jf0uv, Jf1uv, Jf2uv, Jf3uv);
-        kernels[3] = JacobianKernels("pore_pressure", "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
-        kernels[4] = JacobianKernels("pore_pressure", "pore_pressure", Jf0pp, Jf1pp, Jf2pp, Jf3pp);
-        kernels[5] = JacobianKernels("pore_pressure", "velocity",      Jf0pv, Jf1pv, Jf2pv, Jf3pv);
+        kernels[3] = JacobianKernels("pressure",      "displacement",  Jf0pu, Jf1pu, Jf2pu, Jf3pu);
+        kernels[4] = JacobianKernels("pressure",      "pressure",      Jf0pp, Jf1pp, Jf2pp, Jf3pp);
+        kernels[5] = JacobianKernels("pressure",      "velocity",      Jf0pv, Jf1pv, Jf2pv, Jf3pv);
         kernels[6] = JacobianKernels("velocity",      "displacement",  Jf0vu, Jf1vu, Jf2vu, Jf3vu);
-        kernels[7] = JacobianKernels("velocity",      "pore_pressure", Jf0vp, Jf1vp, Jf2vp, Jf3vp);
+        kernels[7] = JacobianKernels("velocity",      "pressure",      Jf0vp, Jf1vp, Jf2vp, Jf3vp);
         kernels[8] = JacobianKernels("velocity",      "velocity",      Jf0vv, Jf1vv, Jf2vv, Jf3vv);
     } // if/else
 
