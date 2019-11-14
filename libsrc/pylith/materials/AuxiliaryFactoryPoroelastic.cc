@@ -327,7 +327,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addShearModulus(void) {
     description.validator = pylith::topology::FieldQuery::validatorNonnegative;
 
     _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
-    _setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryShearModulus);
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    //_setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryShearModulus);
 
     PYLITH_METHOD_END;
 } // addShearModulus
@@ -353,7 +354,8 @@ pylith::materials::AuxiliaryFactoryPoroelastic::addBulkModulus(void) {
     description.validator = pylith::topology::FieldQuery::validatorPositive;
 
     _field->subfieldAdd(description, getSubfieldDiscretization(fieldName));
-    _setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryBulkModulus);
+    _setSubfieldQueryFn(fieldName, pylith::topology::FieldQuery::dbQueryGeneric);
+    //_setSubfieldQueryFn(fieldName, pylith::materials::Query::dbQueryBulkModulus);
 
     PYLITH_METHOD_END;
 } // addBulkModulus

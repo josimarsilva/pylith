@@ -25,10 +25,10 @@
 #define pylith_materials_auxiliaryfactoryporoelastic_hh
 
 #include "materialsfwd.hh" // forward declarations
-#include "pylith/materials/AuxiliaryFactoryElasticity.hh" // ISA AuxiliaryFactoryElasticity
+#include "pylith/materials/AuxiliaryFactoryPoroelasticity.hh" // ISA AuxiliaryFactoryPoroelasticity
 
-class pylith::materials::AuxiliaryFactoryPoroelastic : public pylith::materials::AuxiliaryFactoryElasticity {
-    friend class TestAuxiliaryFactoryElastic; // unit testing
+class pylith::materials::AuxiliaryFactoryPoroelastic : public pylith::materials::AuxiliaryFactoryPoroelasticity {
+    friend class TestAuxiliaryFactoryPoroelastic; // unit testing
 
     // PUBLIC METHODS //////////////////////////////////////////////////////////////////////////////////////////////////
 public:

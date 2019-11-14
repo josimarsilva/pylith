@@ -24,6 +24,7 @@ subpkginclude_HEADERS = \
 	Elasticity.hh \
 	RheologyElasticity.hh \
 	AuxiliaryFactoryElasticity.hh \
+	AuxiliaryFactoryPoroelasticity.hh \
 	AuxiliaryFactoryPoroelastic.hh \
 	DerivedFactoryElasticity.hh \
 	IsotropicLinearElasticity.hh \
