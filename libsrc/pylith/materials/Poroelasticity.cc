@@ -129,27 +129,6 @@ pylith::materials::Poroelasticity::useSourceDensity(void) const {
     return _useSourceDensity;
 } // useSourceDensity
 
-
-// ----------------------------------------------------------------------
-// Use reference stress and strain in computation of stress and
-// strain?
-void
-pylith::materials::Poroelasticity::useReferenceState(const bool value) {
-    PYLITH_COMPONENT_DEBUG("useReferenceState="<<value<<")");
-
-    _useReferenceState = value;
-} // useReferenceState
-
-
-// ----------------------------------------------------------------------
-// Use reference stress and strain in computation of stress and
-// strain?
-bool
-pylith::materials::Poroelasticity::useReferenceState(void) const {
-    return _useReferenceState;
-} // useReferenceState
-
-
 // ---------------------------------------------------------------------------------------------------------------------
 // Set bulk rheology.
 void
@@ -490,9 +469,9 @@ pylith::materials::Poroelasticity::_setKernelsRHSJacobian(pylith::feassemble::In
         kernels[0] = JacobianKernels("displacement", "displacement", Jg0uu, Jg1uu, Jg2uu, Jg3uu);
         kernels[1] = JacobianKernels("displacement", "pressure",     Jg0up, Jg1up, Jg2up, Jg3up);
         kernels[2] = JacobianKernels("displacement", "trace_strain", Jg0ue, Jg1ue, Jg2ue, Jg3ue);
-        kernels[2] = JacobianKernels("pressure",     "displacement", Jg0pu, Jg1pu, Jg2pu, Jg3pu);
-        kernels[3] = JacobianKernels("pressure",     "pressure",     Jg0pp, Jg1pp, Jg2pp, Jg3pp);
-        kernels[4] = JacobianKernels("pressure",     "trace_strain", Jg0pe, Jg1pe, Jg2pe, Jg3pe);
+        kernels[3] = JacobianKernels("pressure",     "displacement", Jg0pu, Jg1pu, Jg2pu, Jg3pu);
+        kernels[4] = JacobianKernels("pressure",     "pressure",     Jg0pp, Jg1pp, Jg2pp, Jg3pp);
+        kernels[5] = JacobianKernels("pressure",     "trace_strain", Jg0pe, Jg1pe, Jg2pe, Jg3pe);
         kernels[6] = JacobianKernels("trace_strain", "trace_strain", Jg0ee, Jg1ee, Jg2ee, Jg3ee);
         kernels[7] = JacobianKernels("trace_strain", "pressure",     Jg0ep, Jg1ep, Jg2ep, Jg3ep);
         kernels[8] = JacobianKernels("trace_strain", "displacement", Jg0eu, Jg1eu, Jg2eu, Jg3eu);
@@ -550,9 +529,9 @@ pylith::materials::Poroelasticity::_setKernelsRHSJacobian(pylith::feassemble::In
         kernels[0] = JacobianKernels("displacement",  "displacement",  Jg0uu, Jg1uu, Jg2uu, Jg3uu);
         kernels[1] = JacobianKernels("displacement",  "pressure",      Jg0up, Jg1up, Jg2up, Jg3up);
         kernels[2] = JacobianKernels("displacement",  "velocity",      Jg0uv, Jg1uv, Jg2uv, Jg3uv);
-        kernels[2] = JacobianKernels("pressure",      "displacement",  Jg0pu, Jg1pu, Jg2pu, Jg3pu);
-        kernels[3] = JacobianKernels("pressure",      "pressure",      Jg0pp, Jg1pp, Jg2pp, Jg3pp);
-        kernels[4] = JacobianKernels("pressure",      "velocity",      Jg0pv, Jg1pv, Jg2pv, Jg3pv);
+        kernels[3] = JacobianKernels("pressure",      "displacement",  Jg0pu, Jg1pu, Jg2pu, Jg3pu);
+        kernels[4] = JacobianKernels("pressure",      "pressure",      Jg0pp, Jg1pp, Jg2pp, Jg3pp);
+        kernels[5] = JacobianKernels("pressure",      "velocity",      Jg0pv, Jg1pv, Jg2pv, Jg3pv);
         kernels[6] = JacobianKernels("velocity",      "displacement",  Jg0vu, Jg1vu, Jg2vu, Jg3vu);
         kernels[7] = JacobianKernels("velocity",      "pressure",      Jg0vp, Jg1vp, Jg2vp, Jg3vp);
         kernels[8] = JacobianKernels("velocity",      "velocity",      Jg0vv, Jg1vv, Jg2vv, Jg3vv);
