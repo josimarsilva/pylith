@@ -268,6 +268,7 @@ pylith::materials::Poroelasticity::createDerivedField(const pylith::topology::Fi
     _derivedFactory->addSubfields();
 
     derivedField->subfieldsSetup();
+    derivedField->createDiscretization();
     pylith::topology::FieldOps::checkDiscretization(solution, *derivedField);
     derivedField->allocate();
     derivedField->zeroLocal();

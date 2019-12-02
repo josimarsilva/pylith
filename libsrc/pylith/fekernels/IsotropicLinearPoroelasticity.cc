@@ -962,8 +962,8 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress(const PylithInt dim
     PylithInt i;
 
     //assert(_dim == dim);
-    assert(2 == numS);
-    assert(2 == numA);
+    //assert(2 == numS);
+    //assert(2 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
@@ -1040,8 +1040,8 @@ pylith::fekernels::IsotropicLinearPoroelasticity::meanStress_refstate(const Pyli
     PylithInt i;
 
     //assert(_dim == dim);
-    assert(2 == numS);
-    assert(4 == numA);
+    //assert(2 == numS);
+    //assert(4 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
@@ -1119,8 +1119,8 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress(const PylithI
     const PylithInt i_shearModulus = numA - 5;
 
     // assert(_dim == dim);
-    assert(2 == numS);
-    assert(1 == numA);
+    //assert(2 == numS);
+    //assert(1 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
@@ -1205,8 +1205,8 @@ pylith::fekernels::IsotropicLinearPoroelasticity::deviatoricStress_refstate(cons
     const PylithInt i_rstrain = 5;
 
   //  assert(_dim == dim);
-    assert(1 == numS);
-    assert(3 == numA);
+    //assert(1 == numS);
+    //assert(3 == numA);
     assert(sOff_x);
     assert(aOff);
     assert(s_x);
